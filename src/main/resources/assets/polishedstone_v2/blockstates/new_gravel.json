@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"type=old": { "model": "polishedstone_v2:new_gravel_old" },
+		"type=paving": { "model": "polishedstone_v2:new_gravel_paving" }
+	}
+}

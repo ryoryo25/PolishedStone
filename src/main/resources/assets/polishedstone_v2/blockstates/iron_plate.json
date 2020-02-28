@@ -1,0 +1,12 @@
+{
+	"variants": {
+		"type=normal": { "model": "polishedstone_v2:iron_plate_normal" },
+		"type=rusty": [
+			{ "model": "polishedstone_v2:iron_plate_rusty0" },
+			{ "model": "polishedstone_v2:iron_plate_rusty1" },
+			{ "model": "polishedstone_v2:iron_plate_rusty2" },
+			{ "model": "polishedstone_v2:iron_plate_rusty3" },
+			{ "model": "polishedstone_v2:iron_plate_rusty4" }
+		]
+	}
+}

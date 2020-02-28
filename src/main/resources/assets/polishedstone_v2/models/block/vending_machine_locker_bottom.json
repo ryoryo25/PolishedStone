@@ -1,0 +1,7 @@
+{
+	"parent": "polishedstone_v2:block/vending_machine_bottom",
+	"textures": {
+		"main": "polishedstone_v2:blocks/vending_machine_locker",
+		"other": "polishedstone_v2:blocks/vending_machine_locker_other"
+	}
+}

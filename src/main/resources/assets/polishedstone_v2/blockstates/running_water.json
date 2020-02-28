@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"top=false": { "model": "polishedstone_v2:running_water" },
+		"top=true": { "model": "polishedstone_v2:running_water_top" }
+	}
+}

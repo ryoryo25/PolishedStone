@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cross",
+	"textures": {
+		"cross": "polishedstone_v2:blocks/flower_tulip_black"
+	}
+}

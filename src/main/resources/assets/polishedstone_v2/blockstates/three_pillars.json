@@ -1,0 +1,284 @@
+{
+	"multipart": [
+		//applys bases
+		{
+			"when": { 
+				"OR": [
+					{ "shape": "normal_up_single" },
+					{ "shape": "normal_up_ns" },
+					{ "shape": "normal_up_we" }
+				]
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_single_up",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"shape": "normal_up_ns"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_up",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "normal_up_ns"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_up",
+				"uvlock": true,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "normal_up_we"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_up",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"shape": "normal_up_we"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_up",
+				"uvlock": true,
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "normal_side_ns_v"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_side",
+				"uvlock": true,
+				"x": 90,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "normal_side_we_v"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_side",
+				"uvlock": true,
+				"x": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "normal_side_ns_h"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_side",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "normal_side_we_h"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_side",
+				"uvlock": true
+			}
+		},
+
+
+
+		{
+			"when": {
+				"OR": [
+					{"shape": "black_up_single"},
+					{"shape": "black_up_ns"},
+					{"shape": "black_up_we"}
+				]
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_single_up",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"shape": "black_up_ns"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_up",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "black_up_ns"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_up",
+				"uvlock": true,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "black_up_we"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_up",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"shape": "black_up_we"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_up",
+				"uvlock": true,
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "black_side_ns_v"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_side",
+				"uvlock": true,
+				"x": 90,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "black_side_we_v"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_side",
+				"uvlock": true,
+				"x": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "black_side_ns_h"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_side",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "black_side_we_h"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_side",
+				"uvlock": true
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "normal_up_single",
+				"north": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_up",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "normal_up_single",
+				"south": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_up",
+				"uvlock": true,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "normal_up_single",
+				"west": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_up",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"shape": "normal_up_single",
+				"east": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_normal_up",
+				"uvlock": true,
+				"y": 180
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "black_up_single",
+				"north": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_up",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "black_up_single",
+				"south": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_up",
+				"uvlock": true,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "black_up_single",
+				"west": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_up",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"shape": "black_up_single",
+				"east": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:three_pillars_black_up",
+				"uvlock": true,
+				"y": 180
+			}
+		}
+	]
+}

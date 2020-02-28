@@ -1,0 +1,163 @@
+{
+	"multipart": [
+		{
+			"when": {
+				"shape": "axis_x"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe",
+				"x": 90,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "axis_y"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe"
+			}
+		},
+		{
+			"when": {
+				"shape": "axis_z"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe",
+				"x": 90
+			}
+		},
+
+
+
+
+		{
+			"when": {
+				"shape": "axis_x",
+				"west": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_ring",
+				"x": 90,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "axis_x",
+				"east": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_ring",
+				"x": 90,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "axis_x",
+				"west": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_connection",
+				"x": 90,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "axis_x",
+				"east": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_connection",
+				"x": 90,
+				"y": 270
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "axis_y",
+				"up": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_ring",
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "axis_y",
+				"down": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_ring"
+			}
+		},
+		{
+			"when": {
+				"shape": "axis_y",
+				"up": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_connection",
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "axis_y",
+				"down": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_connection"
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "axis_z",
+				"north": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_ring",
+				"x": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "axis_z",
+				"south": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_ring",
+				"x": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "axis_z",
+				"north": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_connection",
+				"x": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "axis_z",
+				"south": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:earthen_pipe_connection",
+				"x": 90
+			}
+		}
+	]
+}

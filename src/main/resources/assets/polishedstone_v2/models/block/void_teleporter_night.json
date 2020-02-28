@@ -1,0 +1,8 @@
+{
+	"parent": "minecraft:block/cube_bottom_top",
+	"textures": {
+		"up": "polishedstone_v2:blocks/void_teleporter_night_top",
+		"side": "polishedstone_v2:blocks/void_teleporter_night_side",
+		"down": "polishedstone_v2:blocks/void_teleporter_night_bottom"
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=east": { "model": "polishedstone_v2:yellow_line", "y": 180, "uvlock": false },
+		"facing=west": { "model": "polishedstone_v2:yellow_line" },
+		"facing=south": { "model": "polishedstone_v2:yellow_line", "y": 270, "uvlock": false },
+		"facing=north": { "model": "polishedstone_v2:yellow_line", "y": 90, "uvlock": false }
+	}
+}

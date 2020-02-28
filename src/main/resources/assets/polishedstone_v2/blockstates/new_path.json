@@ -1,0 +1,14 @@
+{
+	"variants": {
+		"type=dirt": { "model": "polishedstone_v2:new_path_dirt" },
+		"type=coarse_dirt": { "model": "polishedstone_v2:new_path_coarse_dirt" },
+		"type=podzol": { "model": "polishedstone_v2:new_path_podzol" },
+		"type=gravel": { "model": "polishedstone_v2:new_path_gravel" },
+		"type=sand": { "model": "polishedstone_v2:new_path_sand" },
+		"type=red_sand": { "model": "polishedstone_v2:new_path_red_sand" },
+		"type=clay": { "model": "polishedstone_v2:new_path_clay" },
+		"type=soul_sand": { "model": "polishedstone_v2:new_path_soul_sand" },
+		"type=old_gravel": { "model": "polishedstone_v2:new_path_old_gravel" },
+		"type=paving_gravel": { "model": "polishedstone_v2:new_path_paving_gravel" }
+	}
+}

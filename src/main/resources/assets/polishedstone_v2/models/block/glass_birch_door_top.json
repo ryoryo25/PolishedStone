@@ -1,0 +1,7 @@
+{
+	"parent": "block/door_top",
+	"textures": {
+		"bottom": "polishedstone_v2:blocks/door_glass_birch_lower",
+		"top": "polishedstone_v2:blocks/door_glass_birch_upper"
+	}
+}

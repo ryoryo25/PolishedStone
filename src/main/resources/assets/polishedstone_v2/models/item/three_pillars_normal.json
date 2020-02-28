@@ -1,0 +1,6 @@
+{
+	"parent": "polishedstone_v2:item/three_pillars_inventory_base",
+	"textures": {
+		"tex": "blocks/stone"
+	}
+}

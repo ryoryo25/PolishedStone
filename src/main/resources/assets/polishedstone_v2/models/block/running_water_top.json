@@ -1,0 +1,69 @@
+{
+	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
+	"ambientocclusion": false,
+	"textures": {
+		"0": "blocks/water_flow",
+		"particle": "blocks/water_flow"
+	},
+	"elements": [
+		{
+			"name": "cube",
+			"from": [7.200000000000001, 0, 7.200000000000001],
+			"to": [8.8, 16, 8.8],
+			"faces": {
+				"north": {
+					"uv": [
+						7.199999999999999,
+						0,
+						8.799999999999999,
+						16
+					],
+					"texture": "#0"
+				},
+				"east": {
+					"uv": [
+						8.799999999999999,
+						16,
+						7.199999999999999,
+						0
+					],
+					"texture": "#0"
+				},
+				"south": {
+					"uv": [7.200000000000001, 0, 8.8, 16],
+					"texture": "#0"
+				},
+				"west": {
+					"uv": [7.200000000000001, 0, 8.8, 16],
+					"texture": "#0"
+				},
+				"down": {"uv": [0, 0, 0, 0], "texture": "#0"}
+			},
+			"type": "cube"
+		},
+		{
+			"name": "cube",
+			"from": [7.200000000000001, 16, 7.200000000000001],
+			"to": [8.8, 24, 8.8],
+			"faces": {
+				"north": {
+					"uv": [7.200000000000001, 8, 8.8, 16],
+					"texture": "#0"
+				},
+				"east": {
+					"uv": [7.200000000000001, 8, 8.8, 16],
+					"texture": "#0"
+				},
+				"south": {
+					"uv": [7.200000000000001, 8, 8.8, 16],
+					"texture": "#0"
+				},
+				"west": {
+					"uv": [7.200000000000001, 8, 8.8, 16],
+					"texture": "#0"
+				}
+			},
+			"type": "cube"
+		}
+	]
+}

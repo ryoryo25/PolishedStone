@@ -1,0 +1,54 @@
+{
+	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "#wood"
+	},
+	"elements": [
+		{
+			"name": "cube",
+			"from": [6, 9.599999999999998, 6],
+			"to": [10, 15.999999999999998, 10],
+			"faces": {
+				"north": {
+					"uv": [
+						6,
+						1.7763568394002505e-15,
+						10,
+						6.400000000000002
+					],
+					"texture": "#wood"
+				},
+				"east": {
+					"uv": [
+						6,
+						1.7763568394002505e-15,
+						10,
+						6.400000000000002
+					],
+					"texture": "#wood"
+				},
+				"south": {
+					"uv": [
+						6,
+						1.7763568394002505e-15,
+						10,
+						6.400000000000002
+					],
+					"texture": "#wood"
+				},
+				"west": {
+					"uv": [
+						6,
+						1.7763568394002505e-15,
+						10,
+						6.400000000000002
+					],
+					"texture": "#wood"
+				},
+				"up": {"uv": [6, 6, 10, 10], "texture": "#wood"}
+			},
+			"type": "cube"
+		}
+	]
+}

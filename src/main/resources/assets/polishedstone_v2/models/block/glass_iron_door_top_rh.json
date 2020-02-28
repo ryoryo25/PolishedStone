@@ -1,0 +1,7 @@
+{
+	"parent": "block/door_top_rh",
+	"textures": {
+		"bottom": "polishedstone_v2:blocks/door_glass_iron_lower",
+		"top": "polishedstone_v2:blocks/door_glass_iron_upper"
+	}
+}

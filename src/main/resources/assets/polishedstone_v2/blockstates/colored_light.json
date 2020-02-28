@@ -1,0 +1,20 @@
+{
+	"variants": {
+		"color=white": { "model": "polishedstone_v2:colored_light_white" },
+		"color=orange": { "model": "polishedstone_v2:colored_light_orange" },
+		"color=magenta": { "model": "polishedstone_v2:colored_light_magenta" },
+		"color=light_blue": { "model": "polishedstone_v2:colored_light_light_blue" },
+		"color=yellow": { "model": "polishedstone_v2:colored_light_yellow" },
+		"color=lime": { "model": "polishedstone_v2:colored_light_lime" },
+		"color=pink": { "model": "polishedstone_v2:colored_light_pink" },
+		"color=gray": { "model": "polishedstone_v2:colored_light_gray" },
+		"color=light_gray": { "model": "polishedstone_v2:colored_light_light_gray" },
+		"color=cyan": { "model": "polishedstone_v2:colored_light_cyan" },
+		"color=purple": { "model": "polishedstone_v2:colored_light_purple" },
+		"color=blue": { "model": "polishedstone_v2:colored_light_blue" },
+		"color=brown": { "model": "polishedstone_v2:colored_light_brown" },
+		"color=green": { "model": "polishedstone_v2:colored_light_green" },
+		"color=red": { "model": "polishedstone_v2:colored_light_red" },
+		"color=black": { "model": "polishedstone_v2:colored_light_black" }
+	}
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/cube_column",
+	"textures": {
+		"end": "polishedstone_v2:blocks/polished_stone_crossed",
+		"side": "polishedstone_v2:blocks/polished_stone_vertical"
+	}
+}

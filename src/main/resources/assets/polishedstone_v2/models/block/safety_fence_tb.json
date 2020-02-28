@@ -1,0 +1,66 @@
+{
+	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
+	"textures": {
+		"0": "polishedstone_v2:blocks/fence_front",
+		"1": "polishedstone_v2:blocks/iron_plate_side",
+		"particle": "polishedstone_v2:blocks/fence_front"
+	},
+	"elements": [
+		{
+			"name": "cube",
+			"from": [0, 0, 0],
+			"to": [1, 16, 2],
+			"faces": {
+				"north": {"uv": [15, 0, 16, 16], "texture": "#1"},
+				"east": {"uv": [14, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 1, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 2, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "cube",
+			"from": [15, 0, 0],
+			"to": [16, 16, 2],
+			"faces": {
+				"north": {"uv": [0, 0, 1, 16], "texture": "#1"},
+				"east": {"uv": [14, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [15, 0, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 2, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "cube",
+			"from": [3, 0, 0.5],
+			"to": [5, 16, 1.5],
+			"faces": {
+				"north": {"uv": [11, 0, 13, 16], "texture": "#0"},
+				"east": {"uv": [15, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [3, 0, 5, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 1, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "cube",
+			"from": [7, 0, 0.5],
+			"to": [9, 16, 1.5],
+			"faces": {
+				"north": {"uv": [7, 0, 9, 16], "texture": "#0"},
+				"east": {"uv": [15, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [7, 0, 9, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 1, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "cube",
+			"from": [11, 0, 0.5],
+			"to": [13, 16, 1.5],
+			"faces": {
+				"north": {"uv": [3, 0, 5, 16], "texture": "#0"},
+				"east": {"uv": [15, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [11, 0, 13, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 1, 16], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [0, 1, 2, 3, 4]
+}

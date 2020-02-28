@@ -1,0 +1,9 @@
+{
+	"parent": "minecraft:block/grass_path",
+	"textures": {
+		"particle": "minecraft:blocks/dirt_podzol_top",
+		"top": "minecraft:blocks/dirt_podzol_top",
+		"side": "minecraft:blocks/dirt_podzol_side",
+		"bottom": "minecraft:blocks/dirt"
+	}
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/quartz_chiseled",
+	"textures": {
+		"side": "polishedstone_v2:blocks/black_quartz_block_chiseled",
+		"end": "polishedstone_v2:blocks/black_quartz_block_chiseled_top"
+	}
+}

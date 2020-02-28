@@ -1,0 +1,9 @@
+{
+	"parent": "minecraft:block/grass_path",
+	"textures": {
+		"particle": "polishedstone_v2:blocks/gravel_paving",
+		"top": "polishedstone_v2:blocks/gravel_paving",
+		"side": "polishedstone_v2:blocks/gravel_paving",
+		"bottom": "polishedstone_v2:blocks/gravel_paving"
+	}
+}

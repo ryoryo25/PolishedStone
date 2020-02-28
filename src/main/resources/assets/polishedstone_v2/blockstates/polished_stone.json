@@ -1,0 +1,14 @@
+{
+	"variants": {
+		"type=normal": { "model": "polishedstone_v2:polished_stone_normal" },
+		"type=inverted": { "model": "polishedstone_v2:polished_stone_normal" },
+		"type=vertical": { "model": "polishedstone_v2:polished_stone_vertical" },
+		"type=crossed": { "model": "polishedstone_v2:polished_stone_crossed" },
+		"type=brick": { "model": "polishedstone_v2:polished_stone_brick" },
+		"type=brick_large": { "model": "polishedstone_v2:polished_stone_brick_large" },
+		"type=brick_carved": { "model": "polishedstone_v2:polished_stone_brick_carved" },
+		"type=pillar_y": { "model": "polishedstone_v2:polished_stone_pillar" },
+		"type=pillar_z": { "model": "polishedstone_v2:polished_stone_pillar", "x": 90 },
+		"type=pillar_x": { "model": "polishedstone_v2:polished_stone_pillar", "x": 90, "y": 90 }
+	}
+}

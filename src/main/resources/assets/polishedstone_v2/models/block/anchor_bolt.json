@@ -1,0 +1,61 @@
+{
+	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
+	"textures": {
+		"0": "polishedstone_v2:blocks/anchor_bolt",
+		"particle": "polishedstone_v2:blocks/anchor_bolt"
+	},
+	"elements": [
+		{
+			"name": "cube",
+			"from": [6.799999999999999, 0, 6],
+			"to": [9.2, 2, 16],
+			"faces": {
+				"north": {"uv": [7, 14, 9.4, 16], "texture": "#0"},
+				"east": {"uv": [0, 14, 10, 16], "texture": "#0"},
+				"south": {"uv": [7, 14, 9.4, 16], "texture": "#0"},
+				"west": {"uv": [6, 14, 16, 16], "texture": "#0"},
+				"up": {"uv": [7, 6, 9.4, 16], "texture": "#0"},
+				"down": {"uv": [7, 0, 9.4, 10], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [0],
+	"display": {
+		"thirdperson_righthand": {
+			"scale": [0.375, 0.375, 0.375],
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 1.5]
+		},
+		"thirdperson_lefthand": {
+			"scale": [0.375, 0.375, 0.375],
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 1.5]
+		},
+		"firstperson_righthand": {
+			"scale": [0.6, 0.6, 0.6],
+			"rotation": [0, 135, 0],
+			"translation": [0, 0, -3.5]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.6, 0.6, 0.6],
+			"rotation": [0, 135, 0],
+			"translation": [0, 0, -3.5]
+		},
+		"head": {"scale": [1, 1, 1]},
+		"ground": {
+			"scale": [0.25, 0.25, 0.25],
+			"rotation": [0, 0, 0],
+			"translation": [0, 3, 0]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5],
+			"rotation": [0, 0, 0],
+			"translation": [0, 0, 0]
+		},
+		"gui": {
+			"scale": [0.625, 0.625, 0.625],
+			"rotation": [30, 225, 0],
+			"translation": [0, 0, 0]
+		}
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "polishedstone_v2:block/cube_no_shade_all",
+	"textures": {
+		"all": "polishedstone_v2:blocks/chroma_key_back_black"
+	}
+}

@@ -1,0 +1,100 @@
+{
+	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
+	"parent": "block/block",
+	"textures": {
+		"0": "polishedstone_v2:blocks/yellow_line_top",
+		"1": "minecraft:blocks/stone_slab_side",
+		"particle": "polishedstone_v2:blocks/yellow_line_top"
+	},
+	"elements": [
+		{
+			"name": "cube",
+			"from": [0, 8, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {
+					"uv": [0, 0, 16, 8],
+					"texture": "#1",
+					"cullface": "north"
+				},
+				"east": {
+					"uv": [0, 0, 16, 8],
+					"texture": "#1",
+					"cullface": "east"
+				},
+				"south": {
+					"uv": [0, 0, 16, 8],
+					"texture": "#1",
+					"cullface": "south"
+				},
+				"west": {
+					"uv": [0, 0, 16, 8],
+					"texture": "#1",
+					"cullface": "west"
+				},
+				"up": {
+					"uv": [0, 0, 16, 16],
+					"texture": "#0",
+					"rotation": 90
+				},
+				"down": {
+					"uv": [0, 0, 16, 16],
+					"texture": "#1",
+					"cullface": "down",
+					"rotation": 270
+				}
+			}
+		},
+		{
+			"name": "cube",
+			"from": [8, 0, 0],
+			"to": [16, 8, 16],
+			"faces": {
+				"north": {
+					"uv": [0, 8, 8, 16],
+					"texture": "#1",
+					"cullface": "north"
+				},
+				"east": {
+					"uv": [0, 8, 16, 16],
+					"texture": "#1",
+					"cullface": "east"
+				},
+				"south": {
+					"uv": [8, 8, 16, 16],
+					"texture": "#1",
+					"cullface": "south"
+				},
+				"west": {"uv": [0, 8, 16, 16], "texture": "#1"},
+				"up": {
+					"uv": [8, 0, 16, 16],
+					"texture": "#top",
+					"cullface": "up"
+				},
+				"down": {
+					"uv": [8, 0, 16, 16],
+					"texture": "#1",
+					"cullface": "down"
+				}
+			}
+		}
+	],
+	"groups": [0, 1],
+	"display": {
+		"gui": {
+			"rotation": [30, 135, 0],
+			"translation": [0, 0, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"head": {
+			"rotation": [0, -90, 0],
+			"translation": [0, 0, 0],
+			"scale": [1, 1, 1]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, -135, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		}
+	}
+}

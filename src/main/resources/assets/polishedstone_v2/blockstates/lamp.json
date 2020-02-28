@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"type=stone": { "model": "polishedstone_v2:lamp_stone"},
+		"type=brick": { "model": "polishedstone_v2:lamp_brick"},
+		"type=iron": { "model": "polishedstone_v2:lamp_iron"},
+		"type=lapis": { "model": "polishedstone_v2:lamp_lapis"}
+	}
+}

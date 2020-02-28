@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=east":  { "model": "polishedstone_v2:flood_light", "y": 90, "uvlock": true },
+		"facing=west":  { "model": "polishedstone_v2:flood_light", "y": 270, "uvlock": true },
+		"facing=south": { "model": "polishedstone_v2:flood_light", "y": 180, "uvlock": true },
+		"facing=north": { "model": "polishedstone_v2:flood_light" }
+	}
+}

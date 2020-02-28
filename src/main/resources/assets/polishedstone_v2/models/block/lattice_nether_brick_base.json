@@ -1,0 +1,6 @@
+{
+	"parent": "polishedstone_v2:block/lattice_base",
+	"textures": {
+		"wood": "blocks/nether_brick"
+	}
+}

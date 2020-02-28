@@ -1,0 +1,6 @@
+{
+	"parent": "polishedstone_v2:block/three_pillars_up_base",
+	"textures": {
+		"tex": "polishedstone_v2:blocks/stone_black"
+	}
+}

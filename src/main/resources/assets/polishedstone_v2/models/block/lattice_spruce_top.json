@@ -1,0 +1,6 @@
+{
+	"parent": "polishedstone_v2:block/lattice_base_top",
+	"textures": {
+		"wood": "blocks/planks_spruce"
+	}
+}

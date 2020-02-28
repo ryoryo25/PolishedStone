@@ -1,0 +1,104 @@
+
+//chat
+chat.glowstone_generator.power_up1=The Power has increased to 1
+chat.glowstone_generator.power_up2=The Power has increased to 2
+chat.glowstone_generator.power_up3=The Power has increased to 3
+chat.glowstone_generator.power_up4=The Power has increased to 4
+chat.glowstone_generator.power_up5=The Power has increased to 5
+chat.glowstone_generator.power_up6=The Power has increased to 6
+chat.glowstone_generator.power_up7=The Power has increased to 7
+
+chat.glowstone_generator.generated=Glowstone has been generated!
+
+chat.damage_food=There is no contents
+
+
+//tooltip
+tooltip.damage_food=Remaining Amount: %d
+
+
+//key
+polishedstone_v2.option.key.category.name=PolishedStone Version2
+key.facing_adjustment.name=Facing Adjustment
+
+
+//block
+tile.polished_stone.name=Polished Stone
+tile.inversion_polished_stone.name=Inversion Polished Stone
+
+tile.colored_light_white.name=White Colored Light
+tile.colored_light_orange.name=Orange Colored Light
+tile.colored_light_magenta.name=Magenta Colored Light
+tile.colored_light_light_blue.name=Light Blue Colored Light
+tile.colored_light_yellow.name=Yellow Colored Light
+tile.colored_light_lime.name=Lime Colored Light
+tile.colored_light_pink.name=Pink Colored Light
+tile.colored_light_gray.name=Gray Colored Light
+tile.colored_light_light_gray.name=Light Gray Colored Light
+tile.colored_light_cyan.name=Cyan Colored Light
+tile.colored_light_purple.name=Purple Colored Light
+tile.colored_light_blue.name=Blue Colored Light
+tile.colored_light_brown.name=Brown Colored Light
+tile.colored_light_green.name=Green Colored Light
+tile.colored_light_red.name=Red Colored Light
+tile.colored_light_black.name=Black Colored Light
+
+tile.new_path_dirt.name=Dirt Path
+tile.new_path_coarse_dirt.name=Coarse Dirt Path
+tile.new_path_podzol.name=Podzol Path
+tile.new_path_gravel.name=Gravel Path
+tile.new_path_sand.name=Sand Path
+tile.new_path_red_sand.name=Red Sand Path
+tile.new_path_clay.name=Clay Path
+tile.new_path_soul_sand.name=Soul Sand Path
+
+tile.new_flower_lavender_sage.name=Lavender Sage
+tile.new_flower_tulip_black.name=Black Tulip
+
+tile.glowstone_generator.name=Glowstone Generator
+
+tile.dummy_barrier.name=Dummy Barrier
+
+tile.small_stairs_cobblestone.name=Cobblestone Small Stairs
+tile.small_stairs_planks_oak.name=Oak Wood Small Stairs
+tile.small_stairs_planks_spruce.name=Spruce Wood Small Stairs
+tile.small_stairs_planks_birch.name=Birch Wood Small Stairs
+tile.small_stairs_planks_jungle.name=Jungle Wood Small Stairs
+tile.small_stairs_planks_acacia.name=Acacia Wood Small Stairs
+tile.small_stairs_planks_dark_oak.name=Dark Oak Wood Small Stairs
+tile.small_stairs_sandstone.name=Sandstone Small Stairs
+tile.small_stairs_red_sandstone.name=Red Sandstone Small Stairs
+tile.small_stairs_brick.name=Bricks Small Stairs
+tile.small_stairs_stonebrick.name=Stone Bricks Small Stairs
+tile.small_stairs_nether_brick.name=Nether Brick Small Stairs
+tile.small_stairs_red_nether_brick.name=Red Nether Brick Small Stairs
+tile.small_stairs_stone.name=Stone Small Stairs
+
+tile.vending_machine_normal.name=Vending Machine(Normal)
+tile.vending_machine_coca_cola.name=Vending Machine(Coca Cola®)
+tile.vending_machine_suntory.name=Vending Machine(Suntory®)
+tile.vending_machine_dydo.name=Vending Machine(DyDo®)
+tile.vending_machine_ito_en.name=Vending Machine(Ito En®)
+tile.vending_machine_suica.name=Vending Machine(Suica®)
+tile.vending_machine_max_coffee.name=Vending Machine(Max Coffee®)
+tile.vending_machine_locker.name=Locker
+
+tile.yellow_line.name=Yellow Line Block
+
+tile.decoration_block_dummy_solar.name=Dummy Solar
+
+tile.invisible_botton.name=Invisible Button
+
+
+//item
+item.tweaked_dye_black.name=Black Dye
+item.tweaked_dye_brown.name=Brown Dye
+item.tweaked_dye_blue.name=Blue Dye
+item.tweaked_dye_white.name=White Dye
+item.tweaked_dye_cadmium.name=Cadmium Yellow
+item.tweaked_dye_cinnabar.name=Cinnabar
+
+
+//test
+tile.test.name=Test Block
+item.test.name=Test Item

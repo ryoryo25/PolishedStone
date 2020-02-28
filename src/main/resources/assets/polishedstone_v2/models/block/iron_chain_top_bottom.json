@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cross",
+	"textures": {
+		"cross": "polishedstone_v2:blocks/iron_chain_top_bottom"
+	}
+}

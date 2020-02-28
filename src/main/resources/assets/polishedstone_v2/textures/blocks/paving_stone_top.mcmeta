@@ -1,0 +1,10 @@
+{
+	"ctm": {
+		"ctm_version": 1,
+		"type":"CTM",
+		"textures": [
+			"./paving_stone_top",
+			"./paving_stone_top-ctm"
+		]
+	}
+}

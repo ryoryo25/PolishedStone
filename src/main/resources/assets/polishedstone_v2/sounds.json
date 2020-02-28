@@ -1,0 +1,17 @@
+{
+	"chain": {
+		"category": "master",
+		"sounds": [
+			"polishedstone_v2:chain"
+		],
+		"subtitle": "polishedstone_v2.subtitle.chain"
+	},
+
+	"gun_fire": {
+		"category": "master",
+		"sounds": [
+			"polishedstone_v2:gun_fire"
+		],
+		"subtitle": "polishedstone_v2.subtitle.gun_fire"
+	}
+}

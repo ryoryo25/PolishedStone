@@ -1,0 +1,205 @@
+package ryoryo.polishedstone.block;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedstone.PSV2Core;
+
+public class BlockIronPlateStairs extends Block
+{
+	/**
+	 * B: xx T: ..
+	 * B: xx T: ..
+	 */
+	protected static final AxisAlignedBB AABB_SLAB_BOTTOM = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
+	/**
+     * B: .. T: x.
+     * B: .. T: x.
+     */
+    protected static final AxisAlignedBB AABB_QTR_TOP_WEST = new AxisAlignedBB(0.0D, 0.5D, 0.0D, 0.5D, 1.0D, 1.0D);
+    /**
+     * B: .. T: .x
+     * B: .. T: .x
+     */
+    protected static final AxisAlignedBB AABB_QTR_TOP_EAST = new AxisAlignedBB(0.5D, 0.5D, 0.0D, 1.0D, 1.0D, 1.0D);
+    /**
+     * B: .. T: xx
+     * B: .. T: ..
+     */
+    protected static final AxisAlignedBB AABB_QTR_TOP_NORTH = new AxisAlignedBB(0.0D, 0.5D, 0.0D, 1.0D, 1.0D, 0.5D);
+    /**
+     * B: .. T: ..
+     * B: .. T: xx
+     */
+    protected static final AxisAlignedBB AABB_QTR_TOP_SOUTH = new AxisAlignedBB(0.0D, 0.5D, 0.5D, 1.0D, 1.0D, 1.0D);
+
+	public static final PropertyDirection FACING = Utils.HORIZONTAL_FACING;
+	public static final PropertyBool FLOATING = PropertyBool.create("floating");
+
+	public BlockIronPlateStairs()
+	{
+		super(Material.IRON);
+		this.setCreativeTab(PSV2Core.TAB_MOD);
+		this.setUnlocalizedName("iron_plate_stairs");
+		this.setHardness(0.2F);
+		this.setResistance(15.0F);
+		this.setSoundType(SoundType.METAL);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FLOATING, Boolean.valueOf(false)));
+	}
+
+	@Override
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
+	}
+
+	@Override
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
+
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
+	{
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
+	}
+
+	@Override
+	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState)
+	{
+		state = this.getActualState(state, world, pos);
+
+		for(AxisAlignedBB aabb : getCollisionBoxList(state))
+		{
+			addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb);
+		}
+	}
+
+	private static List<AxisAlignedBB> getCollisionBoxList(IBlockState bstate)
+	{
+		List<AxisAlignedBB> list = new ArrayList<AxisAlignedBB>();
+		EnumFacing facing = bstate.getValue(FACING);
+		list.add(AABB_SLAB_BOTTOM);
+
+		switch(facing)
+		{
+		case NORTH:
+		default:
+			list.add(AABB_QTR_TOP_NORTH);
+			break;
+		case SOUTH:
+			list.add(AABB_QTR_TOP_SOUTH);
+			break;
+		case WEST:
+			list.add(AABB_QTR_TOP_WEST);
+			break;
+		case EAST:
+			list.add(AABB_QTR_TOP_EAST);
+			break;
+		}
+
+		return list;
+	}
+
+	@Override
+	@Nullable
+    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
+	{
+		List<RayTraceResult> list = new ArrayList<RayTraceResult>();
+
+		for(AxisAlignedBB aabb : getCollisionBoxList(this.getActualState(blockState, world, pos)))
+		{
+			list.add(this.rayTrace(pos, start, end, aabb));
+		}
+
+		RayTraceResult bestresult = null;
+		double d1 = 0.0D;
+
+		for(RayTraceResult result : list)
+		{
+			if(result != null)
+			{
+				double d0 = result.hitVec.squareDistanceTo(end);
+
+				if(d0 > d1)
+				{
+					bestresult = result;
+					d1 = d0;
+				}
+			}
+		}
+
+		return bestresult;
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		EnumFacing enumfacing = EnumFacing.getFront(meta);
+
+		if(enumfacing.getAxis() == EnumFacing.Axis.Y)
+		{
+			enumfacing = EnumFacing.NORTH;
+		}
+
+		return this.getDefaultState().withProperty(FACING, enumfacing);
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		return state.getValue(FACING).getIndex();
+	}
+
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+	{
+		return state.withProperty(FLOATING, Boolean.valueOf(getDownIsAir(world, pos)));
+	}
+
+	private static boolean getDownIsAir(IBlockAccess world, BlockPos pos)
+	{
+		return (world.getBlockState(pos.down()).getMaterial() == Material.AIR) ? true : false;
+	}
+
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, new IProperty[]
+		{ FACING, FLOATING });
+	}
+
+	public IBlockState withRotation(IBlockState state, Rotation rot)
+	{
+		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+	}
+
+	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
+	{
+		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+	}
+}

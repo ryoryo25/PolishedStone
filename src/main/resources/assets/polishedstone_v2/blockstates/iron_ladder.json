@@ -1,0 +1,23 @@
+{
+	"variants": {
+		"facing=east,prop=false,top=false":  { "model": "polishedstone_v2:iron_ladder_d", "y": 90, "uvlock": true },
+		"facing=west,prop=false,top=false":  { "model": "polishedstone_v2:iron_ladder_d", "y": 270, "uvlock": true },
+		"facing=south,prop=false,top=false": { "model": "polishedstone_v2:iron_ladder_d", "y": 180, "uvlock": true },
+		"facing=north,prop=false,top=false": { "model": "polishedstone_v2:iron_ladder_d" },
+
+		"facing=east,prop=true,top=false":  { "model": "polishedstone_v2:iron_ladder_p", "y": 90, "uvlock": true },
+		"facing=west,prop=true,top=false":  { "model": "polishedstone_v2:iron_ladder_p", "y": 270, "uvlock": true },
+		"facing=south,prop=true,top=false": { "model": "polishedstone_v2:iron_ladder_p", "y": 180, "uvlock": true },
+		"facing=north,prop=true,top=false": { "model": "polishedstone_v2:iron_ladder_p" },
+
+		"facing=east,prop=false,top=true":  { "model": "polishedstone_v2:iron_ladder_d", "y": 90, "uvlock": true },
+		"facing=west,prop=false,top=true":  { "model": "polishedstone_v2:iron_ladder_d", "y": 270, "uvlock": true },
+		"facing=south,prop=false,top=true": { "model": "polishedstone_v2:iron_ladder_d", "y": 180, "uvlock": true },
+		"facing=north,prop=false,top=true": { "model": "polishedstone_v2:iron_ladder_d" },
+
+		"facing=east,prop=true,top=true":  { "model": "polishedstone_v2:iron_ladder_t", "y": 90, "uvlock": true },
+		"facing=west,prop=true,top=true":  { "model": "polishedstone_v2:iron_ladder_t", "y": 270, "uvlock": true },
+		"facing=south,prop=true,top=true": { "model": "polishedstone_v2:iron_ladder_t", "y": 180, "uvlock": true },
+		"facing=north,prop=true,top=true": { "model": "polishedstone_v2:iron_ladder_t" }
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "polishedstone_v2:block/fence_slab_base",
+	"textures": {
+		"wood": "blocks/planks_spruce"
+	}
+}

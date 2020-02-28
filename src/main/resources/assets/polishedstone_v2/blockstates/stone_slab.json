@@ -1,0 +1,27 @@
+{
+	"variants": {
+		"half=bottom,type=polished_stone_crossed": { "model": "polishedstone_v2:half_slab_polished_stone_crossed"},
+		"half=top,type=polished_stone_crossed": { "model": "polishedstone_v2:upper_slab_polished_stone_crossed"},
+
+		"half=bottom,type=polished_stone_brick": { "model": "polishedstone_v2:half_slab_polished_stone_brick"},
+		"half=top,type=polished_stone_brick": { "model": "polishedstone_v2:upper_slab_polished_stone_brick"},
+
+		"half=bottom,type=polished_stone_brick_large": { "model": "polishedstone_v2:half_slab_polished_stone_brick_large"},
+		"half=top,type=polished_stone_brick_large": { "model": "polishedstone_v2:upper_slab_polished_stone_brick_large"},
+
+		"half=bottom,type=black_quartz": { "model": "polishedstone_v2:half_slab_black_quartz"},
+		"half=top,type=black_quartz": { "model": "polishedstone_v2:upper_slab_black_quartz"},
+
+		"half=bottom,type=smooth_granite": { "model": "polishedstone_v2:half_slab_smooth_granite"},
+		"half=top,type=smooth_granite": { "model": "polishedstone_v2:upper_slab_smooth_granite"},
+
+		"half=bottom,type=smooth_diorite": { "model": "polishedstone_v2:half_slab_smooth_diorite"},
+		"half=top,type=smooth_diorite": { "model": "polishedstone_v2:upper_slab_smooth_diorite"},
+
+		"half=bottom,type=smooth_andesite": { "model": "polishedstone_v2:half_slab_smooth_andesite"},
+		"half=top,type=smooth_andesite": { "model": "polishedstone_v2:upper_slab_smooth_andesite"},
+
+		"half=bottom,type=smooth_basalt": { "model": "polishedstone_v2:half_slab_smooth_basalt"},
+		"half=top,type=smooth_basalt": { "model": "polishedstone_v2:upper_slab_smooth_basalt"}
+	}
+}

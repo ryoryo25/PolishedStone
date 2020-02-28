@@ -1,0 +1,12 @@
+{
+	"variants": {
+		"stage=0": { "model": "polishedstone_v2:glowstone_generator_0" },
+		"stage=1": { "model": "polishedstone_v2:glowstone_generator_1" },
+		"stage=2": { "model": "polishedstone_v2:glowstone_generator_2" },
+		"stage=3": { "model": "polishedstone_v2:glowstone_generator_3" },
+		"stage=4": { "model": "polishedstone_v2:glowstone_generator_4" },
+		"stage=5": { "model": "polishedstone_v2:glowstone_generator_5" },
+		"stage=6": { "model": "polishedstone_v2:glowstone_generator_6" },
+		"stage=7": { "model": "polishedstone_v2:glowstone_generator_7" }
+	}
+}

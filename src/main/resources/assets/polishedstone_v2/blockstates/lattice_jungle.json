@@ -1,0 +1,44 @@
+{
+	"multipart": [
+		{
+			"apply": {
+				"model": "polishedstone_v2:lattice_jungle_base"
+			}
+		},
+		{
+			"when": {
+				"top": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:lattice_jungle_top",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"bottom": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:lattice_jungle_top",
+				"x": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"OR": [
+					{
+						"top": "true"
+					},
+					{
+						"bottom": "true"
+					}
+				]
+			},
+			"apply": {
+				"model": "polishedstone_v2:lattice_jungle_middle",
+				"uvlock": true
+			}
+		}
+	]
+}

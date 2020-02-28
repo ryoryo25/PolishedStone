@@ -1,0 +1,10 @@
+{
+	"ctm": {
+		"ctm_version": 1,
+		"type":"CTM",
+		"textures": [
+			"./polished_stone_side",
+			"./polished_stone_side-ctm"
+		]
+	}
+}

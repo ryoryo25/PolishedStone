@@ -1,0 +1,6 @@
+{
+	"parent": "block/cross",
+	"textures": {
+		"cross": "polishedstone_v2:blocks/lamp_lapis"
+	}
+}

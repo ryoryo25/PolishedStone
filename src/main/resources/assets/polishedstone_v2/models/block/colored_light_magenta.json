@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cube_all",
+	"textures": {
+		"all": "polishedstone_v2:blocks/colored_light_magenta"
+	}
+}

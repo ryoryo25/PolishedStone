@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/button",
+	"textures": {
+		"texture": "polishedstone_v2:blocks/invisible_button"
+	}
+}

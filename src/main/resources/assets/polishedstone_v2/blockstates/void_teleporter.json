@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"type=day": { "model": "polishedstone_v2:void_teleporter_day" },
+		"type=night": { "model": "polishedstone_v2:void_teleporter_night" },
+		"type=perfect": { "model": "polishedstone_v2:void_teleporter_perfect" }
+	}
+}

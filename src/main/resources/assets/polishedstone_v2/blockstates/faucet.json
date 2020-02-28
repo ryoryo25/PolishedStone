@@ -1,0 +1,23 @@
+{
+	"variants": {
+		"facing=east,running=false,type=0":  { "model": "polishedstone_v2:faucet_1", "y": 270, "uvlock": true },
+		"facing=west,running=false,type=0":  { "model": "polishedstone_v2:faucet_1", "y": 90, "uvlock": true },
+		"facing=south,running=false,type=0": { "model": "polishedstone_v2:faucet_1" },
+		"facing=north,running=false,type=0": { "model": "polishedstone_v2:faucet_1", "y": 180, "uvlock": true },
+
+		"facing=east,running=true,type=0":  { "model": "polishedstone_v2:faucet_1", "y": 270, "uvlock": true },
+		"facing=west,running=true,type=0":  { "model": "polishedstone_v2:faucet_1", "y": 90, "uvlock": true },
+		"facing=south,running=true,type=0": { "model": "polishedstone_v2:faucet_1" },
+		"facing=north,running=true,type=0": { "model": "polishedstone_v2:faucet_1", "y": 180, "uvlock": true },
+
+		"facing=east,running=false,type=1":  { "model": "polishedstone_v2:faucet_2", "y": 270, "uvlock": true },
+		"facing=west,running=false,type=1":  { "model": "polishedstone_v2:faucet_2", "y": 90, "uvlock": true },
+		"facing=south,running=false,type=1": { "model": "polishedstone_v2:faucet_2" },
+		"facing=north,running=false,type=1": { "model": "polishedstone_v2:faucet_2", "y": 180, "uvlock": true },
+
+		"facing=east,running=true,type=1":  { "model": "polishedstone_v2:faucet_2", "y": 270, "uvlock": true },
+		"facing=west,running=true,type=1":  { "model": "polishedstone_v2:faucet_2", "y": 90, "uvlock": true },
+		"facing=south,running=true,type=1": { "model": "polishedstone_v2:faucet_2" },
+		"facing=north,running=true,type=1": { "model": "polishedstone_v2:faucet_2", "y": 180, "uvlock": true }
+	}
+}

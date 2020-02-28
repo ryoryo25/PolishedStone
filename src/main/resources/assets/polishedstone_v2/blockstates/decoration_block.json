@@ -1,0 +1,15 @@
+{
+	"variants": {
+		"type=colored_brick": { "model": "polishedstone_v2:decoration_block_colored_brick"},
+		"type=granite_brick": { "model": "polishedstone_v2:decoration_block_granite_brick"},
+		"type=granite_brick_carved": { "model": "polishedstone_v2:decoration_block_granite_brick_carved"},
+		"type=diorite_brick": { "model": "polishedstone_v2:decoration_block_diorite_brick"},
+		"type=diorite_brick_carved": { "model": "polishedstone_v2:decoration_block_diorite_brick_carved"},
+		"type=andesite_brick": { "model": "polishedstone_v2:decoration_block_andesite_brick"},
+		"type=andesite_brick_carved": { "model": "polishedstone_v2:decoration_block_andesite_brick_carved"},
+		"type=basalt": { "model": "polishedstone_v2:decoration_block_basalt"},
+		"type=basalt_smooth": { "model": "polishedstone_v2:decoration_block_basalt_smooth"},
+		"type=basalt_brick": { "model": "polishedstone_v2:decoration_block_basalt_brick"},
+		"type=basalt_brick_carved": { "model": "polishedstone_v2:decoration_block_basalt_brick_carved"}
+	}
+}

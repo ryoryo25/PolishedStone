@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"facing=north":  { "model": "polishedstone_v2:rusty_wood_flat" },
+		"facing=west":  { "model": "polishedstone_v2:rusty_wood_flat", "y": 90 }
+	}
+}

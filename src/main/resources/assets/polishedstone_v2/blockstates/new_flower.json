@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"type=lavender_sage": { "model": "polishedstone_v2:new_flower_lavender_sage" },
+		"type=tulip_black": { "model": "polishedstone_v2:new_flower_tulip_black" }
+	}
+}

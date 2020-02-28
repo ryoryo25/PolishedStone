@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"multiple=1": { "model": "polishedstone_v2:compressed_bookshelf_x1" },
+		"multiple=2": { "model": "polishedstone_v2:compressed_bookshelf_x2" }
+	}
+}

@@ -1,0 +1,24 @@
+{
+	"__comment": "If UP or DOWN is AIR material, return false.",
+	"variants": {
+		"bottom=false,facing=east,top=false":  { "model": "polishedstone_v2:safety_fence_test_d", "y": 270, "uvlock": true },
+		"bottom=false,facing=west,top=false":  { "model": "polishedstone_v2:safety_fence_test_d", "y": 90, "uvlock": true },
+		"bottom=false,facing=south,top=false": { "model": "polishedstone_v2:safety_fence_test_d" },
+		"bottom=false,facing=north,top=false": { "model": "polishedstone_v2:safety_fence_test_d", "y": 180, "uvlock": true },
+
+		"bottom=true,facing=east,top=false":  { "model": "polishedstone_v2:safety_fence_test_b", "y": 270, "uvlock": true },
+		"bottom=true,facing=west,top=false":  { "model": "polishedstone_v2:safety_fence_test_b", "y": 90, "uvlock": true },
+		"bottom=true,facing=south,top=false": { "model": "polishedstone_v2:safety_fence_test_b" },
+		"bottom=true,facing=north,top=false": { "model": "polishedstone_v2:safety_fence_test_b", "y": 180, "uvlock": true },
+
+		"bottom=false,facing=east,top=true":  { "model": "polishedstone_v2:safety_fence_test_t", "y": 270, "uvlock": true },
+		"bottom=false,facing=west,top=true":  { "model": "polishedstone_v2:safety_fence_test_t", "y": 90, "uvlock": true },
+		"bottom=false,facing=south,top=true": { "model": "polishedstone_v2:safety_fence_test_t" },
+		"bottom=false,facing=north,top=true": { "model": "polishedstone_v2:safety_fence_test_t", "y": 180, "uvlock": true },
+
+		"bottom=true,facing=east,top=true":  { "model": "polishedstone_v2:safety_fence_test_tb", "y": 270, "uvlock": true },
+		"bottom=true,facing=west,top=true":  { "model": "polishedstone_v2:safety_fence_test_tb", "y": 90, "uvlock": true },
+		"bottom=true,facing=south,top=true": { "model": "polishedstone_v2:safety_fence_test_tb" },
+		"bottom=true,facing=north,top=true": { "model": "polishedstone_v2:safety_fence_test_tb", "y": 180, "uvlock": true }
+	}
+}

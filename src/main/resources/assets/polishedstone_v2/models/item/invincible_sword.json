@@ -1,0 +1,6 @@
+{
+	"parent": "polishedstone_v2:item/handheld_big",
+	"textures": {
+		"layer0": "polishedstone_v2:items/invincible_sword"
+	}
+}

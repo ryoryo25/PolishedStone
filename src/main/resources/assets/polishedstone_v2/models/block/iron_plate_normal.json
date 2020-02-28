@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/carpet",
+	"textures": {
+		"particle": "polishedstone_v2:blocks/iron_plate_top_normal",
+		"wool": "polishedstone_v2:blocks/iron_plate_top_normal"
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "polishedstone_v2:block/earthen_pipe_base",
+	"textures": {
+		"tex": "blocks/stone"
+	}
+}

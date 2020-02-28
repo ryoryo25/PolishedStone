@@ -1,0 +1,6 @@
+{
+	"parent": "polishedstone_v2:block/dummy_cable_thick_connection_base",
+	"textures": {
+		"tex": "polishedstone_v2:blocks/dummy_cable_thick"
+	}
+}

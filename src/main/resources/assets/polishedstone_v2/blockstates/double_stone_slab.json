@@ -1,0 +1,12 @@
+{
+	"variants": {
+		"type=polished_stone_crossed": { "model": "polishedstone_v2:polished_stone_crossed"},
+		"type=polished_stone_brick": { "model": "polishedstone_v2:polished_stone_brick"},
+		"type=polished_stone_brick_large": { "model": "polishedstone_v2:polished_stone_brick_large"},
+		"type=black_quartz": { "model": "polishedstone_v2:black_quartz_normal"},
+		"type=smooth_granite": { "model": "polishedstone_v2:double_slab_smooth_granite"},
+		"type=smooth_diorite": { "model": "polishedstone_v2:double_slab_smooth_diorite"},
+		"type=smooth_andesite": { "model": "polishedstone_v2:double_slab_smooth_andesite"},
+		"type=smooth_basalt": { "model": "polishedstone_v2:double_slab_smooth_basalt"}
+	}
+}

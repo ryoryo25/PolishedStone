@@ -1,0 +1,41 @@
+{
+	"multipart": [
+		{
+			"when": {
+				"half": "top"
+			},
+			"apply": {
+				"model": "minecraft:upper_slab_dark_oak",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"half": "top"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fence_slab_dark_oak",
+				"x": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"half": "bottom"
+			},
+			"apply": {
+				"model": "minecraft:half_slab_dark_oak",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"half": "bottom"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fence_slab_dark_oak",
+				"uvlock": true
+			}
+		}
+	]
+}

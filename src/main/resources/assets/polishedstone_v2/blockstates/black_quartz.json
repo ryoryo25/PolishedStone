@@ -1,0 +1,9 @@
+{
+	"variants": {
+		"variant=default": { "model": "polishedstone_v2:black_quartz_normal" },
+		"variant=chiseled": { "model": "polishedstone_v2:black_quartz_chiseled" },
+		"variant=lines_x": { "model": "polishedstone_v2:black_quartz_lines", "x": 90, "y": 90 },
+		"variant=lines_y": { "model": "polishedstone_v2:black_quartz_lines" },
+		"variant=lines_z": { "model": "polishedstone_v2:black_quartz_lines", "x": 90 }
+	}
+}

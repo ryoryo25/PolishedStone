@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/rail_curved",
+	"textures": {
+		"rail": "polishedstone_v2:blocks/slab_rail_turned"
+	}
+}

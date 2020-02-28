@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/quartz_lines",
+	"textures": {
+		"end": "polishedstone_v2:blocks/black_quartz_block_lines_top",
+		"side": "polishedstone_v2:blocks/black_quartz_block_lines"
+	}
+}

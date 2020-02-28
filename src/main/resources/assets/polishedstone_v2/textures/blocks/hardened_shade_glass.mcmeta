@@ -1,0 +1,10 @@
+{
+	"ctm": {
+		"ctm_version": 1,
+		"type":"CTM",
+		"textures": [
+			"./hardened_shade_glass",
+			"./hardened_shade_glass-ctm"
+		]
+	}
+}

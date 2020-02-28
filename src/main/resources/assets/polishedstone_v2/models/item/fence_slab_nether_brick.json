@@ -1,0 +1,6 @@
+{
+	"parent": "polishedstone_v2:block/fence_slab_inventory",
+	"textures": {
+		"wood": "blocks/nether_brick"
+	}
+}

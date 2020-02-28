@@ -1,0 +1,9 @@
+{
+	"parent": "minecraft:block/grass_path",
+	"textures": {
+		"particle": "minecraft:blocks/clay",
+		"top": "minecraft:blocks/clay",
+		"side": "minecraft:blocks/clay",
+		"bottom": "minecraft:blocks/clay"
+	}
+}

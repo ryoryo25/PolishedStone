@@ -1,0 +1,9 @@
+{
+	"variants": {
+		"facing=up": { "model": "polishedstone_v2:slime_removal_torch" },
+		"facing=east": { "model": "polishedstone_v2:slime_removal_torch_wall" },
+		"facing=south": { "model": "polishedstone_v2:slime_removal_torch_wall", "y": 90 },
+		"facing=west": { "model": "polishedstone_v2:slime_removal_torch_wall", "y": 180 },
+		"facing=north": { "model": "polishedstone_v2:slime_removal_torch_wall", "y": 270 }
+	}
+}

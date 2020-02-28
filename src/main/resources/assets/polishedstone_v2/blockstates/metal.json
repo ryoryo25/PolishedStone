@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"variant=ender_steel": { "model": "polishedstone_v2:metal_ender_steel" },
+		"variant=bluestone": { "model": "polishedstone_v2:metal_bluestone" },
+		"variant=bluestone_dust": { "model": "polishedstone_v2:metal_bluestone_dust" },
+		"variant=crystal": { "model": "polishedstone_v2:metal_crystal" },
+		"variant=blaze": { "model": "polishedstone_v2:metal_blaze" },
+		"variant=wither_skeleton": { "model": "polishedstone_v2:metal_wither_skeleton" },
+		"variant=redstone": { "model": "polishedstone_v2:metal_redstone" },
+		"variant=charcoal": { "model": "polishedstone_v2:metal_charcoal" },
+		"variant=dummy_solar": { "model": "polishedstone_v2:metal_dummy_solar" },
+		"variant=old_iron": { "model": "polishedstone_v2:metal_old_iron" },
+		"variant=old_gold": { "model": "polishedstone_v2:metal_old_gold" },
+		"variant=old_diamond": { "model": "polishedstone_v2:metal_old_diamond" }
+	}
+}

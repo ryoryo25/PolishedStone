@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"type=normal": { "model": "polishedstone_v2:paving_stone_normal" },
+		"type=vertical": { "model": "polishedstone_v2:paving_stone_vertical" },
+		"type=crossed": { "model": "polishedstone_v2:paving_stone_crossed" },
+		"type=powered": { "model": "polishedstone_v2:paving_stone_powered" }
+	}
+}

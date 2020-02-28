@@ -1,0 +1,20 @@
+{
+	"variants": {
+		"color=white": { "model": "polishedstone_v2:chroma_key_back_white" },
+		"color=orange": { "model": "polishedstone_v2:chroma_key_back_orange" },
+		"color=magenta": { "model": "polishedstone_v2:chroma_key_back_magenta" },
+		"color=light_blue": { "model": "polishedstone_v2:chroma_key_back_light_blue" },
+		"color=yellow": { "model": "polishedstone_v2:chroma_key_back_yellow" },
+		"color=lime": { "model": "polishedstone_v2:chroma_key_back_lime" },
+		"color=pink": { "model": "polishedstone_v2:chroma_key_back_pink" },
+		"color=gray": { "model": "polishedstone_v2:chroma_key_back_gray" },
+		"color=light_gray": { "model": "polishedstone_v2:chroma_key_back_light_gray" },
+		"color=cyan": { "model": "polishedstone_v2:chroma_key_back_cyan" },
+		"color=purple": { "model": "polishedstone_v2:chroma_key_back_purple" },
+		"color=blue": { "model": "polishedstone_v2:chroma_key_back_blue" },
+		"color=brown": { "model": "polishedstone_v2:chroma_key_back_brown" },
+		"color=green": { "model": "polishedstone_v2:chroma_key_back_green" },
+		"color=red": { "model": "polishedstone_v2:chroma_key_back_red" },
+		"color=black": { "model": "polishedstone_v2:chroma_key_back_black" }
+	}
+}

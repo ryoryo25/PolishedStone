@@ -1,0 +1,18 @@
+{
+	"variants": {
+		"facing=north,stage=first,top=false":  { "model": "polishedstone_v2:stepladder_first" },
+		"facing=west,stage=first,top=false":   { "model": "polishedstone_v2:stepladder_first", "y": 90, "uvlock": false },
+		"facing=north,stage=first,top=true":  { "model": "polishedstone_v2:stepladder_first_top" },
+		"facing=west,stage=first,top=true":   { "model": "polishedstone_v2:stepladder_first_top", "y": 90, "uvlock": false },
+
+		"facing=north,stage=second,top=false": { "model": "polishedstone_v2:stepladder_second" },
+		"facing=west,stage=second,top=false":  { "model": "polishedstone_v2:stepladder_second", "y": 90, "uvlock": false },
+		"facing=north,stage=second,top=true": { "model": "polishedstone_v2:stepladder_second_top" },
+		"facing=west,stage=second,top=true":  { "model": "polishedstone_v2:stepladder_second_top", "y": 90, "uvlock": false },
+
+		"facing=north,stage=third,top=false":  { "model": "polishedstone_v2:stepladder_third" },
+		"facing=west,stage=third,top=false":   { "model": "polishedstone_v2:stepladder_third", "y": 90, "uvlock": false },
+		"facing=north,stage=third,top=true":  { "model": "polishedstone_v2:stepladder_third" },
+		"facing=west,stage=third,top=true":   { "model": "polishedstone_v2:stepladder_third", "y": 90, "uvlock": false }
+	}
+}

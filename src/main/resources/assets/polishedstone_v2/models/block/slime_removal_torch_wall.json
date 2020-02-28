@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/torch_wall",
+	"textures": {
+	"torch": "polishedstone_v2:blocks/slime_removal_torch_on"
+	}
+}

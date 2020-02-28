@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "polishedstone_v2:items/door_hardened_shade_glass"
+	}
+}

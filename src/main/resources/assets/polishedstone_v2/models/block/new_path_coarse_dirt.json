@@ -1,0 +1,9 @@
+{
+	"parent": "minecraft:block/grass_path",
+	"textures": {
+		"particle": "minecraft:blocks/coarse_dirt",
+		"top": "minecraft:blocks/coarse_dirt",
+		"side": "minecraft:blocks/coarse_dirt",
+		"bottom": "minecraft:blocks/coarse_dirt"
+	}
+}

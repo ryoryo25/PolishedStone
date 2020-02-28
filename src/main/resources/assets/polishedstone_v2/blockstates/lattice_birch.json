@@ -1,0 +1,44 @@
+{
+	"multipart": [
+		{
+			"apply": {
+				"model": "polishedstone_v2:lattice_birch_base"
+			}
+		},
+		{
+			"when": {
+				"top": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:lattice_birch_top",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"bottom": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:lattice_birch_top",
+				"x": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"OR": [
+					{
+						"top": "true"
+					},
+					{
+						"bottom": "true"
+					}
+				]
+			},
+			"apply": {
+				"model": "polishedstone_v2:lattice_birch_middle",
+				"uvlock": true
+			}
+		}
+	]
+}

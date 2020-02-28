@@ -1,0 +1,29 @@
+{
+    "variants": {
+        "facing=up,powered=false,visible=true":    { "model": "polishedstone_v2:invisible_button", "uvlock": true },
+        "facing=down,powered=false,visible=true":  { "model": "polishedstone_v2:invisible_button", "uvlock": true, "x": 180 },
+        "facing=east,powered=false,visible=true":  { "model": "polishedstone_v2:invisible_button", "uvlock": true, "x": 90, "y": 90 },
+        "facing=west,powered=false,visible=true":  { "model": "polishedstone_v2:invisible_button", "uvlock": true, "x": 90, "y": 270 },
+        "facing=south,powered=false,visible=true": { "model": "polishedstone_v2:invisible_button", "uvlock": true, "x": 90, "y": 180 },
+        "facing=north,powered=false,visible=true": { "model": "polishedstone_v2:invisible_button", "uvlock": true, "x": 90 },
+        "facing=up,powered=true,visible=true":     { "model": "polishedstone_v2:invisible_button_pressed", "uvlock": true },
+        "facing=down,powered=true,visible=true":   { "model": "polishedstone_v2:invisible_button_pressed", "uvlock": true, "x": 180 },
+        "facing=east,powered=true,visible=true":   { "model": "polishedstone_v2:invisible_button_pressed", "uvlock": true, "x": 90, "y": 90 },
+        "facing=west,powered=true,visible=true":   { "model": "polishedstone_v2:invisible_button_pressed", "uvlock": true, "x": 90, "y": 270 },
+        "facing=south,powered=true,visible=true":  { "model": "polishedstone_v2:invisible_button_pressed", "uvlock": true, "x": 90, "y": 180 },
+        "facing=north,powered=true,visible=true":  { "model": "polishedstone_v2:invisible_button_pressed", "uvlock": true, "x": 90 },
+
+        "facing=up,powered=false,visible=false":    { "model": "polishedstone_v2:invisible_button_invisible"},
+        "facing=down,powered=false,visible=false":  { "model": "polishedstone_v2:invisible_button_invisible"},
+        "facing=east,powered=false,visible=false":  { "model": "polishedstone_v2:invisible_button_invisible"},
+        "facing=west,powered=false,visible=false":  { "model": "polishedstone_v2:invisible_button_invisible"},
+        "facing=south,powered=false,visible=false": { "model": "polishedstone_v2:invisible_button_invisible"},
+        "facing=north,powered=false,visible=false": { "model": "polishedstone_v2:invisible_button_invisible"},
+        "facing=up,powered=true,visible=false":     { "model": "polishedstone_v2:invisible_button_invisible"},
+        "facing=down,powered=true,visible=false":   { "model": "polishedstone_v2:invisible_button_invisible"},
+        "facing=east,powered=true,visible=false":   { "model": "polishedstone_v2:invisible_button_invisible"},
+        "facing=west,powered=true,visible=false":   { "model": "polishedstone_v2:invisible_button_invisible"},
+        "facing=south,powered=true,visible=false":  { "model": "polishedstone_v2:invisible_button_invisible"},
+        "facing=north,powered=true,visible=false":  { "model": "polishedstone_v2:invisible_button_invisible"}
+    }
+}

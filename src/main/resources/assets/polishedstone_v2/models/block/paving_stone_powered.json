@@ -1,0 +1,8 @@
+{
+	"parent": "minecraft:block/cube_bottom_top",
+	"textures": {
+		"down": "polishedstone_v2:blocks/paving_stone_top",
+		"up": "polishedstone_v2:blocks/paving_stone_powered",
+		"side": "polishedstone_v2:blocks/paving_stone_side"
+	}
+}

@@ -1,0 +1,313 @@
+{
+	"multipart": [
+		{
+			"when": {
+				"type": "normal"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_normal",
+				"uvlock": true
+			}
+		},
+
+		{
+			"when": {
+				"type": "normal",
+				"north": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_normal_connection",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "normal",
+				"south": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_normal_connection",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "normal",
+				"west": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_normal_connection",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "normal",
+				"east": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_normal_connection",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "normal",
+				"up": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_normal_connection",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "normal",
+				"down": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_normal_connection",
+				"x": 90,
+				"uvlock": true
+			}
+		},
+
+//-------------------------------------------------------------------------------------------------
+
+		{
+			"when": {
+				"type": "thick"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thick",
+				"uvlock": true
+			}
+		},
+
+		{
+			"when": {
+				"type": "thick",
+				"north": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thick_connection",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "thick",
+				"south": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thick_connection",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "thick",
+				"west": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thick_connection",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "thick",
+				"east": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thick_connection",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "thick",
+				"up": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thick_connection",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "thick",
+				"down": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thick_connection",
+				"x": 90,
+				"uvlock": true
+			}
+		},
+
+//-------------------------------------------------------------------------------------------------
+
+		{
+			"when": {
+				"type": "thicker"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thicker",
+				"uvlock": true
+			}
+		},
+
+		{
+			"when": {
+				"type": "thicker",
+				"north": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thicker_connection",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "thicker",
+				"south": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thicker_connection",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "thicker",
+				"west": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thicker_connection",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "thicker",
+				"east": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thicker_connection",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "thicker",
+				"up": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thicker_connection",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "thicker",
+				"down": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_thicker_connection",
+				"x": 90,
+				"uvlock": true
+			}
+		},
+
+//-------------------------------------------------------------------------------------------------
+
+		{
+			"when": {
+				"type": "red"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_red",
+				"uvlock": true
+			}
+		},
+
+		{
+			"when": {
+				"type": "red",
+				"north": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_red_connection",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "red",
+				"south": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_red_connection",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "red",
+				"west": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_red_connection",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "red",
+				"east": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_red_connection",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "red",
+				"up": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_red_connection",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"type": "red",
+				"down": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:dummy_cable_red_connection",
+				"x": 90,
+				"uvlock": true
+			}
+		}
+	]
+}

@@ -1,0 +1,160 @@
+{
+	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
+	"textures": {
+		"particle": "#tex"
+	},
+	"elements": [
+		{
+			"name": "cube",
+			"from": [1, 2, 4],
+			"to": [3, 14, 12],
+			"faces": {
+				"east": {
+					"uv": [4, 2, 12, 14],
+					"texture": "#tex"
+				},
+				"west": {
+					"uv": [4, 2, 12, 14],
+					"texture": "#tex"
+				}
+			},
+			"type": "cube"
+		},
+		{
+			"name": "cube",
+			"from": [4, 2, 1],
+			"to": [12, 14, 3],
+			"faces": {
+				"north": {
+					"uv": [4, 2, 12, 14],
+					"texture": "#tex"
+				},
+				"south": {
+					"uv": [4, 2, 12, 14],
+					"texture": "#tex"
+				}
+			},
+			"type": "cube"
+		},
+		{
+			"name": "cube",
+			"from": [4, 2, 13],
+			"to": [12, 14, 15],
+			"faces": {
+				"north": {
+					"uv": [4, 2, 12, 14],
+					"texture": "#tex"
+				},
+				"south": {
+					"uv": [4, 2, 12, 14],
+					"texture": "#tex"
+				}
+			},
+			"type": "cube"
+		},
+		{
+			"name": "cube",
+			"from": [13, 2, 4],
+			"to": [15, 14, 12],
+			"faces": {
+				"east": {
+					"uv": [4, 2, 12, 14],
+					"texture": "#tex"
+				},
+				"west": {
+					"uv": [4, 2, 12, 14],
+					"texture": "#tex"
+				}
+			},
+			"type": "cube"
+		},
+		{
+			"name": "cube",
+			"from": [1.0861999999999998, 2, 2.2088],
+			"to": [5.3288, 14, 4.2088],
+			"faces": {
+				"north": {
+					"uv": [10.7578125, 2, 15, 14],
+					"texture": "#tex"
+				},
+				"south": {
+					"uv": [1, 2, 5.2421875, 14],
+					"texture": "#tex"
+				}
+			},
+			"rotation": {
+				"origin": [
+					3.2063200000000007,
+					8,
+					3.2089999999999996
+				],
+				"axis": "y",
+				"angle": 45
+			},
+			"type": "cube"
+		},
+		{
+			"name": "cube",
+			"from": [10.671, 2, 11.794],
+			"to": [14.913599999999995, 14, 13.794],
+			"faces": {
+				"north": {
+					"uv": [1, 2, 5.2421875, 14],
+					"texture": "#tex"
+				},
+				"south": {
+					"uv": [10.7578, 2, 14.9999875, 14],
+					"texture": "#tex"
+				}
+			},
+			"rotation": {
+				"origin": [12.792299999999997, 8, 12.794],
+				"axis": "y",
+				"angle": 45
+			},
+			"type": "cube"
+		},
+		{
+			"name": "cube",
+			"from": [10.673, 2, 2.208],
+			"to": [14.915600000000003, 14, 4.208],
+			"faces": {
+				"north": {
+					"uv": [1, 2, 5.2421875, 14],
+					"texture": "#tex"
+				},
+				"south": {
+					"uv": [10.7578125, 2, 15, 14],
+					"texture": "#tex"
+				}
+			},
+			"rotation": {
+				"origin": [12.794299999999998, 8, 3.208],
+				"axis": "y",
+				"angle": -45
+			},
+			"type": "cube"
+		},
+		{
+			"name": "cube",
+			"from": [2.508, 2, 12.375],
+			"to": [6.750600000000003, 14, 14.375],
+			"faces": {
+				"north": {
+					"uv": [10.7578125, 2, 15, 14],
+					"texture": "#tex"
+				},
+				"south": {
+					"uv": [1, 2, 5.2421875, 14],
+					"texture": "#tex"
+				}
+			},
+			"rotation": {
+				"origin": [4.621299999999998, 8, 11.366],
+				"axis": "y",
+				"angle": -45
+			},
+			"type": "cube"
+		}
+	]
+}

@@ -1,0 +1,96 @@
+What this mod adds:
+	+Blocks--------------------------------------
+		-Polished Stone
+		-Crafted Polished Stone
+		-Colored Polished Stone
+		-Colored Light
+		-More Pathes
+		-Black Quartz
+		-Vanilla Stone Extension(Bricks, Walls, and Slabs)
+		-Basalt
+		-Small Stairs
+		-Vending Machine
+		-Locker
+		-Lattice
+		-Fence Slab
+		-Lateral Groove
+		-New Flowers
+		-Glowstone Generator
+		-Dummy Barrier Block
+		-Yellow Line Block
+		-Fluorescent Light
+		-Invisible Button
+		-Yellow Line Block
+		-Colored Bricks
+		-Rusty Rail
+		-Slab Rail
+		-Metal Blocks
+		-Slime Removal Torch(WIP)
+		-New Ores
+		-Iron Chain
+		-Anchor Bolt
+		-Iron Plate
+		-Iron Plate Stairs
+		-Safety Fence
+		-Iron Ladder
+		-Stepladder
+		-Faucets(WIP)
+		-Temporary Block
+		-New Gravels
+		-Paving Stone
+		-Crafted Paving Stone
+		-Shade Glass
+		-Hardened Shade Glass
+		-Hardened Shade Glass Door
+		-Compressed Bookshelf
+		-Three Pillars
+		-Earthen Pipe
+		-Lockable Door
+		-Dummy Cable
+		-Lamp
+		-Glassed Vanilla Door
+		-Chroma Key Block
+
+	+Items---------------------------------------
+		-Tweaked Dye
+		-Ingots
+		-Dusts
+		-Crystal
+		-Bundled Feather
+		-Rusty Rail Item
+		-Key
+		-New Quartz
+		-Instant Food
+		-Meat With Bone
+		-Spinach
+		-Empty Can
+		-Spinach Can
+		-Solid Milk
+		-Heart Of Regeneration
+		-Decorative Hazmat Suits
+		-Safety Equipments
+		-Invincible Weapons(partly WIP)
+		-Invincilbe Armors
+		-Bedrock Core
+		-Random Box
+		-Eraser Bomb
+		-Zabuton
+		-Damage Foods(WIP)
+		-Crops(WIP)
+
+	+World Gens----------------------------------
+		-Generate Emerald anywhere
+		-Generate Clay underground(automatically turn this off if Quark is installed)
+		-Generate Clay undersea
+		-Generate Sand underground
+		-Generate Sand undersea
+		-Generate Dirt undersea
+
+	+Tweaks--------------------------------------
+		-Add OreDict to some vanilla items
+		-Add spawn Giant Zombie in plains
+		-Add spawn Blaze anywhere in Nether(automatically turn this off if Quark is installed)
+		-Change vanilla tools' durabilities
+		-Some metal ingots can be used as Iron Ingot in some recipes
+		-Press key J to adjust player facing
+		-

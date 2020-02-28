@@ -1,0 +1,34 @@
+{
+	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
+	"textures": {
+		"particle": "#tex"
+	},
+	"elements": [
+		{
+			"name": "cube",
+			"from": [7, 0, 7],
+			"to": [9, 16, 9],
+			"faces": {
+				"north": {
+					"uv": [7, 0, 9, 16],
+					"texture": "#tex"
+				},
+				"east": {
+					"uv": [7, 0, 9, 16],
+					"texture": "#tex"
+				},
+				"south": {
+					"uv": [7, 0, 9, 16],
+					"texture": "#tex"
+				},
+				"west": {
+					"uv": [7, 0, 9, 16],
+					"texture": "#tex"
+				},
+				"up": {"uv": [7, 7, 9, 9], "texture": "#tex"},
+				"down": {"uv": [7, 7, 9, 9], "texture": "#tex"}
+			},
+			"type": "cube"
+		}
+	]
+}

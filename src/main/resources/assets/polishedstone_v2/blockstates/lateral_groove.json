@@ -1,0 +1,15 @@
+{
+	"variants": {
+		"type=normal_ns": { "model": "polishedstone_v2:lateral_groove_normal" },
+		"type=normal_we": { "model": "polishedstone_v2:lateral_groove_normal", "y": 90 },
+
+		"type=polished_ns": { "model": "polishedstone_v2:lateral_groove_polished" },
+		"type=polished_we": { "model": "polishedstone_v2:lateral_groove_polished", "y": 90 },
+
+		"type=mesh_ns": { "model": "polishedstone_v2:lateral_groove_mesh" },
+		"type=mesh_we": { "model": "polishedstone_v2:lateral_groove_mesh", "y": 90 },
+
+		"type=central_normal": { "model": "polishedstone_v2:lateral_groove_central_normal"},
+		"type=central_polished": { "model": "polishedstone_v2:lateral_groove_central_polished"}
+	}
+}

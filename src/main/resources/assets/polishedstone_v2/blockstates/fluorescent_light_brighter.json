@@ -1,0 +1,650 @@
+{
+	"multipart": [
+		//applys bases
+		{
+			"when": {
+				"shape": "north_h"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_h",
+				"x": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "north_v"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_v"
+			}
+		},
+		{
+			"when": {
+				"shape": "south_h"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_h",
+				"x": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "south_v"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_v",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "west_h"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_h",
+				"x": 90,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "west_v"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_v",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "east_h"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_h",
+				"x": 90,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "east_v"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_v",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "up_ns"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_h",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "up_we"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_h"
+			}
+		},
+		{
+			"when": {
+				"shape": "down_ns"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_h",
+				"x": 180,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "down_we"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_base_h",
+				"x": 180
+			}
+		},
+
+
+		//applys connections and edges
+		{
+			"when": {
+				"shape": "north_h",
+				"west": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"x": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "north_h",
+				"east": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"y": 180,
+				"x": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "north_h",
+				"west": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"x": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "north_h",
+				"east": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"y": 180,
+				"x": 270
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "south_h",
+				"west": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"x": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "south_h",
+				"east": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"y": 180,
+				"x": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "south_h",
+				"west": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"x": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "south_h",
+				"east": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"y": 180,
+				"x": 90
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "west_h",
+				"north": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"x": 270,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "west_h",
+				"south": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"x": 90,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "west_h",
+				"north": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"x": 270,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "west_h",
+				"south": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"x": 90,
+				"y": 270
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "east_h",
+				"north": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"x": 90,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "east_h",
+				"south": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"x": 270,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "east_h",
+				"north": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"x": 90,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "east_h",
+				"south": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"x": 270,
+				"y": 270
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "up_ns",
+				"north": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "up_ns",
+				"south": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "up_ns",
+				"north": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "up_ns",
+				"south": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"y": 270
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "up_we",
+				"west": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h"
+			}
+		},
+		{
+			"when": {
+				"shape": "up_we",
+				"east": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "up_we",
+				"west": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h"
+			}
+		},
+		{
+			"when": {
+				"shape": "up_we",
+				"east": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"y": 180
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "down_ns",
+				"north": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"y": 90,
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "down_ns",
+				"south": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"y": 270,
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "down_ns",
+				"north": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"y": 90,
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "down_ns",
+				"south": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"y": 270,
+				"x": 180
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "down_we",
+				"west": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "down_we",
+				"east": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_h",
+				"y": 180,
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "down_we",
+				"west": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "down_we",
+				"east": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_h",
+				"y": 180,
+				"x": 180
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "north_v",
+				"up": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_v",
+				"y": 180,
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "north_v",
+				"down": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_v"
+			}
+		},
+		{
+			"when": {
+				"shape": "north_v",
+				"up": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_v",
+				"y": 180,
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "north_v",
+				"down": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_v"
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "south_v",
+				"up": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_v",
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "south_v",
+				"down": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_v",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "south_v",
+				"up": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_v",
+				"x": 180
+			}
+		},
+		{
+			"when": {
+				"shape": "south_v",
+				"down": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_v",
+				"y": 180
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "west_v",
+				"up": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_v",
+				"x": 180,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "west_v",
+				"down": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_v",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "west_v",
+				"up": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_v",
+				"x": 180,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "west_v",
+				"down": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_v",
+				"y": 270
+			}
+		},
+
+
+
+		{
+			"when": {
+				"shape": "east_v",
+				"up": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_v",
+				"x": 180,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "east_v",
+				"down": "false"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_edge_v",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"shape": "east_v",
+				"up": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_v",
+				"x": 180,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"shape": "east_v",
+				"down": "true"
+			},
+			"apply": {
+				"model": "polishedstone_v2:fluorescent_light_brighter_connection_v",
+				"y": 90
+			}
+		}
+	]
+}

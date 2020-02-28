@@ -1,0 +1,12 @@
+{
+	"variants": {
+		"facing=east,half=lower":  { "model": "polishedstone_v2:vending_machine_suica_bottom", "y": 270 },
+		"facing=south,half=lower": { "model": "polishedstone_v2:vending_machine_suica_bottom"},
+		"facing=west,half=lower":  { "model": "polishedstone_v2:vending_machine_suica_bottom", "y": 90 },
+		"facing=north,half=lower": { "model": "polishedstone_v2:vending_machine_suica_bottom", "y": 180 },
+		"facing=east,half=upper":  { "model": "polishedstone_v2:vending_machine_suica_top", "y": 270 },
+		"facing=south,half=upper": { "model": "polishedstone_v2:vending_machine_suica_top"},
+		"facing=west,half=upper":  { "model": "polishedstone_v2:vending_machine_suica_top", "y": 90 },
+		"facing=north,half=upper": { "model": "polishedstone_v2:vending_machine_suica_top", "y": 180 }
+	}
+}

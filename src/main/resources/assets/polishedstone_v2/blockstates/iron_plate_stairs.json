@@ -1,0 +1,13 @@
+{
+	"variants": {
+		"facing=east,floating=false":  { "model": "polishedstone_v2:iron_plate_stairs" },
+		"facing=west,floating=false":  { "model": "polishedstone_v2:iron_plate_stairs", "y": 180, "uvlock": true },
+		"facing=south,floating=false": { "model": "polishedstone_v2:iron_plate_stairs", "y": 90, "uvlock": true },
+		"facing=north,floating=false": { "model": "polishedstone_v2:iron_plate_stairs", "y": 270, "uvlock": true },
+		
+		"facing=east,floating=true":  { "model": "polishedstone_v2:iron_plate_stairs_f" },
+		"facing=west,floating=true":  { "model": "polishedstone_v2:iron_plate_stairs_f", "y": 180, "uvlock": true },
+		"facing=south,floating=true": { "model": "polishedstone_v2:iron_plate_stairs_f", "y": 90, "uvlock": true },
+		"facing=north,floating=true": { "model": "polishedstone_v2:iron_plate_stairs_f", "y": 270, "uvlock": true }
+	}
+}

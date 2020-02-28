@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"type=cookie": { "model": "polishedstone_v2:new_ore_cookie" },
+		"type=quartz_black": { "model": "polishedstone_v2:new_ore_quartz_black"}
+	}
+}

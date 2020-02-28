@@ -1,0 +1,6 @@
+{
+	"parent": "polishedstone_v2:block/lateral_groove_central_base",
+	"textures": {
+		"tex": "blocks/stone_slab_top"
+	}
+}

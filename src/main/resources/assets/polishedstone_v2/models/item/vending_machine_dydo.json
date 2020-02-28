@@ -1,0 +1,7 @@
+{
+	"parent": "polishedstone_v2:item/vending_machine_item",
+	"textures": {
+		"main": "polishedstone_v2:blocks/vending_machine_dydo",
+		"other": "polishedstone_v2:blocks/vending_machine_dydo_other"
+	}
+}

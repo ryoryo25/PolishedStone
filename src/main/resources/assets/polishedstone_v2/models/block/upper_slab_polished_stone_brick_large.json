@@ -1,0 +1,8 @@
+{
+	"parent": "minecraft:block/upper_slab",
+	"textures": {
+		"bottom": "polishedstone_v2:blocks/polished_stone_brick_large",
+		"top": "polishedstone_v2:blocks/polished_stone_brick_large",
+		"side": "polishedstone_v2:blocks/polished_stone_brick_large"
+	}
+}

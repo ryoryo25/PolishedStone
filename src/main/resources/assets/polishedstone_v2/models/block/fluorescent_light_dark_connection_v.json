@@ -1,0 +1,37 @@
+{
+	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
+	"textures": {
+		"0": "polishedstone_v2:blocks/fluorescent_light",
+		"particle": "polishedstone_v2:blocks/fluorescent_light"
+	},
+	"elements": [
+		{
+			"name": "cube",
+			"from": [7, 0, 14],
+			"to": [9, 2, 16],
+			"faces": {
+				"north": {
+					"uv": [7, 11, 9, 13],
+					"texture": "#0",
+					"rotation": 90
+				},
+				"east": {
+					"uv": [7, 11, 9, 13],
+					"texture": "#0",
+					"rotation": 90
+				},
+				"south": {
+					"uv": [7, 11, 9, 13],
+					"texture": "#0",
+					"rotation": 90
+				},
+				"west": {
+					"uv": [7, 11, 9, 13],
+					"texture": "#0",
+					"rotation": 90
+				}
+			},
+			"type": "cube"
+		}
+	]
+}

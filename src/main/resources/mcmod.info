@@ -1,0 +1,16 @@
+[
+	{
+		"modid": "polishedstone_v2",
+		"name": "PolishedStone2",
+		"description": "This mod literally adds Polished Stone, but that's not all. This mod has some various Blocks and Items, also it adds some Vanilla Tweaks!",
+		"version": "${version}",
+		"mcversion": "${mcversion}",
+		"url": "Nothing",
+		"updateUrl": "Nothing",
+		"authorList": ["ryoryo"],
+		"credits": "Many Minecraft Modders!",
+		"logoFile": "assets/polishedstone_v2/textures/mod_logo.png",
+		"screenshots": [],
+		"dependencies": ["mod_MinecraftForge", "redstoneflux", "quark", "dcs_spawn", "dcs_wildfire"]
+	}
+]
