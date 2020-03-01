@@ -4,7 +4,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -25,17 +24,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.NumericalConstant;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockLamp extends Block
+public class BlockLamp extends BlockModBase
 {
 	public static final PropertyEnum<MaterialType> TYPE = PropertyEnum.<MaterialType> create("type", MaterialType.class);
 
 	public BlockLamp()
 	{
-		super(Material.GLASS);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("lamp");
+		super(Material.GLASS, "lamp");
 		this.setLightLevel(1.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, MaterialType.STONE));
 	}

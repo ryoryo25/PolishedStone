@@ -1,6 +1,5 @@
 package ryoryo.polishedstone.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -19,9 +18,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockFluorescentLight extends Block
+public class BlockFluorescentLight extends BlockModBase
 {
 	public static final PropertyEnum<EnumShape> SHAPE = PropertyEnum.<EnumShape> create("shape", EnumShape.class);
 	public static final PropertyBool NORTH = Utils.NORTH;
@@ -33,12 +31,9 @@ public class BlockFluorescentLight extends Block
 
 	public BlockFluorescentLight(String name, float lightLevel)
 	{
-		super(Material.GLASS);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("fluorescent_light_" + name);
+		super(Material.GLASS, "fluorescent_light_" + name, SoundType.GLASS);
 		this.setHardness(0.05F);
 		this.setLightLevel(lightLevel);
-		this.setSoundType(SoundType.GLASS);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, EnumShape.NORTH_H).withProperty(NORTH, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(UP, Boolean.valueOf(false)).withProperty(DOWN, Boolean.valueOf(false)));
 	}
 

@@ -1,6 +1,5 @@
 package ryoryo.polishedstone.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -17,20 +16,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockMetal extends Block
+public class BlockMetal extends BlockModBase
 {
 	public static final PropertyEnum<MaterialType> VARIANT = PropertyEnum.<MaterialType> create("variant", MaterialType.class);
 
 	public BlockMetal()
 	{
-		super(Material.IRON);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("metal");
+		super(Material.IRON, "metal", SoundType.METAL);
 		this.setHardness(5.0F);
 		this.setResistance(10.0F);
-		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, MaterialType.ENDER_STEEL));
 	}
 

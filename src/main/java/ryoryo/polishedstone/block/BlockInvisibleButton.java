@@ -27,9 +27,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
+import ryoryo.polishedstone.util.References;
 
-public class BlockInvisibleButton extends BlockButton
+public class BlockInvisibleButton extends BlockButton implements IModId
 {
 	public static final PropertyBool VISIBLE = PropertyBool.create("visible");
 	private boolean isVisible = false;
@@ -43,6 +45,12 @@ public class BlockInvisibleButton extends BlockButton
 		this.setSoundType(SoundType.METAL);
 		//		this.setTickRandomly(true);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, Boolean.valueOf(false)).withProperty(VISIBLE, Boolean.valueOf(false)));
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	@Override

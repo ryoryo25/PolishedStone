@@ -49,6 +49,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.util.LibEnchantId;
 import ryoryo.polishedstone.util.ModCompat;
 
@@ -455,6 +456,6 @@ public class ModPlayerInteractEvent
 			}
 		}
 		else
-			Utils.addInfo("Quark is loaded.");
+			PSV2Core.logger.addInfo("Quark is loaded.");
 	}
 }

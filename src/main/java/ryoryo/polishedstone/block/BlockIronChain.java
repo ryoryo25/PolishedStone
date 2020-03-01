@@ -24,10 +24,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
-public class BlockIronChain extends Block
+public class BlockIronChain extends BlockModBase
 {
 	protected static final AxisAlignedBB CHAIN_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
 	public static final PropertyBool TOP = Utils.TOP;
@@ -35,12 +34,9 @@ public class BlockIronChain extends Block
 
 	public BlockIronChain()
 	{
-		super(Material.IRON);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("iron_chain");
+		super(Material.IRON, "iron_chain", SoundType.METAL);
 		this.setHardness(0.5F);
 		this.setResistance(2.0F);
-		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TOP, Boolean.valueOf(false)).withProperty(BOTTOM, Boolean.valueOf(false)));
 	}
 

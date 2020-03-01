@@ -37,9 +37,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.NumericalConstant;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockDummyCable extends Block
+public class BlockDummyCable extends BlockModBase
 {
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.<EnumType> create("type", EnumType.class);
 	public static final PropertyBool NORTH = Utils.NORTH;
@@ -51,12 +50,9 @@ public class BlockDummyCable extends Block
 
 	public BlockDummyCable()
 	{
-		super(Material.IRON);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("dummy_cable");
+		super(Material.IRON, "dummy_cable", SoundType.STONE);
 		this.setHardness(1.0F);
 		this.setResistance(10.0F);
-		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.NORMAL).withProperty(NORTH, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(UP, Boolean.valueOf(false)).withProperty(DOWN, Boolean.valueOf(false)));
 	}
 

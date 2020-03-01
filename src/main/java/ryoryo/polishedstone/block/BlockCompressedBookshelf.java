@@ -1,6 +1,5 @@
 package ryoryo.polishedstone.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -15,18 +14,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockCompressedBookshelf extends Block
+public class BlockCompressedBookshelf extends BlockModBase
 {
 	public static final PropertyInteger MULTIPLE = PropertyInteger.create("multiple", 1, 2);
 
 	public BlockCompressedBookshelf()
 	{
-		super(Material.WOOD);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("compressed_bookshelf");
-		this.setSoundType(SoundType.WOOD);
+		super(Material.WOOD, "compressed_bookshelf", SoundType.WOOD);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(MULTIPLE, 1));
 	}
 

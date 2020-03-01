@@ -57,9 +57,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.oredict.OreDictionary;
-import ryoryo.polishedlib.util.EnumColor;
 import ryoryo.polishedlib.util.NumericalConstant;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.enums.EnumColor;
+import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.config.ModConfig;
 import ryoryo.polishedstone.util.LibNBTTag;
 import ryoryo.polishedstone.util.ModCompat;
@@ -260,7 +261,7 @@ public class ModEventHandler
 			}
 		}
 		else
-			Utils.addInfo("No More Forest Fire is loaded.");
+			PSV2Core.logger.addInfo("No More Forest Fire is loaded.");
 	}
 
 	@SubscribeEvent
@@ -279,7 +280,7 @@ public class ModEventHandler
 			}
 		}
 		else
-			Utils.addInfo("No More Forest Fire is loaded.");
+			PSV2Core.logger.addInfo("No More Forest Fire is loaded.");
 	}
 
 	@SubscribeEvent
@@ -304,12 +305,12 @@ public class ModEventHandler
 					world.setBlockState(entity.getPosition(), sapling.getStateFromMeta(item.getMetadata(stack)));
 					if(stack.getCount() > 1)
 					{
-						Utils.addInfo("cloning_tree");
+						PSV2Core.logger.addInfo("cloning_tree");
 						EntityItem extraItem = entity.dropItem(item, stack.getCount() - 1);
 						extraItem.lifespan = (int) Utils.secondToTick(5.0F);
 						//						extraItem.motionX = 10;
 						world.spawnEntity(extraItem);
-						Utils.addInfo("cloned_tree");
+						PSV2Core.logger.addInfo("cloned_tree");
 					}
 				}
 				//				event.setCanceled(true);
@@ -337,12 +338,12 @@ public class ModEventHandler
 					}
 					if(stack.getCount() > 1)
 					{
-						Utils.addInfo("cloning_chicken");
+						PSV2Core.logger.addInfo("cloning_chicken");
 						EntityItem extraItem = entity.dropItem(item, stack.getCount() - 1);
 						extraItem.lifespan = (int) Utils.secondToTick(5.0F);
 						//						extraItem.motionX = 10;
 						world.spawnEntity(extraItem);
-						Utils.addInfo("cloned_chicken");
+						PSV2Core.logger.addInfo("cloned_chicken");
 					}
 				}
 				else

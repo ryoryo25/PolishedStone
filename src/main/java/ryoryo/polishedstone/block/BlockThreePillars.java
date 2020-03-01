@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -31,9 +30,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockThreePillars extends Block
+public class BlockThreePillars extends BlockModBase
 {
 	protected static final AxisAlignedBB BASE_AABB_UP_SINGLE = Utils.creatAABB(7, 0, 7, 9, 16, 9);
 	protected static final AxisAlignedBB BASE_AABB_UP_SINGLE_N = Utils.creatAABB(7, 0, 0, 9, 16, 9);
@@ -64,11 +62,8 @@ public class BlockThreePillars extends Block
 
 	public BlockThreePillars()
 	{
-		super(Material.ROCK);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("three_pillars");
+		super(Material.ROCK, "three_pillars", SoundType.STONE);
 		this.setHardness(1.0F);
-		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, EnumShape.NORMAL_UP_SINGLE).withProperty(NORTH, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)));
 	}
 

@@ -1,6 +1,5 @@
 package ryoryo.polishedstone.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -19,21 +18,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockIronPlate extends Block
+public class BlockIronPlate extends BlockModBase
 {
 	protected static final AxisAlignedBB PLATE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 	public static final PropertyEnum<PlateType> TYPE = PropertyEnum.<PlateType> create("type", PlateType.class);
 
 	public BlockIronPlate()
 	{
-		super(Material.CLAY);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("iron_plate");
+		super(Material.CLAY, "iron_plate", SoundType.METAL);
 		this.setHardness(0.2F);
 		this.setResistance(15.0F);
-		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, PlateType.NORMAL));
 	}
 

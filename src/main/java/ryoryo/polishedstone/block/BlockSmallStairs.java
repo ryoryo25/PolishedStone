@@ -15,9 +15,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
+import ryoryo.polishedstone.util.References;
 
-public class BlockSmallStairs extends BlockStairs
+public class BlockSmallStairs extends BlockStairs implements IModId
 {
 	private static final double base00 = 0.0D;
 	private static final double base03 = 1.0D / 3.0D;
@@ -303,8 +305,14 @@ public class BlockSmallStairs extends BlockStairs
 	{
 		super(modelState);
 		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("small_stairs" + "_" + name);
+		this.setUnlocalizedName("small_stairs_" + name);
 		this.setLightOpacity(0);
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	@Override

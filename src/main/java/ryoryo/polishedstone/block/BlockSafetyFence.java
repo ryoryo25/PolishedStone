@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -23,9 +22,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockSafetyFence extends Block
+public class BlockSafetyFence extends BlockModBase
 {
 	public static final PropertyDirection FACING = Utils.HORIZONTAL_FACING;
 	public static final PropertyBool TOP = Utils.TOP;
@@ -33,12 +31,9 @@ public class BlockSafetyFence extends Block
 
 	public BlockSafetyFence()
 	{
-		super(Material.GROUND);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("safety_fence");
+		super(Material.GROUND, "safety_fence", SoundType.METAL);
 		this.setHardness(0.5F);
 		this.setResistance(20.0F);
-		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TOP, Boolean.valueOf(false)).withProperty(BOTTOM, Boolean.valueOf(false)));
 	}
 

@@ -2,7 +2,6 @@ package ryoryo.polishedstone.block;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -24,17 +23,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockDecoration extends Block
+public class BlockDecoration extends BlockModBase
 {
 	public static final PropertyEnum<BlockType> TYPE = PropertyEnum.<BlockType> create("type", BlockType.class);
 
 	public BlockDecoration()
 	{
-		super(Material.ROCK);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("decoration_block");
+		super(Material.ROCK, "decoration_block");
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, BlockType.COLORED_BRICK));
 	}
 

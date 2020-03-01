@@ -17,19 +17,26 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ryoryo.polishedlib.block.BlockBase;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.config.ModConfig;
+import ryoryo.polishedstone.util.References;
 
-public class BlockRunningWater extends Block
+public class BlockRunningWater extends BlockBase
 {
 	public static final PropertyBool TOP = Utils.TOP;
 
 	public BlockRunningWater()
 	{
-		super(Material.VINE);
-		this.setUnlocalizedName("running_water");
+		super(Material.VINE, "running_water");
 		this.setTickRandomly(true);
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	@Override

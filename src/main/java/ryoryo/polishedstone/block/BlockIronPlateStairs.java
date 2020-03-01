@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -26,9 +25,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockIronPlateStairs extends Block
+public class BlockIronPlateStairs extends BlockModBase
 {
 	/**
 	 * B: xx T: ..
@@ -61,12 +59,9 @@ public class BlockIronPlateStairs extends Block
 
 	public BlockIronPlateStairs()
 	{
-		super(Material.IRON);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("iron_plate_stairs");
+		super(Material.IRON, "iron_plate_stairs", SoundType.METAL);
 		this.setHardness(0.2F);
 		this.setResistance(15.0F);
-		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FLOATING, Boolean.valueOf(false)));
 	}
 

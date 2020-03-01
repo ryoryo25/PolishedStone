@@ -9,6 +9,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import ryoryo.polishedlib.util.NumericalConstant;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.client.particle.ParticleRegistry;
 import ryoryo.polishedstone.util.References;
 
@@ -42,7 +43,7 @@ public class ModConfig
 		}
 		catch(Exception e)
 		{
-			Utils.addError("Error loading config.");
+			PSV2Core.logger.addError("Error loading config.");
 		}
 		finally
 		{

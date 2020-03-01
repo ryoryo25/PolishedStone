@@ -7,11 +7,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.EnumColor;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.enums.EnumColor;
+import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
+import ryoryo.polishedstone.util.References;
 
-public class ItemNewDye extends ItemDye implements IItemColor
+public class ItemNewDye extends ItemDye implements IItemColor, IModId
 {
 	public static final int[] colorValues = new int[]
 	{ 0x36F193, 0xF19336, 0x36F1F1, 0xAB8115, 0x93F136, 0xF13636, 0xE26225, 0xF13693, 0xF1F136, 0x7F7F7F, 0x36F136, 0xF136F1, 0xF39C9C, 0x72B1F1, 0x007979, 0x8282F1 };
@@ -21,6 +23,12 @@ public class ItemNewDye extends ItemDye implements IItemColor
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("new_dye");
 		this.setHasSubtypes(true);
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	@Override

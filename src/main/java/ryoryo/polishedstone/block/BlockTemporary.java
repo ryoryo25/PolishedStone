@@ -1,6 +1,5 @@
 package ryoryo.polishedstone.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,19 +12,15 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
-public class BlockTemporary extends Block
+public class BlockTemporary extends BlockModBase
 {
 	public BlockTemporary()
 	{
-		super(Material.ROCK);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("temporary_block");
+		super(Material.ROCK, "temporary_block", SoundType.METAL);
 		this.setHardness(0.0F);
 		this.setResistance(10000.0F);
-		this.setSoundType(SoundType.METAL);
 	}
 
 	@Override

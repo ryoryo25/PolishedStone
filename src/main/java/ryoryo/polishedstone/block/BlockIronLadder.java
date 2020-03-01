@@ -23,10 +23,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
-public class BlockIronLadder extends Block
+public class BlockIronLadder extends BlockModBase
 {
 	/**
 	 *         (NORTH)
@@ -49,12 +48,9 @@ public class BlockIronLadder extends Block
 
 	public BlockIronLadder()
 	{
-		super(Material.CLAY);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("iron_ladder");
+		super(Material.CLAY, "iron_ladder", SoundType.METAL);
 		this.setHardness(0.5F);
 		this.setResistance(20.0F);
-		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TOP, Boolean.valueOf(false)).withProperty(PROP, Boolean.valueOf(false)));
 	}
 

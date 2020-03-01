@@ -24,9 +24,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockFenceSlab extends Block
+public class BlockFenceSlab extends BlockModBase
 {
 	protected static final AxisAlignedBB AABB_BOTTOM_SLAB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 	protected static final AxisAlignedBB AABB_BOTTOM_FENCE = new AxisAlignedBB(0.375D, 0.5D, 0.375D, 0.625D, 1.0D, 0.625D);
@@ -38,9 +37,7 @@ public class BlockFenceSlab extends Block
 
 	public BlockFenceSlab(Block base, String name)
 	{
-		super(base.getDefaultState().getMaterial());
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("fence_slab_" + name);
+		super(base.getDefaultState().getMaterial(), "fence_slab_" + name);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(HALF, EnumBlockHalf.BOTTOM));
 		this.baseState = base.getDefaultState();
 	}

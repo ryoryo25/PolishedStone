@@ -28,11 +28,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.config.ModConfig;
 
-public class BlockFaucet extends Block
+public class BlockFaucet extends BlockModBase
 {
 	protected static final AxisAlignedBB FAUCET_NORTH_AABB = Utils.creatAABB(7, 6.5, 0, 9, 15, 9);
 	protected static final AxisAlignedBB FAUCET_SOUTH_AABB = Utils.creatAABB(7, 6.5, 7, 9, 15, 16);
@@ -45,9 +44,7 @@ public class BlockFaucet extends Block
 
 	public BlockFaucet()
 	{
-		super(Material.WOOD);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("faucet");
+		super(Material.WOOD, "faucet");
 		this.setHardness(0.4F);
 		this.setTickRandomly(true);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, 0).withProperty(RUNNING, Boolean.valueOf(false)));

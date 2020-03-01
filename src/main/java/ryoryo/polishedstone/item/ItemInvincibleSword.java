@@ -19,11 +19,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.NumericalConstant;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.config.ModConfig;
 import ryoryo.polishedstone.util.ArmorMaterials;
+import ryoryo.polishedstone.util.References;
 
-public class ItemInvincibleSword extends ItemSword
+public class ItemInvincibleSword extends ItemSword implements IModId
 {
 	public ItemInvincibleSword()
 	{
@@ -31,6 +33,12 @@ public class ItemInvincibleSword extends ItemSword
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("invincible_sword");
 		this.setMaxDamage(0);
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	@SideOnly(Side.CLIENT)

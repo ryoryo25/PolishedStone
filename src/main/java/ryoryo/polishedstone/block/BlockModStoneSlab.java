@@ -22,6 +22,7 @@ import ryoryo.polishedlib.block.BlockBaseSlab;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
+import ryoryo.polishedstone.util.References;
 
 public abstract class BlockModStoneSlab extends BlockBaseSlab
 {
@@ -36,6 +37,12 @@ public abstract class BlockModStoneSlab extends BlockBaseSlab
 			iblockstate = iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
 
 		this.setDefaultState(iblockstate.withProperty(TYPE, Type.POLISHED_STONE_CROSSED));
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package ryoryo.polishedstone.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -17,20 +16,16 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockPavingStone extends Block
+public class BlockPavingStone extends BlockModBase
 {
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.<EnumType> create("type", EnumType.class);
 
 	public BlockPavingStone()
 	{
-		super(Material.ROCK);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("paving_stone");
+		super(Material.ROCK, "paving_stone", SoundType.STONE);
 		this.setHardness(1.5F);
 		this.setResistance(10.0F);
-		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.NORMAL));
 	}
 

@@ -26,10 +26,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
+import ryoryo.polishedstone.util.References;
 
-public class BlockNewPath extends BlockGrassPath
+public class BlockNewPath extends BlockGrassPath implements IModId
 {
 	protected static final AxisAlignedBB PATH_AABB = Utils.creatAABB(0, 0, 0, 16, 15, 16);
 	protected static final AxisAlignedBB PATH_SOUL_SAND_AABB = Utils.creatAABB(0, 0, 0, 16, 13, 16);
@@ -43,6 +45,12 @@ public class BlockNewPath extends BlockGrassPath
 		this.setHarvestLevel(LibTool.TOOL_CLASS_SHOVEL, LibTool.LEVEL_WOOD);
 		this.setSoundType(SoundType.GROUND);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, PathType.DIRT));
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	@Override

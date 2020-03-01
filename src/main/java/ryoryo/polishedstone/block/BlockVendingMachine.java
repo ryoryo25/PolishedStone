@@ -16,9 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockVendingMachine extends Block
+public class BlockVendingMachine extends BlockModBase
 {
 	protected static final AxisAlignedBB SOUTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.5D, 1.0D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB NORTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.5D);
@@ -30,12 +29,9 @@ public class BlockVendingMachine extends Block
 
 	public BlockVendingMachine(String name)
 	{
-		super(Material.IRON);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("vending_machine" + "_" + name);
+		super(Material.IRON, "vending_machine_" + name, SoundType.METAL);
 		this.setHardness(1.5F);
 		this.setResistance(10.0F);
-		this.setSoundType(SoundType.METAL);
 		this.setLightLevel(1.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HALF, EnumHalf.LOWER));
 	}

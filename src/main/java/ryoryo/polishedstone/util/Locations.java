@@ -1,9 +1,9 @@
 package ryoryo.polishedstone.util;
 
 import net.minecraft.util.ResourceLocation;
-import ryoryo.polishedlib.util.EnumColor;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.enums.EnumColor;
 import ryoryo.polishedstone.block.BlockDecoration;
+import ryoryo.polishedstone.block.BlockDecoration.BlockType;
 import ryoryo.polishedstone.block.BlockDummyCable;
 import ryoryo.polishedstone.block.BlockIronPlate;
 import ryoryo.polishedstone.block.BlockLamp;
@@ -16,7 +16,6 @@ import ryoryo.polishedstone.block.BlockNewPath;
 import ryoryo.polishedstone.block.BlockPavingStone;
 import ryoryo.polishedstone.block.BlockVendingMachine;
 import ryoryo.polishedstone.block.BlockVoidTeleporter;
-import ryoryo.polishedstone.block.BlockDecoration.BlockType;
 import ryoryo.polishedstone.item.ItemMaterial;
 import ryoryo.polishedstone.item.ItemTweakedDye;
 import ryoryo.polishedstone.itemblock.ItemBlockBlackQuartz;
@@ -27,82 +26,82 @@ import ryoryo.polishedstone.itemblock.ItemBlockThreePillars;
 
 public class Locations
 {
-	public static final ResourceLocation POLISHED_STONE = Utils.makeModLocation("polished_stone");
+	public static final ResourceLocation POLISHED_STONE = ModUtils.makeModLocation("polished_stone");
 	public static final ResourceLocation[] POISHED_STONES = new ResourceLocation[ItemBlockPolishedStone.NAMES.length];
 
-	public static final ResourceLocation COLORED_LIGHT = Utils.makeModLocation("colored_light");
+	public static final ResourceLocation COLORED_LIGHT = ModUtils.makeModLocation("colored_light");
 	public static final ResourceLocation[] COLORED_LIGHTS = new ResourceLocation[EnumColor.getLength()];
 
-	public static final ResourceLocation NEW_PATH = Utils.makeModLocation("new_path");
+	public static final ResourceLocation NEW_PATH = ModUtils.makeModLocation("new_path");
 	public static final ResourceLocation[] NEW_PATHS = new ResourceLocation[BlockNewPath.PathType.getLength()];
 
-	public static final ResourceLocation NEW_FLOWER = Utils.makeModLocation("new_flower");
+	public static final ResourceLocation NEW_FLOWER = ModUtils.makeModLocation("new_flower");
 	public static final ResourceLocation[] NEW_FLOWERS = new ResourceLocation[BlockNewFlower.NewFlowerType.getLength()];
 
-	public static final ResourceLocation GLOWSTONE_GENE = Utils.makeModLocation("glowstone_generator");
+	public static final ResourceLocation GLOWSTONE_GENE = ModUtils.makeModLocation("glowstone_generator");
 	public static final ResourceLocation[] GLOWSTONE_GENES = new ResourceLocation[8];
 
-	public static final ResourceLocation VENDING_MACHINE = Utils.makeModLocation("vending_machine");
+	public static final ResourceLocation VENDING_MACHINE = ModUtils.makeModLocation("vending_machine");
 	public static final ResourceLocation[] VENGING_MACHINES = new ResourceLocation[BlockVendingMachine.TexType.getLength()];
 
-	public static final ResourceLocation DECORATION = Utils.makeModLocation("decoration_block");
+	public static final ResourceLocation DECORATION = ModUtils.makeModLocation("decoration_block");
 	public static final ResourceLocation[] DECORATIONS = new ResourceLocation[BlockType.getLength()];
 
-	public static final ResourceLocation METAL = Utils.makeModLocation("metal");
+	public static final ResourceLocation METAL = ModUtils.makeModLocation("metal");
 	public static final ResourceLocation[] METALS = new ResourceLocation[BlockMetal.MaterialType.getLength()];
 
-	public static final ResourceLocation BLACK_QUARTZ = Utils.makeModLocation("black_quartz");
+	public static final ResourceLocation BLACK_QUARTZ = ModUtils.makeModLocation("black_quartz");
 	public static final ResourceLocation[] BLACK_QUARTZS = new ResourceLocation[ItemBlockBlackQuartz.NAMES.length];
 
-	public static final ResourceLocation NEW_ORE = Utils.makeModLocation("new_ore");
+	public static final ResourceLocation NEW_ORE = ModUtils.makeModLocation("new_ore");
 	public static final ResourceLocation[] NEW_ORES = new ResourceLocation[BlockNewOre.MaterialType.getLength()];
 
-	public static final ResourceLocation IRON_PLATE = Utils.makeModLocation("iron_plate");
+	public static final ResourceLocation IRON_PLATE = ModUtils.makeModLocation("iron_plate");
 	public static final ResourceLocation[] IRON_PLATES = new ResourceLocation[BlockIronPlate.PlateType.getLength()];
 
-	public static final ResourceLocation FAUCET = Utils.makeModLocation("faucet");
+	public static final ResourceLocation FAUCET = ModUtils.makeModLocation("faucet");
 	public static final ResourceLocation[] FAUCETS = new ResourceLocation[2];
 
-	public static final ResourceLocation LATERAL_GROOVE = Utils.makeModLocation("lateral_groove");
+	public static final ResourceLocation LATERAL_GROOVE = ModUtils.makeModLocation("lateral_groove");
 	public static final ResourceLocation[] LATERAL_GROOVES = new ResourceLocation[ItemBlockLateralGroove.NAMES.length];
 
-	public static final ResourceLocation NEW_GRAVEL = Utils.makeModLocation("new_gravel");
+	public static final ResourceLocation NEW_GRAVEL = ModUtils.makeModLocation("new_gravel");
 	public static final ResourceLocation[] NEW_GRAVELS = new ResourceLocation[BlockNewGravel.EnumType.getLength()];
 
-	public static final ResourceLocation PAVING_STONE = Utils.makeModLocation("paving_stone");
+	public static final ResourceLocation PAVING_STONE = ModUtils.makeModLocation("paving_stone");
 	public static final ResourceLocation[] PAVING_STONES = new ResourceLocation[BlockPavingStone.EnumType.getLength()];
 
-	public static final ResourceLocation COMPRESSED_BOOKSHELF = Utils.makeModLocation("compressed_bookshelf");
+	public static final ResourceLocation COMPRESSED_BOOKSHELF = ModUtils.makeModLocation("compressed_bookshelf");
 	public static final ResourceLocation[] COMPRESSED_BOOKSHELFS = new ResourceLocation[ItemBlockCompressedBookshelf.NAMES.length];
 
-	public static final ResourceLocation THREE_PILLARS = Utils.makeModLocation("three_pillars");
+	public static final ResourceLocation THREE_PILLARS = ModUtils.makeModLocation("three_pillars");
 	public static final ResourceLocation[] THREE_PILLARSS = new ResourceLocation[ItemBlockThreePillars.NAMES.length];
 
-	public static final ResourceLocation DUMMY_CABLE = Utils.makeModLocation("dummy_cable");
+	public static final ResourceLocation DUMMY_CABLE = ModUtils.makeModLocation("dummy_cable");
 	public static final ResourceLocation[] DUMMY_CABLES = new ResourceLocation[BlockDummyCable.EnumType.getLength()];
 
-	public static final ResourceLocation POLISHED_STONE_COLORED = Utils.makeModLocation("polished_stone_colored");
+	public static final ResourceLocation POLISHED_STONE_COLORED = ModUtils.makeModLocation("polished_stone_colored");
 	public static final ResourceLocation[] POLISHED_STONE_COLOREDS = new ResourceLocation[EnumColor.getLength()];
 
-	public static final ResourceLocation LAMP = Utils.makeModLocation("lamp");
+	public static final ResourceLocation LAMP = ModUtils.makeModLocation("lamp");
 	public static final ResourceLocation[] LAMPS = new ResourceLocation[BlockLamp.MaterialType.getLength()];
 
-	public static final ResourceLocation CHROMA_KEY_BACK = Utils.makeModLocation("chroma_key_back");
+	public static final ResourceLocation CHROMA_KEY_BACK = ModUtils.makeModLocation("chroma_key_back");
 	public static final ResourceLocation[] CHROMA_KEY_BACKS = new ResourceLocation[EnumColor.getLength()];
 
-	public static final ResourceLocation STONE_SLAB = Utils.makeModLocation("stone_slab");
+	public static final ResourceLocation STONE_SLAB = ModUtils.makeModLocation("stone_slab");
 	public static final ResourceLocation[] STONE_SLABS = new ResourceLocation[BlockModStoneSlab.Type.getLength()];
 
-	public static final ResourceLocation DOUBLE_STONE_SLAB = Utils.makeModLocation("double_stone_slab");
+	public static final ResourceLocation DOUBLE_STONE_SLAB = ModUtils.makeModLocation("double_stone_slab");
 	public static final ResourceLocation[] DOUBLE_STONE_SLABS = new ResourceLocation[BlockModStoneSlab.Type.getLength()];
 
-	public static final ResourceLocation VOID_TELEPORTER = Utils.makeModLocation("void_teleporter");
+	public static final ResourceLocation VOID_TELEPORTER = ModUtils.makeModLocation("void_teleporter");
 	public static final ResourceLocation[] VOID_TELEPORTERS = new ResourceLocation[BlockVoidTeleporter.VoidType.getLength()];
 
-	public static final ResourceLocation TWEAKED_DYE = Utils.makeModLocation("tweaked_dye");
+	public static final ResourceLocation TWEAKED_DYE = ModUtils.makeModLocation("tweaked_dye");
 	public static final ResourceLocation[] TWEAKED_DYES = new ResourceLocation[ItemTweakedDye.NAMES.length];
 
-	public static final ResourceLocation MATERIAL = Utils.makeModLocation("material");
+	public static final ResourceLocation MATERIAL = ModUtils.makeModLocation("material");
 	public static final ResourceLocation[] MATERIALS = new ResourceLocation[ItemMaterial.NAMES.length];
 
 	static

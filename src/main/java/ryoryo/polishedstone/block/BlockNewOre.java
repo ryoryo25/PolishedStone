@@ -22,10 +22,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
+import ryoryo.polishedstone.util.References;
 
-public class BlockNewOre extends BlockOre
+public class BlockNewOre extends BlockOre implements IModId
 {
 	public static final PropertyEnum<MaterialType> TYPE = PropertyEnum.<MaterialType> create("type", MaterialType.class);
 
@@ -38,6 +40,12 @@ public class BlockNewOre extends BlockOre
 		this.setSoundType(SoundType.STONE);
 		this.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, MaterialType.COOKIE));
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	@Override

@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -22,9 +21,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockYellowLine extends Block
+public class BlockYellowLine extends BlockModBase
 {
 	protected static final AxisAlignedBB BASE_AABB = Utils.creatAABB(0, 8, 0, 16, 16, 16);
 	protected static final AxisAlignedBB NORTH_AABB = Utils.creatAABB(0, 0, 8, 16, 8, 16);
@@ -35,12 +33,9 @@ public class BlockYellowLine extends Block
 
 	public BlockYellowLine()
 	{
-		super(Material.ROCK);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("yellow_line");
+		super(Material.ROCK, "yellow_line", SoundType.STONE);
 		this.setHardness(1.5F);
 		this.setResistance(10.0F);
-		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 

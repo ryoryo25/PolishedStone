@@ -16,17 +16,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
-public class BlockShadeGlass extends Block
+public class BlockShadeGlass extends BlockModBase
 {
 	private boolean unbreakable;
 	public BlockShadeGlass(String name, boolean unbreakable)
 	{
-		super(Material.GLASS);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName(name);
+		super(Material.GLASS, name, SoundType.GLASS);
 		if(unbreakable)
 		{
 			this.setBlockUnbreakable();
@@ -36,7 +33,6 @@ public class BlockShadeGlass extends Block
 			this.setHardness(0.3F);
 		this.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
 		this.setLightOpacity(255);
-		this.setSoundType(SoundType.GLASS);
 		this.unbreakable = unbreakable;
 	}
 

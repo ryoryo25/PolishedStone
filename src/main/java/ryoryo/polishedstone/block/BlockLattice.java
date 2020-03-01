@@ -21,10 +21,9 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.config.ModConfig;
 
-public class BlockLattice extends Block
+public class BlockLattice extends BlockModBase
 {
 	protected static final AxisAlignedBB LATTICE_BASE_AABB = new AxisAlignedBB(0.0D, 0.4D, 0.0D, 1.0D, 0.6D, 1.0D);
 	protected static final AxisAlignedBB LATTICE_BASE1_AABB = new AxisAlignedBB(0.0D, 0.4375D, 0.4D, 1.0D, 0.5625D, 0.6D);
@@ -45,9 +44,7 @@ public class BlockLattice extends Block
 
 	public BlockLattice(Block base, String name)
 	{
-		super(base.getDefaultState().getMaterial());
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("lattice_" + name);
+		super(base.getDefaultState().getMaterial(), "lattice_" + name);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TOP, Boolean.valueOf(false)).withProperty(BOTTOM, Boolean.valueOf(false)));
 		this.baseState = base.getDefaultState();
 	}

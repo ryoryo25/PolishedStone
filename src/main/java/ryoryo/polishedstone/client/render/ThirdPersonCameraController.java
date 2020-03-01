@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedstone.PSV2Core;
 
 public class ThirdPersonCameraController
 {
@@ -35,7 +36,7 @@ public class ThirdPersonCameraController
 		}
 		catch(Exception e)
 		{
-			Utils.addLogThrowable(e, "ThirdPersonCameraController#turn");
+			PSV2Core.logger.addLogThrowable(e, "ThirdPersonCameraController#turn");
 		}
 	}
 

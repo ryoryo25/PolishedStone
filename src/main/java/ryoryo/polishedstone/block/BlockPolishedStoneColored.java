@@ -1,6 +1,5 @@
 package ryoryo.polishedstone.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -12,24 +11,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.EnumColor;
 import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
+import ryoryo.polishedlib.util.enums.EnumColor;
 
-public class BlockPolishedStoneColored extends Block
+public class BlockPolishedStoneColored extends BlockModBase
 {
 	public static final PropertyEnum<EnumColor> COLOR = Utils.COLOR;
 
 	public BlockPolishedStoneColored()
 	{
-		super(Material.ROCK);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("colored_polished_stone");
+		super(Material.ROCK, "colored_polished_stone", SoundType.STONE);
 		this.setHardness(0.5F);
 		this.setResistance(10000.0F);
 		this.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
-		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOR, EnumColor.WHITE));
 	}
 

@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -28,9 +27,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockLateralGroove extends Block
+public class BlockLateralGroove extends BlockModBase
 {
 	protected static final AxisAlignedBB BASE_AABB = Utils.creatAABB(0, 0, 0, 16, 1, 16);
 
@@ -57,9 +55,7 @@ public class BlockLateralGroove extends Block
 
 	public BlockLateralGroove()
 	{
-		super(Material.ROCK);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("lateral_groove");
+		super(Material.ROCK, "lateral_groove");
 		this.setHardness(0.8F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.NORMAL_NS));
 	}

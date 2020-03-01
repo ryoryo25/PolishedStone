@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -27,9 +26,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockEarthenPipe extends Block
+public class BlockEarthenPipe extends BlockModBase
 {
 	protected static final AxisAlignedBB BASE_X_AABB1 = Utils.creatAABB(2, 3, 1, 14, 13, 15);
 	protected static final AxisAlignedBB BASE_X_AABB2 = Utils.creatAABB(2, 2, 2, 14, 14, 14);
@@ -111,12 +109,9 @@ public class BlockEarthenPipe extends Block
 
 	public BlockEarthenPipe()
 	{
-		super(Material.ROCK);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("earthen_pipe");
+		super(Material.ROCK, "earthen_pipe", SoundType.STONE);
 		this.setHardness(1.5F);
 		this.setResistance(10.0F);
-		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, EnumShape.AXIS_X).withProperty(NORTH, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(UP, Boolean.valueOf(false)).withProperty(DOWN, Boolean.valueOf(false)));
 	}
 

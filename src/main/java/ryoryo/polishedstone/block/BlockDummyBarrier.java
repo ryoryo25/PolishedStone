@@ -21,11 +21,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.client.particle.ParticleRegistry;
+import ryoryo.polishedstone.util.References;
 
-public class BlockDummyBarrier extends BlockBarrier
+public class BlockDummyBarrier extends BlockBarrier implements IModId
 {
 	private boolean isVisible = false;
 
@@ -33,6 +35,12 @@ public class BlockDummyBarrier extends BlockBarrier
 	{
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("dummy_barrier");
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)

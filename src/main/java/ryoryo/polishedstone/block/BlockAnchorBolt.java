@@ -22,10 +22,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
+import ryoryo.polishedstone.util.References;
 
-public class BlockAnchorBolt extends Block
+public class BlockAnchorBolt extends BlockModBase
 {
 	/**
 	 *         (NORTH)
@@ -46,13 +46,16 @@ public class BlockAnchorBolt extends Block
 
 	public BlockAnchorBolt()
 	{
-		super(Material.GROUND);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("anchor_bolt");
+		super(Material.GROUND, "anchor_bolt", SoundType.METAL);
 		this.setHardness(0.5F);
 		this.setResistance(2.0F);
-		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	@Override
@@ -60,6 +63,7 @@ public class BlockAnchorBolt extends Block
 	{
 		return false;
 	}
+
 
 	@Override
 	public boolean isFullCube(IBlockState state)

@@ -1,6 +1,5 @@
 package ryoryo.polishedstone.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -14,20 +13,16 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockVoidTeleporter extends Block
+public class BlockVoidTeleporter extends BlockModBase
 {
 	public static final PropertyEnum<VoidType> TYPE = PropertyEnum.<VoidType> create("type", VoidType.class);
 
 	public BlockVoidTeleporter()
 	{
-		super(Material.IRON);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("void_teleporter");
+		super(Material.IRON, "void_teleporter", SoundType.METAL);
 		this.setHardness(5.0F);
 		this.setResistance(10.0F);
-		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, VoidType.DAY));
 	}
 

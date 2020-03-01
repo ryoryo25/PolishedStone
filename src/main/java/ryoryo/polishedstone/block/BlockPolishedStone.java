@@ -1,6 +1,5 @@
 package ryoryo.polishedstone.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -24,21 +23,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
 
-public class BlockPolishedStone extends Block
+public class BlockPolishedStone extends BlockModBase
 {
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.<EnumType> create("type", EnumType.class);
 
 	public BlockPolishedStone()
 	{
-		super(Material.GROUND);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("polished_stone");
+		super(Material.GROUND, "polished_stone", SoundType.STONE);
 		this.setHardness(0.5F);
 		this.setResistance(10000.0F);
 		this.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
-		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.NORMAL));
 	}
 

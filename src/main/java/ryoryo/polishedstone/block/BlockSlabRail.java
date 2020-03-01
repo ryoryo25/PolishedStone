@@ -11,10 +11,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
+import ryoryo.polishedstone.util.References;
 
-public class BlockSlabRail extends BlockRail
+public class BlockSlabRail extends BlockRail implements IModId
 {
 	public BlockSlabRail()
 	{
@@ -24,6 +26,12 @@ public class BlockSlabRail extends BlockRail
 		this.setResistance(10.0F);
 		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH));
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	@Override

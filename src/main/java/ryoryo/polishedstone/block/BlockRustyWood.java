@@ -2,7 +2,6 @@ package ryoryo.polishedstone.block;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -20,22 +19,18 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.EnumSimpleFacing;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
+import ryoryo.polishedlib.util.enums.EnumSimpleFacing;
 
-public class BlockRustyWood extends Block
+public class BlockRustyWood extends BlockModBase
 {
 	protected static final AxisAlignedBB WOOD_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
 	public static final PropertyEnum<EnumSimpleFacing> FACING = Utils.SIMPLE_FACING;
 
 	public BlockRustyWood()
 	{
-		super(Material.WOOD);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("rustry_wood");
+		super(Material.WOOD, "rustry_wood", SoundType.WOOD);
 		this.setHardness(0.7F);
-		this.setSoundType(SoundType.WOOD);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumSimpleFacing.NORTH));
 	}
 

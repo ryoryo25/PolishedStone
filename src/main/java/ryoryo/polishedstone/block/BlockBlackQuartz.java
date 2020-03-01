@@ -10,9 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
+import ryoryo.polishedstone.util.References;
 
-public class BlockBlackQuartz extends BlockQuartz
+public class BlockBlackQuartz extends BlockQuartz implements IModId
 {
 	public BlockBlackQuartz()
 	{
@@ -21,6 +23,12 @@ public class BlockBlackQuartz extends BlockQuartz
 		this.setHardness(0.8F);
 		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.DEFAULT));
+	}
+
+	@Override
+	public String getModId()
+	{
+		return References.MOD_ID;
 	}
 
 	@Override

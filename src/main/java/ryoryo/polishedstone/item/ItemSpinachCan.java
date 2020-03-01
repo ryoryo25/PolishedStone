@@ -11,13 +11,12 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import ryoryo.polishedlib.item.ItemBaseFood;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.util.LibPotionId;
 
-public class ItemSpinachCan extends ItemBaseFood
+public class ItemSpinachCan extends ItemModBaseFood
 {
 	public ItemSpinachCan()
 	{

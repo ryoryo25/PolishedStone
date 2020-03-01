@@ -34,14 +34,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.EnumSimpleFacing;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.PSV2Core;
+import ryoryo.polishedlib.util.enums.EnumSimpleFacing;
 import ryoryo.polishedstone.Register;
 
-//import static ryoryo.util.Utils.*;
-
-public class BlockStepladder extends Block
+public class BlockStepladder extends BlockModBase
 {
 	protected static final AxisAlignedBB FIRST_AABB = creatAABB(0, 0, 0, 16, 16, 16);
 //-----------------------------------------------------------------------------------------------------------------------------------------
@@ -126,12 +123,9 @@ public class BlockStepladder extends Block
 
 	public BlockStepladder()
 	{
-		super(Material.GROUND);
-		this.setCreativeTab(PSV2Core.TAB_MOD);
-		this.setUnlocalizedName("stepladder");
+		super(Material.GROUND, "stepladder", SoundType.METAL);
 		this.setHardness(0.5F);
 		this.setResistance(2.0F);
-		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumSimpleFacing.NORTH).withProperty(STAGE, EnumStage.FIRST).withProperty(TOP, Boolean.valueOf(false)));
 	}
 

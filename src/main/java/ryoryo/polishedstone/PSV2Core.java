@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.ModLogger;
 import ryoryo.polishedstone.config.ModConfig;
 import ryoryo.polishedstone.proxy.IProxy;
 import ryoryo.polishedstone.util.ArmorMaterials;
@@ -28,15 +28,15 @@ public class PSV2Core
 
 	public static final CreativeTabs TAB_MOD = new ModCreativeTab(References.MOD_ID);
 	public static ModConfig config;
+	public static ModLogger logger = new ModLogger(References.MOD_ID);
 	public static final boolean isDebug = false;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		INSTANCE = this;
-		Utils.addLog("Hello Minecraft!");
-		Utils.addLog("Start loading preInit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		Utils.setModId(References.MOD_ID);
+		logger.addLog("Hello Minecraft!");
+		logger.addLog("Start loading preInit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		config = new ModConfig(event.getSuggestedConfigurationFile());
 		MinecraftForge.EVENT_BUS.register(config);
 		//Registering Armor Materials
@@ -48,8 +48,7 @@ public class PSV2Core
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		Utils.addLog("Start loading init!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		Utils.setModId(References.MOD_ID);
+		logger.addLog("Start loading init!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		Register.init();
 		Register.initClient();
 	}
@@ -57,8 +56,7 @@ public class PSV2Core
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		Utils.addLog("Start loading postInit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		Utils.setModId(References.MOD_ID);
+		logger.addLog("Start loading postInit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		Register.postInit();
 		Register.postInitClient();
 	}
