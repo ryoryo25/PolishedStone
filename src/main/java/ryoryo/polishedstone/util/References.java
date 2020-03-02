@@ -11,9 +11,9 @@ public class References
 	public static final String MOD_ID = "polishedstone_v2";
 	public static final String MOD_NAME = "PolishedStone2";
 
-	public static final String MOD_VERSION_MAJOR = "1";
-	public static final String MOD_VERSION_MINOR = "0";
-	public static final String MOD_VERSION_PATCH = "1";
+	public static final String MOD_VERSION_MAJOR = "GRADLE.VERSION_MAJOR";
+	public static final String MOD_VERSION_MINOR = "GRADLE.VERSION_MINOR";
+	public static final String MOD_VERSION_PATCH = "GRADLE.VERSION_PATCH";
 	public static final String MOD_VERSION = MOD_VERSION_MAJOR + "." + MOD_VERSION_MINOR + "." + MOD_VERSION_PATCH;
 
 	public static final String MOD_DEPENDENCIES = "after:" + ModCompat.MOD_ID_QUARK + ";"
