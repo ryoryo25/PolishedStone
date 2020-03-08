@@ -16,7 +16,10 @@ public class References
 	public static final String MOD_VERSION_PATCH = "GRADLE.VERSION_PATCH";
 	public static final String MOD_VERSION = MOD_VERSION_MAJOR + "." + MOD_VERSION_MINOR + "." + MOD_VERSION_PATCH;
 
-	public static final String MOD_DEPENDENCIES = "after:" + ModCompat.MOD_ID_QUARK + ";"
+	public static final String MOD_DEPENDENCIES = "required-after:forge@[14.23.4.2705,);"
+//												+ "required-after:polishedlib@[1.0.1,);"
+												+ "required-after:polishedlib;"
+												+ "after:" + ModCompat.MOD_ID_QUARK + ";"
 												+ "after:" + ModCompat.MOD_ID_CUSTOM_SPAWN + ";"
 												+ "after:" + ModCompat.MOD_ID_WILDFIRE + ";"
 												+ "after:" + ModCompat.MOD_ID_FENCE_JUMPER + ";";

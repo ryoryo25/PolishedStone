@@ -5,7 +5,6 @@ import static net.minecraftforge.oredict.OreDictionary.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDispenser;
-import net.minecraft.block.BlockQuartz;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.SoundType;
@@ -88,7 +87,6 @@ import ryoryo.polishedstone.block.BlockSafetyFence;
 import ryoryo.polishedstone.block.BlockShadeGlass;
 import ryoryo.polishedstone.block.BlockSlabRail;
 import ryoryo.polishedstone.block.BlockSlimeRemovalTorch;
-import ryoryo.polishedstone.block.BlockSmallStairs;
 import ryoryo.polishedstone.block.BlockStepladder;
 import ryoryo.polishedstone.block.BlockTemporary;
 import ryoryo.polishedstone.block.BlockTest;
@@ -168,24 +166,7 @@ public class Register
 	public static final Block BLOCK_GLOWSTONE_GENERATOR = new BlockGlowstoneGenerator();
 	public static final Block BLOCK_DUMMY_BARRIER = new BlockDummyBarrier();
 	public static final Block BLOCK_BLACK_QUARTZ = new BlockBlackQuartz();
-	public static final Block BLOCK_SS_OAK_PLANKS = new BlockSmallStairs(Blocks.PLANKS.getDefaultState(), "planks_oak");
-	public static final Block BLOCK_SS_SPRUCE_PLANKS = new BlockSmallStairs(Blocks.PLANKS.getDefaultState(), "planks_spruce");
-	public static final Block BLOCK_SS_BIRCH_PLANKS = new BlockSmallStairs(Blocks.PLANKS.getDefaultState(), "planks_birch");
-	public static final Block BLOCK_SS_JUNGLE_PLANKS = new BlockSmallStairs(Blocks.PLANKS.getDefaultState(), "planks_jungle");
-	public static final Block BLOCK_SS_ACACIA_PLANKS = new BlockSmallStairs(Blocks.PLANKS.getDefaultState(), "planks_acacia");
-	public static final Block BLOCK_SS_DARK_OAK_PLANKS = new BlockSmallStairs(Blocks.PLANKS.getDefaultState(), "planks_dark_oak");
-	public static final Block BLOCK_SS_COBBLESTONE = new BlockSmallStairs(Blocks.COBBLESTONE.getDefaultState(), "cobblestone");
-	public static final Block BLOCK_SS_SANDSTONE = new BlockSmallStairs(Blocks.SANDSTONE.getDefaultState(), "sandstone");
-	public static final Block BLOCK_SS_RED_SANDSTONE = new BlockSmallStairs(Blocks.RED_SANDSTONE.getDefaultState(), "red_sandstone");
-	public static final Block BLOCK_SS_BRICK = new BlockSmallStairs(Blocks.BRICK_BLOCK.getDefaultState(), "birck");
-	public static final Block BLOCK_SS_STONE_BRICK = new BlockSmallStairs(Blocks.STONEBRICK.getDefaultState(), "stonebrick");
-	public static final Block BLOCK_SS_NETHER_BRICK = new BlockSmallStairs(Blocks.NETHER_BRICK.getDefaultState(), "nether_brick");
-	public static final Block BLOCK_SS_RED_NETHER_BRICK = new BlockSmallStairs(Blocks.RED_NETHER_BRICK.getDefaultState(), "red_nether_brick");
-	public static final Block BLOCK_SS_STONE = new BlockSmallStairs(Blocks.STONE.getDefaultState(), "stone");
-	public static final Block BLOCK_SS_RED_WOOL = new BlockSmallStairs(Blocks.WOOL.getDefaultState(), "wool_red");
-	public static final Block BLOCK_SS_YELLOW_WOOL = new BlockSmallStairs(Blocks.WOOL.getDefaultState(), "wool_yellow");
-	public static final Block BLOCK_SS_QUARTZ_BLOCK = new BlockSmallStairs(Blocks.QUARTZ_BLOCK.getDefaultState(), "quartz_block");
-	public static final Block BLOCK_SS_BLACK_QUARTZ_BLOCK = new BlockSmallStairs(BLOCK_BLACK_QUARTZ.getDefaultState(), "black_quartz_block");
+//	public static final Block BLOCK_SS_BLACK_QUARTZ_BLOCK = new BlockSmallStairs(BLOCK_BLACK_QUARTZ.getDefaultState(), "black_quartz_block");
 	public static final Block BLOCK_VM_NORMAL = new BlockVendingMachine(TexType.NORMAL.getName());
 	public static final Block BLOCK_VM_COCA_COLA = new BlockVendingMachine(TexType.COCA_COLA.getName());
 	public static final Block BLOCK_VM_SUNTORY = new BlockVendingMachine(TexType.SUNTORY.getName());
@@ -333,24 +314,7 @@ public class Register
 		Utils.registerBlock(BLOCK_GLOWSTONE_GENERATOR, new ItemBlock(BLOCK_GLOWSTONE_GENERATOR), Locations.GLOWSTONE_GENE, 8, Locations.GLOWSTONE_GENES);
 		Utils.registerBlock(BLOCK_DUMMY_BARRIER, "dummy_barrier");
 		Utils.registerBlock(BLOCK_BLACK_QUARTZ, new ItemBlockBlackQuartz(), Locations.BLACK_QUARTZ, ItemBlockBlackQuartz.NAMES.length, Locations.BLACK_QUARTZS, ItemBlockBlackQuartz.NAMES);
-		Utils.registerSmallStairs(BLOCK_SS_COBBLESTONE, "cobblestone");
-		Utils.registerSmallStairs(BLOCK_SS_OAK_PLANKS, "planks_oak");
-		Utils.registerSmallStairs(BLOCK_SS_SPRUCE_PLANKS, "planks_spruce");
-		Utils.registerSmallStairs(BLOCK_SS_BIRCH_PLANKS, "planks_birch");
-		Utils.registerSmallStairs(BLOCK_SS_JUNGLE_PLANKS, "planks_jungle");
-		Utils.registerSmallStairs(BLOCK_SS_ACACIA_PLANKS, "planks_acacia");
-		Utils.registerSmallStairs(BLOCK_SS_DARK_OAK_PLANKS, "planks_dark_oak");
-		Utils.registerSmallStairs(BLOCK_SS_SANDSTONE, "sandstone");
-		Utils.registerSmallStairs(BLOCK_SS_RED_SANDSTONE, "red_sandstone");
-		Utils.registerSmallStairs(BLOCK_SS_BRICK, "brick");
-		Utils.registerSmallStairs(BLOCK_SS_STONE_BRICK, "stonebrick");
-		Utils.registerSmallStairs(BLOCK_SS_NETHER_BRICK, "nether_brick");
-		Utils.registerSmallStairs(BLOCK_SS_RED_NETHER_BRICK, "red_nether_brick");
-		Utils.registerSmallStairs(BLOCK_SS_STONE, "stone");
-		Utils.registerSmallStairs(BLOCK_SS_RED_WOOL, "wool_red");
-		Utils.registerSmallStairs(BLOCK_SS_YELLOW_WOOL, "wool_yellow");
-		Utils.registerSmallStairs(BLOCK_SS_QUARTZ_BLOCK, "quartz_block");
-		Utils.registerSmallStairs(BLOCK_SS_BLACK_QUARTZ_BLOCK, "black_quartz_block");
+//		Utils.registerSmallStairs(BLOCK_SS_BLACK_QUARTZ_BLOCK, "black_quartz_block");
 		Utils.registerBlock(BLOCK_VM_NORMAL, new ItemBlockVendingMachine(BLOCK_VM_NORMAL), vm + TexType.NORMAL.getName());
 		Utils.registerBlock(BLOCK_VM_COCA_COLA, new ItemBlockVendingMachine(BLOCK_VM_COCA_COLA), vm + TexType.COCA_COLA.getName());
 		Utils.registerBlock(BLOCK_VM_SUNTORY, new ItemBlockVendingMachine(BLOCK_VM_SUNTORY), vm + TexType.SUNTORY.getName());
@@ -736,26 +700,8 @@ public class Register
 		{
 			RecipeUtils.addRecipe("light_" + EnumColor.byMeta(i).getName(), new ItemStack(BLOCK_COLORED_LIGHT, 8, i), "GdG", "GgG", "GiG", 'G', "blockGlass", 'd', EnumColor.byMeta(i).getDyeOreName(), 'g', Blocks.GLOWSTONE, 'i', Items.IRON_INGOT);
 		}
+//		RecipeUtils.addRecipeSmallStairs("black_quartz", BLOCK_SS_BLACK_QUARTZ_BLOCK, new ItemStack(BLOCK_BLACK_QUARTZ, 1, BlockQuartz.EnumType.DEFAULT.getMetadata()));
 		RecipeUtils.addRecipe("glowstone_generator", new ItemStack(BLOCK_GLOWSTONE_GENERATOR, 1), "dld", "SSS", "dSd", 'd', Items.DIAMOND, 'l', new ItemStack(Items.DYE, 1, EnumColor.BLUE.getDyeNumber()), 'S', Blocks.STONE);
-		//ミニ階段
-		Block[] small_stairs = new Block[]
-		{ BLOCK_SS_OAK_PLANKS, BLOCK_SS_SPRUCE_PLANKS, BLOCK_SS_BIRCH_PLANKS, BLOCK_SS_JUNGLE_PLANKS, BLOCK_SS_ACACIA_PLANKS, BLOCK_SS_DARK_OAK_PLANKS };
-		for(int i = 0; i < 6; i++)
-		{
-			RecipeUtils.addRecipeSmallStairs(EnumPlanks.byMeta(i).getName(), small_stairs[i], new ItemStack(Blocks.PLANKS, 1, i));
-		}
-		RecipeUtils.addRecipeSmallStairs("cobblestone", BLOCK_SS_COBBLESTONE, new ItemStack(Blocks.COBBLESTONE));
-		RecipeUtils.addRecipeSmallStairs("sandstone", BLOCK_SS_SANDSTONE, new ItemStack(Blocks.SANDSTONE));
-		RecipeUtils.addRecipeSmallStairs("red_sandstone", BLOCK_SS_RED_SANDSTONE, new ItemStack(Blocks.RED_SANDSTONE));
-		RecipeUtils.addRecipeSmallStairs("brick", BLOCK_SS_BRICK, new ItemStack(Blocks.BRICK_BLOCK));
-		RecipeUtils.addRecipeSmallStairs("stone_brick", BLOCK_SS_STONE_BRICK, new ItemStack(Blocks.STONEBRICK, 1, WILDCARD_VALUE));
-		RecipeUtils.addRecipeSmallStairs("nether_brick", BLOCK_SS_NETHER_BRICK, new ItemStack(Blocks.NETHER_BRICK));
-		RecipeUtils.addRecipeSmallStairs("red_nether_brick", BLOCK_SS_RED_NETHER_BRICK, new ItemStack(Blocks.RED_NETHER_BRICK));
-		RecipeUtils.addRecipeSmallStairs("stone", BLOCK_SS_STONE, new ItemStack(Blocks.STONE));
-		RecipeUtils.addRecipeSmallStairs("red_wool", BLOCK_SS_RED_WOOL, EnumColor.RED.getWoolOreName());
-		RecipeUtils.addRecipeSmallStairs("yellow_wool", BLOCK_SS_YELLOW_WOOL, EnumColor.YELLOW.getWoolOreName());
-		RecipeUtils.addRecipeSmallStairs("quartz", BLOCK_SS_QUARTZ_BLOCK, new ItemStack(Blocks.QUARTZ_BLOCK, 1, BlockQuartz.EnumType.DEFAULT.getMetadata()));
-		RecipeUtils.addRecipeSmallStairs("black_quartz", BLOCK_SS_BLACK_QUARTZ_BLOCK, new ItemStack(BLOCK_BLACK_QUARTZ, 1, BlockQuartz.EnumType.DEFAULT.getMetadata()));
 		RecipeUtils.addRecipeVendingMachine("normal", BLOCK_VM_NORMAL, EnumColor.WHITE);
 		RecipeUtils.addRecipeVendingMachine("coca_cola", BLOCK_VM_COCA_COLA, EnumColor.RED);
 		RecipeUtils.addRecipeVendingMachine("suntory", BLOCK_VM_SUNTORY, EnumColor.BLUE);

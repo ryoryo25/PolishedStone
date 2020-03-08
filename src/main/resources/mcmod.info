@@ -11,6 +11,6 @@
 		"credits": "Many Minecraft Modders!",
 		"logoFile": "assets/polishedstone_v2/textures/mod_logo.png",
 		"screenshots": [],
-		"dependencies": ["mod_MinecraftForge", "redstoneflux", "quark", "dcs_spawn", "dcs_wildfire"]
+		"dependencies": ["mod_MinecraftForge", "polishedlib", "redstoneflux", "quark", "dcs_spawn", "dcs_wildfire"]
 	}
 ]

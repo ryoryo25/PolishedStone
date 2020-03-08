@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedlib.util.enums.EnumColor;
 import ryoryo.polishedlib.util.enums.EnumPlanks;
-import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.block.BlockLamp;
 
@@ -28,24 +27,6 @@ public class RecipeUtils
 	public static void addRecipeWall(String name, Block output, ItemStack material)
 	{
 		Utils.addRecipeWall(References.MOD_ID, name, output, material);
-	}
-
-	/**
-	 * 小さい階段レシピ登録
-	 * 名前の前に"small_stairs_"と足される
-	 * @param name
-	 * @param output
-	 * @param material
-	 */
-	public static void addRecipeSmallStairs(String name, Block output, Object material)
-	{
-		int quantity = 6;
-		if(ModCompat.COMPAT_QUARK)
-			quantity = 9;
-		else
-			PSV2Core.logger.addInfo("Quark isn't loaded.");
-
-		addRecipe("small_stairs_" + name, new ItemStack(output, quantity), "M ", "MM", 'M', material);
 	}
 
 	/**

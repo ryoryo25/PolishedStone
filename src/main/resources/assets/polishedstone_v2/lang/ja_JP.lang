@@ -58,21 +58,6 @@ tile.glowstone_generator.name=グロウストーン生成ブロック
 
 tile.dummy_barrier.name=ダミーバリアブロック
 
-tile.small_stairs_cobblestone.name=丸石の小階段
-tile.small_stairs_planks_oak.name=オークの木の小階段
-tile.small_stairs_planks_spruce.name=マツの木の小階段
-tile.small_stairs_planks_birch.name=シラカバの木の小階段
-tile.small_stairs_planks_jungle.name=ジャングルの木の小階段
-tile.small_stairs_planks_acacia.name=アカシアの木の小階段
-tile.small_stairs_planks_dark_oak.name=ダークオークの木の小階段
-tile.small_stairs_sandstone.name=砂岩の小階段
-tile.small_stairs_red_sandstone.name=赤い砂岩の小階段
-tile.small_stairs_brick.name=レンガの小階段
-tile.small_stairs_stonebrick.name=石レンガの小階段
-tile.small_stairs_nether_brick.name=ネザーレンガの小階段
-tile.small_stairs_red_nether_brick.name=赤いネザーレンガの小階段
-tile.small_stairs_stone.name=石の小階段
-
 tile.vending_machine_normal.name=自動販売機(通常)
 tile.vending_machine_coca_cola.name=自動販売機(コカ・コーラ®)
 tile.vending_machine_suntory.name=自動販売機(サントリー®)

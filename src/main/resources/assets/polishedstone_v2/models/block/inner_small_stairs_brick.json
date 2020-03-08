@@ -1,8 +1,0 @@
-{
-	"parent": "polishedstone_v2:block/inner_small_stairs",
-	"textures": {
-		"bottom": "minecraft:blocks/brick",
-		"top": "minecraft:blocks/brick",
-		"side": "minecraft:blocks/brick"
-	}
-}

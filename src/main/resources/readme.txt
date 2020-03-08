@@ -8,7 +8,6 @@ What this mod adds:
 		-Black Quartz
 		-Vanilla Stone Extension(Bricks, Walls, and Slabs)
 		-Basalt
-		-Small Stairs
 		-Vending Machine
 		-Locker
 		-Lattice

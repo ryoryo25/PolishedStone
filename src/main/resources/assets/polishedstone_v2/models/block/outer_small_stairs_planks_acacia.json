@@ -1,8 +1,0 @@
-{
-    "parent": "polishedstone_v2:block/outer_small_stairs",
-    "textures": {
-        "bottom": "minecraft:blocks/planks_acacia",
-        "top": "minecraft:blocks/planks_acacia",
-        "side": "minecraft:blocks/planks_acacia"
-    }
-}
