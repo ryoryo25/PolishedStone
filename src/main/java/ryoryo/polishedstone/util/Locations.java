@@ -20,7 +20,7 @@ import ryoryo.polishedstone.item.ItemMaterial;
 import ryoryo.polishedstone.item.ItemTweakedDye;
 import ryoryo.polishedstone.itemblock.ItemBlockBlackQuartz;
 import ryoryo.polishedstone.itemblock.ItemBlockCompressedBookshelf;
-import ryoryo.polishedstone.itemblock.ItemBlockLateralGroove;
+import ryoryo.polishedstone.itemblock.ItemBlockStreetGutter;
 import ryoryo.polishedstone.itemblock.ItemBlockPolishedStone;
 import ryoryo.polishedstone.itemblock.ItemBlockThreePillars;
 
@@ -62,8 +62,8 @@ public class Locations
 	public static final ResourceLocation FAUCET = ModUtils.makeModLocation("faucet");
 	public static final ResourceLocation[] FAUCETS = new ResourceLocation[2];
 
-	public static final ResourceLocation LATERAL_GROOVE = ModUtils.makeModLocation("lateral_groove");
-	public static final ResourceLocation[] LATERAL_GROOVES = new ResourceLocation[ItemBlockLateralGroove.NAMES.length];
+	public static final ResourceLocation LATERAL_GROOVE = ModUtils.makeModLocation("street_gutter");
+	public static final ResourceLocation[] LATERAL_GROOVES = new ResourceLocation[ItemBlockStreetGutter.NAMES.length];
 
 	public static final ResourceLocation NEW_GRAVEL = ModUtils.makeModLocation("new_gravel");
 	public static final ResourceLocation[] NEW_GRAVELS = new ResourceLocation[BlockNewGravel.EnumType.getLength()];
@@ -168,9 +168,9 @@ public class Locations
 			FAUCETS[i] = new ResourceLocation(FAUCET.toString() + "_" + i);
 		}
 
-		for(int i = 0; i < ItemBlockLateralGroove.NAMES.length; i++)
+		for(int i = 0; i < ItemBlockStreetGutter.NAMES.length; i++)
 		{
-			LATERAL_GROOVES[i] = new ResourceLocation(LATERAL_GROOVE.toString() + "_" + ItemBlockLateralGroove.NAMES[i]);
+			LATERAL_GROOVES[i] = new ResourceLocation(LATERAL_GROOVE.toString() + "_" + ItemBlockStreetGutter.NAMES[i]);
 		}
 
 		for(int i = 0; i < BlockNewGravel.EnumType.getLength(); i++)
