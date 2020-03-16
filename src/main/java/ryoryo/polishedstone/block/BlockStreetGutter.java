@@ -28,7 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
 
-public class BlockLateralGroove extends BlockModBase
+public class BlockStreetGutter extends BlockModBase
 {
 	protected static final AxisAlignedBB BASE_AABB = Utils.creatAABB(0, 0, 0, 16, 1, 16);
 
@@ -53,9 +53,9 @@ public class BlockLateralGroove extends BlockModBase
 
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.<EnumType> create("type", EnumType.class);
 
-	public BlockLateralGroove()
+	public BlockStreetGutter()
 	{
-		super(Material.ROCK, "lateral_groove");
+		super(Material.ROCK, "street_gutter");
 		this.setHardness(0.8F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.NORMAL_NS));
 	}
