@@ -1,5 +1,5 @@
 {
-	"parent": "polishedstone_v2:block/lateral_groove_base",
+	"parent": "polishedstone_v2:block/street_gutter_base",
 	"textures": {
 		"tex": "blocks/stone_slab_top"
 	}

@@ -12,7 +12,7 @@ What this mod adds:
 		-Locker
 		-Lattice
 		-Fence Slab
-		-Lateral Groove
+		-Street Gutter
 		-New Flowers
 		-Glowstone Generator
 		-Dummy Barrier Block

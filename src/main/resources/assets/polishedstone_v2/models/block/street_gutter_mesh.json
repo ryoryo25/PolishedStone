@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"textures": {
-		"0": "polishedstone_v2:blocks/lateral_groove_mesh",
-		"particle": "polishedstone_v2:blocks/lateral_groove_mesh"
+		"0": "polishedstone_v2:blocks/street_gutter_mesh",
+		"particle": "polishedstone_v2:blocks/street_gutter_mesh"
 	},
 	"elements": [
 		{
