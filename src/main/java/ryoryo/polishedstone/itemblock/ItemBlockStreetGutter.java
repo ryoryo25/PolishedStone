@@ -16,10 +16,10 @@ import ryoryo.polishedlib.itemblock.ItemBlockMeta;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedlib.util.enums.EnumSimpleFacing;
 import ryoryo.polishedstone.Register;
-import ryoryo.polishedstone.block.BlockLateralGroove;
-import ryoryo.polishedstone.block.BlockLateralGroove.EnumType;
+import ryoryo.polishedstone.block.BlockStreetGutter;
+import ryoryo.polishedstone.block.BlockStreetGutter.EnumType;
 
-public class ItemBlockLateralGroove extends ItemBlockMeta
+public class ItemBlockStreetGutter extends ItemBlockMeta
 {
 	public static final String[] NAMES = new String[]
 	{
@@ -30,9 +30,9 @@ public class ItemBlockLateralGroove extends ItemBlockMeta
 			EnumType.CENTRAL_POLISHED.toString(),
 	};
 
-	public ItemBlockLateralGroove()
+	public ItemBlockStreetGutter()
 	{
-		super(Register.BLOCK_LATERAL_GROOVE, NAMES);
+		super(Register.BLOCK_STREET_GUTTER, NAMES);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class ItemBlockLateralGroove extends ItemBlockMeta
 
 	private static IBlockState getState(EnumFacing facing, int meta)
 	{
-		IBlockState state = Register.BLOCK_LATERAL_GROOVE.getDefaultState();
+		IBlockState state = Register.BLOCK_STREET_GUTTER.getDefaultState();
 		EnumSimpleFacing facings = EnumSimpleFacing.convertToNormalFacing(facing);
 
 		switch(facings)
@@ -91,30 +91,30 @@ public class ItemBlockLateralGroove extends ItemBlockMeta
 			{
 			case 0:
 			default:
-				return state.withProperty(BlockLateralGroove.TYPE, EnumType.NORMAL_NS);
+				return state.withProperty(BlockStreetGutter.TYPE, EnumType.NORMAL_NS);
 			case 1:
-				return state.withProperty(BlockLateralGroove.TYPE, EnumType.POLISHED_NS);
+				return state.withProperty(BlockStreetGutter.TYPE, EnumType.POLISHED_NS);
 			case 2:
-				return state.withProperty(BlockLateralGroove.TYPE, EnumType.MESH_NS);
+				return state.withProperty(BlockStreetGutter.TYPE, EnumType.MESH_NS);
 			case 3:
-				return state.withProperty(BlockLateralGroove.TYPE, EnumType.CENTRAL_NORMAL);
+				return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_NORMAL);
 			case 4:
-				return state.withProperty(BlockLateralGroove.TYPE, EnumType.CENTRAL_POLISHED);
+				return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_POLISHED);
 			}
 		case WEST:
 			switch(meta)
 			{
 			case 0:
 			default:
-				return state.withProperty(BlockLateralGroove.TYPE, EnumType.NORMAL_WE);
+				return state.withProperty(BlockStreetGutter.TYPE, EnumType.NORMAL_WE);
 			case 1:
-				return state.withProperty(BlockLateralGroove.TYPE, EnumType.POLISHED_WE);
+				return state.withProperty(BlockStreetGutter.TYPE, EnumType.POLISHED_WE);
 			case 2:
-				return state.withProperty(BlockLateralGroove.TYPE, EnumType.MESH_WE);
+				return state.withProperty(BlockStreetGutter.TYPE, EnumType.MESH_WE);
 			case 3:
-				return state.withProperty(BlockLateralGroove.TYPE, EnumType.CENTRAL_NORMAL);
+				return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_NORMAL);
 			case 4:
-				return state.withProperty(BlockLateralGroove.TYPE, EnumType.CENTRAL_POLISHED);
+				return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_POLISHED);
 			}
 		}
 //				.withProperty(BlockLateralGroove.TYPE, meta == 0 ? EnumType.NORMAL : (meta == 1 ? EnumType.WHITE : (meta == 2 ? EnumType.MESH : EnumType.NORMAL)))
