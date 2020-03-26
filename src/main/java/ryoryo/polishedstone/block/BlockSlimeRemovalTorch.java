@@ -3,6 +3,7 @@ package ryoryo.polishedstone.block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.interfaces.IModId;
@@ -32,5 +33,11 @@ public class BlockSlimeRemovalTorch extends BlockTorch implements ITileEntityPro
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntitySlimeRemovalTorch();
+	}
+
+	@Override
+	public boolean hasTileEntity(IBlockState state)
+	{
+		return true;
 	}
 }
