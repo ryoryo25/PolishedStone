@@ -119,6 +119,10 @@ public class ModPlayerInteractEvent
 				if(held.getItem() instanceof ItemSpade)
 					EventHelper.reduceSnowLayer(world, pos, state, player, event, hand, held);
 
+				//背の高い花みたいに普通の花もできるように
+				if(held.getItem() instanceof ItemDye)
+					EventHelper.copyPlants(world, pos, state, player, event, hand, held, random);
+
 				//テスト
 				if(held.getItem() == Items.COAL && held.getItemDamage() == 0)
 				{
@@ -173,9 +177,6 @@ public class ModPlayerInteractEvent
 						}
 					}
 				}
-				//背の高い花みたいに普通の花もできるように
-				if(held.getItem() instanceof ItemDye)
-					EventHelper.copyPlants(world, pos, state, player, event, hand, held, random);
 
 				if(held.getItem() == Items.STICK)
 				{
