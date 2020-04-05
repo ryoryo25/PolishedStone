@@ -1,7 +1,9 @@
 package ryoryo.polishedstone.event;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -40,7 +42,6 @@ import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.block.BlockNewFlower;
 import ryoryo.polishedstone.block.BlockNewFlower.NewFlowerType;
-import ryoryo.polishedstone.block.BlockNewPath;
 import ryoryo.polishedstone.block.BlockSafetyFence;
 import ryoryo.polishedstone.config.ModConfig;
 
@@ -158,103 +159,49 @@ public class EventHelper
 	 */
 	public static void createPath(World world, BlockPos pos, IBlockState state, EntityPlayer player, PlayerInteractEvent.RightClickBlock event, EnumHand hand, ItemStack held)
 	{
+		Map<IBlockState, IBlockState> toPath = new HashMap<IBlockState, IBlockState>();
+		Map<IBlockState, IBlockState> toOriginal = new HashMap<IBlockState, IBlockState>();
+		//map initialization
+		toPath.put(Blocks.DIRT.getDefaultState(), Register.BLOCK_NEW_PATH.getDefaultState());
+		toPath.put(Blocks.DIRT.getStateFromMeta(1), Register.BLOCK_NEW_PATH.getStateFromMeta(1));
+		toPath.put(Blocks.DIRT.getStateFromMeta(2), Register.BLOCK_NEW_PATH.getStateFromMeta(2));
+		toPath.put(Blocks.GRAVEL.getDefaultState(), Register.BLOCK_NEW_PATH.getStateFromMeta(3));
+		toPath.put(Blocks.SAND.getDefaultState(), Register.BLOCK_NEW_PATH.getStateFromMeta(4));
+		toPath.put(Blocks.SAND.getStateFromMeta(1), Register.BLOCK_NEW_PATH.getStateFromMeta(5));
+		toPath.put(Blocks.CLAY.getDefaultState(), Register.BLOCK_NEW_PATH.getStateFromMeta(6));
+		toPath.put(Blocks.SOUL_SAND.getDefaultState(), Register.BLOCK_NEW_PATH.getStateFromMeta(7));
+		toPath.put(Register.BLOCK_NEW_GRAVEL.getDefaultState(), Register.BLOCK_NEW_PATH.getStateFromMeta(8));
+		toPath.put(Register.BLOCK_NEW_GRAVEL.getStateFromMeta(1), Register.BLOCK_NEW_PATH.getStateFromMeta(9));
+
+		toOriginal.put(Blocks.GRASS_PATH.getDefaultState(), Blocks.GRASS.getDefaultState());
+		toOriginal.put(Register.BLOCK_NEW_PATH.getDefaultState(), Blocks.DIRT.getDefaultState());
+		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(1), Blocks.DIRT.getStateFromMeta(1));
+		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(2), Blocks.DIRT.getStateFromMeta(2));
+		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(3), Blocks.GRAVEL.getDefaultState());
+		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(4), Blocks.SAND.getDefaultState());
+		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(5), Blocks.SAND.getStateFromMeta(1));
+		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(6), Blocks.CLAY.getDefaultState());
+		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(7), Blocks.SOUL_SAND.getDefaultState());
+		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(8), Register.BLOCK_NEW_GRAVEL.getDefaultState());
+		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(9), Register.BLOCK_NEW_GRAVEL.getStateFromMeta(1));
+
 		IBlockState stateu = world.getBlockState(pos.up());
 		IBlockState target = null;
+
 		if(stateu.getMaterial() == Material.AIR)
 		{
 			if(!player.isSneaking())
-			{
-				if(state.getBlock() == Blocks.DIRT && state.getBlock().getMetaFromState(state) == 0)
-				{
-					target = Register.BLOCK_NEW_PATH.getDefaultState();
-				}
-				else if(state.getBlock() == Blocks.DIRT && state.getBlock().getMetaFromState(state) == 1)
-				{
-					target = Register.BLOCK_NEW_PATH.getStateFromMeta(1);
-				}
-				else if(state.getBlock() == Blocks.DIRT && state.getBlock().getMetaFromState(state) == 2/*Blocks.DIRT.getStateFromMeta(2).getBlock()*//* && state.getValue(BlockDirt.VARIANT) == BlockDirt.DirtType.PODZOL*/)
-				{
-					target = Register.BLOCK_NEW_PATH.getStateFromMeta(2);
-				}
-				else if(state.getBlock() == Blocks.GRAVEL)
-				{
-					target = Register.BLOCK_NEW_PATH.getStateFromMeta(3);
-				}
-				else if(state.getBlock() == Blocks.SAND && state.getBlock().getMetaFromState(state) == 0)
-				{
-					target = Register.BLOCK_NEW_PATH.getStateFromMeta(4);
-				}
-				else if(state.getBlock() == Blocks.SAND && state.getBlock().getMetaFromState(state) == 1)
-				{
-					target = Register.BLOCK_NEW_PATH.getStateFromMeta(5);
-				}
-				else if(state.getBlock() == Blocks.CLAY)
-				{
-					target = Register.BLOCK_NEW_PATH.getStateFromMeta(6);
-				}
-				else if(state.getBlock() == Blocks.SOUL_SAND)
-				{
-					target = Register.BLOCK_NEW_PATH.getStateFromMeta(7);
-				}
-				else if(state.getBlock() == Register.BLOCK_NEW_GRAVEL && state.getBlock().getMetaFromState(state) == 0)
-				{
-					target = Register.BLOCK_NEW_PATH.getStateFromMeta(8);
-				}
-				else if(state.getBlock() == Register.BLOCK_NEW_GRAVEL && state.getBlock().getMetaFromState(state) == 1)
-				{
-					target = Register.BLOCK_NEW_PATH.getStateFromMeta(9);
-				}
-			}
+				target = toPath.get(state);
 			if(player.isSneaking())
 			{
-				if(state.getBlock() == Blocks.GRASS_PATH)
-				{
+				target = toOriginal.get(state);
+
+				//to prevent vanilla's function
+				if(state.getBlock() == Blocks.GRASS_PATH || state.getBlock() == Blocks.GRASS)
 					event.setCanceled(true);
-					target = Blocks.GRASS.getDefaultState();
-				}
-				else if(state.getBlock() == Blocks.GRASS)
-				{
-					event.setCanceled(true);
-				}
-				else if(state.getBlock() == Register.BLOCK_NEW_PATH)
-				{
-					switch(state.getValue(BlockNewPath.TYPE))
-					{
-					case DIRT:
-					default:
-						target = Blocks.DIRT.getDefaultState();
-						break;
-					case COARSE_DIRT:
-						target = Blocks.DIRT.getStateFromMeta(1);
-						break;
-					case PODZOL:
-						target = Blocks.DIRT.getStateFromMeta(2);
-						break;
-					case GRAVEL:
-						target = Blocks.GRAVEL.getDefaultState();
-						break;
-					case SAND:
-						target = Blocks.SAND.getDefaultState();
-						break;
-					case RED_SAND:
-						target = Blocks.SAND.getStateFromMeta(1);
-						break;
-					case CLAY:
-						target = Blocks.CLAY.getDefaultState();
-						break;
-					case SOUL_SAND:
-						target = Blocks.SOUL_SAND.getDefaultState();
-						break;
-					case OLD_GRAVEL:
-						target = Register.BLOCK_NEW_GRAVEL.getDefaultState();
-						break;
-					case PAVING_GRAVEL:
-						target = Register.BLOCK_NEW_GRAVEL.getStateFromMeta(1);
-						break;
-					}
-				}
 			}
 		}
+
 		if(target != null)
 		{
 			player.swingArm(hand);
