@@ -33,7 +33,6 @@ import ryoryo.polishedstone.util.References;
 
 public class BlockNewPath extends BlockGrassPath implements IModId
 {
-	protected static final AxisAlignedBB PATH_AABB = Utils.creatAABB(0, 0, 0, 16, 15, 16);
 	protected static final AxisAlignedBB PATH_SOUL_SAND_AABB = Utils.creatAABB(0, 0, 0, 16, 13, 16);
 	public static final PropertyEnum<PathType> TYPE = PropertyEnum.<PathType> create("type", PathType.class);
 
@@ -69,17 +68,16 @@ public class BlockNewPath extends BlockGrassPath implements IModId
 		}
 	}
 
+	@Nullable
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
-		PathType type = state.getValue(TYPE);
-
-		switch(type)
+		switch(state.getValue(TYPE))
 		{
 		case SOUL_SAND:
 			return PATH_SOUL_SAND_AABB;
 		default:
-			return PATH_AABB;
+			return GRASS_PATH_AABB;
 		}
 	}
 
