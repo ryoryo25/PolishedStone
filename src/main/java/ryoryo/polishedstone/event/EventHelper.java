@@ -26,9 +26,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -207,7 +207,6 @@ public class EventHelper
 			}
 			if(player.isSneaking())
 			{
-
 				if(state.getBlock() == Blocks.GRASS_PATH)
 				{
 					event.setCanceled(true);
@@ -328,31 +327,11 @@ public class EventHelper
 	{
 		EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(held.getMetadata());
 
-		if(state.getMaterial() != Material.AIR)
-		{
-			for(int i = 0; i < 15; ++i)
-			{
-				double d0 = random.nextGaussian() * 0.02D;
-				double d1 = random.nextGaussian() * 0.02D;
-				double d2 = random.nextGaussian() * 0.02D;
-				world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, (double) ((float) pos.getX() + random.nextFloat()), (double) pos.getY() + (double) random.nextFloat() * state.getBoundingBox(world, pos).maxY, (double) ((float) pos.getZ() + random.nextFloat()), d0, d1, d2, new int[0]);
-			}
-		}
-		else
-		{
-			for(int i1 = 0; i1 < 15; ++i1)
-			{
-				double d0 = random.nextGaussian() * 0.02D;
-				double d1 = random.nextGaussian() * 0.02D;
-				double d2 = random.nextGaussian() * 0.02D;
-				world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, (double) ((float) pos.getX() + random.nextFloat()), (double) pos.getY() + (double) random.nextFloat() * 1.0f, (double) ((float) pos.getZ() + random.nextFloat()), d0, d1, d2, new int[0]);
-			}
-		}
+		//spawn bonemeal particles
+		ItemDye.spawnBonemealParticles(world, pos, 15);
 
 		if(!world.isRemote && enumdyecolor == EnumDyeColor.WHITE)
 		{
-			//				ItemDye.spawnBonemealParticles(world, pos, 15);
-
 			if(state.getBlock() == Blocks.RED_FLOWER)
 			{
 				switch((EnumFlowerType) state.getValue(Blocks.RED_FLOWER.getTypeProperty()))
