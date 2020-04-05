@@ -214,26 +214,28 @@ public class BlockNewPath extends BlockGrassPath implements IModId
 
 	public static enum PathType implements IStringSerializable
 	{
-		DIRT(0, "dirt"),
-		COARSE_DIRT(1, "coarse_dirt"),
-		PODZOL(2, "podzol"),
-		GRAVEL(3, "gravel"),
-		SAND(4, "sand"),
-		RED_SAND(5, "red_sand"),
-		CLAY(6, "clay"),
-		SOUL_SAND(7, "soul_sand"),
-		OLD_GRAVEL(8, "old_gravel"),
-		PAVING_GRAVEL(9, "paving_gravel"),;
+		DIRT(0, "dirt", Blocks.DIRT.getDefaultState()),
+		COARSE_DIRT(1, "coarse_dirt", Blocks.DIRT.getStateFromMeta(1)),
+		PODZOL(2, "podzol", Blocks.DIRT.getStateFromMeta(2)),
+		GRAVEL(3, "gravel", Blocks.GRAVEL.getDefaultState()),
+		SAND(4, "sand", Blocks.SAND.getDefaultState()),
+		RED_SAND(5, "red_sand", Blocks.SAND.getStateFromMeta(1)),
+		CLAY(6, "clay", Blocks.CLAY.getDefaultState()),
+		SOUL_SAND(7, "soul_sand", Blocks.SOUL_SAND.getDefaultState()),
+		OLD_GRAVEL(8, "old_gravel", Register.BLOCK_NEW_GRAVEL.getDefaultState()),
+		PAVING_GRAVEL(9, "paving_gravel", Register.BLOCK_NEW_GRAVEL.getStateFromMeta(1)),;
 
 		private static final PathType[] META_LOOKUP = new PathType[values().length];
 		public static final String[] NAMES = new String[values().length];
 		private final int meta;
 		private final String name;
+		private final IBlockState original;
 
-		private PathType(int meta, String name)
+		private PathType(int meta, String name, IBlockState original)
 		{
 			this.meta = meta;
 			this.name = name;
+			this.original = original;
 		}
 
 		@Override
@@ -245,6 +247,11 @@ public class BlockNewPath extends BlockGrassPath implements IModId
 		public int getMeta()
 		{
 			return this.meta;
+		}
+
+		public IBlockState getOriginalState()
+		{
+			return this.original;
 		}
 
 		public static int getLength()
