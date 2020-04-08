@@ -31,6 +31,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemShears;
@@ -120,7 +121,7 @@ public class ModPlayerInteractEvent
 					EventHelper.reduceSnowLayer(world, pos, state, player, event, hand, held);
 
 				//背の高い花みたいに普通の花もできるように
-				if(held.getItem() instanceof ItemDye)
+				if(held.getItem() instanceof ItemDye && EnumDyeColor.byDyeDamage(held.getMetadata()) == EnumDyeColor.WHITE)
 					EventHelper.copyPlants(world, pos, state, player, event, hand, held, random);
 
 				//テスト

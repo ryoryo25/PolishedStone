@@ -9,7 +9,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
-import net.minecraft.block.BlockFlower.EnumFlowerType;
 import net.minecraft.block.BlockWall;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,8 +25,8 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -40,8 +39,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
-import ryoryo.polishedstone.block.BlockNewFlower;
-import ryoryo.polishedstone.block.BlockNewFlower.NewFlowerType;
 import ryoryo.polishedstone.block.BlockSafetyFence;
 import ryoryo.polishedstone.config.ModConfig;
 
@@ -160,7 +157,6 @@ public class EventHelper
 	public static void createPath(World world, BlockPos pos, IBlockState state, EntityPlayer player, PlayerInteractEvent.RightClickBlock event, EnumHand hand, ItemStack held)
 	{
 		Map<IBlockState, IBlockState> toPath = new HashMap<IBlockState, IBlockState>();
-		Map<IBlockState, IBlockState> toOriginal = new HashMap<IBlockState, IBlockState>();
 		//map initialization
 		toPath.put(Blocks.DIRT.getDefaultState(), Register.BLOCK_NEW_PATH.getDefaultState());
 		toPath.put(Blocks.DIRT.getStateFromMeta(1), Register.BLOCK_NEW_PATH.getStateFromMeta(1));
@@ -173,6 +169,8 @@ public class EventHelper
 		toPath.put(Register.BLOCK_NEW_GRAVEL.getDefaultState(), Register.BLOCK_NEW_PATH.getStateFromMeta(8));
 		toPath.put(Register.BLOCK_NEW_GRAVEL.getStateFromMeta(1), Register.BLOCK_NEW_PATH.getStateFromMeta(9));
 
+		Map<IBlockState, IBlockState> toOriginal = new HashMap<IBlockState, IBlockState>();
+		//map initialization
 		toOriginal.put(Blocks.GRASS_PATH.getDefaultState(), Blocks.GRASS.getDefaultState());
 		toOriginal.put(Register.BLOCK_NEW_PATH.getDefaultState(), Blocks.DIRT.getDefaultState());
 		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(1), Blocks.DIRT.getStateFromMeta(1));
@@ -188,6 +186,7 @@ public class EventHelper
 		IBlockState stateu = world.getBlockState(pos.up());
 		IBlockState target = null;
 
+		//get target blockstate
 		if(stateu.getMaterial() == Material.AIR)
 		{
 			if(!player.isSneaking())
@@ -217,52 +216,24 @@ public class EventHelper
 
 	public static void reduceSnowLayer(World world, BlockPos pos, IBlockState state, EntityPlayer player, PlayerInteractEvent.RightClickBlock event, EnumHand hand, ItemStack held)
 	{
-		IBlockState target = null;
+		Map<IBlockState, IBlockState> reduce = new HashMap<IBlockState, IBlockState>();
+		//map initialization
+		reduce.put(Blocks.SNOW.getDefaultState(), Blocks.SNOW_LAYER.getStateFromMeta(6));
+		for(int i = 7; i >= 1; i --)
+			reduce.put(Blocks.SNOW_LAYER.getStateFromMeta(i), Blocks.SNOW_LAYER.getStateFromMeta(i-1));
+		reduce.put(Blocks.SNOW_LAYER.getStateFromMeta(0), Blocks.AIR.getDefaultState());
 
-		if(world.getBlockState(pos.up()).getMaterial() == Material.AIR)
-		{
-			if(state.getBlock() == Blocks.SNOW)
-			{
-				target = Blocks.SNOW_LAYER.getStateFromMeta(6);
-			}
-			else if(state.getBlock() == Blocks.SNOW_LAYER)
-			{
-				switch(state.getBlock().getMetaFromState(state))
-				{
-				case 0:
-				default:
-					target = Blocks.AIR.getDefaultState();
-					break;
-				case 1:
-					target = Blocks.SNOW_LAYER.getStateFromMeta(0);
-					break;
-				case 2:
-					target = Blocks.SNOW_LAYER.getStateFromMeta(1);
-					break;
-				case 3:
-					target = Blocks.SNOW_LAYER.getStateFromMeta(2);
-					break;
-				case 4:
-					target = Blocks.SNOW_LAYER.getStateFromMeta(3);
-					break;
-				case 5:
-					target = Blocks.SNOW_LAYER.getStateFromMeta(4);
-					break;
-				case 6:
-					target = Blocks.SNOW_LAYER.getStateFromMeta(5);
-					break;
-				case 7:
-					target = Blocks.SNOW_LAYER.getStateFromMeta(6);
-					break;
-				}
-			}
-		}
+		Random random = new Random();
+		IBlockState target = reduce.get(state);// default return null
+
 		if(target != null)
 		{
 			player.swingArm(hand);
 			world.playSound(player, pos, SoundEvents.BLOCK_SNOW_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F * 0.8F);
 			if(!world.isRemote)
 			{
+				if(random.nextFloat() < 0.5)
+					Block.spawnAsEntity(world, pos, new ItemStack(Items.SNOWBALL));
 				world.setBlockState(pos, target);
 				held.damageItem(1, player);
 				event.setUseItem(Result.ALLOW);
@@ -272,82 +243,38 @@ public class EventHelper
 
 	public static void copyPlants(World world, BlockPos pos, IBlockState state, EntityPlayer player, PlayerInteractEvent.RightClickBlock event, EnumHand hand, ItemStack held, Random random)
 	{
-		EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(held.getMetadata());
+		Map<IBlockState, ItemStack> toItem = new HashMap<IBlockState, ItemStack>();
+		//map initialization
+		for(int i = 0; i < 9; i ++)
+			toItem.put(Blocks.RED_FLOWER.getStateFromMeta(i), new ItemStack(Blocks.RED_FLOWER, 1, i));
+		toItem.put(Blocks.YELLOW_FLOWER.getDefaultState(), new ItemStack(Blocks.YELLOW_FLOWER));
+		toItem.put(Blocks.DEADBUSH.getDefaultState(), new ItemStack(Blocks.DEADBUSH));
+//		toItem.put(Blocks.VINE.getDefaultState(), new ItemStack(Blocks.VINE));
+		toItem.put(Blocks.WATERLILY.getDefaultState(), new ItemStack(Blocks.WATERLILY));
+		for(int i = 0; i < 2; i ++)
+			toItem.put(Register.BLOCK_NEW_FLOWER.getStateFromMeta(i), new ItemStack(Register.BLOCK_NEW_FLOWER, 1, i));
 
-		//spawn bonemeal particles
-		ItemDye.spawnBonemealParticles(world, pos, 15);
+		//TODO
+		ItemStack item = toItem.get(state);
+		if(state.getBlock() == Blocks.VINE)
+			item = new ItemStack(Blocks.VINE);
 
-		if(!world.isRemote && enumdyecolor == EnumDyeColor.WHITE)
+		if(item != null)
 		{
-			if(state.getBlock() == Blocks.RED_FLOWER)
-			{
-				switch((EnumFlowerType) state.getValue(Blocks.RED_FLOWER.getTypeProperty()))
-				{
-				case ALLIUM:
-					Block.spawnAsEntity(world, pos, new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.ALLIUM.getMeta()));
-					break;
-				case BLUE_ORCHID:
-					Block.spawnAsEntity(world, pos, new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.BLUE_ORCHID.getMeta()));
-					break;
-				case HOUSTONIA:
-					Block.spawnAsEntity(world, pos, new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.HOUSTONIA.getMeta()));
-					break;
-				case ORANGE_TULIP:
-					Block.spawnAsEntity(world, pos, new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.ORANGE_TULIP.getMeta()));
-					break;
-				case OXEYE_DAISY:
-					Block.spawnAsEntity(world, pos, new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.OXEYE_DAISY.getMeta()));
-					break;
-				case PINK_TULIP:
-					Block.spawnAsEntity(world, pos, new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.PINK_TULIP.getMeta()));
-					break;
-				case POPPY:
-				default:
-					Block.spawnAsEntity(world, pos, new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.POPPY.getMeta()));
-					break;
-				case RED_TULIP:
-					Block.spawnAsEntity(world, pos, new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.RED_TULIP.getMeta()));
-					break;
-				case WHITE_TULIP:
-					Block.spawnAsEntity(world, pos, new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.WHITE_TULIP.getMeta()));
-					break;
-				}
-			}
-			else if(state.getBlock() == Blocks.YELLOW_FLOWER)
-			{
-				Block.spawnAsEntity(world, pos, new ItemStack(Blocks.YELLOW_FLOWER/*, 1, EnumFlowerType.DANDELION.getMeta()*/));
-			}
-			else if(state.getBlock() == Register.BLOCK_NEW_FLOWER)
-			{
-				switch((NewFlowerType) state.getValue(BlockNewFlower.TYPE))
-				{
-				case TULIP_BLACK:
-				default:
-					Block.spawnAsEntity(world, pos, new ItemStack(Register.BLOCK_NEW_FLOWER, 1, NewFlowerType.TULIP_BLACK.getMeta()));
-					break;
-				case LAVENDER_SAGE:
-					Block.spawnAsEntity(world, pos, new ItemStack(Register.BLOCK_NEW_FLOWER, 1, NewFlowerType.LAVENDER_SAGE.getMeta()));
-					break;
-				}
-			}
-			else if(state.getBlock() == Blocks.DEADBUSH)
-			{
-				Block.spawnAsEntity(world, pos, new ItemStack(Blocks.DEADBUSH));
-			}
-			else if(state.getBlock() == Blocks.VINE)
-			{
-				Block.spawnAsEntity(world, pos, new ItemStack(Blocks.VINE));
-			}
-			else if(state.getBlock() == Blocks.WATERLILY)
-			{
-				Block.spawnAsEntity(world, pos, new ItemStack(Blocks.WATERLILY));
-			}
+			//spawn bonemeal particles
+			ItemDye.spawnBonemealParticles(world, pos, 15);
+			player.swingArm(hand);
 
-			if(!Utils.isCreative(player))
+			if(!world.isRemote)
 			{
-				held.shrink(1);
+				Block.spawnAsEntity(world, pos, item);
+
+				if(!Utils.isCreative(player))
+				{
+					held.shrink(1);
+				}
+				event.setUseItem(Result.ALLOW);
 			}
-			event.setUseItem(Result.ALLOW);
 		}
 	}
 }
