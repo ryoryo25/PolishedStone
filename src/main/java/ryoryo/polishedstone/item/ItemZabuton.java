@@ -78,7 +78,7 @@ public class ItemZabuton extends ItemModBase implements IItemColor
 	@Override
 	public int colorMultiplier(ItemStack stack, int tintIndex)
 	{
-		return EnumColor.byDyeDamage(stack.getItemDamage()).getColorHex();
+		return EnumColor.byDyeDamage(stack.getItemDamage()).getColorValue();
 	}
 
 	@Override
