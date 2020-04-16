@@ -3,6 +3,7 @@ package ryoryo.polishedstone.event;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,6 +33,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.world.BlockEvent.FarmlandTrampleEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -46,6 +48,26 @@ import ryoryo.polishedstone.util.ModCompat;
 public class ModLivingEvent
 {
 	@SubscribeEvent
+	public void onTrampleFarmland(FarmlandTrampleEvent event)
+	{
+		Entity entity = event.getEntity();
+
+		if(entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) entity;
+			boolean hasArmor = Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_HELMET);
+			hasArmor = hasArmor && Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_CHEST);
+			hasArmor = hasArmor && Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_LEG);
+			hasArmor = hasArmor && Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_BOOTS);
+
+			if(hasArmor)
+			{
+				event.setCanceled(true);
+			}
+		}
+	}
+
+	@SubscribeEvent
 	public void onFall(LivingFallEvent event)
 	{
 		EntityLivingBase entity = event.getEntityLiving();
@@ -58,26 +80,6 @@ public class ModLivingEvent
 			//ハスの葉に落下した際、落下ダメージを無効化するように
 			if(world.getBlockState(player.getPosition()).getBlock() == Blocks.WATERLILY)
 				event.setDamageMultiplier(0.0F);
-
-			event.setDistance(0F);
-			player.fallDistance = 0;
-
-			//TODO Thaumic TinkererのKAMI装備みたいに耕地を壊したくない。
-//			for(ItemStack stack : player.getArmorInventoryList())
-//			{
-//				if(stack != null && stack.getItem() == Register.itemArmorWorkClothes)
-//				{
-//					Utils.addChat(player, "Falling!");
-//					event.setDistance(0);
-//				}
-//			}
-//			if(player.inventory.hasItemStack(new ItemStack(Items.STICK)))
-//			{
-//				Utils.addChat(player, "Falling!");
-//				event.setDistance(0.0F);
-////				player.fall(0.0F, 1.0F);
-////				event.setCanceled(true);
-//			}
 		}
 	}
 
@@ -423,13 +425,13 @@ public class ModLivingEvent
 		if(entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) entity;
-			if(Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_HELMET)
-					&& Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_CHEST)
-					&& Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_LEG)
-					&& Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_BOOTS))
-			{
+			boolean hasArmor = Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_HELMET);
+			hasArmor = hasArmor && Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_CHEST);
+			hasArmor = hasArmor && Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_LEG);
+			hasArmor = hasArmor && Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_BOOTS);
+
+			if(hasArmor)
 				event.setCanceled(true);
-			}
 		}
 	}
 }
