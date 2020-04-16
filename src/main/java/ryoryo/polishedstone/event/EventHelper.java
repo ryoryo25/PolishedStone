@@ -249,15 +249,13 @@ public class EventHelper
 			toItem.put(Blocks.RED_FLOWER.getStateFromMeta(i), new ItemStack(Blocks.RED_FLOWER, 1, i));
 		toItem.put(Blocks.YELLOW_FLOWER.getDefaultState(), new ItemStack(Blocks.YELLOW_FLOWER));
 		toItem.put(Blocks.DEADBUSH.getDefaultState(), new ItemStack(Blocks.DEADBUSH));
-//		toItem.put(Blocks.VINE.getDefaultState(), new ItemStack(Blocks.VINE));
+		for(IBlockState vine : Blocks.VINE.getBlockState().getValidStates())
+			toItem.put(vine, new ItemStack(Blocks.VINE));
 		toItem.put(Blocks.WATERLILY.getDefaultState(), new ItemStack(Blocks.WATERLILY));
 		for(int i = 0; i < 2; i ++)
 			toItem.put(Register.BLOCK_NEW_FLOWER.getStateFromMeta(i), new ItemStack(Register.BLOCK_NEW_FLOWER, 1, i));
 
-		//TODO
 		ItemStack item = toItem.get(state);
-		if(state.getBlock() == Blocks.VINE)
-			item = new ItemStack(Blocks.VINE);
 
 		if(item != null)
 		{

@@ -59,6 +59,9 @@ public class ModLivingEvent
 			if(world.getBlockState(player.getPosition()).getBlock() == Blocks.WATERLILY)
 				event.setDamageMultiplier(0.0F);
 
+			event.setDistance(0F);
+			player.fallDistance = 0;
+
 			//TODO Thaumic TinkererのKAMI装備みたいに耕地を壊したくない。
 //			for(ItemStack stack : player.getArmorInventoryList())
 //			{

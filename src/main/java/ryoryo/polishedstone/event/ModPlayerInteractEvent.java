@@ -56,8 +56,13 @@ import ryoryo.polishedstone.util.ModCompat;
 
 public class ModPlayerInteractEvent
 {
+	/**
+	 * cancel to break bedrock at y=0
+	 *
+	 * @param event
+	 */
 	@SubscribeEvent
-	public void onBlockLeftClick(PlayerInteractEvent.LeftClickBlock event)
+	public void cancelBreakBedrock(PlayerInteractEvent.LeftClickBlock event)
 	{
 		EntityPlayer player = event.getEntityPlayer();
 		World world = event.getWorld();
@@ -68,7 +73,11 @@ public class ModPlayerInteractEvent
 		{
 			event.setCanceled(true);
 		}
+	}
 
+//	@SubscribeEvent
+//	public void onBlockLeftClick(PlayerInteractEvent.LeftClickBlock event)
+//	{
 //		if(player.isSneaking())
 //		{
 //			int r = 10;
@@ -95,7 +104,9 @@ public class ModPlayerInteractEvent
 //				}
 //			}
 //		}
-	}
+//	}
+
+
 
 	@SubscribeEvent
 	public void onBlockRightClick(PlayerInteractEvent.RightClickBlock event)
@@ -121,7 +132,7 @@ public class ModPlayerInteractEvent
 					EventHelper.reduceSnowLayer(world, pos, state, player, event, hand, held);
 
 				//背の高い花みたいに普通の花もできるように
-				if(held.getItem() instanceof ItemDye && EnumDyeColor.byDyeDamage(held.getMetadata()) == EnumDyeColor.WHITE)
+				if(held.getItem() instanceof ItemDye && held.getMetadata() == EnumDyeColor.WHITE.getDyeDamage())
 					EventHelper.copyPlants(world, pos, state, player, event, hand, held, random);
 
 				//テスト
