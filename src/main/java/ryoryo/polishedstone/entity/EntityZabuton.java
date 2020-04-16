@@ -65,10 +65,10 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 		this.color = (byte) 0xFF;
 	}
 
-	public EntityZabuton(World world, byte pColor)
+	public EntityZabuton(World world, byte color)
 	{
 		this(world);
-		this.color = pColor;
+		this.color = color;
 	}
 
 	public EntityZabuton(World world, ItemStack stack)
@@ -76,9 +76,9 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 		this(world, (byte) (stack.getItemDamage() & 0x0f));
 	}
 
-	public EntityZabuton(World world, double x, double y, double z, byte pColor)
+	public EntityZabuton(World world, double x, double y, double z, byte color)
 	{
-		this(world, pColor);
+		this(world, color);
 		this.setPositionAndRotation(x, y + (double) this.getYOffset(), z, 0F, 0F);
 		motionX = 0.0D;
 		motionY = 0.0D;
