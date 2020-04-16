@@ -146,6 +146,12 @@ public class BlockDecoration extends BlockModBase
 		return new ItemStack(Item.getItemFromBlock(this), 1, ((BlockType) state.getValue(TYPE)).getMeta());
 	}
 
+	@Override
+	public int damageDropped(IBlockState state)
+	{
+		return ((BlockType) state.getValue(TYPE)).getMeta();
+	}
+
 	//ItemStackのmetadataからIBlockStateを生成。設置時に呼ばれる。
 	@Override
 	public IBlockState getStateFromMeta(int meta)
