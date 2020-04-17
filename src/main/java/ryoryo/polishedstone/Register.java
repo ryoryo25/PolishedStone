@@ -146,8 +146,8 @@ import ryoryo.polishedstone.util.ModCompat;
 import ryoryo.polishedstone.util.ModUtils;
 import ryoryo.polishedstone.util.RecipeUtils;
 import ryoryo.polishedstone.util.References;
-import ryoryo.polishedstone.world.WorldGenBlock;
 import ryoryo.polishedstone.world.dimension.DimensionRegistry;
+import ryoryo.polishedstone.world.gen.WorldGenBlock;
 
 public class Register
 {
