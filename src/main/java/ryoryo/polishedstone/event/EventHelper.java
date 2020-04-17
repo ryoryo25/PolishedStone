@@ -205,6 +205,7 @@ public class EventHelper
 		{
 			player.swingArm(hand);
 			world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
 			if(!world.isRemote)
 			{
 				world.setBlockState(pos, target);
