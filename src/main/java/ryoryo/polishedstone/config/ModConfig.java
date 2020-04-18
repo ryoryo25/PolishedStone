@@ -198,6 +198,18 @@ public class ModConfig
 	public static int dirtGenUnderseaCluster;
 	public static int dirtGenUnderseaChance;
 
+	public static boolean wildPotatoGen;
+	public static float wildPotatoChance;
+	public static int wildPotatoPatch;
+
+	public static boolean wildCarrotGen;
+	public static float wildCarrotChance;
+	public static int wildCarrotPatch;
+
+	public static boolean wildBeetrootGen;
+	public static float wildBeetrootChance;
+	public static int wildBeetrootPatch;
+
 	public void worldGenConfigs(String worldGen)
 	{
 		emeraldGen = config.getBoolean("EmeraldGen", worldGen, true, "Wheather generate Emerald anywhere.");
@@ -223,6 +235,18 @@ public class ModConfig
 		dirtGenUndersea = config.getBoolean("dirtGenUndersea", worldGen, true, "Wheather generate Dirt undersea");
 		dirtGenUnderseaCluster = config.getInt("DirtGenUnderseaCluster", worldGen, 18, 0, NumericalConstant.INT_MAX, "The max size of the cluster");
 		dirtGenUnderseaChance = config.getInt("DirtGenUnderseaChance", worldGen, 30, 0, NumericalConstant.INT_MAX, "Chance of generate");
+
+		wildPotatoGen = config.getBoolean("wildPotateGen", worldGen, true, "Wheather generate Potatoes in the wild");
+		wildPotatoChance = config.getFloat("wildPotatoChance", worldGen, 0.005f, 0f, 1f, "Chance of generate");
+		wildPotatoPatch = config.getInt("wildPotatoPatch", worldGen, 3, 0, NumericalConstant.INT_MAX, "How many try to generate");
+
+		wildCarrotGen = config.getBoolean("wildCarrotGen", worldGen, true, "Wheather generate Carrots in the wild");
+		wildCarrotChance = config.getFloat("wildCarrotChance", worldGen, 0.005f, 0f, 1f, "Chance of generate");
+		wildCarrotPatch = config.getInt("wildCarrotPatch", worldGen, 3, 0, NumericalConstant.INT_MAX, "How many try to generate");
+
+		wildBeetrootGen = config.getBoolean("wildBeetrootGen", worldGen, true, "Wheather generate Beetroots in the wild");
+		wildBeetrootChance = config.getFloat("wildBeetrootChance", worldGen, 0.005f, 0f, 1f, "Chance of generate");
+		wildBeetrootPatch = config.getInt("wildBeetrootPatch", worldGen, 3, 0, NumericalConstant.INT_MAX, "How many try to generate");
 	}
 
 	//Mob Drop-------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-package ryoryo.polishedstone.world;
+package ryoryo.polishedstone.world.gen;
 
 import java.util.Random;
 
@@ -20,6 +20,7 @@ import ryoryo.polishedstone.util.ModCompat;
 public class WorldGenBlock implements IWorldGenerator
 {
 	private WorldGenerator genEmerald;
+
 	private WorldGenerator genClayUnderground;
 	private WorldGenerator genClayUndersea;
 	private WorldGenerator genSandUnderground;
@@ -29,6 +30,7 @@ public class WorldGenBlock implements IWorldGenerator
 	public WorldGenBlock()
 	{
 		this.genEmerald = new WorldGenMinable(Blocks.EMERALD_ORE.getDefaultState(), ModConfig.emeraldGenCluster);
+
 		this.genClayUnderground = new WorldGenMinable(Blocks.CLAY.getDefaultState(), ModConfig.clayGenUndergroundCluster);
 		this.genClayUndersea = new WorldGenMinable(Blocks.CLAY.getDefaultState(), ModConfig.clayGenUnderseaCluster, BlockMatcher.forBlock(Blocks.GRAVEL));
 		this.genSandUnderground = new WorldGenMinable(Blocks.SAND.getDefaultState(), ModConfig.sandGenUndergroundCluster);
@@ -78,22 +80,20 @@ public class WorldGenBlock implements IWorldGenerator
 	{
 		chunkX = chunkX << 4;
 		chunkZ = chunkZ << 4;
-		if(world.provider instanceof WorldProviderSurface/* world.provider.getDimension() == 0*/)
+		if(world.provider instanceof WorldProviderSurface)
 		{
-//			generateClay(world, random, chunkX << 4, chunkZ << 4);
-//			generateEmerald(world, random, chunkX << 4, chunkZ << 4);
 			if(ModConfig.emeraldGen)
-				undergroundGen(genEmerald, world, random, chunkX, chunkZ, ModConfig.emeraldGenChance, 0, 18);
+				undergroundGen(this.genEmerald, world, random, chunkX, chunkZ, ModConfig.emeraldGenChance, 0, 18);
 			if(!ModCompat.COMPAT_QUARK && ModConfig.clayGenUnderground)
-				undergroundGen(genClayUnderground, world, random, chunkX, chunkZ, ModConfig.clayGenUndergroundChance, 0, 60);
+				undergroundGen(this.genClayUnderground, world, random, chunkX, chunkZ, ModConfig.clayGenUndergroundChance, 0, 60);
 			if(ModConfig.sandGenUnderground)
-				undergroundGen(genSandUnderground, world, random, chunkX, chunkZ, ModConfig.sandGenUndergourndChance, 0, 60);
+				undergroundGen(this.genSandUnderground, world, random, chunkX, chunkZ, ModConfig.sandGenUndergourndChance, 0, 60);
 			if(ModConfig.clayGenUndersea)
-				underseaGen(genClayUndersea, world, random, chunkX, chunkZ, ModConfig.clayGenUnderseaChance, 20, 128);
+				underseaGen(this.genClayUndersea, world, random, chunkX, chunkZ, ModConfig.clayGenUnderseaChance, 20, 128);
 			if(ModConfig.sandGenUndersea)
-				underseaGen(genSandUndersea, world, random, chunkX, chunkZ, ModConfig.sandGenUnderseaChance, 20, 128);
+				underseaGen(this.genSandUndersea, world, random, chunkX, chunkZ, ModConfig.sandGenUnderseaChance, 20, 128);
 			if(ModConfig.dirtGenUndersea)
-				underseaGen(genDirtUndersea, world, random, chunkX, chunkZ, ModConfig.dirtGenUnderseaChance, 20, 128);
+				underseaGen(this.genDirtUndersea, world, random, chunkX, chunkZ, ModConfig.dirtGenUnderseaChance, 20, 128);
 		}
 	}
 }

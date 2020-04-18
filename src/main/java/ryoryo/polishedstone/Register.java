@@ -147,6 +147,7 @@ import ryoryo.polishedstone.util.ModUtils;
 import ryoryo.polishedstone.util.RecipeUtils;
 import ryoryo.polishedstone.util.References;
 import ryoryo.polishedstone.world.dimension.DimensionRegistry;
+import ryoryo.polishedstone.world.gen.BiomeDecorationHandler;
 import ryoryo.polishedstone.world.gen.WorldGenBlock;
 
 public class Register
@@ -971,6 +972,7 @@ public class Register
 		MinecraftForge.EVENT_BUS.register(new ModLivingDropsEvent());
 		MinecraftForge.EVENT_BUS.register(new ModPlayerInteractEvent());
 		MinecraftForge.EVENT_BUS.register(new ModLivingEvent());
+		MinecraftForge.TERRAIN_GEN_BUS.register(new BiomeDecorationHandler());
 	}
 
 	@SideOnly(Side.CLIENT)
