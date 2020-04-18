@@ -11,7 +11,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
@@ -143,7 +142,7 @@ public class BlockDecoration extends BlockModBase
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Item.getItemFromBlock(this), 1, ((BlockType) state.getValue(TYPE)).getMeta());
+		return new ItemStack(this, 1, ((BlockType) state.getValue(TYPE)).getMeta());
 	}
 
 	@Override
