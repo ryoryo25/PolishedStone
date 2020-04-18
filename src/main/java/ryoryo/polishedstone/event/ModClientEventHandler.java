@@ -73,7 +73,7 @@ public class ModClientEventHandler
 	}
 
 	//TODO
-//	@SubscribeEvent
+	@SubscribeEvent
 	public void onRenderPlayer(RenderPlayerEvent.Post event)
 	{
 		EntityPlayer player = event.getEntityPlayer();
@@ -84,7 +84,7 @@ public class ModClientEventHandler
 		{
 			model.rightArmPose = ArmPose.BOW_AND_ARROW;
 			model.leftArmPose = ArmPose.BOW_AND_ARROW;
-			Utils.addChat("wow");
+			Utils.addChat(player, "wow");
 		}
 	}
 }
