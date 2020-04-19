@@ -116,11 +116,11 @@ public class ModEventHandler
 	public void onBlockDrops(HarvestDropsEvent event)
 	{
 		Block block = event.getState().getBlock();
-		boolean silk = event.isSilkTouching();
+		boolean isSilk = event.isSilkTouching();
 		List<ItemStack> drops = event.getDrops();
 		ListIterator<ItemStack> iter = event.getDrops().listIterator();
 
-		if(block != null && !silk)
+		if(block != null && !isSilk)
 		{
 			//グロウストーンを確実に4つドロップ。
 			if(block instanceof BlockGlowstone)
