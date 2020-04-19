@@ -1,7 +1,7 @@
 package ryoryo.polishedstone.event;
 
+import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -118,7 +118,7 @@ public class ModEventHandler
 		Block block = event.getState().getBlock();
 		boolean isSilk = event.isSilkTouching();
 		List<ItemStack> drops = event.getDrops();
-		ListIterator<ItemStack> iter = event.getDrops().listIterator();
+		Iterator<ItemStack> iter = drops.iterator();
 
 		if(block != null && !isSilk)
 		{
