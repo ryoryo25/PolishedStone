@@ -6,12 +6,10 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.tileenttiy.TileEntitySlimeRemovalTorch;
-import ryoryo.polishedstone.util.References;
 
-public class BlockSlimeRemovalTorch extends BlockTorch implements ITileEntityProvider, IModId
+public class BlockSlimeRemovalTorch extends BlockTorch implements ITileEntityProvider
 {
 	//置かれたチャンクに沸かないように
 	public BlockSlimeRemovalTorch()
@@ -21,12 +19,6 @@ public class BlockSlimeRemovalTorch extends BlockTorch implements ITileEntityPro
 		this.setHardness(0.0F);
 		this.setLightLevel(1.0F);
 		this.setSoundType(SoundType.STONE);
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	@Override

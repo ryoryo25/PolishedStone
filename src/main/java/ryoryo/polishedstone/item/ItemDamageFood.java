@@ -21,7 +21,6 @@ import ryoryo.polishedlib.item.ItemBaseFood;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.util.LibUnlocalizedString;
-import ryoryo.polishedstone.util.References;
 
 public class ItemDamageFood extends ItemBaseFood
 {
@@ -30,12 +29,6 @@ public class ItemDamageFood extends ItemBaseFood
 		super(1, 1.5F, false, name, PSV2Core.TAB_MOD, 8);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(size);
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	@Override

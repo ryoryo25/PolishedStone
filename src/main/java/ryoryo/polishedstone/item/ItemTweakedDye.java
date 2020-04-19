@@ -13,11 +13,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedlib.util.enums.EnumColor;
-import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
-import ryoryo.polishedstone.util.References;
 
-public class ItemTweakedDye extends ItemDye implements IModId
+public class ItemTweakedDye extends ItemDye
 {
 	public static final String[] NAMES = new String[]
 	{ EnumColor.BLACK.getName(), EnumColor.BROWN.getName(), EnumColor.BLUE.getName(), EnumColor.WHITE.getName(), "cadmium", "cinnabar" };
@@ -27,12 +25,6 @@ public class ItemTweakedDye extends ItemDye implements IModId
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("tweaked_dye");
 		this.setHasSubtypes(true);
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	@Override

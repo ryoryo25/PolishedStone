@@ -14,11 +14,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
-import ryoryo.polishedstone.util.References;
 
-public class BlockNewFlower extends BlockBush implements IModId
+public class BlockNewFlower extends BlockBush
 {
 	public static final PropertyEnum<NewFlowerType> TYPE = PropertyEnum.<NewFlowerType>create("type", NewFlowerType.class);
 
@@ -29,12 +27,6 @@ public class BlockNewFlower extends BlockBush implements IModId
 		this.setHardness(0.0F);
 		this.setSoundType(SoundType.PLANT);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, NewFlowerType.LAVENDER_SAGE));
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	public int damageDropped(IBlockState state)

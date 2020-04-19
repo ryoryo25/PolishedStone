@@ -6,9 +6,9 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedlib.util.enums.EnumColor;
 import ryoryo.polishedlib.util.enums.EnumPlanks;
+import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.block.BlockLamp;
 
@@ -16,17 +16,17 @@ public class RecipeUtils
 {
 	public static void addRecipe(String name, ItemStack output, Object... params)
 	{
-		Utils.addRecipe(References.MOD_ID, name, output, params);
+		PSV2Core.REGISTER.addRecipe(name, output, params);
 	}
 
 	public static void addShapelessRecipe(String name, @Nonnull ItemStack output, Object... params)
 	{
-		Utils.addShapelessRecipe(References.MOD_ID, name, output, params);
+		PSV2Core.REGISTER.addShapelessRecipe(name, output, params);
 	}
 
 	public static void addRecipeWall(String name, Block output, ItemStack material)
 	{
-		Utils.addRecipeWall(References.MOD_ID, name, output, material);
+		PSV2Core.REGISTER.addRecipeWall(name, output, material);
 	}
 
 	/**

@@ -69,6 +69,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.oredict.OreDictionary;
+import ryoryo.polishedlib.util.ArithmeticUtils;
 import ryoryo.polishedlib.util.NumericalConstant;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedlib.util.enums.EnumColor;
@@ -163,8 +164,8 @@ public class ModEventHandler
 	{
 		EntityPlayer player = event.player;
 
-		Utils.addChatModInfo(player, player.getName() + ", Hello World!");
-		Utils.addChatModInfo(player, "VERSION: " + References.getVersion());
+		Utils.addChat(player, TextFormatting.BLUE + "" + TextFormatting.BOLD + "[PolishedStone V2]:" + TextFormatting.RESET + " " + player.getName() + ", Hello World!");
+		Utils.addChat(player, TextFormatting.BLUE + "" + TextFormatting.BOLD + "[PolishedStone V2]:" + TextFormatting.RESET + " " + "VERSION: " + References.getVersion());
 
 		//TODO metaとかnbtとか
 		NBTTagCompound tag = event.player.getEntityData();
@@ -215,7 +216,7 @@ public class ModEventHandler
 			player.capabilities.setFlySpeed(0.05F/*default*/ * ModConfig.creativeFlySpeedMultiply);
 		}
 		//ブロック置くスピードと歩く速さを合わせる
-		player.capabilities.setPlayerWalkSpeed(0.1F/*default*/ * Utils.percentToDecimal(116.0F));
+		player.capabilities.setPlayerWalkSpeed(0.1F/*default*/ * ArithmeticUtils.percentToDecimal(116.0F));
 
 		//PickUpWidely
 		if(!world.isRemote && EventHelper.pickUpWidelyToggle)
@@ -319,7 +320,7 @@ public class ModEventHandler
 					{
 						PSV2Core.LOGGER.info("cloning_tree");
 						EntityItem extraItem = entity.dropItem(item, stack.getCount() - 1);
-						extraItem.lifespan = (int) Utils.secondToTick(5.0F);
+						extraItem.lifespan = (int) ArithmeticUtils.secondToTick(5.0F);
 						//						extraItem.motionX = 10;
 						world.spawnEntity(extraItem);
 						PSV2Core.LOGGER.info("cloned_tree");
@@ -352,7 +353,7 @@ public class ModEventHandler
 					{
 						PSV2Core.LOGGER.info("cloning_chicken");
 						EntityItem extraItem = entity.dropItem(item, stack.getCount() - 1);
-						extraItem.lifespan = (int) Utils.secondToTick(5.0F);
+						extraItem.lifespan = (int) ArithmeticUtils.secondToTick(5.0F);
 						//						extraItem.motionX = 10;
 						world.spawnEntity(extraItem);
 						PSV2Core.LOGGER.info("cloned_chicken");

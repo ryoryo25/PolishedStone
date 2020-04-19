@@ -14,26 +14,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.enums.EnumArmorType;
-import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.util.ArmorMaterials;
 import ryoryo.polishedstone.util.LibNBTTag;
-import ryoryo.polishedstone.util.References;
 
-public class ItemArmorSafetyClothes extends ItemArmor implements IModId
+public class ItemArmorSafetyClothes extends ItemArmor
 {
 	public ItemArmorSafetyClothes(EnumArmorType type)
 	{
 		super(ArmorMaterials.SAFETY_CLOTHES, type.getRenderIndex(), type.getSlot());
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("safety_clothes_" + type.getName());
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	@Override

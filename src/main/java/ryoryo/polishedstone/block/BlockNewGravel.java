@@ -15,11 +15,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
-import ryoryo.polishedstone.util.References;
 
-public class BlockNewGravel extends BlockGravel implements IModId
+public class BlockNewGravel extends BlockGravel
 {
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.<EnumType> create("type", EnumType.class);
 
@@ -30,12 +28,6 @@ public class BlockNewGravel extends BlockGravel implements IModId
 		this.setHardness(0.6F);
 		this.setSoundType(SoundType.GROUND);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.OLD));
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	@Override

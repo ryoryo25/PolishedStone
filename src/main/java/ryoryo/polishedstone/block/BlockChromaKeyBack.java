@@ -13,7 +13,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedlib.util.enums.EnumColor;
-import ryoryo.polishedstone.util.References;
 
 public class BlockChromaKeyBack extends BlockModBase
 {
@@ -27,12 +26,6 @@ public class BlockChromaKeyBack extends BlockModBase
 		this.setResistance(10.0F);
 //		this.setLightLevel(1.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOR, EnumColor.WHITE));
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	@Override

@@ -18,7 +18,6 @@ import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
-import ryoryo.polishedstone.util.References;
 
 public class BlockLockableDoor extends BlockBaseDoor
 {
@@ -29,12 +28,6 @@ public class BlockLockableDoor extends BlockBaseDoor
 		this.setBlockUnbreakable();
 		this.setResistance(6000000.0F);
 		this.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	@Override

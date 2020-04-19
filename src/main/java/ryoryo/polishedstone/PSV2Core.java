@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedstone.config.ModConfig;
 import ryoryo.polishedstone.proxy.IProxy;
 import ryoryo.polishedstone.util.ArmorMaterials;
@@ -31,6 +32,7 @@ public class PSV2Core
 	public static final CreativeTabs TAB_MOD = new ModCreativeTab(References.MOD_ID);
 	public static ModConfig config;
 	public static final Logger LOGGER = LogManager.getLogger(References.MOD_ID);
+	public static final RegistryUtils REGISTER = new RegistryUtils(References.MOD_ID);
 	public static final boolean isDebug = false;
 
 	@EventHandler

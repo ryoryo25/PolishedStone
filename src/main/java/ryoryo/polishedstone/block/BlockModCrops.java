@@ -6,11 +6,9 @@ import net.minecraft.item.Item;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.util.EnumCropType;
-import ryoryo.polishedstone.util.References;
 
-public class BlockModCrops extends BlockCrops implements IModId
+public class BlockModCrops extends BlockCrops
 {
 	private Item seed;
 	private Item crop;
@@ -22,12 +20,6 @@ public class BlockModCrops extends BlockCrops implements IModId
 		this.seed = type.getSeed();
 		this.crop = type.getCrop();
 		this.aabbs = type.getAABBs();
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	@Override

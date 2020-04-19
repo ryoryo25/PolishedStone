@@ -3,7 +3,6 @@ package ryoryo.polishedstone.item;
 import net.minecraft.creativetab.CreativeTabs;
 import ryoryo.polishedlib.item.ItemBaseFood;
 import ryoryo.polishedstone.PSV2Core;
-import ryoryo.polishedstone.util.References;
 
 public class ItemModBaseFood extends ItemBaseFood
 {
@@ -25,11 +24,5 @@ public class ItemModBaseFood extends ItemBaseFood
 	public ItemModBaseFood(int hunger, float hiddenHunger, boolean wolfCanEat, String unlocalizeName)
 	{
 		this(hunger, hiddenHunger, wolfCanEat, unlocalizeName, PSV2Core.TAB_MOD);
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 }

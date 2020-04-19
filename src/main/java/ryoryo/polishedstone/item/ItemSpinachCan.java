@@ -11,6 +11,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import ryoryo.polishedlib.util.ArithmeticUtils;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
@@ -43,7 +44,7 @@ public class ItemSpinachCan extends ItemModBaseFood
 	{
 		ItemStack stack = player.getHeldItem(hand);
 
-		if(player.getHealth() <= player.getMaxHealth() * Utils.percentToDecimal(20F))
+		if(player.getHealth() <= player.getMaxHealth() * ArithmeticUtils.percentToDecimal(20F))
 		{
 			player.setActiveHand(hand);
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
@@ -57,12 +58,12 @@ public class ItemSpinachCan extends ItemModBaseFood
 	{
 		if(!world.isRemote)
 		{
-			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.DAMAGE_BOOST), (int) Utils.minuteToTick(1F), 4));
-			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.REGENERATION), (int) Utils.minuteToTick(1F), 4));
-			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.HEALTH_BOOST), (int) Utils.minuteToTick(1F), 4));
-			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.ABSORPTION), (int) Utils.minuteToTick(1F), 4));
-			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.RESISTANCE), (int) Utils.minuteToTick(1F), 4));
-			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.SATURATION), (int) Utils.minuteToTick(1F), 4));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.DAMAGE_BOOST), (int) ArithmeticUtils.minuteToTick(1F), 4));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.REGENERATION), (int) ArithmeticUtils.minuteToTick(1F), 4));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.HEALTH_BOOST), (int) ArithmeticUtils.minuteToTick(1F), 4));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.ABSORPTION), (int) ArithmeticUtils.minuteToTick(1F), 4));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.RESISTANCE), (int) ArithmeticUtils.minuteToTick(1F), 4));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.SATURATION), (int) ArithmeticUtils.minuteToTick(1F), 4));
 		}
 	}
 }

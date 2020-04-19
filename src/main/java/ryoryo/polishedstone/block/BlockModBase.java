@@ -5,7 +5,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import ryoryo.polishedlib.block.BlockBase;
 import ryoryo.polishedstone.PSV2Core;
-import ryoryo.polishedstone.util.References;
 
 public class BlockModBase extends BlockBase
 {
@@ -27,11 +26,5 @@ public class BlockModBase extends BlockBase
 	public BlockModBase(Material material, String name, CreativeTabs tab, SoundType soundType)
 	{
 		super(material, name, tab, soundType);
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 }

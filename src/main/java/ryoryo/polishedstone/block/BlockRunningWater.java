@@ -21,7 +21,6 @@ import ryoryo.polishedlib.block.BlockBase;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.config.ModConfig;
-import ryoryo.polishedstone.util.References;
 
 public class BlockRunningWater extends BlockBase
 {
@@ -31,12 +30,6 @@ public class BlockRunningWater extends BlockBase
 	{
 		super(Material.VINE, "running_water");
 		this.setTickRandomly(true);
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	@Override

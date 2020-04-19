@@ -23,7 +23,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
-import ryoryo.polishedstone.util.References;
 
 public class BlockAnchorBolt extends BlockModBase
 {
@@ -50,12 +49,6 @@ public class BlockAnchorBolt extends BlockModBase
 		this.setHardness(0.5F);
 		this.setResistance(2.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	@Override

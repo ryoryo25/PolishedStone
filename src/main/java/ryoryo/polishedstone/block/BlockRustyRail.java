@@ -16,12 +16,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import ryoryo.polishedlib.util.interfaces.IModId;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
-import ryoryo.polishedstone.util.References;
 
-public class BlockRustyRail extends BlockRail implements IModId
+public class BlockRustyRail extends BlockRail
 {
 	private int rusty = 0;
 
@@ -33,12 +31,6 @@ public class BlockRustyRail extends BlockRail implements IModId
 		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH));
 		this.rusty = rusty;
-	}
-
-	@Override
-	public String getModId()
-	{
-		return References.MOD_ID;
 	}
 
 	@Nullable
