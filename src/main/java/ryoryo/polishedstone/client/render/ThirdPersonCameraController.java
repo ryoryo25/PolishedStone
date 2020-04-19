@@ -36,7 +36,7 @@ public class ThirdPersonCameraController
 		}
 		catch(Exception e)
 		{
-			PSV2Core.logger.addLogThrowable(e, "ThirdPersonCameraController#turn");
+			PSV2Core.LOGGER.error("ThirdPersonCameraController#turn", e);
 		}
 	}
 

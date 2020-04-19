@@ -878,7 +878,7 @@ public class Register
 			{
 				Block block = Block.REGISTRY.getObject(new ResourceLocation(loc));
 				block.setResistance(10000.0F);
-				PSV2Core.logger.addLog("Setted " + loc + "'s resistance to 10000!");
+				PSV2Core.LOGGER.info("Setted " + loc + "'s resistance to 10000!");
 			}
 		}
 
@@ -930,7 +930,7 @@ public class Register
 			Utils.addSpawnEntity(EntityBlaze.class, 15, 1, 4, EnumCreatureType.MONSTER, Biomes.HELL);
 		}
 		else
-			PSV2Core.logger.addInfo("Quark is installed, so skip register.");
+			PSV2Core.LOGGER.info("Quark is installed, so skip register.");
 
 		if(Utils.isOreDictLoaded("ingotTin"))
 		{

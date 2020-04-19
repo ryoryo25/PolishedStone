@@ -43,7 +43,7 @@ public class ModConfig
 		}
 		catch(Exception e)
 		{
-			PSV2Core.logger.addError("Error loading config.");
+			PSV2Core.LOGGER.error("Error loading config.");
 		}
 		finally
 		{

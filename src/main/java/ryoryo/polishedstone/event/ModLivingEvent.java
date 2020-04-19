@@ -133,7 +133,7 @@ public class ModLivingEvent
 			}
 		}
 		else
-			PSV2Core.logger.addInfo("Custom Spawn is loaded.");
+			PSV2Core.LOGGER.info("Custom Spawn is loaded.");
 
 		//フラットワールドの40以下でスライムがわかなくする。
 		if(living != null && living instanceof EntitySlime && world != null && world.getWorldType() == WorldType.FLAT && event.getY() <= 40)
@@ -165,7 +165,7 @@ public class ModLivingEvent
 				}
 			}
 			else
-				PSV2Core.logger.addInfo("Custom Spawn is loaded.");
+				PSV2Core.LOGGER.info("Custom Spawn is loaded.");
 
 			if(living instanceof EntityPlayer)
 			{
@@ -328,7 +328,7 @@ public class ModLivingEvent
 				}
 			}
 			else
-				PSV2Core.logger.addInfo("Quark is loaded.");
+				PSV2Core.LOGGER.info("Quark is loaded.");
 
 			if(ModConfig.sunBurnsCreepers && living instanceof EntityCreeper)
 			{

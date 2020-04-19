@@ -273,7 +273,7 @@ public class ModEventHandler
 			}
 		}
 		else
-			PSV2Core.logger.addInfo("No More Forest Fire is loaded.");
+			PSV2Core.LOGGER.info("No More Forest Fire is loaded.");
 	}
 
 	@SubscribeEvent
@@ -292,7 +292,7 @@ public class ModEventHandler
 			}
 		}
 		else
-			PSV2Core.logger.addInfo("No More Forest Fire is loaded.");
+			PSV2Core.LOGGER.info("No More Forest Fire is loaded.");
 	}
 
 	@SubscribeEvent
@@ -317,12 +317,12 @@ public class ModEventHandler
 					world.setBlockState(entity.getPosition(), sapling.getStateFromMeta(item.getMetadata(stack)));
 					if(stack.getCount() > 1)
 					{
-						PSV2Core.logger.addInfo("cloning_tree");
+						PSV2Core.LOGGER.info("cloning_tree");
 						EntityItem extraItem = entity.dropItem(item, stack.getCount() - 1);
 						extraItem.lifespan = (int) Utils.secondToTick(5.0F);
 						//						extraItem.motionX = 10;
 						world.spawnEntity(extraItem);
-						PSV2Core.logger.addInfo("cloned_tree");
+						PSV2Core.LOGGER.info("cloned_tree");
 					}
 				}
 				//				event.setCanceled(true);
@@ -350,12 +350,12 @@ public class ModEventHandler
 					}
 					if(stack.getCount() > 1)
 					{
-						PSV2Core.logger.addInfo("cloning_chicken");
+						PSV2Core.LOGGER.info("cloning_chicken");
 						EntityItem extraItem = entity.dropItem(item, stack.getCount() - 1);
 						extraItem.lifespan = (int) Utils.secondToTick(5.0F);
 						//						extraItem.motionX = 10;
 						world.spawnEntity(extraItem);
-						PSV2Core.logger.addInfo("cloned_chicken");
+						PSV2Core.LOGGER.info("cloned_chicken");
 					}
 				}
 				else

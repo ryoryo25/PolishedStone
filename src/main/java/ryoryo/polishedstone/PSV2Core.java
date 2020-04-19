@@ -1,5 +1,8 @@
 package ryoryo.polishedstone;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -10,7 +13,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import ryoryo.polishedlib.util.ModLogger;
 import ryoryo.polishedstone.config.ModConfig;
 import ryoryo.polishedstone.proxy.IProxy;
 import ryoryo.polishedstone.util.ArmorMaterials;
@@ -28,15 +30,15 @@ public class PSV2Core
 
 	public static final CreativeTabs TAB_MOD = new ModCreativeTab(References.MOD_ID);
 	public static ModConfig config;
-	public static ModLogger logger = new ModLogger(References.MOD_ID);
+	public static final Logger LOGGER = LogManager.getLogger(References.MOD_ID);
 	public static final boolean isDebug = false;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		INSTANCE = this;
-		logger.addLog("Hello Minecraft!");
-		logger.addLog("Start loading preInit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		LOGGER.info("Hello Minecraft!");
+		LOGGER.info("Start loading preInit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		config = new ModConfig(event.getSuggestedConfigurationFile());
 		MinecraftForge.EVENT_BUS.register(config);
 		//Registering Armor Materials
@@ -48,7 +50,7 @@ public class PSV2Core
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		logger.addLog("Start loading init!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		LOGGER.info("Start loading init!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		Register.init();
 		Register.initClient();
 	}
@@ -56,7 +58,7 @@ public class PSV2Core
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		logger.addLog("Start loading postInit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		LOGGER.info("Start loading postInit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		Register.postInit();
 		Register.postInitClient();
 	}

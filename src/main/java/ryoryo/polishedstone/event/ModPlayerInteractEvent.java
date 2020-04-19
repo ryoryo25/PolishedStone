@@ -469,6 +469,6 @@ public class ModPlayerInteractEvent
 			}
 		}
 		else
-			PSV2Core.logger.addInfo("Quark is loaded.");
+			PSV2Core.LOGGER.info("Quark is loaded.");
 	}
 }
