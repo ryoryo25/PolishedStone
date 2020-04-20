@@ -144,13 +144,13 @@ public class BlockPolishedStone extends BlockModBase
 
 	public static enum EnumType implements IStringSerializable
 	{
-		NORMAL(0, "normal", "normal"),
-		INVERTED(1, "inverted", "inverted"),
-		VERTICAL(2, "vertical", "vertical"),
-		CROSSED(3, "crossed", "crossed"),
-		BRICK(4, "brick", "brick"),
-		BRICK_LARGE(5, "brick_large", "brick_large"),
-		BRICK_CARVED(6, "brick_carved", "brick_carved"),
+		NORMAL(0, "normal"),
+		INVERTED(1, "inverted"),
+		VERTICAL(2, "vertical"),
+		CROSSED(3, "crossed"),
+		BRICK(4, "brick"),
+		BRICK_LARGE(5, "brick_large"),
+		BRICK_CARVED(6, "brick_carved"),
 		PILLAR_Y(7, "pillar_y", "pillar"),
 		PILLAR_X(8, "pillar_x", "pillar"),
 		PILLAR_Z(9, "pillar_z", "pillar"),;
@@ -165,6 +165,11 @@ public class BlockPolishedStone extends BlockModBase
 			this.meta = meta;
 			this.serializedName = name;
 			this.unlocalizedName = unlocalizedName;
+		}
+
+		private EnumType(int meta, String name)
+		{
+			this(meta, name, name);
 		}
 
 		@Override

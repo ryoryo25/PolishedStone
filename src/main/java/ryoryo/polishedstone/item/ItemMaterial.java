@@ -54,16 +54,7 @@ public class ItemMaterial extends ItemModBase
 	@Override
 	public String getUnlocalizedName(ItemStack itemStack)
 	{
-		int meta = itemStack.getItemDamage();
-
-		for(int i = 0; i < NAMES.length; i++)
-		{
-			if(meta == i)
-			{
-				return this.getUnlocalizedName() + "_" + NAMES[i];
-			}
-		}
-		return this.getUnlocalizedName() + "_default";
+		return this.getUnlocalizedName() + "_" + NAMES[itemStack.getItemDamage()];
 	}
 
 	@Override
