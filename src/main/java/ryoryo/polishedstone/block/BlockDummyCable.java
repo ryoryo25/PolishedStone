@@ -36,17 +36,18 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.NumericalConstant;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 
 public class BlockDummyCable extends BlockModBase
 {
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.<EnumType> create("type", EnumType.class);
-	public static final PropertyBool NORTH = Utils.NORTH;
-	public static final PropertyBool SOUTH = Utils.SOUTH;
-	public static final PropertyBool WEST = Utils.WEST;
-	public static final PropertyBool EAST = Utils.EAST;
-	public static final PropertyBool UP = Utils.UP;
-	public static final PropertyBool DOWN = Utils.DOWN;
+	public static final PropertyBool NORTH = Props.NORTH;
+	public static final PropertyBool SOUTH = Props.SOUTH;
+	public static final PropertyBool WEST = Props.WEST;
+	public static final PropertyBool EAST = Props.EAST;
+	public static final PropertyBool UP = Props.UP;
+	public static final PropertyBool DOWN = Props.DOWN;
 
 	public BlockDummyCable()
 	{

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.google.common.collect.Lists;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
@@ -20,7 +22,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedstone.config.ModConfig;
 
 public class BlockLattice extends BlockModBase
@@ -37,9 +39,9 @@ public class BlockLattice extends BlockModBase
 
 	protected static final AxisAlignedBB LATTICE_TB_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
 
-	public static final PropertyBool TOP = Utils.TOP;
-	public static final PropertyBool BOTTOM = Utils.BOTTOM;
-	public static List<Block> connectables = new ArrayList<Block>();
+	public static final PropertyBool TOP = Props.TOP;
+	public static final PropertyBool BOTTOM = Props.BOTTOM;
+	public static List<Block> connectables = Lists.newArrayList();
 	private final IBlockState baseState;
 
 	public BlockLattice(Block base, String name)

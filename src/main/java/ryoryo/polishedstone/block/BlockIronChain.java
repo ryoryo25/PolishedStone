@@ -23,14 +23,15 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 
 public class BlockIronChain extends BlockModBase
 {
 	protected static final AxisAlignedBB CHAIN_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
-	public static final PropertyBool TOP = Utils.TOP;
-	public static final PropertyBool BOTTOM = Utils.BOTTOM;
+	public static final PropertyBool TOP = Props.TOP;
+	public static final PropertyBool BOTTOM = Props.BOTTOM;
 
 	public BlockIronChain()
 	{

@@ -21,6 +21,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 
@@ -41,7 +42,7 @@ public class BlockAnchorBolt extends BlockModBase
 	protected static final AxisAlignedBB BOLT_AABB_WEST = new AxisAlignedBB(0.0D, 0.0D, 0.425D, 0.625D, 0.125D, 0.575D);
 	protected static final AxisAlignedBB BOLT_AABB_EAST = new AxisAlignedBB(0.375D, 0.0D, 0.425D, 1.0D, 0.125D, 0.575D);
 
-	public static final PropertyDirection FACING = Utils.HORIZONTAL_FACING;
+	public static final PropertyDirection FACING = Props.HORIZONTAL_FACING;
 
 	public BlockAnchorBolt()
 	{

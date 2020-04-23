@@ -22,6 +22,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 
@@ -42,8 +43,8 @@ public class BlockIronLadder extends BlockModBase
 	protected static final AxisAlignedBB LAD_AABB_WEST = new AxisAlignedBB(0.75D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB LAD_AABB_EAST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.25D, 1.0D, 1.0D);
 
-	public static final PropertyDirection FACING = Utils.HORIZONTAL_FACING;
-	public static final PropertyBool TOP = Utils.TOP;
+	public static final PropertyDirection FACING = Props.HORIZONTAL_FACING;
+	public static final PropertyBool TOP = Props.TOP;
 	public static final PropertyBool PROP = PropertyBool.create("prop");
 
 	public BlockIronLadder()

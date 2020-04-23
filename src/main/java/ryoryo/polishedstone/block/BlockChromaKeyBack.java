@@ -11,13 +11,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedlib.util.enums.EnumColor;
 
 public class BlockChromaKeyBack extends BlockModBase
 {
 	//TODO Custom Render
-	public static final PropertyEnum<EnumColor> COLOR = Utils.COLOR;
+	public static final PropertyEnum<EnumColor> COLOR = Props.COLOR;
 
 	public BlockChromaKeyBack()
 	{

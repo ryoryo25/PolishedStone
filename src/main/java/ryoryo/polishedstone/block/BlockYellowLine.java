@@ -20,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 
 public class BlockYellowLine extends BlockModBase
@@ -29,7 +30,7 @@ public class BlockYellowLine extends BlockModBase
 	protected static final AxisAlignedBB SOUTH_AABB = Utils.creatAABB(0, 0, 0, 16, 8, 8);
 	protected static final AxisAlignedBB WEST_AABB = Utils.creatAABB(8, 0, 0, 16, 8, 16);
 	protected static final AxisAlignedBB EAST_AABB = Utils.creatAABB(0, 0, 0, 8, 8, 16);
-	public static final PropertyDirection FACING = Utils.HORIZONTAL_FACING;
+	public static final PropertyDirection FACING = Props.HORIZONTAL_FACING;
 
 	public BlockYellowLine()
 	{

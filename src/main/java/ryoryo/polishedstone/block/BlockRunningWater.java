@@ -18,13 +18,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.block.BlockBase;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.config.ModConfig;
 
 public class BlockRunningWater extends BlockBase
 {
-	public static final PropertyBool TOP = Utils.TOP;
+	public static final PropertyBool TOP = Props.TOP;
 
 	public BlockRunningWater()
 	{

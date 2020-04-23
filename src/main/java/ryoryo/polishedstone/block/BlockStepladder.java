@@ -34,7 +34,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.enums.EnumSimpleFacing;
 import ryoryo.polishedstone.Register;
 
@@ -117,9 +117,9 @@ public class BlockStepladder extends BlockModBase
 	protected static final AxisAlignedBB THIRD_AABB_SCAFOLD_NORTH = creatAABB(0, 14, 5, 16, 16, 11);
 	protected static final AxisAlignedBB THIRD_AABB_SCAFOLD_WEST = creatAABB(5, 14, 0, 11, 16, 16);
 
-	public static final PropertyEnum<EnumSimpleFacing> FACING = Utils.SIMPLE_FACING;
+	public static final PropertyEnum<EnumSimpleFacing> FACING = Props.SIMPLE_FACING;
 	public static final PropertyEnum<EnumStage> STAGE = PropertyEnum.<EnumStage> create("stage", EnumStage.class);
-	public static final PropertyBool TOP = Utils.TOP;
+	public static final PropertyBool TOP = Props.TOP;
 
 	public BlockStepladder()
 	{

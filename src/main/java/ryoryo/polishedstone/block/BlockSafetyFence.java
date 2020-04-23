@@ -21,13 +21,14 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 
 public class BlockSafetyFence extends BlockModBase
 {
-	public static final PropertyDirection FACING = Utils.HORIZONTAL_FACING;
-	public static final PropertyBool TOP = Utils.TOP;
-	public static final PropertyBool BOTTOM = Utils.BOTTOM;
+	public static final PropertyDirection FACING = Props.HORIZONTAL_FACING;
+	public static final PropertyBool TOP = Props.TOP;
+	public static final PropertyBool BOTTOM = Props.BOTTOM;
 
 	public BlockSafetyFence()
 	{

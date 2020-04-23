@@ -25,6 +25,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 
 public class BlockEarthenPipe extends BlockModBase
@@ -100,12 +101,12 @@ public class BlockEarthenPipe extends BlockModBase
 	protected static final AxisAlignedBB RING_SOUTH_Z_AABB4 = Utils.creatAABB(3, 0, 14, 13, 16, 16);
 
 	public static final PropertyEnum<EnumShape> SHAPE = PropertyEnum.<EnumShape> create("shape", EnumShape.class);
-	public static final PropertyBool NORTH = Utils.NORTH;
-	public static final PropertyBool SOUTH = Utils.SOUTH;
-	public static final PropertyBool WEST = Utils.WEST;
-	public static final PropertyBool EAST = Utils.EAST;
-	public static final PropertyBool UP = Utils.UP;
-	public static final PropertyBool DOWN = Utils.DOWN;
+	public static final PropertyBool NORTH = Props.NORTH;
+	public static final PropertyBool SOUTH = Props.SOUTH;
+	public static final PropertyBool WEST = Props.WEST;
+	public static final PropertyBool EAST = Props.EAST;
+	public static final PropertyBool UP = Props.UP;
+	public static final PropertyBool DOWN = Props.DOWN;
 
 	public BlockEarthenPipe()
 	{

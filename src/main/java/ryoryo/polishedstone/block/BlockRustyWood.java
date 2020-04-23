@@ -19,13 +19,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.enums.EnumSimpleFacing;
 
 public class BlockRustyWood extends BlockModBase
 {
 	protected static final AxisAlignedBB WOOD_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
-	public static final PropertyEnum<EnumSimpleFacing> FACING = Utils.SIMPLE_FACING;
+	public static final PropertyEnum<EnumSimpleFacing> FACING = Props.SIMPLE_FACING;
 
 	public BlockRustyWood()
 	{

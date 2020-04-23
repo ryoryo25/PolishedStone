@@ -24,7 +24,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.Props;
 
 public class BlockIronPlateStairs extends BlockModBase
 {
@@ -54,7 +54,7 @@ public class BlockIronPlateStairs extends BlockModBase
      */
     protected static final AxisAlignedBB AABB_QTR_TOP_SOUTH = new AxisAlignedBB(0.0D, 0.5D, 0.5D, 1.0D, 1.0D, 1.0D);
 
-	public static final PropertyDirection FACING = Utils.HORIZONTAL_FACING;
+	public static final PropertyDirection FACING = Props.HORIZONTAL_FACING;
 	public static final PropertyBool FLOATING = PropertyBool.create("floating");
 
 	public BlockIronPlateStairs()

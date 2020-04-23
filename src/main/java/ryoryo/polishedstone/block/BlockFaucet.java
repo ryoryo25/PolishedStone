@@ -27,6 +27,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.config.ModConfig;
@@ -38,7 +39,7 @@ public class BlockFaucet extends BlockModBase
 	protected static final AxisAlignedBB FAUCET_WEST_AABB = Utils.creatAABB(0, 6.5, 7, 9, 15, 9);
 	protected static final AxisAlignedBB FAUCET_EAST_AABB = Utils.creatAABB(7, 6.5, 7, 16, 15, 9);
 
-	public static final PropertyDirection FACING = Utils.HORIZONTAL_FACING;
+	public static final PropertyDirection FACING = Props.HORIZONTAL_FACING;
 	public static final PropertyInteger TYPE = PropertyInteger.create("type", 0, 1);
 	public static final PropertyBool RUNNING = PropertyBool.create("running");
 

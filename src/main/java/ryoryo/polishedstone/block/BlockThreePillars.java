@@ -29,6 +29,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 
 public class BlockThreePillars extends BlockModBase
@@ -55,10 +56,10 @@ public class BlockThreePillars extends BlockModBase
 	protected static final AxisAlignedBB BASE_AABB_SIDE_H = Utils.creatAABB(0, 7, 0, 16, 9, 16);
 
 	public static final PropertyEnum<EnumShape> SHAPE = PropertyEnum.<EnumShape> create("shape", EnumShape.class);
-	public static final PropertyBool NORTH = Utils.NORTH;
-	public static final PropertyBool SOUTH = Utils.SOUTH;
-	public static final PropertyBool WEST = Utils.WEST;
-	public static final PropertyBool EAST = Utils.EAST;
+	public static final PropertyBool NORTH = Props.NORTH;
+	public static final PropertyBool SOUTH = Props.SOUTH;
+	public static final PropertyBool WEST = Props.WEST;
+	public static final PropertyBool EAST = Props.EAST;
 
 	public BlockThreePillars()
 	{

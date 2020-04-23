@@ -15,7 +15,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.Props;
 
 public class BlockVendingMachine extends BlockModBase
 {
@@ -24,7 +24,7 @@ public class BlockVendingMachine extends BlockModBase
 	protected static final AxisAlignedBB WEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.5D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB EAST_AABB = new AxisAlignedBB(0.5D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 
-	public static final PropertyDirection FACING = Utils.HORIZONTAL_FACING;
+	public static final PropertyDirection FACING = Props.HORIZONTAL_FACING;
 	public static final PropertyEnum<EnumHalf> HALF = PropertyEnum.<EnumHalf> create("half", EnumHalf.class);
 
 	public BlockVendingMachine(String name)
