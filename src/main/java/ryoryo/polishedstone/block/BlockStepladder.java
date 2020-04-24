@@ -4,6 +4,7 @@ import static ryoryo.polishedlib.util.Utils.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -166,12 +167,8 @@ public class BlockStepladder extends BlockModBase
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState)
 	{
-		state = this.getActualState(state, world, pos);
-
-		for(AxisAlignedBB aabb : getCollisionBoxList(state))
-		{
-			addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb);
-		}
+		getCollisionBoxList(this.getActualState(state, world, pos))
+		.forEach(aabb -> addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb));
 	}
 
 	//TODO
@@ -273,31 +270,11 @@ public class BlockStepladder extends BlockModBase
 	@Nullable
     public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
 	{
-		List<RayTraceResult> list = new ArrayList<RayTraceResult>();
-
-		for(AxisAlignedBB aabb : getCollisionBoxList(this.getActualState(blockState, world, pos)))
-		{
-			list.add(this.rayTrace(pos, start, end, aabb));
-		}
-
-		RayTraceResult bestresult = null;
-		double d1 = 0.0D;
-
-		for(RayTraceResult result : list)
-		{
-			if(result != null)
-			{
-				double d0 = result.hitVec.squareDistanceTo(end);
-
-				if(d0 > d1)
-				{
-					bestresult = result;
-					d1 = d0;
-				}
-			}
-		}
-
-		return bestresult;
+		return getCollisionBoxList(this.getActualState(blockState, world, pos)).stream()
+				.map(aabb -> this.rayTrace(pos, start, end, aabb))
+				.filter(Objects::nonNull)
+				.max((result1, result2) -> (int) (result1.hitVec.squareDistanceTo(end) - result2.hitVec.squareDistanceTo(end)))
+				.orElse(null);
 	}
 
 	@Override
