@@ -164,8 +164,8 @@ public class ModEventHandler
 	{
 		EntityPlayer player = event.player;
 
-		Utils.addChat(player, TextFormatting.BLUE + "" + TextFormatting.BOLD + "[PolishedStone V2]:" + TextFormatting.RESET + " " + player.getName() + ", Hello World!");
-		Utils.addChat(player, TextFormatting.BLUE + "" + TextFormatting.BOLD + "[PolishedStone V2]:" + TextFormatting.RESET + " " + "VERSION: " + References.getVersion());
+		Utils.sendChat(player, TextFormatting.BLUE + "" + TextFormatting.BOLD + "[PolishedStone V2]:" + TextFormatting.RESET + " " + player.getName() + ", Hello World!");
+		Utils.sendChat(player, TextFormatting.BLUE + "" + TextFormatting.BOLD + "[PolishedStone V2]:" + TextFormatting.RESET + " " + "VERSION: " + References.getVersion());
 
 		//TODO metaとかnbtとか
 		NBTTagCompound tag = event.player.getEntityData();
@@ -489,17 +489,17 @@ public class ModEventHandler
 	{
 		ItemStack left = event.getLeft();
 		ItemStack right = event.getRight();
-		Utils.addChat("Hey!1");
+		Utils.sendChat("Hey!1");
 		if(left.getItem() == Items.IRON_INGOT && right.getItem() == Items.DYE && right.getItemDamage() == EnumColor.YELLOW.getDyeNumber())
 		{
-			Utils.addChat("Hey!2");
+			Utils.sendChat("Hey!2");
 			//			event.setCost(5);//経験値
 			//			event.setMaterialCost(5);//右スロットのアイテム数
 			//			event.setOutput(new ItemStack(Items.GOLD_INGOT, 1));
 		}
 		if(left.getItem() == Items.SPAWN_EGG /*&& (!left.hasTagCompound() || !left.getTagCompound().hasKey("EntityTag"))*/ && right == new ItemStack(Blocks.SKULL) && right.getItemDamage() == 2)
 		{
-			Utils.addChat("Hey!3");
+			Utils.sendChat("Hey!3");
 			event.setCost(5);
 
 			event.setOutput(Utils.getSpawnEggItemStack(EntityZombie.class, 1));
@@ -557,7 +557,7 @@ public class ModEventHandler
 
 					if(!world.isRemote)
 					{
-						Utils.addChat(player, "wow");
+						Utils.sendChat(player, "wow");
 						world.setBlockState(placePos, state);
 						event.setUseItem(Result.ALLOW);
 					}

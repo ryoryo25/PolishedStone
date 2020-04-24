@@ -55,7 +55,7 @@ public class ThirdPersonCameraController
 		{
 			visited.add(renderer);
 			// entityRenderer に入ってる EntityRenderer を直接書き換えてみる
-			Utils.addChat("Wow!");
+			Utils.sendChat("Wow!");
 			ObfuscationReflectionHelper.setPrivateValue(EntityRenderer.class, renderer, distance, fieldNames);
 			// entityRenderer が入れ子になっていたら、それらも書き換えてみる
 //			for(EntityRenderer obj2 : ObfuscationReflectionHelper.getPrivateValue(EntityRenderer.class, renderer, fieldNames))

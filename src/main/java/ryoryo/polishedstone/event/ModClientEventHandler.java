@@ -44,14 +44,14 @@ public class ModClientEventHandler
 			if(EventHelper.pickUpWidelyToggle == true)
 			{
 				EventHelper.pickUpWidelyToggle = false;
-				Utils.addChat("PickUpWidely : OFF");
+				Utils.sendChat("PickUpWidely : OFF");
 				return;
 			}
 
 			if(EventHelper.pickUpWidelyToggle == false)
 			{
 				EventHelper.pickUpWidelyToggle = true;
-				Utils.addChat("PickUpWidely : ON");
+				Utils.sendChat("PickUpWidely : ON");
 				return;
 			}
 		}
@@ -84,7 +84,7 @@ public class ModClientEventHandler
 		{
 			model.rightArmPose = ArmPose.BOW_AND_ARROW;
 			model.leftArmPose = ArmPose.BOW_AND_ARROW;
-			Utils.addChat(player, "wow");
+			Utils.sendChat(player, "wow");
 		}
 	}
 }

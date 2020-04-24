@@ -281,7 +281,7 @@ public class ModPlayerInteractEvent
 			{
 				player.setSpawnPoint(pos, false);
 				event.setCanceled(true);
-				Utils.addChat(player, "Setted Respawn Point!");
+				Utils.sendChat(player, "Setted Respawn Point!");
 			}
 		}
 	}

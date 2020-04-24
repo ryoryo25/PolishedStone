@@ -96,7 +96,7 @@ public class BlockGlowstoneGenerator extends BlockModBase
 				if(meta == 7)
 					return;
 				world.playSound(Utils.getPlayer(), pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 0.5F, 1.2F);
-				Utils.addChat(LibUnlocalizedString.CHAT_GG_POWER_UP + String.valueOf(this.power));
+				Utils.sendChat(LibUnlocalizedString.CHAT_GG_POWER_UP + String.valueOf(this.power));
 				world.setBlockState(pos, Register.BLOCK_GLOWSTONE_GENERATOR.getStateFromMeta(this.power), 2);
 			}
 		}
@@ -116,7 +116,7 @@ public class BlockGlowstoneGenerator extends BlockModBase
 			world.playSound(Utils.getPlayer(), pos, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.2F);
 			if(h == 1)
 			{
-				Utils.addChat(LibUnlocalizedString.CHAT_GG_GENERATED);
+				Utils.sendChat(LibUnlocalizedString.CHAT_GG_GENERATED);
 			}
 			world.setBlockState(posg, Blocks.GLOWSTONE.getDefaultState());
 			flg = true;

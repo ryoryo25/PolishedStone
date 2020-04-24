@@ -284,7 +284,7 @@ public class ModLivingEvent
 					{
 						world.playSound(player, player.getPosition(), Register.SOUND_IRON_CHAIN, SoundCategory.PLAYERS, 1.0F, 0.7F);
 						if(PSV2Core.isDebug)
-							Utils.addChat(player, "Fallen!");
+							Utils.sendChat(player, "Fallen!");
 					}
 				}
 			}

@@ -60,7 +60,7 @@ public class ItemDamageFood extends ItemBaseFood
 
 		if(stack.getItemDamage() >= 16)
 		{
-			Utils.addChat(player, LibUnlocalizedString.CHAT_DAMAGE_FOOD);
+			Utils.sendChat(player, LibUnlocalizedString.CHAT_DAMAGE_FOOD);
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
 		}
 
@@ -71,6 +71,6 @@ public class ItemDamageFood extends ItemBaseFood
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
 	{
-		tooltip.add(Utils.translatableStringFormatted(LibUnlocalizedString.TOOLTIP_DAMAGE_FOOD, stack.getMaxDamage() - stack.getItemDamage()));
+		tooltip.add(Utils.translatableString(LibUnlocalizedString.TOOLTIP_DAMAGE_FOOD, stack.getMaxDamage() - stack.getItemDamage()));
 	}
 }
