@@ -1,5 +1,8 @@
 {
 	"variants": {
-		"normal": { "model": "polishedstone_v2:test" }
+		"facing=north":  { "model": "polishedstone_v2:test_block" },
+		"facing=south":  { "model": "polishedstone_v2:test_block", "y": 180, "uvlock": true },
+		"facing=west": { "model": "polishedstone_v2:test_block", "y": 90, "uvlock": true },
+		"facing=east": { "model": "polishedstone_v2:test_block", "y": 270, "uvlock": true }
 	}
 }

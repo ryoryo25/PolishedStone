@@ -286,7 +286,6 @@ public class Register
 	public static final Item ITEM_STICKY_RICE = new ItemModSeedFood(EnumCropType.STICKY_RICE, 1, 0.2F);
 	public static final Item ITEM_TOMATO = new ItemModBase(EnumCropType.TOMATO.getName());
 	public static final Item ITEM_EGGPLANT = new ItemModBase(EnumCropType.EGGPLANT.getName());
-//	public static Item item
 
 	public static final Block BLOCK_TEST = new BlockTest();
 
@@ -389,6 +388,8 @@ public class Register
 		PSV2Core.REGISTER.registerBlock(BLOCK_CROP_TOMATO, "crop_tomato");
 		PSV2Core.REGISTER.registerBlock(BLOCK_CROP_EGGPLANT, "crop_eggplant");
 		PSV2Core.REGISTER.registerBlock(BLOCK_VOID_TELEPORTER, new ItemBlockMeta(BLOCK_VOID_TELEPORTER, BlockVoidTeleporter.VoidType.NAMES), "void_teleporter", BlockVoidTeleporter.VoidType.NAMES);
+
+		PSV2Core.REGISTER.registerBlock(BLOCK_TEST, "test_block");
 
 
 		String dh = "decorative_hazmat_";
