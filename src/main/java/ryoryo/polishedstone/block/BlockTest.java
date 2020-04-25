@@ -49,18 +49,7 @@ public class BlockTest extends BlockModBase
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		switch(state.getValue(FACING))
-		{
-			default:
-			case NORTH:
-				return BASE_AABB;
-			case SOUTH:
-				return Utils.rotateAABB(BASE_AABB, Rotation.CLOCKWISE_180);
-			case WEST:
-				return Utils.rotateAABB(BASE_AABB, Rotation.COUNTERCLOCKWISE_90);
-			case EAST:
-				return Utils.rotateAABB(BASE_AABB, Rotation.CLOCKWISE_90);
-		}
+		return Utils.rotateAABB(BASE_AABB, Utils.getRotationFromNorth(state.getValue(FACING)));
 	}
 
 	@Override
