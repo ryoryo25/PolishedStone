@@ -389,7 +389,7 @@ public class Register
 		PSV2Core.REGISTER.registerBlock(BLOCK_CROP_EGGPLANT, "crop_eggplant");
 		PSV2Core.REGISTER.registerBlock(BLOCK_VOID_TELEPORTER, new ItemBlockMeta(BLOCK_VOID_TELEPORTER, BlockVoidTeleporter.VoidType.NAMES), "void_teleporter", BlockVoidTeleporter.VoidType.NAMES);
 
-		PSV2Core.REGISTER.registerBlock(BLOCK_TEST, "test_block");
+//		PSV2Core.REGISTER.registerBlock(BLOCK_TEST, "test_block");
 
 
 		String dh = "decorative_hazmat_";
