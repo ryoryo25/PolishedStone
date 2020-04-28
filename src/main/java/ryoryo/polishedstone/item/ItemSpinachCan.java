@@ -12,10 +12,10 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.ArithmeticUtils;
+import ryoryo.polishedlib.util.LibPotionId;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
-import ryoryo.polishedstone.util.LibPotionId;
 
 public class ItemSpinachCan extends ItemModBaseFood
 {
@@ -58,7 +58,7 @@ public class ItemSpinachCan extends ItemModBaseFood
 	{
 		if(!world.isRemote)
 		{
-			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.DAMAGE_BOOST), (int) ArithmeticUtils.minuteToTick(1F), 4));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.STRENGTH), (int) ArithmeticUtils.minuteToTick(1F), 4));
 			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.REGENERATION), (int) ArithmeticUtils.minuteToTick(1F), 4));
 			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.HEALTH_BOOST), (int) ArithmeticUtils.minuteToTick(1F), 4));
 			player.addPotionEffect(new PotionEffect(Potion.getPotionById(LibPotionId.ABSORPTION), (int) ArithmeticUtils.minuteToTick(1F), 4));
