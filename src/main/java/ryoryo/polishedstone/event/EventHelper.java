@@ -1,7 +1,6 @@
 package ryoryo.polishedstone.event;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -38,7 +37,6 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
-import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.block.BlockSafetyFence;
 import ryoryo.polishedstone.config.ModConfig;
 
@@ -154,35 +152,8 @@ public class EventHelper
 	 * @param hand
 	 * @param held
 	 */
-	public static void createPath(World world, BlockPos pos, IBlockState state, EntityPlayer player, PlayerInteractEvent.RightClickBlock event, EnumHand hand, ItemStack held)
+	public static void createPath(Map<IBlockState, IBlockState> toPath, Map<IBlockState, IBlockState> toOriginal, World world, BlockPos pos, IBlockState state, EntityPlayer player, PlayerInteractEvent.RightClickBlock event, EnumHand hand, ItemStack held)
 	{
-		Map<IBlockState, IBlockState> toPath = new HashMap<IBlockState, IBlockState>();
-		//map initialization
-		toPath.put(Blocks.DIRT.getDefaultState(), Register.BLOCK_NEW_PATH.getDefaultState());
-		toPath.put(Blocks.DIRT.getStateFromMeta(1), Register.BLOCK_NEW_PATH.getStateFromMeta(1));
-		toPath.put(Blocks.DIRT.getStateFromMeta(2), Register.BLOCK_NEW_PATH.getStateFromMeta(2));
-		toPath.put(Blocks.GRAVEL.getDefaultState(), Register.BLOCK_NEW_PATH.getStateFromMeta(3));
-		toPath.put(Blocks.SAND.getDefaultState(), Register.BLOCK_NEW_PATH.getStateFromMeta(4));
-		toPath.put(Blocks.SAND.getStateFromMeta(1), Register.BLOCK_NEW_PATH.getStateFromMeta(5));
-		toPath.put(Blocks.CLAY.getDefaultState(), Register.BLOCK_NEW_PATH.getStateFromMeta(6));
-		toPath.put(Blocks.SOUL_SAND.getDefaultState(), Register.BLOCK_NEW_PATH.getStateFromMeta(7));
-		toPath.put(Register.BLOCK_NEW_GRAVEL.getDefaultState(), Register.BLOCK_NEW_PATH.getStateFromMeta(8));
-		toPath.put(Register.BLOCK_NEW_GRAVEL.getStateFromMeta(1), Register.BLOCK_NEW_PATH.getStateFromMeta(9));
-
-		Map<IBlockState, IBlockState> toOriginal = new HashMap<IBlockState, IBlockState>();
-		//map initialization
-		toOriginal.put(Blocks.GRASS_PATH.getDefaultState(), Blocks.GRASS.getDefaultState());
-		toOriginal.put(Register.BLOCK_NEW_PATH.getDefaultState(), Blocks.DIRT.getDefaultState());
-		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(1), Blocks.DIRT.getStateFromMeta(1));
-		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(2), Blocks.DIRT.getStateFromMeta(2));
-		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(3), Blocks.GRAVEL.getDefaultState());
-		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(4), Blocks.SAND.getDefaultState());
-		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(5), Blocks.SAND.getStateFromMeta(1));
-		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(6), Blocks.CLAY.getDefaultState());
-		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(7), Blocks.SOUL_SAND.getDefaultState());
-		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(8), Register.BLOCK_NEW_GRAVEL.getDefaultState());
-		toOriginal.put(Register.BLOCK_NEW_PATH.getStateFromMeta(9), Register.BLOCK_NEW_GRAVEL.getStateFromMeta(1));
-
 		IBlockState stateu = world.getBlockState(pos.up());
 		IBlockState target = null;
 
@@ -215,15 +186,8 @@ public class EventHelper
 		}
 	}
 
-	public static void reduceSnowLayer(World world, BlockPos pos, IBlockState state, EntityPlayer player, PlayerInteractEvent.RightClickBlock event, EnumHand hand, ItemStack held)
+	public static void reduceSnowLayer(Map<IBlockState, IBlockState> reduce, World world, BlockPos pos, IBlockState state, EntityPlayer player, PlayerInteractEvent.RightClickBlock event, EnumHand hand, ItemStack held)
 	{
-		Map<IBlockState, IBlockState> reduce = new HashMap<IBlockState, IBlockState>();
-		//map initialization
-		reduce.put(Blocks.SNOW.getDefaultState(), Blocks.SNOW_LAYER.getStateFromMeta(6));
-		for(int i = 7; i >= 1; i --)
-			reduce.put(Blocks.SNOW_LAYER.getStateFromMeta(i), Blocks.SNOW_LAYER.getStateFromMeta(i-1));
-		reduce.put(Blocks.SNOW_LAYER.getStateFromMeta(0), Blocks.AIR.getDefaultState());
-
 		Random random = new Random();
 		IBlockState target = reduce.get(state);// default return null
 
@@ -242,20 +206,8 @@ public class EventHelper
 		}
 	}
 
-	public static void copyPlants(World world, BlockPos pos, IBlockState state, EntityPlayer player, PlayerInteractEvent.RightClickBlock event, EnumHand hand, ItemStack held, Random random)
+	public static void copyPlants(Map<IBlockState, ItemStack> toItem, World world, BlockPos pos, IBlockState state, EntityPlayer player, PlayerInteractEvent.RightClickBlock event, EnumHand hand, ItemStack held, Random random)
 	{
-		Map<IBlockState, ItemStack> toItem = new HashMap<IBlockState, ItemStack>();
-		//map initialization
-		for(int i = 0; i < 9; i ++)
-			toItem.put(Blocks.RED_FLOWER.getStateFromMeta(i), new ItemStack(Blocks.RED_FLOWER, 1, i));
-		toItem.put(Blocks.YELLOW_FLOWER.getDefaultState(), new ItemStack(Blocks.YELLOW_FLOWER));
-		toItem.put(Blocks.DEADBUSH.getDefaultState(), new ItemStack(Blocks.DEADBUSH));
-		for(IBlockState vine : Blocks.VINE.getBlockState().getValidStates())
-			toItem.put(vine, new ItemStack(Blocks.VINE));
-		toItem.put(Blocks.WATERLILY.getDefaultState(), new ItemStack(Blocks.WATERLILY));
-		for(int i = 0; i < 2; i ++)
-			toItem.put(Register.BLOCK_NEW_FLOWER.getStateFromMeta(i), new ItemStack(Register.BLOCK_NEW_FLOWER, 1, i));
-
 		ItemStack item = toItem.get(state);
 
 		if(item != null)
@@ -269,9 +221,8 @@ public class EventHelper
 				Block.spawnAsEntity(world, pos, item);
 
 				if(!Utils.isCreative(player))
-				{
 					held.shrink(1);
-				}
+
 				event.setUseItem(Result.ALLOW);
 			}
 		}
