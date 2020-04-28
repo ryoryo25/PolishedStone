@@ -1,7 +1,8 @@
 package ryoryo.polishedstone.config;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
@@ -20,18 +21,12 @@ public class GuiModConfig extends GuiConfig
 
 	private static List<IConfigElement> getConfigElements()
 	{
-		List<IConfigElement> list = new ArrayList<IConfigElement>();
-
-		for(EnumConfigCategory cat : EnumConfigCategory.values())
+		return Stream.of(EnumConfigCategory.values())
+		.map(cat ->
 		{
-			PSV2Core.config.getConfig().setCategoryComment(cat.name, cat.comment);
-//			for(IConfigElement elem : new ConfigElement(PSV2Core.config.getCofig().getCategory(cat.name)).getChildElements())
-//			{
-//				list.add(elem);
-//			}
-			list.add(new ConfigElement(PSV2Core.config.getConfig().getCategory(cat.name)));
-		}
-
-		return list;
+			PSV2Core.config.getConfig().setCategoryComment(cat.getDisplayName(), cat.getComment());
+			return new ConfigElement(PSV2Core.config.getConfig().getCategory(cat.getDisplayName()));
+		})
+		.collect(Collectors.toList());
 	}
 }
