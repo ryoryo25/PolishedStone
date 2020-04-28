@@ -1,12 +1,12 @@
 package ryoryo.polishedstone.event;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.function.Function;
 
+import com.google.common.collect.Maps;
+
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
@@ -23,19 +23,14 @@ import net.minecraft.entity.item.EntityMinecartEmpty;
 import net.minecraft.entity.item.EntityMinecartFurnace;
 import net.minecraft.entity.item.EntityMinecartHopper;
 import net.minecraft.entity.item.EntityMinecartTNT;
-import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemShears;
-import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -56,6 +51,17 @@ import ryoryo.polishedstone.util.ModCompat;
 
 public class ModPlayerInteractEvent
 {
+	private static final Map<Item, Function<EntityMinecartEmpty, EntityMinecart>> insert = Maps.newHashMap();
+
+	public ModPlayerInteractEvent()
+	{
+		insert.put(Item.getItemFromBlock(Blocks.CHEST), cart -> new EntityMinecartChest(cart.world, cart.posX, cart.posY, cart.posZ));
+		insert.put(Item.getItemFromBlock(Blocks.COMMAND_BLOCK), cart -> new EntityMinecartCommandBlock(cart.world, cart.posX, cart.posY, cart.posZ));
+		insert.put(Item.getItemFromBlock(Blocks.FURNACE), cart -> new EntityMinecartFurnace(cart.world, cart.posX, cart.posY, cart.posZ));
+		insert.put(Item.getItemFromBlock(Blocks.HOPPER), cart -> new EntityMinecartHopper(cart.world, cart.posX, cart.posY, cart.posZ));
+		insert.put(Item.getItemFromBlock(Blocks.TNT), cart -> new EntityMinecartTNT(cart.world, cart.posX, cart.posY, cart.posZ));
+	}
+
 	/**
 	 * cancel to break bedrock at y=0
 	 *
@@ -75,38 +81,36 @@ public class ModPlayerInteractEvent
 		}
 	}
 
-//	@SubscribeEvent
-//	public void onBlockLeftClick(PlayerInteractEvent.LeftClickBlock event)
-//	{
-//		if(player.isSneaking())
-//		{
-//			int r = 10;
-//			int posX = pos.getX();
-//			int posY = pos.getY();
-//			int posZ = pos.getZ();
-//			//				player.swingArm(player.getActiveHand());
-//			IBlockState original = world.getBlockState(pos);
-//
-//			if(!world.isRemote)
-//			{
-//				for(int x = posX - r; x <= posX + r; x++)
-//				{
-//					for(int y = posY - r; y <= posY + r; y++)
-//					{
-//						for(int z = posZ - r; z <= posZ + r; z++)
-//						{
-//							//								world.destroyBlock(new BlockPos(x, y, z), false);
-//							BlockPos posn = new BlockPos(x, y, z);
-//							if(original == world.getBlockState(posn))
-//								world.destroyBlock(posn, !Utils.isCreative(player));
-//						}
-//					}
-//				}
-//			}
-//		}
-//	}
-
-
+	//	@SubscribeEvent
+	//	public void onBlockLeftClick(PlayerInteractEvent.LeftClickBlock event)
+	//	{
+	//		if(player.isSneaking())
+	//		{
+	//			int r = 10;
+	//			int posX = pos.getX();
+	//			int posY = pos.getY();
+	//			int posZ = pos.getZ();
+	//			//				player.swingArm(player.getActiveHand());
+	//			IBlockState original = world.getBlockState(pos);
+	//
+	//			if(!world.isRemote)
+	//			{
+	//				for(int x = posX - r; x <= posX + r; x++)
+	//				{
+	//					for(int y = posY - r; y <= posY + r; y++)
+	//					{
+	//						for(int z = posZ - r; z <= posZ + r; z++)
+	//						{
+	//							//								world.destroyBlock(new BlockPos(x, y, z), false);
+	//							BlockPos posn = new BlockPos(x, y, z);
+	//							if(original == world.getBlockState(posn))
+	//								world.destroyBlock(posn, !Utils.isCreative(player));
+	//						}
+	//					}
+	//				}
+	//			}
+	//		}
+	//	}
 
 	@SubscribeEvent
 	public void onBlockRightClick(PlayerInteractEvent.RightClickBlock event)
@@ -123,23 +127,10 @@ public class ModPlayerInteractEvent
 		{
 			if(!held.isEmpty() && held.getItem() != null)
 			{
-				//道フロック作るやつ
-				if(held.getItem() instanceof ItemSpade)
-					EventHelper.createPath(world, pos, state, player, event, hand, held);
-
-				//雪のレイヤーを削る
-				if(held.getItem() instanceof ItemSpade)
-					EventHelper.reduceSnowLayer(world, pos, state, player, event, hand, held);
-
-				//背の高い花みたいに普通の花もできるように
-				if(held.getItem() instanceof ItemDye && held.getMetadata() == EnumDyeColor.WHITE.getDyeDamage())
-					EventHelper.copyPlants(world, pos, state, player, event, hand, held, random);
-
 				//テスト
-				if(held.getItem() == Items.COAL && held.getItemDamage() == 0)
+				if(held.isItemEqual(new ItemStack(Items.COAL, 1, 0)))
 				{
-					BlockPattern eventPattern = FactoryBlockPattern.start().aisle(new String[]
-					{ "QOQ", "OQO", "QOQ" }).where('Q', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.QUARTZ_BLOCK.getDefaultState().getBlock()))).where('O', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.OBSIDIAN))).build();
+					BlockPattern eventPattern = FactoryBlockPattern.start().aisle(new String[] { "QOQ", "OQO", "QOQ" }).where('Q', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.QUARTZ_BLOCK.getDefaultState().getBlock()))).where('O', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.OBSIDIAN))).build();
 					BlockPattern pattern = eventPattern;
 					BlockPattern.PatternHelper patternhelper = pattern.match(world, pos);
 
@@ -192,96 +183,88 @@ public class ModPlayerInteractEvent
 
 				if(held.getItem() == Items.STICK)
 				{
-//					world.destroyBlock(pos, true);
-//					world.destroyBlock(pos.north(), true);
-//					world.destroyBlock(pos.south(), true);
-//					world.destroyBlock(pos.west(), true);
-//					world.destroyBlock(pos.east(), true);
-//					world.destroyBlock(pos.north().west(), true);
-//					world.destroyBlock(pos.east().north(), true);
-//					world.destroyBlock(pos.south().east(), true);
-//					world.destroyBlock(pos.west().south(), true);
-//					BlockPattern eventPattern = FactoryBlockPattern.start().aisle(new String[]
-//					{ "BBBBB", "BBBBB", "BBBBB", "BBBBB", "BBBBB", }).where('B', BlockWorldState.hasState(BlockStateMatcher.forBlock(world.getBlockState(pos).getBlock()))).build();
-//					BlockPattern pattern = eventPattern;
-//					BlockPattern.PatternHelper patternhelper = pattern.match(world, pos);
-//
-//					if(patternhelper != null)
-//					{
-//						player.swingArm(hand);
-//
-//						if(!world.isRemote)
-//						{
-//							for(int k = 0; k < eventPattern.getPalmLength(); ++k)
-//							{
-//								for(int l = 0; l < eventPattern.getThumbLength(); ++l)
-//								{
-//									world.destroyBlock(patternhelper.translateOffset(k, l, 0).getPos(), false);
-//								}
-//							}
-//							event.setUseItem(Result.ALLOW);
-//						}
-//					}
+					//					world.destroyBlock(pos, true);
+					//					world.destroyBlock(pos.north(), true);
+					//					world.destroyBlock(pos.south(), true);
+					//					world.destroyBlock(pos.west(), true);
+					//					world.destroyBlock(pos.east(), true);
+					//					world.destroyBlock(pos.north().west(), true);
+					//					world.destroyBlock(pos.east().north(), true);
+					//					world.destroyBlock(pos.south().east(), true);
+					//					world.destroyBlock(pos.west().south(), true);
+					//					BlockPattern eventPattern = FactoryBlockPattern.start().aisle(new String[]
+					//					{ "BBBBB", "BBBBB", "BBBBB", "BBBBB", "BBBBB", }).where('B', BlockWorldState.hasState(BlockStateMatcher.forBlock(world.getBlockState(pos).getBlock()))).build();
+					//					BlockPattern pattern = eventPattern;
+					//					BlockPattern.PatternHelper patternhelper = pattern.match(world, pos);
+					//
+					//					if(patternhelper != null)
+					//					{
+					//						player.swingArm(hand);
+					//
+					//						if(!world.isRemote)
+					//						{
+					//							for(int k = 0; k < eventPattern.getPalmLength(); ++k)
+					//							{
+					//								for(int l = 0; l < eventPattern.getThumbLength(); ++l)
+					//								{
+					//									world.destroyBlock(patternhelper.translateOffset(k, l, 0).getPos(), false);
+					//								}
+					//							}
+					//							event.setUseItem(Result.ALLOW);
+					//						}
+					//					}
 
-//					int r = 5;
-//					int posX = pos.getX();
-//					int posY = pos.getY() + 10;
-//					int posZ = pos.getZ();
-//					player.swingArm(hand);
-//
-//					if(!world.isRemote)
-//					{
-//						for(int x = posX - r; x <= posX + r; x++)
-//						{
-//							for(int y = posY - r; y <= posY + r; y++)
-//							{
-//								for(int z = posZ - r; z <= posZ + r; z++)
-//								{
-////									world.destroyBlock(new BlockPos(x, y, z), false);
-//									BlockPos posn = new BlockPos(x, y, z);
-//									//空気ブロックならスルー
-//									if(world.isAirBlock(posn))
-//										world.setBlockState(posn, Blocks.DIRT.getDefaultState());
-//								}
-//							}
-//						}
-//
-//						event.setUseItem(Result.ALLOW);
-//					}
+					//					int r = 5;
+					//					int posX = pos.getX();
+					//					int posY = pos.getY() + 10;
+					//					int posZ = pos.getZ();
+					//					player.swingArm(hand);
+					//
+					//					if(!world.isRemote)
+					//					{
+					//						for(int x = posX - r; x <= posX + r; x++)
+					//						{
+					//							for(int y = posY - r; y <= posY + r; y++)
+					//							{
+					//								for(int z = posZ - r; z <= posZ + r; z++)
+					//								{
+					////									world.destroyBlock(new BlockPos(x, y, z), false);
+					//									BlockPos posn = new BlockPos(x, y, z);
+					//									//空気ブロックならスルー
+					//									if(world.isAirBlock(posn))
+					//										world.setBlockState(posn, Blocks.DIRT.getDefaultState());
+					//								}
+					//							}
+					//						}
+					//
+					//						event.setUseItem(Result.ALLOW);
+					//					}
 				}
 				//TODO ハシゴを下から伸ばせるように
-//				if(held.getItem() == Item.getItemFromBlock(Blocks.LADDER) && state.getBlock() == Blocks.LADDER)
-//				{
-//					int meta = state.getBlock().getMetaFromState(state);
-//					int l = 0;
-//					l = this.thisLadderLength(world, pos);
-//					BlockPos posu = pos.up(l);
-//					if(l > 0 && world.isAirBlock(posu)/* && Blocks.LADDER.canPlaceBlockAt(world, posu)*/)
-//					{
-//						player.swingArm(hand);
-//						world.playSound(player, pos, SoundEvents.BLOCK_LADDER_PLACE, SoundCategory.BLOCKS, 1.0F, 0.8F);
-//						if(!world.isRemote)
-//						{
-//							world.setBlockState(posu, Blocks.LADDER.getDefaultState().withProperty(BlockLadder.FACING, state.getValue(BlockLadder.FACING)));
-//							if(!Utils.isCreative(player))
-//							{
-//								held.stackSize--;
-//							}
-//							event.setResult(Result.ALLOW);
-//						}
-//					}
-//				}
+				//				if(held.getItem() == Item.getItemFromBlock(Blocks.LADDER) && state.getBlock() == Blocks.LADDER)
+				//				{
+				//					int meta = state.getBlock().getMetaFromState(state);
+				//					int l = 0;
+				//					l = this.thisLadderLength(world, pos);
+				//					BlockPos posu = pos.up(l);
+				//					if(l > 0 && world.isAirBlock(posu)/* && Blocks.LADDER.canPlaceBlockAt(world, posu)*/)
+				//					{
+				//						player.swingArm(hand);
+				//						world.playSound(player, pos, SoundEvents.BLOCK_LADDER_PLACE, SoundCategory.BLOCKS, 1.0F, 0.8F);
+				//						if(!world.isRemote)
+				//						{
+				//							world.setBlockState(posu, Blocks.LADDER.getDefaultState().withProperty(BlockLadder.FACING, state.getValue(BlockLadder.FACING)));
+				//							if(!Utils.isCreative(player))
+				//							{
+				//								held.stackSize--;
+				//							}
+				//							event.setResult(Result.ALLOW);
+				//						}
+				//					}
+				//				}
 			}
 			else
 			{
-			}
-
-			//リスポーン地点をベッド右クリック時に夜じゃなくてもセット
-			if(!world.isRemote && world.provider.canRespawnHere() && world.getBiomeForCoordsBody(pos) != Biomes.HELL && world.getBiomeForCoordsBody(pos) != Biomes.SKY && world.provider.isSurfaceWorld() && player.isEntityAlive() && state.getBlock() instanceof BlockBed)
-			{
-				player.setSpawnPoint(pos, false);
-				event.setCanceled(true);
-				Utils.sendChat(player, "Setted Respawn Point!");
 			}
 		}
 	}
@@ -353,104 +336,70 @@ public class ModPlayerInteractEvent
 		World world = event.getWorld();
 		Random random = new Random();
 
-		if(player != null && target != null)
+		if(player != null && target != null && !held.isEmpty() && !world.isRemote)
 		{
-			if(!world.isRemote && !held.isEmpty())
+			//ハサミに幸運つけると羊毛が増えるように
+			if(held.getItem() instanceof ItemShears && held.isItemEnchanted())
 			{
-				//ハサミに幸運つけると羊毛が増えるように
-				if(held.getItem() instanceof ItemShears && held.hasTagCompound() && held.isItemEnchanted())
+				NBTTagList enchants = held.getEnchantmentTagList();
+				if(target instanceof EntitySheep)
 				{
-					NBTTagList enchants = held.getEnchantmentTagList();
-					if(target instanceof EntitySheep/*IShearable*/)
+					EntitySheep sheep = (EntitySheep) target;
+					for(int i = 0; i < enchants.tagCount(); i++)
 					{
-						//						IShearable shearable = (IShearable) target;
-						EntitySheep sheep = (EntitySheep) target;
-						for(int i = 0; i < enchants.tagCount(); i++)
-						{
-							NBTTagCompound enchant = ((NBTTagList) enchants).getCompoundTagAt(i);
-							if(enchant.getInteger("id") == LibEnchantId.FORTUNE && sheep.isShearable(held, world, sheep.getPosition()))
-							{
-								int level = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, held);
-								int quantity = random.nextInt(level) * (level + 2);
-								sheep.entityDropItem(new ItemStack(Blocks.WOOL, quantity, sheep.getFleeceColor().getMetadata()), 1.0F);
-							}
-						}
-					}
-				}
-				//空のスポーンエッグをmobに右クリックでバニラのスポーンエッグがあるやつだったらそれをドロップする。
-				else if(held.getItem() == Items.SPAWN_EGG && (!held.hasTagCompound() || !held.getTagCompound().hasKey("EntityTag")))
-				{
-					if(target instanceof EntityLiving)
-					{
-						EntityLiving targetLiving = (EntityLiving) target;
-						if(Utils.hasSpawnEgg(targetLiving))
-						{
-							if(!Utils.isCreative(player))
-								held.shrink(1);
+						NBTTagCompound enchant = enchants.getCompoundTagAt(i);
 
-							ItemStack newEgg = Utils.getSpawnEggItemStack(targetLiving.getClass(), 1);
-							targetLiving.entityDropItem(newEgg, 1.0F);
-							targetLiving.setDead();
+						if(enchant.getInteger("id") == LibEnchantId.FORTUNE && sheep.isShearable(held, world, sheep.getPosition()))
+						{
+							int level = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, held);
+							int quantity = random.nextInt(level) * (level + 2);
+							sheep.entityDropItem(new ItemStack(Blocks.WOOL, quantity, sheep.getFleeceColor().getMetadata()), 1.0F);
+
+							event.setResult(Result.ALLOW);
 						}
 					}
 				}
 			}
 
-			//サドルの着いたブタにシフト右クリックで外せるように
-			if(target instanceof EntityPig && player.isSneaking())
+			//空のスポーンエッグをmobに右クリックでバニラのスポーンエッグがあるやつだったらそれをドロップする。
+			if(held.getItem() == Items.SPAWN_EGG && (!held.hasTagCompound() || !held.getTagCompound().hasKey("EntityTag")))
 			{
-				EntityPig pig = (EntityPig) target;
-				if(!world.isRemote && pig.getSaddled())
+				if(target instanceof EntityLiving)
 				{
-					pig.dropItem(Items.SADDLE, 1);
-					pig.setSaddled(false);
+					EntityLiving targetLiving = (EntityLiving) target;
+					if(Utils.hasSpawnEgg(targetLiving))
+					{
+						if(!Utils.isCreative(player))
+							held.shrink(1);
+
+						ItemStack newEgg = Utils.getSpawnEggItemStack(targetLiving.getClass(), 1);
+						targetLiving.entityDropItem(newEgg, 1.0F);
+						targetLiving.setDead();
+
+						event.setResult(Result.ALLOW);
+					}
 				}
-
-				pig.world.playSound(player, pig.posX, pig.posY, pig.posZ, SoundEvents.ENTITY_PIG_SADDLE, SoundCategory.NEUTRAL, 0.5F, 0.5F);
 			}
-
 		}
-
-		//TODO EntityItemをクリックしたい。
-		//		if(target != null && target instanceof EntityItem)
-		//		{
-		//			EntityItem entityItem = (EntityItem) target;
-		//			ItemStack itemStack = entityItem.getEntityItem();
-		//			if(itemStack != null && itemStack.getItem() != null && itemStack.getItem() == Items.ENDER_EYE && !world.isRemote)
-		//			{
-		//				entityItem.setDead();
-		//				world.spawnEntityInWorld(new EntityLightningBolt(world, entityItem.posX, entityItem.posY, entityItem.posZ, false));
-		//			}
-		//		}
 	}
 
 	//トロッコにTNTとか持って右クリックするとそのトロッコになるように
 	@SubscribeEvent
 	public void onInteractMinecart(MinecartInteractEvent event)
 	{
-		Map<Item, Function<EntityMinecartEmpty, EntityMinecart>> insert = new HashMap<Item, Function<EntityMinecartEmpty, EntityMinecart>>();
-
 		EntityPlayer player = event.getPlayer();
 		ItemStack held = event.getItem();
 		World world = player.world;
 		EntityMinecart cart = event.getMinecart();
-		double x = cart.posX;
-		double y = cart.posY;
-		double z = cart.posZ;
 
 		if(!ModCompat.COMPAT_QUARK)
 		{
-			insert.put(Item.getItemFromBlock(Blocks.CHEST), EntityMinecartEmpty -> new EntityMinecartChest(world, x, y, z));
-			insert.put(Item.getItemFromBlock(Blocks.COMMAND_BLOCK), EntityMinecartEmpty -> new EntityMinecartCommandBlock(world, x, y, z));
-			insert.put(Item.getItemFromBlock(Blocks.FURNACE), EntityMinecartEmpty -> new EntityMinecartFurnace(world, x, y, z));
-			insert.put(Item.getItemFromBlock(Blocks.HOPPER), EntityMinecartEmpty -> new EntityMinecartHopper(world, x, y, z));
-			insert.put(Item.getItemFromBlock(Blocks.TNT), EntityMinecartEmpty -> new EntityMinecartTNT(world, x, y, z));
-
 			if(cart instanceof EntityMinecartEmpty && cart.getPassengers().isEmpty())
 			{
 				if(!held.isEmpty() && insert.containsKey(held.getItem()))
 				{
 					player.swingArm(event.getHand());
+					cart.world.playSound(player, cart.posX, cart.posY, cart.posZ, SoundEvents.ITEM_ARMOR_EQUIP_IRON, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 					if(!world.isRemote)
 					{
 						cart.setDead();
@@ -458,11 +407,8 @@ public class ModPlayerInteractEvent
 
 						event.setCanceled(true);
 						if(!Utils.isCreative(player))
-						{
 							held.shrink(1);
-							//							if(held.stackSize <= 0)
-							//								player.setHeldItem(event.getHand(), null);
-						}
+
 						event.setResult(Result.ALLOW);
 					}
 				}
