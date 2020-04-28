@@ -1,5 +1,6 @@
 package ryoryo.polishedstone.event;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -13,6 +14,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
@@ -45,21 +47,16 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.WorldInfo;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
-import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate;
-import net.minecraftforge.event.terraingen.PopulateChunkEvent;
-import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -67,7 +64,6 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import ryoryo.polishedlib.util.ArithmeticUtils;
 import ryoryo.polishedlib.util.NumericalConstant;
@@ -76,7 +72,6 @@ import ryoryo.polishedlib.util.enums.EnumColor;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.config.ModConfig;
 import ryoryo.polishedstone.util.LibNBTTag;
-import ryoryo.polishedstone.util.ModCompat;
 import ryoryo.polishedstone.util.References;
 
 public class ModEventHandler
@@ -104,11 +99,9 @@ public class ModEventHandler
 			//松明持ってたら砂とか早く壊せる
 			if(block instanceof BlockFalling)
 			{
-				for(ItemStack stack : Utils.getHeldItemStacks(player))
-				{
-					if(!stack.isEmpty() && stack.getItem() == Item.getItemFromBlock(Blocks.TORCH))
-						event.setNewSpeed(original * 20.0F);
-				}
+				Utils.getHeldItemStacks(player).stream()
+				.filter(stack -> stack.isItemEqual(new ItemStack(Blocks.TORCH)))
+				.forEach(stack -> event.setNewSpeed(original * 20.0F));
 			}
 		}
 	}
@@ -173,127 +166,102 @@ public class ModEventHandler
 
 		if(!data.getBoolean(LibNBTTag.STARTING_INVENTORY) && !ModConfig.startingInventory.isEmpty())
 		{
-			for(String loc : ModConfig.startingInventory)
-			{
-				Item item = Item.REGISTRY.getObject(new ResourceLocation(loc));
-				Utils.giveItemToPlayer(player, new ItemStack(item, 1));
-			}
+			ModConfig.startingInventory.stream()
+			.map(location -> Item.REGISTRY.getObject(new ResourceLocation(location)))
+			.forEach(item -> Utils.giveItemToPlayer(player, new ItemStack(item, 1)));
 
 			data.setBoolean(LibNBTTag.STARTING_INVENTORY, true);
 			tag.setTag(EntityPlayer.PERSISTED_NBT_TAG, data);
 		}
-	}
 
-	@SubscribeEvent
-	public void onPlayerTick(PlayerTickEvent event)
-	{
-		EntityPlayer player = event.player;
-		World world = player.world;
-
-		//プレイヤーのリーチを調整。
-		if(ModConfig.extendReach)
-		{
-			//5.0(default value) + extra reach
-			if(Utils.isCreative(player))
-			{
-				//default -> 5
-				//10ブロック先(間に9ブロック)まで届くように
-				player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).removeAllModifiers();
-				player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).applyModifier(new AttributeModifier(References.EXTRA_REACH, "Weapon modifier", 5.0D, 0));
-			}
-			else if(Utils.isSurvival(player))
-			{
-				//default -> 4.5
-				//5ブロック先(間に4ブロック)まで届くように
-				player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).removeAllModifiers();
-				player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).applyModifier(new AttributeModifier(References.EXTRA_REACH, "Weapon modifier", 0.5D, 0));
-			}
-		}
-
-		//速く飛べる
-		if(Utils.isCreative(player) && player.isSprinting())
-		{
-			player.capabilities.setFlySpeed(0.05F/*default*/ * ModConfig.creativeFlySpeedMultiply);
-		}
 		//ブロック置くスピードと歩く速さを合わせる
-		player.capabilities.setPlayerWalkSpeed(0.1F/*default*/ * ArithmeticUtils.percentToDecimal(116.0F));
-
-		//PickUpWidely
-		if(!world.isRemote && EventHelper.pickUpWidelyToggle)
-		{
-			float hor = ModConfig.horizontalRangePUW;
-			float ver = ModConfig.verticalRangePUW;
-			AxisAlignedBB aabb = new AxisAlignedBB(player.posX, player.posY, player.posZ, player.posX, player.posY, player.posZ).grow(hor, ver, hor);
-			List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, aabb);
-			List<EntityXPOrb> xpOrbs = world.getEntitiesWithinAABB(EntityXPOrb.class, aabb);
-			List<EntityArrow> arrows = world.getEntitiesWithinAABB(EntityArrow.class, aabb);
-
-			if(!items.isEmpty())
-			{
-				for(EntityItem item : items)
-				{
-					if(!item.isDead && !item.cannotPickup())
-						item.onCollideWithPlayer(player);
-				}
-			}
-
-			if(ModConfig.pickUpXpOrbPUW && !xpOrbs.isEmpty())
-			{
-				for(EntityXPOrb xpOrb : xpOrbs)
-				{
-					if(!xpOrb.isDead)
-						xpOrb.onCollideWithPlayer(player);
-				}
-			}
-
-			if(ModConfig.pickUpArrowPUW && !arrows.isEmpty())
-			{
-				for(EntityArrow arrow : arrows)
-				{
-					if(!arrow.isDead)
-						arrow.onCollideWithPlayer(player);
-				}
-			}
-		}
+		//0.1(default value) * 116%
+		player.capabilities.setPlayerWalkSpeed(0.1F * ArithmeticUtils.percentToDecimal(116.0F));
 	}
 
 	@SubscribeEvent
-	public void initLakeGen(PopulateChunkEvent.Populate event)
+	public void onPlayerUpdate(LivingUpdateEvent event)
 	{
-		//森林バイオームとかに溶岩湖が出来ないように。
-		if(!ModCompat.COMPAT_WILDFIRE)
-		{
-			if(event.getType() == Populate.EventType.LAVA && event.getResult() == Result.DEFAULT)
-			{
-				BlockPos pos = new BlockPos(event.getChunkX() * 16 + 8, 64, event.getChunkZ() * 16 + 8);
-				Biome biome = event.getWorld().getBiomeForCoordsBody(pos);
-				if(BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST) || BiomeDictionary.hasType(biome, BiomeDictionary.Type.DENSE))
-				{
-					event.setResult(Result.DENY);
-				}
-			}
-		}
-		else
-			PSV2Core.LOGGER.info("No More Forest Fire is loaded.");
-	}
+		EntityLivingBase target = event.getEntityLiving();
 
-	@SubscribeEvent
-	public void initFluid(DecorateBiomeEvent.Decorate event)
-	{
-		//森林バイオームとかに溶岩湖が出来ないように。
-		if(!ModCompat.COMPAT_WILDFIRE)
+		if(target instanceof EntityPlayer)
 		{
-			if(event.getType() == Decorate.EventType.LAKE_LAVA && event.getResult() == Result.DEFAULT)
+			EntityPlayer player = (EntityPlayer) target;
+			World world = player.world;
+
+			//プレイヤーのリーチを調整。
+			if(ModConfig.extendReach)
 			{
-				Biome biome = event.getWorld().getBiomeForCoordsBody(event.getPos());
-				if(BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST) || BiomeDictionary.hasType(biome, BiomeDictionary.Type.DENSE))
+				double reachDistance = player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).getAttributeValue();
+
+				//5.0(default value) + extra reach
+				if(Utils.isCreative(player) && reachDistance != 10.0D)
 				{
-					event.setResult(Result.DENY);
+					//default -> 10.0
+					//10ブロック先(間に9ブロック)まで届くように
+					player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).removeModifier(References.EXTRA_REACH);
+					player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).applyModifier(new AttributeModifier(References.EXTRA_REACH, "Reach distance modifier", 5.0D, 0));
+				}
+
+				if(Utils.isSurvival(player) && reachDistance != 5.5D)
+				{
+					//default -> 5.5
+					//5ブロック先(間に4ブロック)まで届くように
+					player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).removeModifier(References.EXTRA_REACH);
+					player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).applyModifier(new AttributeModifier(References.EXTRA_REACH, "Reach distance modifier", 0.5D, 0));
+				}
+			}
+
+			//速く飛べる
+			//0.05(default value) * factor
+			if(Utils.isCreative(player) && player.capabilities.getFlySpeed() != 0.05F * ModConfig.creativeFlySpeedMultiply)
+			{
+				player.capabilities.setFlySpeed(0.05F * ModConfig.creativeFlySpeedMultiply);
+			}
+			if(!Utils.isCreative(player) && player.capabilities.getFlySpeed() != 0.05F)
+			{
+				player.capabilities.setFlySpeed(0.05F);
+			}
+
+			if (player.moveForward == 0 && player.moveStrafing == 0)
+			{
+				player.motionX *= 0.5;
+				player.motionZ *= 0.5;
+			}
+//			player.capabilities.setFlySpeed(0.022F);
+
+			//PickUpWidely
+			if(!world.isRemote && EventHelper.pickUpWidelyToggle)
+			{
+				float hor = ModConfig.horizontalRangePUW;
+				float ver = ModConfig.verticalRangePUW;
+				AxisAlignedBB aabb = new AxisAlignedBB(player.posX, player.posY, player.posZ, player.posX, player.posY, player.posZ).grow(hor, ver, hor);
+				List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, aabb);
+				List<EntityXPOrb> xpOrbs = world.getEntitiesWithinAABB(EntityXPOrb.class, aabb);
+				List<EntityArrow> arrows = world.getEntitiesWithinAABB(EntityArrow.class, aabb);
+
+				if(!items.isEmpty())
+				{
+					items.stream()
+					.filter(item -> (!item.isDead && !item.cannotPickup()))
+					.forEach(item -> item.onCollideWithPlayer(player));
+				}
+
+				if(ModConfig.pickUpXpOrbPUW && !xpOrbs.isEmpty())
+				{
+					xpOrbs.stream()
+					.filter(xpOrb -> !xpOrb.isDead)
+					.forEach(xpOrb -> xpOrb.onCollideWithPlayer(player));
+				}
+
+				if(ModConfig.pickUpArrowPUW && !arrows.isEmpty())
+				{
+					arrows.stream()
+					.filter(arrow -> !arrow.isDead)
+					.forEach(arrow -> arrow.onCollideWithPlayer(player));
 				}
 			}
 		}
-		else
-			PSV2Core.LOGGER.info("No More Forest Fire is loaded.");
 	}
 
 	@SubscribeEvent
@@ -397,9 +365,7 @@ public class ModEventHandler
 			entity.addTag("dropped_by_player");
 
 			//TODO アイテム捨てたときにポコッて音出したい
-			if(world.isRemote)
-				world.playSound(player, player.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.3F, 10.0F);
-
+			world.playSound(player, player.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.3F, 10.0F);
 			player.swingArm(EnumHand.MAIN_HAND);
 		}
 	}
@@ -423,13 +389,9 @@ public class ModEventHandler
 					// ドロップアイテムの書き換え
 					for(ItemStack i : oredict)
 					{
-						Item replace = i.getItem();
-						//						if(!Comparator.UNIFY.compareDisallow(replace))
-						//						{
-						ItemStack newItem = new ItemStack(replace, stack.getCount(), i.getMetadata(), i.getTagCompound());
+						ItemStack newItem = new ItemStack(i.getItem(), stack.getCount(), i.getMetadata(), i.getTagCompound());
 						entityItem.setItem(newItem);
 						break;
-						//							}
 					}
 				}
 
@@ -442,7 +404,6 @@ public class ModEventHandler
 			if(entity instanceof EntityPig)
 			{
 				EntityPig pig = (EntityPig) entity;
-
 				pig.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
 			}
 		}
@@ -520,10 +481,12 @@ public class ModEventHandler
 			tooltip.add(TextFormatting.DARK_GRAY + "Ore Dictionary Entries" + ":");
 			if(oreIDs.length > 0)
 			{
-				for(int oreID : oreIDs)
-				{
-					tooltip.add(TextFormatting.DARK_GRAY + " - " + OreDictionary.getOreName(oreID));
-				}
+				//Stream.of(oreIDs)がなぜかint[]のstreamになっちゃう
+				//プリミティブ配列だとStream<int[]>になっちゃうみたい
+				//プリミティブ型の場合はIntStreamとか個別の物が使われてるから
+				//Ref: https://www.codeflow.site/ja/article/java8__java-how-to-convert-array-to-stream
+				Arrays.stream(oreIDs).forEach(oreID ->
+				tooltip.add(TextFormatting.DARK_GRAY + " - " + OreDictionary.getOreName(oreID)));
 			}
 			else
 				tooltip.add(TextFormatting.DARK_GRAY + " - There is No Ore Dictionary Entries.");
@@ -587,6 +550,22 @@ public class ModEventHandler
 			event.setAction(new ActionResult<ItemStack>(EnumActionResult.SUCCESS, bow));
 		}
 	}
+
+//	@SubscribeEvent
+//	public void test(PlayerInteractEvent.RightClickBlock event)
+//	{
+//		EntityPlayer player = event.getEntityPlayer();
+//		ItemStack held = event.getItemStack();
+//		BlockPos targetPos = event.getPos().up();
+//		World world = event.getWorld();
+//
+//		if(!held.isEmpty() && held.getItem() == Items.STICK)
+//		{
+//			world.setBlockState(targetPos, Blocks.DIAMOND_BLOCK.getDefaultState());
+//			world.setBlockState(Utils.getRightPos(targetPos, player.getHorizontalFacing()), Blocks.DIAMOND_BLOCK.getDefaultState());
+//			world.setBlockState(Utils.getLeftPos(targetPos, player.getHorizontalFacing()), Blocks.DIAMOND_BLOCK.getDefaultState());
+//		}
+//	}
 
 	//	@SubscribeEvent
 	//	public void onEntityDied(LivingDeathEvent event)
