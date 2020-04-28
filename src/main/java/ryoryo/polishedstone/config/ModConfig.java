@@ -450,24 +450,31 @@ public class ModConfig
 
 	public static enum EnumConfigCategory
 	{
-		GENERAL("general", "General Settings"),
-		WORLD_GEN("world_gen", "World Generation Settings"),
-		MOB_DROP("mob_drop", "Mob Drop Settings"),
-		CLIENT("client", "Client Settings"),
-		PUW("pick_up_widely", "PickUpWidly Settings"),;
+		GENERAL("general", "General Settings", "General Settings"),
+		WORLD_GEN("world_gen", "World Generation Settings", "World Generation Settings"),
+		MOB_DROP("mob_drop", "Mob Drop Settings", "Mob Drop Settings"),
+		CLIENT("client", "Client Settings", "Client Settings"),
+		PUW("pick_up_widely", "PickUpWidly Settings", "PickUpWidly Settings"),;
 
-		public final String name;
-		public final String comment;
+		private final String name;
+		private final String displayName;
+		private final String comment;
 
-		EnumConfigCategory(String name, String comment)
+		EnumConfigCategory(String name, String displayName, String comment)
 		{
 			this.name = name;
+			this.displayName = displayName;
 			this.comment = comment;
 		}
 
 		public String getName()
 		{
 			return this.name;
+		}
+
+		public String getDisplayName()
+		{
+			return this.displayName;
 		}
 
 		public String getComment()
