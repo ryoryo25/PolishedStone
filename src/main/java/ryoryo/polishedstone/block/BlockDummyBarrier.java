@@ -68,7 +68,7 @@ public class BlockDummyBarrier extends BlockBarrier
 			EntityPlayer player = Utils.getPlayer();
 			if(player != null)
 			{
-				ItemStack[] held = Utils.getHeldItemStacks(player);
+				List<ItemStack> held = Utils.getHeldItemStacks(player);
 
 				for(ItemStack stack : held)
 				{

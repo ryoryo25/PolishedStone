@@ -1,5 +1,7 @@
 package ryoryo.polishedstone.block;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.SoundType;
@@ -42,8 +44,7 @@ public class BlockLockableDoor extends BlockBaseDoor
 	@Override
 	public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos)
 	{
-		ItemStack[] items = new ItemStack[]
-		{ player.getHeldItemMainhand(), player.getHeldItemOffhand() };
+		List<ItemStack> items = Utils.getHeldItemStacks(player);
 
 		for(ItemStack stack : items)
 		{
@@ -60,7 +61,7 @@ public class BlockLockableDoor extends BlockBaseDoor
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		ItemStack[] items = Utils.getHeldItemStacks(player);
+		List<ItemStack> items = Utils.getHeldItemStacks(player);
 
 		for(ItemStack stack : items)
 		{

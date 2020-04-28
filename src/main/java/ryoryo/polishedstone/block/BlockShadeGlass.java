@@ -1,5 +1,7 @@
 package ryoryo.polishedstone.block;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -95,7 +97,7 @@ public class BlockShadeGlass extends BlockModBase
 	@Override
 	public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos)
 	{
-		ItemStack[] items = Utils.getHeldItemStacks(player);
+		List<ItemStack> items = Utils.getHeldItemStacks(player);
 
 		for(ItemStack stack : items)
 		{

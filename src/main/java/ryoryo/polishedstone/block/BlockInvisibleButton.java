@@ -1,5 +1,6 @@
 package ryoryo.polishedstone.block;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -147,7 +148,7 @@ public class BlockInvisibleButton extends BlockButton
 			EntityPlayer player = Utils.getPlayer();
 			if(player != null)
 			{
-				ItemStack[] held = Utils.getHeldItemStacks(player);
+				List<ItemStack> held = Utils.getHeldItemStacks(player);
 
 				for(ItemStack stack : held)
 				{
