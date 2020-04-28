@@ -78,18 +78,14 @@ public class ModLivingDropsEvent
 				entity.dropItem(Items.BONE, EventHelper.getRandom(ModConfig.skeletonBonesMax, ModConfig.skeletonBonesMin));
 
 				if(mob.getHeldItemMainhand().getItem() instanceof ItemBow)
-				{
 					entity.dropItem(Items.ARROW, EventHelper.getRandom(ModConfig.bowEnemiesArrowMax, ModConfig.bowEnemiesArrowMin));
-				}
 
 				if(dropHead)
 					entity.entityDropItem(new ItemStack(Items.SKULL, 1, 0), 1);
 			}
 
 			if(entity instanceof EntitySpider || entity instanceof EntityCaveSpider)
-			{
 				entity.dropItem(Items.STRING, EventHelper.getRandom(ModConfig.spiderStringMax, ModConfig.spiderStringMin));
-			}
 
 			if(entity instanceof EntityCreeper && dropHead)
 				entity.entityDropItem(new ItemStack(Items.SKULL, 1, 4), 1);
