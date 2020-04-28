@@ -105,6 +105,7 @@ import ryoryo.polishedstone.event.ModEventHandler;
 import ryoryo.polishedstone.event.ModLivingDropsEvent;
 import ryoryo.polishedstone.event.ModLivingEvent;
 import ryoryo.polishedstone.event.ModPlayerInteractEvent;
+import ryoryo.polishedstone.event.RightClickBlockEvent;
 import ryoryo.polishedstone.item.ItemBedrockCore;
 import ryoryo.polishedstone.item.ItemDamageFood;
 import ryoryo.polishedstone.item.ItemInvincibleBow;
@@ -144,6 +145,7 @@ import ryoryo.polishedstone.util.RecipeUtils;
 import ryoryo.polishedstone.util.References;
 import ryoryo.polishedstone.world.dimension.DimensionRegistry;
 import ryoryo.polishedstone.world.gen.BiomeDecorationHandler;
+import ryoryo.polishedstone.world.gen.LavaLakeGenHandler;
 import ryoryo.polishedstone.world.gen.WorldGenBlock;
 
 public class Register
@@ -968,8 +970,10 @@ public class Register
 		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
 		MinecraftForge.EVENT_BUS.register(new ModLivingDropsEvent());
 		MinecraftForge.EVENT_BUS.register(new ModPlayerInteractEvent());
+		MinecraftForge.EVENT_BUS.register(new RightClickBlockEvent());
 		MinecraftForge.EVENT_BUS.register(new ModLivingEvent());
 		MinecraftForge.TERRAIN_GEN_BUS.register(new BiomeDecorationHandler());
+		MinecraftForge.TERRAIN_GEN_BUS.register(new LavaLakeGenHandler());
 	}
 
 	@SideOnly(Side.CLIENT)
