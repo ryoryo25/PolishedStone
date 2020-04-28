@@ -61,9 +61,7 @@ public class ModLivingEvent
 			hasArmor = hasArmor && Utils.isEquippedArmor(player, Register.ITEM_ARMOR_INVINCIBLE_BOOTS);
 
 			if(hasArmor)
-			{
 				event.setCanceled(true);
-			}
 		}
 	}
 
