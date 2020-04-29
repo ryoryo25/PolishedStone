@@ -25,9 +25,9 @@ public class ModConfig
 	}
 
 	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs)
+	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
 	{
-		if(eventArgs.getModID().equals(References.MOD_ID))
+		if(event.getModID().equals(References.MOD_ID))
 			loadConfigs();
 	}
 
