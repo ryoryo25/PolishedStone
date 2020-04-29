@@ -46,4 +46,9 @@ public class PSLoadingPlugin implements IFMLLoadingPlugin
 	{
 		return IN_MCP;
 	}
+
+	public static String toSlash(String name)
+	{
+		return name.replace(".", "/");
+	}
 }
