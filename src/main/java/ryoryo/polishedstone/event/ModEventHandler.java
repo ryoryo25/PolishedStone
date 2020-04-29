@@ -9,8 +9,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockGlowstone;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -34,14 +32,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
@@ -56,7 +51,6 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -491,51 +485,6 @@ public class ModEventHandler
 			else
 				tooltip.add(TextFormatting.DARK_GRAY + " - There is No Ore Dictionary Entries.");
 		}
-	}
-
-	//TODO
-	@SubscribeEvent
-	public void placePumpkinAnywhere(PlayerInteractEvent.RightClickBlock event)
-	{
-		EntityPlayer player = event.getEntityPlayer();
-		ItemStack held = event.getItemStack();
-		World world = event.getWorld();
-		BlockPos targetingPos = event.getPos();
-		BlockPos placePos = targetingPos.offset(event.getFace());
-		Block block = world.getBlockState(placePos).getBlock();
-		Vec3d hitVec = event.getHitVec();
-
-//		Utils.addChat(player, String.valueOf(world.isRemote));
-
-		if(player != null && !held.isEmpty() && held.getItem() != null)
-		{
-			if(held.getItem() == Item.getItemFromBlock(Blocks.PUMPKIN))
-			{
-				if(!world.isSideSolid(placePos.down(), EnumFacing.UP) && block.isReplaceable(world, placePos))
-				{
-					IBlockState state = Blocks.PUMPKIN.getStateForPlacement(world, placePos, event.getFace(), (float) hitVec.x, (float) hitVec.y, (float) hitVec.z, 0, player);
-					SoundType soundtype = Blocks.PUMPKIN.getSoundType(state, world, placePos, player);
-					world.playSound(player, targetingPos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-					player.swingArm(event.getHand());
-
-					if(!world.isRemote)
-					{
-						Utils.sendChat(player, "wow");
-						world.setBlockState(placePos, state);
-						event.setUseItem(Result.ALLOW);
-					}
-				}
-			}
-		}
-
-//		Utils.addChat(player, "held: " + String.valueOf(!held.isEmpty()));
-//
-//		if(event.getSide() == Side.CLIENT)
-//			Utils.addChat(player, "client side");
-//		else
-//			Utils.addChat(player, "server side");
-//
-//		Utils.addChat(player, "-----------------");
 	}
 
 	@SubscribeEvent
