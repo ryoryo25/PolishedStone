@@ -106,6 +106,7 @@ import ryoryo.polishedstone.event.ModEventHandler;
 import ryoryo.polishedstone.event.ModLivingDropsEvent;
 import ryoryo.polishedstone.event.ModLivingEvent;
 import ryoryo.polishedstone.event.ModPlayerInteractEvent;
+import ryoryo.polishedstone.event.PlayerMoveSpeedHandler;
 import ryoryo.polishedstone.event.RightClickBlockEvent;
 import ryoryo.polishedstone.item.ItemBedrockCore;
 import ryoryo.polishedstone.item.ItemDamageFood;
@@ -976,6 +977,7 @@ public class Register
 		MinecraftForge.EVENT_BUS.register(new ModPlayerInteractEvent());
 		MinecraftForge.EVENT_BUS.register(new RightClickBlockEvent());
 		MinecraftForge.EVENT_BUS.register(new ModLivingEvent());
+		MinecraftForge.EVENT_BUS.register(new PlayerMoveSpeedHandler());
 		MinecraftForge.TERRAIN_GEN_BUS.register(new BiomeDecorationHandler());
 		MinecraftForge.TERRAIN_GEN_BUS.register(new LavaLakeGenHandler());
 	}
