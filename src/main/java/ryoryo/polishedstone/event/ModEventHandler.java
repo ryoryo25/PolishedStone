@@ -167,10 +167,6 @@ public class ModEventHandler
 			data.setBoolean(LibNBTTag.STARTING_INVENTORY, true);
 			tag.setTag(EntityPlayer.PERSISTED_NBT_TAG, data);
 		}
-
-		//ブロック置くスピードと歩く速さを合わせる
-		//0.1(default value) * 116%
-		player.capabilities.setPlayerWalkSpeed(0.1F * ArithmeticUtils.percentToDecimal(116.0F));
 	}
 
 	@SubscribeEvent
@@ -217,7 +213,8 @@ public class ModEventHandler
 				player.capabilities.setFlySpeed(0.05F);
 			}
 
-			if (player.moveForward == 0 && player.moveStrafing == 0)
+			//cancel inertia
+			if (player.moveForward == 0 && player.moveStrafing == 0 && player.capabilities.isFlying)
 			{
 				player.motionX *= 0.5;
 				player.motionZ *= 0.5;
