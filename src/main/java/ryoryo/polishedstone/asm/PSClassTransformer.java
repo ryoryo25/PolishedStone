@@ -9,7 +9,6 @@ public class PSClassTransformer implements IClassTransformer, Opcodes
 	public PSClassTransformer()
 	{
 		PSLoadingPlugin.LOGGER.info("Starting Class Transformation");
-		new PSHooks();
 	}
 
 	@Override
