@@ -134,6 +134,7 @@ import ryoryo.polishedstone.itemblock.ItemBlockStreetGutter;
 import ryoryo.polishedstone.itemblock.ItemBlockTemporary;
 import ryoryo.polishedstone.itemblock.ItemBlockThreePillars;
 import ryoryo.polishedstone.itemblock.ItemBlockVendingMachine;
+import ryoryo.polishedstone.network.PacketHandler;
 import ryoryo.polishedstone.tileenttiy.TileEntitySlimeRemovalTorch;
 import ryoryo.polishedstone.util.ArmorMaterials;
 import ryoryo.polishedstone.util.EnumCropType;
@@ -590,6 +591,9 @@ public class Register
 				EventHelper.fences.add(block);
 			}
 		}
+
+		//Packet
+		PacketHandler.init();
 	}
 
 	public static void init()
