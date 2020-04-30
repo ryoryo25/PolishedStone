@@ -11,13 +11,13 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketPlacePumpkinAnywhere implements IMessage
+public class PacketSyncFlySpeed implements IMessage
 {
 	private int posX;
 	private int posY;
 	private int posZ;
 
-	public PacketPlacePumpkinAnywhere(int posX, int posY, int posZ)
+	public PacketSyncFlySpeed(int posX, int posY, int posZ)
 	{
 		this.posX = posX;
 		this.posY = posY;
@@ -39,10 +39,10 @@ public class PacketPlacePumpkinAnywhere implements IMessage
 		return new BlockPos(this.posX, this.posY, this.posZ);
 	}
 
-	public static class Handler implements IMessageHandler<PacketPlacePumpkinAnywhere, IMessage>
+	public static class Handler implements IMessageHandler<PacketSyncFlySpeed, IMessage>
 	{
 		@Override
-		public IMessage onMessage(PacketPlacePumpkinAnywhere message, MessageContext ctx)
+		public IMessage onMessage(PacketSyncFlySpeed message, MessageContext ctx)
 		{
 			FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->
 			{
