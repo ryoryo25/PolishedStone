@@ -122,6 +122,7 @@ import ryoryo.polishedstone.item.ItemRandomBox;
 import ryoryo.polishedstone.item.ItemRegenerate;
 import ryoryo.polishedstone.item.ItemSolidMilk;
 import ryoryo.polishedstone.item.ItemSpinachCan;
+import ryoryo.polishedstone.item.ItemTest;
 import ryoryo.polishedstone.item.ItemTweakedDye;
 import ryoryo.polishedstone.item.ItemZabuton;
 import ryoryo.polishedstone.item.armor.ItemArmorInvincible;
@@ -292,6 +293,7 @@ public class Register
 	public static final Item ITEM_EGGPLANT = new ItemModBase(EnumCropType.EGGPLANT.getName());
 
 	public static final Block BLOCK_TEST = new BlockTest();
+	public static final Item ITEM_TEST = new ItemTest();
 
 	public static final SoundEvent SOUND_IRON_CHAIN = new SoundEvent(new ResourceLocation(References.MOD_ID, "chain"));
 	public static final SoundEvent SOUND_GUN_FIRE = new SoundEvent(new ResourceLocation(References.MOD_ID, "gun_fire"));
@@ -443,6 +445,8 @@ public class Register
 		PSV2Core.REGISTER.registerItem(ITEM_TOMATO, "tomato");
 		PSV2Core.REGISTER.registerItem(ITEM_EGGPLANT, "eggplant");
 
+//		PSV2Core.REGISTER.registerItem(ITEM_TEST, "test_item");
+
 		//Entity Registry
 		PSV2Core.REGISTER.registerModEntity(EntityZabuton.class, "zabuton", LibEntityId.ENTITY_ID_ZABUTON, PSV2Core.INSTANCE, 80, 3, true);
 
@@ -592,9 +596,6 @@ public class Register
 				EventHelper.fences.add(block);
 			}
 		}
-
-		//Packet
-		PacketHandler.init();
 	}
 
 	public static void init()
@@ -860,6 +861,9 @@ public class Register
 
 		//パーティクル
 		ParticleRegistry.register();
+
+		//Packet
+		PacketHandler.init();
 	}
 
 	public static void postInit()
@@ -1005,6 +1009,7 @@ public class Register
 	public static void postInitClient()
 	{
 		MinecraftForge.EVENT_BUS.register(new ModClientEventHandler());
+		MinecraftForge.EVENT_BUS.register(new PlayerMoveSpeedHandler.Client());
 	}
 
 	public static void botaniaPlugin()
