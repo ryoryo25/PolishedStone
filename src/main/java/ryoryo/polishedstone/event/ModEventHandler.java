@@ -155,17 +155,17 @@ public class ModEventHandler
 		Utils.sendChat(player, TextFormatting.BLUE + "" + TextFormatting.BOLD + "[PolishedStone V2]:" + TextFormatting.RESET + " " + "VERSION: " + References.getVersion());
 
 		//TODO metaとかnbtとか
-		NBTTagCompound tag = event.player.getEntityData();
-		NBTTagCompound data = Utils.getTagCompound(tag, EntityPlayer.PERSISTED_NBT_TAG);
+		NBTTagCompound entity_data = player.getEntityData();
+		NBTTagCompound persisted_data = Utils.getTagCompound(entity_data, EntityPlayer.PERSISTED_NBT_TAG);
 
-		if(!data.getBoolean(LibNBTTag.STARTING_INVENTORY) && !ModConfig.startingInventory.isEmpty())
+		if(!persisted_data.hasKey(LibNBTTag.STARTING_INVENTORY) && !ModConfig.startingInventory.isEmpty())
 		{
 			ModConfig.startingInventory.stream()
 			.map(location -> Item.REGISTRY.getObject(new ResourceLocation(location)))
 			.forEach(item -> Utils.giveItemToPlayer(player, new ItemStack(item, 1)));
 
-			data.setBoolean(LibNBTTag.STARTING_INVENTORY, true);
-			tag.setTag(EntityPlayer.PERSISTED_NBT_TAG, data);
+			persisted_data.setBoolean(LibNBTTag.STARTING_INVENTORY, true);
+			entity_data.setTag(EntityPlayer.PERSISTED_NBT_TAG, persisted_data);
 		}
 	}
 
@@ -201,25 +201,6 @@ public class ModEventHandler
 					player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).applyModifier(new AttributeModifier(References.EXTRA_REACH, "Reach distance modifier", 0.5D, 0));
 				}
 			}
-
-			//速く飛べる
-			//0.05(default value) * factor
-			if(Utils.isCreative(player) && player.capabilities.getFlySpeed() != 0.05F * ModConfig.creativeFlySpeedMultiply)
-			{
-				player.capabilities.setFlySpeed(0.05F * ModConfig.creativeFlySpeedMultiply);
-			}
-			if(!Utils.isCreative(player) && player.capabilities.getFlySpeed() != 0.05F)
-			{
-				player.capabilities.setFlySpeed(0.05F);
-			}
-
-			//cancel inertia
-			if (player.moveForward == 0 && player.moveStrafing == 0 && player.capabilities.isFlying)
-			{
-				player.motionX *= 0.5;
-				player.motionZ *= 0.5;
-			}
-//			player.capabilities.setFlySpeed(0.022F);
 
 			//PickUpWidely
 			if(!world.isRemote && EventHelper.pickUpWidelyToggle)
