@@ -11,4 +11,6 @@ public class LibKey
 	public static final KeyBinding KEY_THIRD_PERSON_CAMERA_DISTANCE = new KeyBinding(LibUnlocalizedString.KEY_THIRD_PERSON_CAMERA_DISTANCE, Keyboard.KEY_MULTIPLY, LibUnlocalizedString.KEY_CATEGORY);
 	public static final KeyBinding KEY_PICK_UP_WIDELY_TOGGLE = new KeyBinding(LibUnlocalizedString.KEY_PICK_UP_WIDELY_TOGGLE, Keyboard.KEY_P, LibUnlocalizedString.KEY_CATEGORY);
 	public static final KeyBinding KEY_RELOAD = new KeyBinding(LibUnlocalizedString.KEY_RELOAD, Keyboard.KEY_R, LibUnlocalizedString.KEY_CATEGORY);
+
+	public static final KeyBinding KEY_FLY_SPEED = new KeyBinding(LibUnlocalizedString.KEY_FLY_SPEED, Keyboard.KEY_V, LibUnlocalizedString.KEY_CATEGORY);
 }

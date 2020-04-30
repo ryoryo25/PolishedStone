@@ -13,6 +13,7 @@ public class LibUnlocalizedString
 	public static final String KEY_THIRD_PERSON_CAMERA_DISTANCE = "key.third_person_camera_distance.name";
 	public static final String KEY_PICK_UP_WIDELY_TOGGLE = "key.pick_up_widely_toggle.name";
 	public static final String KEY_RELOAD = "key.reload.name";
+	public static final String KEY_FLY_SPEED = "key.fly_speed.name";
 
 	//Glowstone Generatorのチャット
 	public static final String CHAT_GG_POWER_UP = "chat.glowstone_generator.power_up";

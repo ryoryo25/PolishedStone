@@ -2,6 +2,7 @@ package ryoryo.polishedstone.network;
 
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 import ryoryo.polishedstone.util.References;
 
 public class PacketHandler
@@ -16,6 +17,8 @@ public class PacketHandler
 
 	public static void init()
 	{
-//		INSTANCE.registerMessage(PacketPlacePumpkinAnywhere.Handler.class, PacketPlacePumpkinAnywhere.class, nextId(), Side.SERVER);
+//		INSTANCE.registerMessage(PacketTest.Handler.class, PacketTest.class, nextId(), Side.SERVER);
+		INSTANCE.registerMessage(PacketSyncFlySpeed.Handler.class, PacketSyncFlySpeed.class, nextId(), Side.SERVER);
+		INSTANCE.registerMessage(PacketSyncEntityData.Handler.class, PacketSyncEntityData.class, nextId(), Side.CLIENT);
 	}
 }

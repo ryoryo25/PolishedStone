@@ -12,4 +12,7 @@ public class LibNBTTag
 	public static final String SAFETY_DIM_NAME = "safetyDimName";
 
 	public static final String STARTING_INVENTORY = "polishedstone_v2.starting_inventory";
+
+	public static final String PLAYER_FLY_SPEED_TIER = "playerFlySpeedTier";
+	public static final String UPDATE_FLY_SPEED_TIER = "updateFlySpeedTier";
 }
