@@ -60,22 +60,22 @@ public class PlayerMoveSpeedHandler
 		 *   }
 		 * }
 		 */
-		NBTTagCompound entity_data = player.getEntityData();
-		NBTTagCompound persisted_data = Utils.getTagCompound(entity_data, EntityPlayer.PERSISTED_NBT_TAG);
+		NBTTagCompound entityData = player.getEntityData();
+		NBTTagCompound persistedData = Utils.getTagCompound(entityData, EntityPlayer.PERSISTED_NBT_TAG);
 
-		if(!persisted_data.hasKey(LibNBTTag.PLAYER_FLY_SPEED_TIER))
+		if(!persistedData.hasKey(LibNBTTag.PLAYER_FLY_SPEED_TIER))
 		{
-			persisted_data.setInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER, 1);
-			entity_data.setTag(EntityPlayer.PERSISTED_NBT_TAG, persisted_data);
+			persistedData.setInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER, 1);
+			entityData.setTag(EntityPlayer.PERSISTED_NBT_TAG, persistedData);
 		}
-		if(!persisted_data.hasKey(LibNBTTag.UPDATE_FLY_SPEED_TIER))
+		if(!persistedData.hasKey(LibNBTTag.UPDATE_FLY_SPEED_TIER))
 		{
-			persisted_data.setBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER, false);
-			entity_data.setTag(EntityPlayer.PERSISTED_NBT_TAG, persisted_data);
+			persistedData.setBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER, false);
+			entityData.setTag(EntityPlayer.PERSISTED_NBT_TAG, persistedData);
 		}
 
-		PacketHandler.INSTANCE.sendTo(new PacketSyncFlySpeed(persisted_data.getInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER),
-																persisted_data.getBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER)),
+		PacketHandler.INSTANCE.sendTo(new PacketSyncFlySpeed(persistedData.getInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER),
+																persistedData.getBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER)),
 										(EntityPlayerMP) player);
 	}
 
@@ -87,14 +87,14 @@ public class PlayerMoveSpeedHandler
 		if(target instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) target;
-			NBTTagCompound entity_data = player.getEntityData();
-			NBTTagCompound persisted_data = Utils.getTagCompound(entity_data, EntityPlayer.PERSISTED_NBT_TAG);
+			NBTTagCompound entityData = player.getEntityData();
+			NBTTagCompound persistedData = Utils.getTagCompound(entityData, EntityPlayer.PERSISTED_NBT_TAG);
 
-			if(Utils.isCreative(player) && (persisted_data.getBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER)/* || getFlySpeed(player) == 0.05F*/))
+			if(Utils.isCreative(player) && (persistedData.getBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER)/* || getFlySpeed(player) == 0.05F*/))
 			{
-				setFlySpeed(player, FLY_SPEEDS[persisted_data.getInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER)]);
-				persisted_data.setBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER, false);
-				entity_data.setTag(EntityPlayer.PERSISTED_NBT_TAG, persisted_data);
+				setFlySpeed(player, FLY_SPEEDS[persistedData.getInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER)]);
+				persistedData.setBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER, false);
+				entityData.setTag(EntityPlayer.PERSISTED_NBT_TAG, persistedData);
 			}
 
 			if(!Utils.isCreative(player) && getFlySpeed(player) != 0.05F)
@@ -120,10 +120,39 @@ public class PlayerMoveSpeedHandler
 		EntityPlayer player = event.player;
 
 		//cancel inertia
-		if (player.moveForward == 0 && player.moveStrafing == 0 && player.capabilities.isFlying)
+		if(player.moveForward == 0 && player.moveStrafing == 0 && player.capabilities.isFlying)
 		{
 			player.motionX *= 0.5;
 			player.motionZ *= 0.5;
+		}
+
+		if(!player.onGround && player.capabilities.isFlying && player.motionY != 0)
+		{
+			NBTTagCompound entityData = player.getEntityData();
+			NBTTagCompound persistedData = Utils.getTagCompound(entityData, EntityPlayer.PERSISTED_NBT_TAG);
+			int tier = persistedData.getInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER);
+
+			if(Utils.isSneakKeyDown() && !Utils.isJumpKeyDow() && tier < 2)
+			{
+				player.motionY = -0.45;
+				// -0.10341889049939042 tier 0
+				// -0.22499894280485325 tier 1
+				// -0.4497884346299266 tier 2
+				// -0.6741184299409786 tier 3
+				// -0.8997461358610266 tier 4
+				// -1.7960818631650781 tier 5
+			}
+
+			if(Utils.isJumpKeyDow() && !Utils.isSneakKeyDown() && tier < 2)
+			{
+				player.motionY = 0.45;
+				// 0.10349970847525185 tier 0
+				// 0.22499978075246674 tier 1
+				// 0.44999646409524846 tier 2
+				// 0.6749981077775717 tier 3
+				// 0.8999999163828655 tier 4
+				// 1.7999858563809938 tier 5
+			}
 		}
 	}
 
@@ -152,16 +181,16 @@ public class PlayerMoveSpeedHandler
 		@SideOnly(Side.CLIENT)
 		public void upFlySpeed(EntityPlayer player)
 		{
-			NBTTagCompound entity_data = player.getEntityData();
-			NBTTagCompound persisted_data = Utils.getTagCompound(entity_data, EntityPlayer.PERSISTED_NBT_TAG);
-			int tier = persisted_data.getInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER);
+			NBTTagCompound entityData = player.getEntityData();
+			NBTTagCompound persistedData = Utils.getTagCompound(entityData, EntityPlayer.PERSISTED_NBT_TAG);
+			int tier = persistedData.getInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER);
 
 			if(tier < MAX_TIER)
 			{
 				int newTier = tier + 1;
-				persisted_data.setInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER, newTier);
-				persisted_data.setBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER, true);
-				entity_data.setTag(EntityPlayer.PERSISTED_NBT_TAG, persisted_data);
+				persistedData.setInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER, newTier);
+				persistedData.setBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER, true);
+				entityData.setTag(EntityPlayer.PERSISTED_NBT_TAG, persistedData);
 				PacketHandler.INSTANCE.sendToServer(new PacketSyncFlySpeed(newTier, true));
 
 				Utils.sendChat(player, "Set fly speed to Tier " + (newTier));
@@ -171,6 +200,7 @@ public class PlayerMoveSpeedHandler
 			else if(tier == MAX_TIER)
 			{
 				Utils.sendChat(player, "Now at max tier!");
+				player.playSound(SoundEvents.UI_BUTTON_CLICK, 1.0F, 3.0F);
 				return;
 			}
 		}
@@ -178,16 +208,16 @@ public class PlayerMoveSpeedHandler
 		@SideOnly(Side.CLIENT)
 		public void downFlySpeed(EntityPlayer player)
 		{
-			NBTTagCompound entity_data = player.getEntityData();
-			NBTTagCompound persisted_data = Utils.getTagCompound(entity_data, EntityPlayer.PERSISTED_NBT_TAG);
-			int tier = persisted_data.getInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER);
+			NBTTagCompound entityData = player.getEntityData();
+			NBTTagCompound persistedData = Utils.getTagCompound(entityData, EntityPlayer.PERSISTED_NBT_TAG);
+			int tier = persistedData.getInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER);
 
 			if(tier > MIN_TIER)
 			{
 				int newTier = tier - 1;
-				persisted_data.setInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER, newTier);
-				persisted_data.setBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER, true);
-				entity_data.setTag(EntityPlayer.PERSISTED_NBT_TAG, persisted_data);
+				persistedData.setInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER, newTier);
+				persistedData.setBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER, true);
+				entityData.setTag(EntityPlayer.PERSISTED_NBT_TAG, persistedData);
 				PacketHandler.INSTANCE.sendToServer(new PacketSyncFlySpeed(newTier, true));
 
 				Utils.sendChat(player, "Set fly speed to Tier " + newTier);
@@ -197,6 +227,7 @@ public class PlayerMoveSpeedHandler
 			else if(tier == MIN_TIER)
 			{
 				Utils.sendChat(player, "Now at min tier!");
+				player.playSound(SoundEvents.UI_BUTTON_CLICK, 1.0F, 3.0F);
 				return;
 			}
 		}
