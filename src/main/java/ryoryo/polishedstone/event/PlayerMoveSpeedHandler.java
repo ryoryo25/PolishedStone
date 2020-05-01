@@ -5,7 +5,6 @@ package ryoryo.polishedstone.event;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
@@ -20,7 +19,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.ArithmeticUtils;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.network.PacketHandler;
-import ryoryo.polishedstone.network.PacketSyncEntityData;
 import ryoryo.polishedstone.network.PacketSyncFlySpeed;
 import ryoryo.polishedstone.util.LibKey;
 import ryoryo.polishedstone.util.LibNBTTag;
@@ -30,20 +28,26 @@ public class PlayerMoveSpeedHandler
 	private static final float BASE_FLY_SPEED = 0.05F;
 	private static final float[] FLY_SPEEDS = new float[] { 0.023F/*0.022F*/, BASE_FLY_SPEED, BASE_FLY_SPEED * 2.0F, BASE_FLY_SPEED * 3.0F, BASE_FLY_SPEED * 4.0F, BASE_FLY_SPEED * 8.0F };
 	/** 5 */
-	private static final int MAX_TIER = FLY_SPEEDS.length-1;
+	private static final int MAX_TIER = FLY_SPEEDS.length - 1;
+	/** 0 */
 	private static final int MIN_TIER = 0;
 
 	@SubscribeEvent
 	public void onPlayerLogIn(PlayerLoggedInEvent event)
 	{
 		EntityPlayer player = event.player;
-		float newSpeed = 0.1F * ArithmeticUtils.percentToDecimal(116.0F);
 
-		//ブロック置くスピードと歩く速さを合わせる
-		//0.1(default value) * 116%
-//		player.capabilities.setPlayerWalkSpeed(0.1F * ArithmeticUtils.percentToDecimal(116.0F));
-		if(player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getBaseValue() != newSpeed)
-			player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(newSpeed);
+		/**
+		 * ブロック置くスピードと歩く速さを合わせる
+		 * 0.1(default value) * 116%
+		 *
+		 * AttributeでsetBaseValueするのと同じ
+		 * Ref: EntityPlayer#582
+		 */
+		float newSpeed = 0.1F * ArithmeticUtils.percentToDecimal(116.0F);
+		float currentSpeed = player.capabilities.getWalkSpeed();
+		if(currentSpeed != newSpeed)
+			player.capabilities.setPlayerWalkSpeed(newSpeed);
 
 		/**
 		 * NBT structure
@@ -72,9 +76,9 @@ public class PlayerMoveSpeedHandler
 			entity_data.setTag(EntityPlayer.PERSISTED_NBT_TAG, persisted_data);
 		}
 
-		PacketHandler.INSTANCE.sendTo(new PacketSyncEntityData(persisted_data.getInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER),
+		PacketHandler.INSTANCE.sendTo(new PacketSyncFlySpeed(persisted_data.getInteger(LibNBTTag.PLAYER_FLY_SPEED_TIER),
 																persisted_data.getBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER)),
-																(EntityPlayerMP) player);
+										(EntityPlayerMP) player);
 	}
 
 	@SubscribeEvent
@@ -87,17 +91,6 @@ public class PlayerMoveSpeedHandler
 			EntityPlayer player = (EntityPlayer) target;
 			NBTTagCompound entity_data = player.getEntityData();
 			NBTTagCompound persisted_data = Utils.getTagCompound(entity_data, EntityPlayer.PERSISTED_NBT_TAG);
-
-			//速く飛べる
-			//0.05(default value) * factor
-//			if(Utils.isCreative(player) && getFlySpeed(player) != 0.05F * ModConfig.creativeFlySpeedMultiply)
-//			{
-//				setFlySpeed(player, 0.05F * ModConfig.creativeFlySpeedMultiply);
-//			}
-//			if(!Utils.isCreative(player) && player.capabilities.getFlySpeed() != 0.05F)
-//			{
-//				setFlySpeed(player, 0.05F);
-//			}
 
 			if(Utils.isCreative(player) && (persisted_data.getBoolean(LibNBTTag.UPDATE_FLY_SPEED_TIER)/* || getFlySpeed(player) == 0.05F*/))
 			{
@@ -173,7 +166,7 @@ public class PlayerMoveSpeedHandler
 				entity_data.setTag(EntityPlayer.PERSISTED_NBT_TAG, persisted_data);
 				PacketHandler.INSTANCE.sendToServer(new PacketSyncFlySpeed(newTier, true));
 
-				Utils.sendChat(player, "Set fly speed to Tier " + newTier);
+				Utils.sendChat(player, "Set fly speed to Tier " + (newTier));
 				player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 0.5F, (newTier+1) * 0.2F);
 				return;
 			}
