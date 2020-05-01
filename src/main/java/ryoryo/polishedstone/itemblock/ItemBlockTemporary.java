@@ -34,38 +34,39 @@ public class ItemBlockTemporary extends ItemBlock
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		ItemStack stack = player.getHeldItem(hand);
-		RayTraceResult raytraceresult = this.rayTrace(world, player, true);
+		RayTraceResult result = this.rayTrace(world, player, true);
 
-		if(raytraceresult == null)
-		{
+		if(result == null)
 			return EnumActionResult.PASS;
-		}
+
 		else
 		{
-			if(raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK)
+			if(result.typeOfHit == RayTraceResult.Type.BLOCK)
 			{
-				BlockPos posr = raytraceresult.getBlockPos();
+				BlockPos rayPos = result.getBlockPos();
 
-				if(!world.isBlockModifiable(player, posr) || !player.canPlayerEdit(posr.offset(raytraceresult.sideHit), raytraceresult.sideHit, stack))
+				if(!world.isBlockModifiable(player, rayPos) || !player.canPlayerEdit(rayPos.offset(result.sideHit), result.sideHit, stack))
 				{
 					return EnumActionResult.FAIL;
 				}
 
-				BlockPos posu = posr.up();
-				IBlockState state = world.getBlockState(posr);
+				BlockPos posu = rayPos.up();
+				IBlockState state = world.getBlockState(rayPos);
 
 				if(state.getMaterial() == Material.WATER || state.getMaterial() == Material.LAVA || state.getBlock() instanceof BlockLiquid || state.getBlock() instanceof BlockFluidBase)
 				{
 					if(world.isAirBlock(posu))
 					{
-						world.setBlockState(posu, Register.BLOCK_TEMPORARY.getDefaultState(), 11);
-						if(!Utils.isCreative(player))
-						{
-							stack.shrink(1);
-						}
-
 						SoundType soundtype = world.getBlockState(posu).getBlock().getSoundType(world.getBlockState(posu), world, posu, player);
 						world.playSound(player, posu, SoundEvents.BLOCK_METAL_PLACE, SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+
+						if(!world.isRemote)
+						{
+							world.setBlockState(posu, Register.BLOCK_TEMPORARY.getDefaultState(), 11);
+							if(!Utils.isCreative(player))
+								stack.shrink(1);
+						}
+
 						return EnumActionResult.SUCCESS;
 					}
 				}
@@ -80,13 +81,12 @@ public class ItemBlockTemporary extends ItemBlock
 						{
 							SoundType soundtype = world.getBlockState(pos).getBlock().getSoundType(world.getBlockState(pos), world, pos, player);
 							world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-							stack.shrink(1);
-						}
+							if(!Utils.isCreative(player))
+								stack.shrink(1);
 
-						return EnumActionResult.SUCCESS;
+							return EnumActionResult.SUCCESS;
+						}
 					}
-					else
-						return EnumActionResult.FAIL;
 				}
 			}
 
