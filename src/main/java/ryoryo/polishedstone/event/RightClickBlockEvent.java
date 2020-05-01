@@ -32,7 +32,7 @@ public class RightClickBlockEvent
 
 	private static final Map<IBlockState, ItemStack> toItem = new HashMap<IBlockState, ItemStack>();
 
-	public RightClickBlockEvent()
+	static
 	{
 		//map initialization
 		toPath.put(Blocks.DIRT.getDefaultState(), Register.BLOCK_NEW_PATH.getDefaultState());
