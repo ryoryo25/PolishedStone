@@ -18,7 +18,7 @@ public class PacketHandler
 	public static void init()
 	{
 //		INSTANCE.registerMessage(PacketTest.Handler.class, PacketTest.class, nextId(), Side.SERVER);
-		INSTANCE.registerMessage(PacketSyncFlySpeed.Handler.class, PacketSyncFlySpeed.class, nextId(), Side.SERVER);
-		INSTANCE.registerMessage(PacketSyncEntityData.Handler.class, PacketSyncEntityData.class, nextId(), Side.CLIENT);
+		INSTANCE.registerMessage(PacketSyncFlySpeed.ServerHandler.class, PacketSyncFlySpeed.class, nextId(), Side.SERVER);
+		INSTANCE.registerMessage(PacketSyncFlySpeed.ClientHandler.class, PacketSyncFlySpeed.class, nextId(), Side.CLIENT);
 	}
 }
