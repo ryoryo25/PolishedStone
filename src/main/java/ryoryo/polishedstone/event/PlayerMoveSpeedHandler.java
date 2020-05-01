@@ -1,7 +1,5 @@
 package ryoryo.polishedstone.event;
 
-
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.EntityLivingBase;
