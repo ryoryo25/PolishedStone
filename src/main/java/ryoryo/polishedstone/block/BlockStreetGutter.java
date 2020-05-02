@@ -27,6 +27,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.Utils;
 
 public class BlockStreetGutter extends BlockModBase
@@ -195,7 +196,7 @@ public class BlockStreetGutter extends BlockModBase
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
-		Utils.registerSubBlocks(this, 5, tab, list);
+		RegistryUtils.registerSubBlocks(this, 5, tab, list);
 	}
 
 	public static enum EnumType implements IStringSerializable

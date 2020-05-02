@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.RegistryUtils;
 
 public class BlockMetal extends BlockModBase
 {
@@ -61,7 +61,7 @@ public class BlockMetal extends BlockModBase
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
-		Utils.registerSubBlocks(this, MaterialType.getLength(), tab, list);
+		RegistryUtils.registerSubBlocks(this, MaterialType.getLength(), tab, list);
 	}
 
 	public static enum MaterialType implements IStringSerializable

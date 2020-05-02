@@ -12,7 +12,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.RegistryUtils;
 
 public class BlockVoidTeleporter extends BlockModBase
 {
@@ -110,7 +110,7 @@ public class BlockVoidTeleporter extends BlockModBase
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
-		Utils.registerSubBlocks(this, VoidType.getLength(), tab, list);
+		RegistryUtils.registerSubBlocks(this, VoidType.getLength(), tab, list);
 	}
 
 	public static enum VoidType implements IStringSerializable

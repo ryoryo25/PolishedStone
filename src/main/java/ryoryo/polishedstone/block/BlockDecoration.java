@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.LibTool;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.RegistryUtils;
 
 public class BlockDecoration extends BlockModBase
 {
@@ -177,7 +177,7 @@ public class BlockDecoration extends BlockModBase
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
-		Utils.registerSubBlocks(this, BlockType.getLength(), tab, list);
+		RegistryUtils.registerSubBlocks(this, BlockType.getLength(), tab, list);
 	}
 
 	public static enum BlockType implements IStringSerializable

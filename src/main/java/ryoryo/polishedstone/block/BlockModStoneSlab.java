@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.block.BlockBaseSlab;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
@@ -110,7 +110,7 @@ public abstract class BlockModStoneSlab extends BlockBaseSlab
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
 		if(!this.isDouble())
-			Utils.registerSubBlocks(this, Type.getLength(), tab, list);
+			RegistryUtils.registerSubBlocks(this, Type.getLength(), tab, list);
 	}
 
 	public static class BlockModStoneSlabDouble extends BlockModStoneSlab

@@ -11,7 +11,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.enums.EnumColor;
 import ryoryo.polishedstone.PSV2Core;
 
@@ -84,6 +84,6 @@ public class ItemTweakedDye extends ItemDye
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
 	{
-		Utils.registerSubItems(this, NAMES.length, tab, items);
+		RegistryUtils.registerSubItems(this, NAMES.length, tab, items);
 	}
 }

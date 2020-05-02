@@ -16,6 +16,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedlib.util.enums.EnumColor;
 import ryoryo.polishedstone.entity.EntityZabuton;
@@ -91,6 +92,6 @@ public class ItemZabuton extends ItemModBase implements IItemColor
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
 	{
-		Utils.registerSubItems(this, EnumColor.getLength(), tab, items);
+		RegistryUtils.registerSubItems(this, EnumColor.getLength(), tab, items);
 	}
 }

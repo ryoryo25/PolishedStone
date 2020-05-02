@@ -40,6 +40,7 @@ import ryoryo.polishedlib.itemblock.ItemBlockMeta;
 import ryoryo.polishedlib.util.ArithmeticUtils;
 import ryoryo.polishedlib.util.LibPotionId;
 import ryoryo.polishedlib.util.LibTool;
+import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedlib.util.enums.EnumArmorType;
 import ryoryo.polishedlib.util.enums.EnumColor;
@@ -845,14 +846,14 @@ public class Register
 
 		//燃料登録
 		//200tick = 1second
-		Utils.addFuel(16000, new ItemStack(BLOCK_METAL, 1, 7));
-		Utils.addFuel(2400, new ItemStack(Items.MAGMA_CREAM));
-		Utils.addFuel(1500, new ItemStack(Blocks.HAY_BLOCK));
-		Utils.addFuel(1200, new ItemStack(Items.BLAZE_POWDER));
-		Utils.addFuel(200, new ItemStack(Blocks.DEADBUSH));
-		Utils.addFuel(150, new ItemStack(Items.WHEAT));
-		Utils.addFuel(100, new ItemStack(Blocks.LEAVES, 1, WILDCARD_VALUE), new ItemStack(Blocks.LEAVES2, 1, WILDCARD_VALUE), new ItemStack(Blocks.TALLGRASS), new ItemStack(Items.REEDS));
-		Utils.addFuel(50, new ItemStack(Items.WHEAT_SEEDS), new ItemStack(Items.MELON_SEEDS), new ItemStack(Items.PUMPKIN_SEEDS));
+		RegistryUtils.addFuel(16000, new ItemStack(BLOCK_METAL, 1, 7));
+		RegistryUtils.addFuel(2400, new ItemStack(Items.MAGMA_CREAM));
+		RegistryUtils.addFuel(1500, new ItemStack(Blocks.HAY_BLOCK));
+		RegistryUtils.addFuel(1200, new ItemStack(Items.BLAZE_POWDER));
+		RegistryUtils.addFuel(200, new ItemStack(Blocks.DEADBUSH));
+		RegistryUtils.addFuel(150, new ItemStack(Items.WHEAT));
+		RegistryUtils.addFuel(100, new ItemStack(Blocks.LEAVES, 1, WILDCARD_VALUE), new ItemStack(Blocks.LEAVES2, 1, WILDCARD_VALUE), new ItemStack(Blocks.TALLGRASS), new ItemStack(Items.REEDS));
+		RegistryUtils.addFuel(50, new ItemStack(Items.WHEAT_SEEDS), new ItemStack(Items.MELON_SEEDS), new ItemStack(Items.PUMPKIN_SEEDS));
 
 		//mobスポーン追加
 		Utils.addSpawnEntity(EntityGiantZombie.class, 1, 0, 1, EnumCreatureType.MONSTER, Biomes.PLAINS);
@@ -935,7 +936,7 @@ public class Register
 
 		if(!ModCompat.COMPAT_QUARK)
 		{
-			Utils.addFuel(400, new ItemStack(Blocks.TORCH));
+			RegistryUtils.addFuel(400, new ItemStack(Blocks.TORCH));
 			Utils.addSpawnEntity(EntityBlaze.class, 15, 1, 4, EnumCreatureType.MONSTER, Biomes.HELL);
 		}
 		else
@@ -991,20 +992,20 @@ public class Register
 	@SideOnly(Side.CLIENT)
 	public static void preInitClient()
 	{
-		Utils.registerEntityRendering(EntityZabuton.class, new RenderZabuton.Factory());
+		RegistryUtils.registerEntityRendering(EntityZabuton.class, new RenderZabuton.Factory());
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static void initClient()
 	{
-		Utils.registerItemColor(new ItemZabuton(), ITEM_ZABUTON);
+		RegistryUtils.registerItemColor(new ItemZabuton(), ITEM_ZABUTON);
 //		Utils.registerItemColor(new ItemNewDye(), itemNewDye);
 
-		Utils.registerItemBlockColor(new ItemBlockDummyBarrier(), BLOCK_DUMMY_BARRIER);
+		RegistryUtils.registerItemBlockColor(new ItemBlockDummyBarrier(), BLOCK_DUMMY_BARRIER);
 
-		Utils.registerKeyBinding(LibKey.KEY_FACING_ADJUSTMENT);
-		Utils.registerKeyBinding(LibKey.KEY_THIRD_PERSON_CAMERA_DISTANCE);
-		Utils.registerKeyBinding(LibKey.KEY_PICK_UP_WIDELY_TOGGLE);
+		RegistryUtils.registerKeyBinding(LibKey.KEY_FACING_ADJUSTMENT);
+		RegistryUtils.registerKeyBinding(LibKey.KEY_THIRD_PERSON_CAMERA_DISTANCE);
+		RegistryUtils.registerKeyBinding(LibKey.KEY_PICK_UP_WIDELY_TOGGLE);
 	}
 
 	@SideOnly(Side.CLIENT)

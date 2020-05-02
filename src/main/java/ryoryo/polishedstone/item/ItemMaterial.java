@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedstone.block.BlockMetal.MaterialType;
 
 public class ItemMaterial extends ItemModBase
@@ -61,6 +61,6 @@ public class ItemMaterial extends ItemModBase
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
 	{
-		Utils.registerSubItems(this, NAMES.length, tab, items);
+		RegistryUtils.registerSubItems(this, NAMES.length, tab, items);
 	}
 }

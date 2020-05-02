@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.LibTool;
+import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
@@ -199,7 +200,7 @@ public class BlockNewPath extends BlockGrassPath
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
-		Utils.registerSubBlocks(this, PathType.getLength(), tab, list);
+		RegistryUtils.registerSubBlocks(this, PathType.getLength(), tab, list);
 	}
 
 	public static enum PathType implements IStringSerializable

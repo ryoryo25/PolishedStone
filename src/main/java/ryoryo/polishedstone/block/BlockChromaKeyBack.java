@@ -12,7 +12,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Props;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.enums.EnumColor;
 
 public class BlockChromaKeyBack extends BlockModBase
@@ -65,6 +65,6 @@ public class BlockChromaKeyBack extends BlockModBase
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
-		Utils.registerSubBlocks(this, EnumColor.getLength(), tab, list);
+		RegistryUtils.registerSubBlocks(this, EnumColor.getLength(), tab, list);
 	}
 }

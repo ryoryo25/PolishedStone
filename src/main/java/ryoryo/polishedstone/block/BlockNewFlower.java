@@ -13,7 +13,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedstone.PSV2Core;
 
 public class BlockNewFlower extends BlockBush
@@ -60,7 +60,7 @@ public class BlockNewFlower extends BlockBush
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
-		Utils.registerSubBlocks(this, NewFlowerType.getLength(), tab, list);
+		RegistryUtils.registerSubBlocks(this, NewFlowerType.getLength(), tab, list);
 	}
 
 	public static enum NewFlowerType implements IStringSerializable

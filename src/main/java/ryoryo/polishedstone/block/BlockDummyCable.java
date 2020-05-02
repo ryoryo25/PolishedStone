@@ -38,7 +38,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.NumericalConstant;
 import ryoryo.polishedlib.util.Props;
-import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.RegistryUtils;
 
 public class BlockDummyCable extends BlockModBase
 {
@@ -202,7 +202,7 @@ public class BlockDummyCable extends BlockModBase
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
-		Utils.registerSubBlocks(this, EnumType.getLength(), tab, list);
+		RegistryUtils.registerSubBlocks(this, EnumType.getLength(), tab, list);
 	}
 
 	public static enum EnumType implements IStringSerializable
