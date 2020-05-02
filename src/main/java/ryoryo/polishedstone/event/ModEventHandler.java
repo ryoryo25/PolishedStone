@@ -1,6 +1,5 @@
 package ryoryo.polishedstone.event;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -9,7 +8,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockGlowstone;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -49,7 +47,6 @@ import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
@@ -58,7 +55,6 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.oredict.OreDictionary;
 import ryoryo.polishedlib.util.ArithmeticUtils;
 import ryoryo.polishedlib.util.NumericalConstant;
 import ryoryo.polishedlib.util.Utils;
@@ -436,32 +432,6 @@ public class ModEventHandler
 			event.setCost(5);
 
 			event.setOutput(Utils.getSpawnEggItemStack(EntityZombie.class, 1));
-		}
-	}
-
-	@SubscribeEvent
-	public void onTooltipRender(ItemTooltipEvent event)
-	{
-		List<String> tooltip = event.getToolTip();
-		//isAdvancedになってるか、シフト押してる
-		boolean flag = !event.getItemStack().isEmpty() && (event.getFlags().isAdvanced() || GuiScreen.isShiftKeyDown());
-
-		if(flag)
-		{
-			//鉱石辞書の登録内容をF3+Hかシフトの状態なら見えるように
-			int[] oreIDs = OreDictionary.getOreIDs(event.getItemStack());
-			tooltip.add(TextFormatting.DARK_GRAY + "Ore Dictionary Entries" + ":");
-			if(oreIDs.length > 0)
-			{
-				//Stream.of(oreIDs)がなぜかint[]のstreamになっちゃう
-				//プリミティブ配列だとStream<int[]>になっちゃうみたい
-				//プリミティブ型の場合はIntStreamとか個別の物が使われてるから
-				//Ref: https://www.codeflow.site/ja/article/java8__java-how-to-convert-array-to-stream
-				Arrays.stream(oreIDs).forEach(oreID ->
-				tooltip.add(TextFormatting.DARK_GRAY + " - " + OreDictionary.getOreName(oreID)));
-			}
-			else
-				tooltip.add(TextFormatting.DARK_GRAY + " - There is No Ore Dictionary Entries.");
 		}
 	}
 
