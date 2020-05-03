@@ -23,8 +23,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 
-public class RightClickBlockEvent
-{
+public class RightClickBlockEvent {
 	private static final Map<IBlockState, IBlockState> toPath = Maps.newHashMap();
 	private static final Map<IBlockState, IBlockState> toOriginal = Maps.newHashMap();
 
@@ -32,9 +31,8 @@ public class RightClickBlockEvent
 
 	private static final Map<IBlockState, ItemStack> toItem = new HashMap<IBlockState, ItemStack>();
 
-	static
-	{
-		//map initialization
+	static {
+		// map initialization
 		toPath.put(Blocks.DIRT.getDefaultState(), Register.BLOCK_NEW_PATH.getDefaultState());
 		toPath.put(Blocks.DIRT.getStateFromMeta(1), Register.BLOCK_NEW_PATH.getStateFromMeta(1));
 		toPath.put(Blocks.DIRT.getStateFromMeta(2), Register.BLOCK_NEW_PATH.getStateFromMeta(2));
@@ -74,8 +72,7 @@ public class RightClickBlockEvent
 	}
 
 	@SubscribeEvent
-	public void onBlockRightClickWithItem(PlayerInteractEvent.RightClickBlock event)
-	{
+	public void onBlockRightClickWithItem(PlayerInteractEvent.RightClickBlock event) {
 		EntityPlayer player = event.getEntityPlayer();
 		BlockPos pos = event.getPos();
 		ItemStack held = event.getItemStack();
@@ -84,35 +81,31 @@ public class RightClickBlockEvent
 		EnumHand hand = event.getHand();
 		Random random = new Random();
 
-		if(player != null && !held.isEmpty() && held.getItem() != null)
-		{
-			//道フロック作るやつ
+		if(player != null && !held.isEmpty() && held.getItem() != null) {
+			// 道フロック作るやつ
 			if(held.getItem() instanceof ItemSpade)
 				EventHelper.createPath(toPath, toOriginal, world, pos, state, player, event, hand, held);
 
-			//雪のレイヤーを削る
+			// 雪のレイヤーを削る
 			if(held.getItem() instanceof ItemSpade)
 				EventHelper.reduceSnowLayer(reduce, world, pos, state, player, event, hand, held);
 
-			//背の高い花みたいに普通の花もできるように
+			// 背の高い花みたいに普通の花もできるように
 			if(held.getItem() instanceof ItemDye && held.getMetadata() == EnumDyeColor.WHITE.getDyeDamage())
 				EventHelper.copyPlants(toItem, world, pos, state, player, event, hand, held, random);
 		}
 	}
 
 	@SubscribeEvent
-	public void onBlockRightClickEmpty(PlayerInteractEvent.RightClickBlock event)
-	{
+	public void onBlockRightClickEmpty(PlayerInteractEvent.RightClickBlock event) {
 		EntityPlayer player = event.getEntityPlayer();
 		BlockPos pos = event.getPos();
 		World world = event.getWorld();
 		IBlockState state = world.getBlockState(pos);
 
-		if(player != null)
-		{
-			//リスポーン地点をベッド右クリック時に夜じゃなくてもセット
-			if(!world.isRemote && world.provider.canRespawnHere() && world.getBiomeForCoordsBody(pos) != Biomes.HELL && world.getBiomeForCoordsBody(pos) != Biomes.SKY && world.provider.isSurfaceWorld() && player.isEntityAlive() && state.getBlock() instanceof BlockBed)
-			{
+		if(player != null) {
+			// リスポーン地点をベッド右クリック時に夜じゃなくてもセット
+			if(!world.isRemote && world.provider.canRespawnHere() && world.getBiomeForCoordsBody(pos) != Biomes.HELL && world.getBiomeForCoordsBody(pos) != Biomes.SKY && world.provider.isSurfaceWorld() && player.isEntityAlive() && state.getBlock() instanceof BlockBed) {
 				player.setSpawnPoint(pos, false);
 				event.setCanceled(true);
 				Utils.sendChat(player, "Setted Respawn Point!");

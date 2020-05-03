@@ -17,48 +17,40 @@ import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 
-public class BlockTest extends BlockModBase
-{
+public class BlockTest extends BlockModBase {
 	public static final PropertyDirection FACING = Props.HORIZONTAL_FACING;
 	public static final AxisAlignedBB BASE_AABB = Utils.creatAABB(3, 0, 3, 11, 12, 15);
 
-	public BlockTest()
-	{
+	public BlockTest() {
 		super(Material.ROCK, "test");
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
-	{
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
 		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return Utils.rotateAABB(BASE_AABB, Utils.getRotationFromNorth(state.getValue(FACING)));
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		EnumFacing enumfacing = EnumFacing.getFront(meta);
 
-		if(enumfacing.getAxis() == EnumFacing.Axis.Y)
-		{
+		if(enumfacing.getAxis() == EnumFacing.Axis.Y) {
 			enumfacing = EnumFacing.NORTH;
 		}
 
@@ -66,24 +58,20 @@ public class BlockTest extends BlockModBase
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(FACING).getIndex();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
+	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, new IProperty[] { FACING });
 	}
 
-	public IBlockState withRotation(IBlockState state, Rotation rot)
-	{
+	public IBlockState withRotation(IBlockState state, Rotation rot) {
 		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
 	}
 
-	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
-	{
+	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
 		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
 	}
 }

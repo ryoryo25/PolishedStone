@@ -17,12 +17,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.RegistryUtils;
 
-public class BlockMetal extends BlockModBase
-{
+public class BlockMetal extends BlockModBase {
 	public static final PropertyEnum<MaterialType> VARIANT = PropertyEnum.<MaterialType> create("variant", MaterialType.class);
 
-	public BlockMetal()
-	{
+	public BlockMetal() {
 		super(Material.IRON, "metal", SoundType.METAL);
 		this.setHardness(5.0F);
 		this.setResistance(10.0F);
@@ -30,37 +28,31 @@ public class BlockMetal extends BlockModBase
 	}
 
 	@Override
-	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-	{
-		return new ItemStack(Item.getItemFromBlock(this), 1, ((MaterialType)state.getValue(VARIANT)).getMeta());
+	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+		return new ItemStack(Item.getItemFromBlock(this), 1, ((MaterialType) state.getValue(VARIANT)).getMeta());
 	}
 
-	//ItemStackのmetadataからIBlockStateを生成。設置時に呼ばれる。
+	// ItemStackのmetadataからIBlockStateを生成。設置時に呼ばれる。
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(VARIANT, MaterialType.byMeta(meta));
 	}
 
-	//IBlockStateからItemStackのmetadataを生成。ドロップ時とテクスチャ・モデル参照時に呼ばれる。
+	// IBlockStateからItemStackのmetadataを生成。ドロップ時とテクスチャ・モデル参照時に呼ばれる。
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return (Integer) state.getValue(VARIANT).getMeta();
 	}
 
-	//初期BlockStateの生成。
+	// 初期BlockStateの生成。
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ VARIANT });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { VARIANT });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, MaterialType.getLength(), tab, list);
 	}
 
@@ -84,42 +76,34 @@ public class BlockMetal extends BlockModBase
 		private final int meta;
 		private final String name;
 
-		private MaterialType(int meta, String name)
-		{
+		private MaterialType(int meta, String name) {
 			this.meta = meta;
 			this.name = name;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return MaterialType.values().length;
 		}
 
-		public static MaterialType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static MaterialType byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(MaterialType materialtype : values())
-			{
+		static {
+			for(MaterialType materialtype : values()) {
 				META_LOOKUP[materialtype.getMeta()] = materialtype;
 				NAMES[materialtype.getMeta()] = materialtype.getName();
 			}

@@ -15,48 +15,41 @@ import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.enums.EnumColor;
 import ryoryo.polishedstone.PSV2Core;
 
-public class ItemTweakedDye extends ItemDye
-{
-	public static final String[] NAMES = new String[]
-	{ EnumColor.BLACK.getName(), EnumColor.BROWN.getName(), EnumColor.BLUE.getName(), EnumColor.WHITE.getName(), "cadmium", "cinnabar" };
+public class ItemTweakedDye extends ItemDye {
+	public static final String[] NAMES = new String[] { EnumColor.BLACK.getName(), EnumColor.BROWN.getName(), EnumColor.BLUE.getName(), EnumColor.WHITE.getName(), "cadmium", "cinnabar" };
 
-	public ItemTweakedDye()
-	{
+	public ItemTweakedDye() {
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("tweaked_dye");
 		this.setHasSubtypes(true);
 	}
 
 	@Override
-	public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand)
-	{
-		if(target instanceof EntitySheep)
-		{
+	public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand) {
+		if(target instanceof EntitySheep) {
 			EntitySheep entitysheep = (EntitySheep) target;
 			EnumDyeColor enumdyecolor = null;
-			switch(stack.getItemDamage())
-			{
-			case 0:
-				enumdyecolor = EnumDyeColor.BLACK;//黒
-				break;
-			case 1:
-				enumdyecolor = EnumDyeColor.BROWN;//茶色
-				break;
-			case 2:
-				enumdyecolor = EnumDyeColor.BLUE;//青
-				break;
-			case 3:
-				enumdyecolor = EnumDyeColor.WHITE;//白
-				break;
-			case 4:
-				enumdyecolor = EnumDyeColor.YELLOW;//黄色
-				break;
-			case 5:
-				enumdyecolor = EnumDyeColor.RED;//赤
-				break;
+			switch(stack.getItemDamage()) {
+				case 0:
+					enumdyecolor = EnumDyeColor.BLACK;// 黒
+					break;
+				case 1:
+					enumdyecolor = EnumDyeColor.BROWN;// 茶色
+					break;
+				case 2:
+					enumdyecolor = EnumDyeColor.BLUE;// 青
+					break;
+				case 3:
+					enumdyecolor = EnumDyeColor.WHITE;// 白
+					break;
+				case 4:
+					enumdyecolor = EnumDyeColor.YELLOW;// 黄色
+					break;
+				case 5:
+					enumdyecolor = EnumDyeColor.RED;// 赤
+					break;
 			}
-			if(!entitysheep.getSheared() && entitysheep.getFleeceColor() != enumdyecolor)
-			{
+			if(!entitysheep.getSheared() && entitysheep.getFleeceColor() != enumdyecolor) {
 				entitysheep.setFleeceColor(enumdyecolor);
 				stack.shrink(1);
 			}
@@ -66,14 +59,11 @@ public class ItemTweakedDye extends ItemDye
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack stack)
-	{
+	public String getUnlocalizedName(ItemStack stack) {
 		int meta = stack.getItemDamage();
 
-		for(int i = 0; i < NAMES.length; i++)
-		{
-			if(meta == i)
-			{
+		for(int i = 0; i < NAMES.length; i++) {
+			if(meta == i) {
 				return this.getUnlocalizedName() + "_" + NAMES[i];
 			}
 		}
@@ -82,8 +72,7 @@ public class ItemTweakedDye extends ItemDye
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
-	{
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		RegistryUtils.registerSubItems(this, NAMES.length, tab, items);
 	}
 }

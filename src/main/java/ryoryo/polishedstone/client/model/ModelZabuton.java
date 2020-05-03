@@ -4,8 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelZabuton extends ModelBase
-{
+public class ModelZabuton extends ModelBase {
 	public ModelRenderer zabuton;
 
 	public ModelZabuton() {
@@ -14,8 +13,7 @@ public class ModelZabuton extends ModelBase
 	}
 
 	@Override
-	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
-	{
+	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		zabuton.render(scale);
 	}
 }

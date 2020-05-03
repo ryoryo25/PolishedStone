@@ -17,8 +17,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import ryoryo.polishedstone.config.ModConfig;
 import ryoryo.polishedstone.util.ModCompat;
 
-public class WorldGenBlock implements IWorldGenerator
-{
+public class WorldGenBlock implements IWorldGenerator {
 	private WorldGenerator genEmerald;
 
 	private WorldGenerator genClayUnderground;
@@ -27,8 +26,7 @@ public class WorldGenBlock implements IWorldGenerator
 	private WorldGenerator genSandUndersea;
 	private WorldGenerator genDirtUndersea;
 
-	public WorldGenBlock()
-	{
+	public WorldGenBlock() {
 		this.genEmerald = new WorldGenMinable(Blocks.EMERALD_ORE.getDefaultState(), ModConfig.emeraldGenCluster);
 
 		this.genClayUnderground = new WorldGenMinable(Blocks.CLAY.getDefaultState(), ModConfig.clayGenUndergroundCluster);
@@ -38,14 +36,12 @@ public class WorldGenBlock implements IWorldGenerator
 		this.genDirtUndersea = new WorldGenMinable(Blocks.DIRT.getDefaultState(), ModConfig.dirtGenUnderseaCluster, BlockMatcher.forBlock(Blocks.GRAVEL));
 	}
 
-	private void undergroundGen(WorldGenerator generator, World world, Random random, int x, int z, int chancesToSpawn, int minHeight, int maxHeight)
-	{
+	private void undergroundGen(WorldGenerator generator, World world, Random random, int x, int z, int chancesToSpawn, int minHeight, int maxHeight) {
 		if(minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
 			throw new IllegalArgumentException("Illegal Height Arguments for WorldGenerator");
 		int heightDiff = maxHeight - minHeight;
 		BlockPos pos;
-		for(int i = 0; i < chancesToSpawn; i++)
-		{
+		for(int i = 0; i < chancesToSpawn; i++) {
 			int genX = x + random.nextInt(16);
 			int genY = minHeight + random.nextInt(heightDiff);
 			int genZ = z + random.nextInt(16);
@@ -54,34 +50,29 @@ public class WorldGenBlock implements IWorldGenerator
 		}
 	}
 
-	private void underseaGen(WorldGenerator generator, World world, Random random, int x, int z, int chancesToSpawn, int minHeight, int maxHeight)
-	{
+	private void underseaGen(WorldGenerator generator, World world, Random random, int x, int z, int chancesToSpawn, int minHeight, int maxHeight) {
 		if(minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
 			throw new IllegalArgumentException("Illegal Height Arguments for WorldGenerator");
 		int heightDiff = maxHeight - minHeight;
 		BlockPos pos;
 		Biome biome;
-		for(int i = 0; i < chancesToSpawn; i++)
-		{
+		for(int i = 0; i < chancesToSpawn; i++) {
 			int genX = x + random.nextInt(16);
 			int genY = minHeight + random.nextInt(heightDiff);
 			int genZ = z + random.nextInt(16);
 			pos = new BlockPos(genX, genY, genZ);
 			biome = world.getBiome(pos);
-			if(biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN || biome == Biomes.FROZEN_OCEAN)
-			{
+			if(biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN || biome == Biomes.FROZEN_OCEAN) {
 				generator.generate(world, random, pos);
 			}
 		}
 	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-	{
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		chunkX = chunkX << 4;
 		chunkZ = chunkZ << 4;
-		if(world.provider instanceof WorldProviderSurface)
-		{
+		if(world.provider instanceof WorldProviderSurface) {
 			if(ModConfig.emeraldGen)
 				undergroundGen(this.genEmerald, world, random, chunkX, chunkZ, ModConfig.emeraldGenChance, 0, 18);
 			if(!ModCompat.COMPAT_QUARK && ModConfig.clayGenUnderground)

@@ -8,21 +8,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import ryoryo.polishedstone.entity.EntityZabuton;
 
-public class DispenseZabutonHandler extends BehaviorProjectileDispense
-{
+public class DispenseZabutonHandler extends BehaviorProjectileDispense {
 	protected ItemStack zabuton;
 
 	@Override
-	public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
-	{
+	public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
 		// 色を識別するためにItemStackを確保
 		zabuton = stack;
 		return super.dispenseStack(source, stack);
 	}
 
 	@Override
-	protected IProjectile getProjectileEntity(World world, IPosition position, ItemStack stack)
-	{
+	protected IProjectile getProjectileEntity(World world, IPosition position, ItemStack stack) {
 		return new EntityZabuton(world, position.getX(), position.getY(), position.getZ(), (byte) zabuton.getItemDamage());
 	}
 }

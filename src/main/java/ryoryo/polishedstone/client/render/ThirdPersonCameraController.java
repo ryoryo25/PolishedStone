@@ -9,59 +9,50 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.PSV2Core;
 
-public class ThirdPersonCameraController
-{
+public class ThirdPersonCameraController {
 	private static final ThirdPersonCameraController instance = new ThirdPersonCameraController();
 	private int cnt = 2;
 
-	private static final String[] fieldNames =
-	{
+	private static final String[] fieldNames = {
 			"thirdPersonDistance", "field_78490_B",
 	};
 
-	private ThirdPersonCameraController()
-	{
+	private ThirdPersonCameraController() {
 	}
 
-	public void turn()
-	{
+	public void turn() {
 		cnt++;
-		if(8 < cnt)
-		{
+		if(8 < cnt) {
 			cnt = 2;
 		}
-		try
-		{
+		try {
 			setThirdPersonDistance(Minecraft.getMinecraft().entityRenderer, cnt * cnt, new HashSet<EntityRenderer>());
 		}
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			PSV2Core.LOGGER.error("ThirdPersonCameraController#turn", e);
 		}
 	}
 
-	public static ThirdPersonCameraController getInstance()
-	{
+	public static ThirdPersonCameraController getInstance() {
 		return instance;
 	}
 
-	private static void setThirdPersonDistance(EntityRenderer renderer, float distance, Set<EntityRenderer> visited) throws IllegalArgumentException, SecurityException, IllegalAccessException, NoSuchFieldException
-	{
-		if(visited.contains(renderer))
-		{
+	private static void setThirdPersonDistance(EntityRenderer renderer, float distance, Set<EntityRenderer> visited) throws IllegalArgumentException, SecurityException, IllegalAccessException, NoSuchFieldException {
+		if(visited.contains(renderer)) {
 			return;
 		}
-		else
-		{
+		else {
 			visited.add(renderer);
 			// entityRenderer に入ってる EntityRenderer を直接書き換えてみる
 			Utils.sendChat("Wow!");
 			ObfuscationReflectionHelper.setPrivateValue(EntityRenderer.class, renderer, distance, fieldNames);
 			// entityRenderer が入れ子になっていたら、それらも書き換えてみる
-//			for(EntityRenderer obj2 : ObfuscationReflectionHelper.getPrivateValue(EntityRenderer.class, renderer, fieldNames))
-//			{
-//				setThirdPersonDistance(obj2, distance, visited);
-//			}
+			// for(EntityRenderer obj2 :
+			// ObfuscationReflectionHelper.getPrivateValue(EntityRenderer.class,
+			// renderer, fieldNames))
+			// {
+			// setThirdPersonDistance(obj2, distance, visited);
+			// }
 		}
 	}
 }

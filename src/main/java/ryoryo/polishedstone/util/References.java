@@ -6,8 +6,7 @@ import java.util.UUID;
 
 import net.minecraft.client.Minecraft;
 
-public class References
-{
+public class References {
 	public static final String MOD_ID = "polishedstone_v2";
 	public static final String MOD_NAME = "PolishedStone2";
 
@@ -17,12 +16,12 @@ public class References
 	public static final String MOD_VERSION = MOD_VERSION_MAJOR + "." + MOD_VERSION_MINOR + "." + MOD_VERSION_PATCH;
 
 	public static final String MOD_DEPENDENCIES = "required-after:forge@[14.23.5.2768,);"
-//												+ "required-after:polishedlib@[1.0.1,);"
-												+ "required-after:polishedlib;"
-												+ "after:" + ModCompat.MOD_ID_QUARK + ";"
-												+ "after:" + ModCompat.MOD_ID_CUSTOM_SPAWN + ";"
-												+ "after:" + ModCompat.MOD_ID_WILDFIRE + ";"
-												+ "after:" + ModCompat.MOD_ID_FENCE_JUMPER + ";";
+			// + "required-after:polishedlib@[1.0.1,);"
+			+ "required-after:polishedlib;"
+			+ "after:" + ModCompat.MOD_ID_QUARK + ";"
+			+ "after:" + ModCompat.MOD_ID_CUSTOM_SPAWN + ";"
+			+ "after:" + ModCompat.MOD_ID_WILDFIRE + ";"
+			+ "after:" + ModCompat.MOD_ID_FENCE_JUMPER + ";";
 
 	/** 起動出来るMinecraft本体のバージョン。記法はMavenのVersion Range Specificationを検索すること。 */
 	public static final String MOD_ACCEPTED_MC_VERSIONS = "[1.12.2]";
@@ -44,21 +43,19 @@ public class References
 
 	public static final UUID EXTRA_REACH = UUID.fromString("6151b259-3a53-4788-8f42-7c89db9e3e28");
 
-	public static String getVersion()
-	{
+	public static String getVersion() {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
 
 		return Minecraft.getMinecraft().getVersion() + "-" + sdf.format(cal.getTime());
 	}
 
-	public static String getDependencies(String id)
-	{
+	public static String getDependencies(String id) {
 		return "after:" + id + ";";
 	}
 
-	//	static
-	//	{
-	//		MOD_VERSION = getVersion();
-	//	}
+	// static
+	// {
+	// MOD_VERSION = getVersion();
+	// }
 }

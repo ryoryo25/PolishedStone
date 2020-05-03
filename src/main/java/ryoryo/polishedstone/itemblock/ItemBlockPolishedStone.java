@@ -4,10 +4,8 @@ import ryoryo.polishedlib.itemblock.ItemBlockMeta;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.block.BlockPolishedStone.EnumType;
 
-public class ItemBlockPolishedStone extends ItemBlockMeta
-{
-	public static final String[] NAMES = new String[]
-	{
+public class ItemBlockPolishedStone extends ItemBlockMeta {
+	public static final String[] NAMES = new String[] {
 			EnumType.NORMAL.getName(),
 			EnumType.INVERTED.getName(),
 			EnumType.VERTICAL.getName(),
@@ -18,8 +16,7 @@ public class ItemBlockPolishedStone extends ItemBlockMeta
 			EnumType.PILLAR_Y.toString(),
 	};
 
-	public ItemBlockPolishedStone()
-	{
+	public ItemBlockPolishedStone() {
 		super(Register.BLOCK_POLISHED_STONE, NAMES);
 	}
 }

@@ -30,13 +30,11 @@ import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
-public class BlockNewPath extends BlockGrassPath
-{
+public class BlockNewPath extends BlockGrassPath {
 	protected static final AxisAlignedBB PATH_SOUL_SAND_AABB = Utils.creatAABB(0, 0, 0, 16, 13, 16);
 	public static final PropertyEnum<PathType> TYPE = PropertyEnum.<PathType> create("type", PathType.class);
 
-	public BlockNewPath()
-	{
+	public BlockNewPath() {
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("new_path");
 		this.setHardness(0.65F);
@@ -46,160 +44,147 @@ public class BlockNewPath extends BlockGrassPath
 	}
 
 	@Override
-	public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity)
-	{
+	public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
 		PathType type = state.getValue(TYPE);
 
-		switch(type)
-		{
-		case SAND:
-		case RED_SAND:
-		case SOUL_SAND:
-			return SoundType.SAND;
-		default:
-			return SoundType.GROUND;
+		switch(type) {
+			case SAND:
+			case RED_SAND:
+			case SOUL_SAND:
+				return SoundType.SAND;
+			default:
+				return SoundType.GROUND;
 		}
 	}
 
 	@Nullable
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
-	{
-		switch(state.getValue(TYPE))
-		{
-		case SOUL_SAND:
-			return PATH_SOUL_SAND_AABB;
-		default:
-			return GRASS_PATH_AABB;
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+		switch(state.getValue(TYPE)) {
+			case SOUL_SAND:
+				return PATH_SOUL_SAND_AABB;
+			default:
+				return GRASS_PATH_AABB;
 		}
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
-	{
-		if(state.getValue(TYPE) == PathType.SOUL_SAND)
-		{
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+		if(state.getValue(TYPE) == PathType.SOUL_SAND) {
 			entity.motionX *= 0.4D;
 			entity.motionZ *= 0.4D;
 		}
 	}
 
 	@Override
-	public ItemStack getItem(World world, BlockPos pos, IBlockState state)
-	{
-		return new ItemStack(Item.getItemFromBlock(this), 1, ((PathType)state.getValue(TYPE)).getMeta());
+	public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
+		return new ItemStack(Item.getItemFromBlock(this), 1, ((PathType) state.getValue(TYPE)).getMeta());
 	}
 
 	@Override
-	public int damageDropped(IBlockState state)
-	{
+	public int damageDropped(IBlockState state) {
 		PathType type = state.getValue(TYPE);
-		switch(type)
-		{
-		case COARSE_DIRT:
-		case RED_SAND:
-		case PAVING_GRAVEL:
-			return 1;
-		default:
-			return 0;
+		switch(type) {
+			case COARSE_DIRT:
+			case RED_SAND:
+			case PAVING_GRAVEL:
+				return 1;
+			default:
+				return 0;
 		}
 	}
 
 	@Nullable
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		PathType type = state.getValue(TYPE);
 
-		switch(type)
-		{
-		case DIRT:
-		case COARSE_DIRT:
-		case PODZOL:
-		default:
-			return Item.getItemFromBlock(Blocks.DIRT);
-		case GRAVEL:
-			return Item.getItemFromBlock(Blocks.GRAVEL);
-		case SAND:
-		case RED_SAND:
-			return Item.getItemFromBlock(Blocks.SAND);
-		case CLAY:
-			return Item.getItemFromBlock(Blocks.CLAY);
-		case SOUL_SAND:
-			return Item.getItemFromBlock(Blocks.SOUL_SAND);
-		case OLD_GRAVEL:
-		case PAVING_GRAVEL:
-			return Item.getItemFromBlock(Register.BLOCK_NEW_GRAVEL);
+		switch(type) {
+			case DIRT:
+			case COARSE_DIRT:
+			case PODZOL:
+			default:
+				return Item.getItemFromBlock(Blocks.DIRT);
+			case GRAVEL:
+				return Item.getItemFromBlock(Blocks.GRAVEL);
+			case SAND:
+			case RED_SAND:
+				return Item.getItemFromBlock(Blocks.SAND);
+			case CLAY:
+				return Item.getItemFromBlock(Blocks.CLAY);
+			case SOUL_SAND:
+				return Item.getItemFromBlock(Blocks.SOUL_SAND);
+			case OLD_GRAVEL:
+			case PAVING_GRAVEL:
+				return Item.getItemFromBlock(Register.BLOCK_NEW_GRAVEL);
 		}
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
-	{
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 		super.neighborChanged(state, world, pos, block, fromPos);
 
-		if(world.getBlockState(pos.up()).getMaterial().isSolid())
-		{
+		if(world.getBlockState(pos.up()).getMaterial().isSolid()) {
 			PathType type = state.getValue(TYPE);
 
-			switch(type)
-			{
-			case DIRT:
-			case PODZOL:
-			default:
-				world.setBlockState(pos, Blocks.DIRT.getDefaultState());
-				break;
-			case COARSE_DIRT:
-				world.setBlockState(pos, Blocks.DIRT/*.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT)*/.getStateFromMeta(1));
-				break;
-			case GRAVEL:
-				world.setBlockState(pos, Blocks.GRAVEL.getDefaultState());
-				break;
-			case SAND:
-				world.setBlockState(pos, Blocks.SAND.getDefaultState());
-				break;
-			case RED_SAND:
-				world.setBlockState(pos, Blocks.SAND.getStateFromMeta(1));
-				break;
-			case CLAY:
-				world.setBlockState(pos, Blocks.CLAY.getDefaultState());
-				break;
-			case SOUL_SAND:
-				world.setBlockState(pos, Blocks.SOUL_SAND.getDefaultState());
-				break;
-			case OLD_GRAVEL:
-				world.setBlockState(pos, Register.BLOCK_NEW_GRAVEL.getDefaultState());
-				break;
-			case PAVING_GRAVEL:
-				world.setBlockState(pos, Register.BLOCK_NEW_GRAVEL.getStateFromMeta(1));
-				break;
+			switch(type) {
+				case DIRT:
+				case PODZOL:
+				default:
+					world.setBlockState(pos, Blocks.DIRT.getDefaultState());
+					break;
+				case COARSE_DIRT:
+					world.setBlockState(pos, Blocks.DIRT/*
+														 * .getDefaultState().
+														 * withProperty(
+														 * BlockDirt.VARIANT,
+														 * BlockDirt.DirtType.
+														 * COARSE_DIRT)
+														 */.getStateFromMeta(1));
+					break;
+				case GRAVEL:
+					world.setBlockState(pos, Blocks.GRAVEL.getDefaultState());
+					break;
+				case SAND:
+					world.setBlockState(pos, Blocks.SAND.getDefaultState());
+					break;
+				case RED_SAND:
+					world.setBlockState(pos, Blocks.SAND.getStateFromMeta(1));
+					break;
+				case CLAY:
+					world.setBlockState(pos, Blocks.CLAY.getDefaultState());
+					break;
+				case SOUL_SAND:
+					world.setBlockState(pos, Blocks.SOUL_SAND.getDefaultState());
+					break;
+				case OLD_GRAVEL:
+					world.setBlockState(pos, Register.BLOCK_NEW_GRAVEL.getDefaultState());
+					break;
+				case PAVING_GRAVEL:
+					world.setBlockState(pos, Register.BLOCK_NEW_GRAVEL.getStateFromMeta(1));
+					break;
 			}
 		}
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(TYPE, PathType.byMeta(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TYPE });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TYPE });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, PathType.getLength(), tab, list);
 	}
 
@@ -222,48 +207,39 @@ public class BlockNewPath extends BlockGrassPath
 		private final String name;
 		private final IBlockState original;
 
-		private PathType(int meta, String name, IBlockState original)
-		{
+		private PathType(int meta, String name, IBlockState original) {
 			this.meta = meta;
 			this.name = name;
 			this.original = original;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public IBlockState getOriginalState()
-		{
+		public IBlockState getOriginalState() {
 			return this.original;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return PathType.values().length;
 		}
 
-		public static PathType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static PathType byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(PathType pathtype : values())
-			{
+		static {
+			for(PathType pathtype : values()) {
 				META_LOOKUP[pathtype.getMeta()] = pathtype;
 				NAMES[pathtype.getMeta()] = pathtype.getName();
 			}

@@ -19,12 +19,10 @@ import net.minecraft.world.World;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
-public class BlockRustyRail extends BlockRail
-{
+public class BlockRustyRail extends BlockRail {
 	private int rusty = 0;
 
-	public BlockRustyRail(int rusty)
-	{
+	public BlockRustyRail(int rusty) {
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("rusty_rail" + "_" + rusty);
 		this.setHardness(0.7F);
@@ -35,59 +33,49 @@ public class BlockRustyRail extends BlockRail
 
 	@Nullable
 	@Override
-	public ItemStack getItem(World world, BlockPos pos, IBlockState state)
-	{
+	public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
 		return new ItemStack(this);
 	}
 
 	@Nullable
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return Register.ITEM_MATERIAL;
 	}
 
 	@Override
-	public int quantityDropped(Random random)
-	{
+	public int quantityDropped(Random random) {
 		int i = random.nextInt(2);
 		return this == Register.BLOCK_RUSTY_RAIL1 ? 4 + i : (this == Register.BLOCK_RUSTY_RAIL2 ? 2 + i : (this == Register.BLOCK_RUSTY_RAIL3 ? i : 0));
 	}
 
 	@Override
-	public int damageDropped(IBlockState state)
-	{
+	public int damageDropped(IBlockState state) {
 		return 14;
 	}
 
 	@Override
-	public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
-	{
+	public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
 		return true;
 	}
 
 	@Override
-	public float getRailMaxSpeed(World world, EntityMinecart cart, BlockPos pos)
-	{
+	public float getRailMaxSpeed(World world, EntityMinecart cart, BlockPos pos) {
 		return super.getRailMaxSpeed(world, cart, pos) - rusty / 10.0F;
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.byMetadata(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return ((BlockRailBase.EnumRailDirection) state.getValue(SHAPE)).getMetadata();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ SHAPE });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { SHAPE });
 	}
 }

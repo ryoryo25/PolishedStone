@@ -25,26 +25,21 @@ import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.client.particle.ParticleRegistry;
 
-public class BlockDummyBarrier extends BlockBarrier
-{
+public class BlockDummyBarrier extends BlockBarrier {
 	private boolean isVisible = false;
 
-	public BlockDummyBarrier()
-	{
+	public BlockDummyBarrier() {
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("dummy_barrier");
 	}
 
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack held = player.getHeldItem(hand);
 
-//		player.swingArm(hand);
-		if(!world.isRemote && held.getItem() instanceof ItemPickaxe)
-		{
+		// player.swingArm(hand);
+		if(!world.isRemote && held.getItem() instanceof ItemPickaxe) {
 			world.destroyBlock(pos, true);
-			if(!Utils.isCreative(player))
-			{
+			if(!Utils.isCreative(player)) {
 				Block.spawnAsEntity(world, pos, new ItemStack(Register.BLOCK_DUMMY_BARRIER));
 				held.damageItem(1, player);
 			}
@@ -57,27 +52,21 @@ public class BlockDummyBarrier extends BlockBarrier
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
-	{
+	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 		double d0 = (double) pos.getX() + 0.5D;
 		double d1 = (double) pos.getY() + 0.5D;
 		double d2 = (double) pos.getZ() + 0.5D;
 
-		if(world.isRemote)
-		{
+		if(world.isRemote) {
 			EntityPlayer player = Utils.getPlayer();
-			if(player != null)
-			{
+			if(player != null) {
 				List<ItemStack> held = Utils.getHeldItemStacks(player);
 
-				for(ItemStack stack : held)
-				{
-					if(!stack.isEmpty())
-					{
+				for(ItemStack stack : held) {
+					if(!stack.isEmpty()) {
 						this.isVisible = false;
 						Item item = stack.getItem();
-						if(item instanceof ItemBlock && Block.getBlockFromItem(item) == this)
-						{
+						if(item instanceof ItemBlock && Block.getBlockFromItem(item) == this) {
 							this.isVisible = true;
 							break;
 						}
@@ -94,8 +83,7 @@ public class BlockDummyBarrier extends BlockBarrier
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
-	{
+	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 		tooltip.add("To destroy this block, use a pickaxe and right-click.");
 	}
 }

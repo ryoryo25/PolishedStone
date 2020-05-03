@@ -9,11 +9,9 @@ import net.minecraft.world.World;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.tileenttiy.TileEntitySlimeRemovalTorch;
 
-public class BlockSlimeRemovalTorch extends BlockTorch implements ITileEntityProvider
-{
-	//置かれたチャンクに沸かないように
-	public BlockSlimeRemovalTorch()
-	{
+public class BlockSlimeRemovalTorch extends BlockTorch implements ITileEntityProvider {
+	// 置かれたチャンクに沸かないように
+	public BlockSlimeRemovalTorch() {
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("slime_removal_torch");
 		this.setHardness(0.0F);
@@ -22,14 +20,12 @@ public class BlockSlimeRemovalTorch extends BlockTorch implements ITileEntityPro
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta)
-	{
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntitySlimeRemovalTorch();
 	}
 
 	@Override
-	public boolean hasTileEntity(IBlockState state)
-	{
+	public boolean hasTileEntity(IBlockState state) {
 		return true;
 	}
 }

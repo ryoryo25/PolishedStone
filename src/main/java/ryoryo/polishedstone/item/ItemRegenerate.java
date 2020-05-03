@@ -15,19 +15,15 @@ import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.config.ModConfig;
 
-public class ItemRegenerate extends ItemModBase
-{
-	public ItemRegenerate()
-	{
+public class ItemRegenerate extends ItemModBase {
+	public ItemRegenerate() {
 		super("heart_of_regeneration");
 	}
 
 	@Override
 	@Nullable
-	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving)
-	{
-		if(entityLiving instanceof EntityPlayer)
-		{
+	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
+		if(entityLiving instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) entityLiving;
 
 			if(!Utils.isCreative(player))
@@ -42,23 +38,19 @@ public class ItemRegenerate extends ItemModBase
 		return stack;
 	}
 
-	public int getMaxItemUseDuration(ItemStack stack)
-	{
+	public int getMaxItemUseDuration(ItemStack stack) {
 		return 16;
 	}
 
-	public EnumAction getItemUseAction(ItemStack stack)
-	{
+	public EnumAction getItemUseAction(ItemStack stack) {
 		return EnumAction.BOW;
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
-	{
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.getHeldItem(hand);
 
-		if(!Utils.isCreative(player) && player.getHealth() < player.getMaxHealth())
-		{
+		if(!Utils.isCreative(player) && player.getHealth() < player.getMaxHealth()) {
 			player.setActiveHand(hand);
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 		}

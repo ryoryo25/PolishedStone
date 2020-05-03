@@ -23,12 +23,10 @@ import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
-public abstract class BlockModStoneSlab extends BlockBaseSlab
-{
+public abstract class BlockModStoneSlab extends BlockBaseSlab {
 	public static final PropertyEnum<Type> TYPE = PropertyEnum.<Type> create("type", Type.class);
 
-	public BlockModStoneSlab()
-	{
+	public BlockModStoneSlab() {
 		super(Material.ROCK, "stone_slab", PSV2Core.TAB_MOD, 2.0F, 10.0F, SoundType.STONE);
 		IBlockState iblockstate = this.blockState.getBaseState();
 
@@ -39,44 +37,37 @@ public abstract class BlockModStoneSlab extends BlockBaseSlab
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return Item.getItemFromBlock(Register.BLOCK_STONE_SLAB);
 	}
 
 	@Override
-	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-	{
+	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
 		return new ItemStack(Register.BLOCK_STONE_SLAB, 1, ((Type) state.getValue(TYPE)).getMeta());
 	}
 
 	@Override
-	public int damageDropped(IBlockState state)
-	{
+	public int damageDropped(IBlockState state) {
 		return state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	public String getUnlocalizedName(int meta)
-	{
+	public String getUnlocalizedName(int meta) {
 		return super.getUnlocalizedName() + "_" + Type.byMeta(meta).getName();
 	}
 
 	@Override
-	public IProperty<?> getVariantProperty()
-	{
+	public IProperty<?> getVariantProperty() {
 		return TYPE;
 	}
 
 	@Override
-	public Comparable<?> getTypeForItem(ItemStack stack)
-	{
+	public Comparable<?> getTypeForItem(ItemStack stack) {
 		return Type.byMeta(stack.getMetadata() & 7);
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		IBlockState state = this.getDefaultState().withProperty(TYPE, Type.byMeta(meta & 7));
 
 		if(!this.isDouble())
@@ -86,8 +77,7 @@ public abstract class BlockModStoneSlab extends BlockBaseSlab
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		int meta = 0;
 		meta = meta | state.getValue(TYPE).getMeta();
 
@@ -98,35 +88,27 @@ public abstract class BlockModStoneSlab extends BlockBaseSlab
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return this.isDouble() ? new BlockStateContainer(this, new IProperty[]
-		{ TYPE }) : new BlockStateContainer(this, new IProperty[]
-		{ TYPE, HALF });
+	protected BlockStateContainer createBlockState() {
+		return this.isDouble() ? new BlockStateContainer(this, new IProperty[] { TYPE }) : new BlockStateContainer(this, new IProperty[] { TYPE, HALF });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		if(!this.isDouble())
 			RegistryUtils.registerSubBlocks(this, Type.getLength(), tab, list);
 	}
 
-	public static class BlockModStoneSlabDouble extends BlockModStoneSlab
-	{
+	public static class BlockModStoneSlabDouble extends BlockModStoneSlab {
 		@Override
-		public boolean isDouble()
-		{
+		public boolean isDouble() {
 			return true;
 		}
 	}
 
-	public static class BlockModStoneSlabHalf extends BlockModStoneSlab
-	{
+	public static class BlockModStoneSlabHalf extends BlockModStoneSlab {
 		@Override
-		public boolean isDouble()
-		{
+		public boolean isDouble() {
 			return false;
 		}
 	}
@@ -152,42 +134,34 @@ public abstract class BlockModStoneSlab extends BlockBaseSlab
 		private final int meta;
 		private final String name;
 
-		private Type(int meta, String name)
-		{
+		private Type(int meta, String name) {
 			this.meta = meta;
 			this.name = name;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return Type.values().length;
 		}
 
-		public static Type byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static Type byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(Type variant : values())
-			{
+		static {
+			for(Type variant : values()) {
 				META_LOOKUP[variant.getMeta()] = variant;
 				NAMES[variant.getMeta()] = variant.getName();
 			}

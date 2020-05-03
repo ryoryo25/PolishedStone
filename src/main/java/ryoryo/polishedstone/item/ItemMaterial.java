@@ -8,11 +8,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedstone.block.BlockMetal.MaterialType;
 
-public class ItemMaterial extends ItemModBase
-{
+public class ItemMaterial extends ItemModBase {
 	private static String ig = "_ingot";
-	public static final String[] NAMES = new String[]
-	{
+	public static final String[] NAMES = new String[] {
 			MaterialType.ENDER_STEEL.getName() + ig,
 			MaterialType.BLUESTONE.getName() + ig,
 			MaterialType.BLAZE.getName() + ig,
@@ -35,16 +33,14 @@ public class ItemMaterial extends ItemModBase
 			"quartz_purple",
 	};
 
-	public ItemMaterial()
-	{
+	public ItemMaterial() {
 		super("material");
 		this.setHasSubtypes(true);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public boolean hasEffect(ItemStack stack)
-	{
+	public boolean hasEffect(ItemStack stack) {
 		if(stack.getItemDamage() == 6)
 			return true;
 
@@ -52,15 +48,13 @@ public class ItemMaterial extends ItemModBase
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack itemStack)
-	{
+	public String getUnlocalizedName(ItemStack itemStack) {
 		return this.getUnlocalizedName() + "_" + NAMES[itemStack.getItemDamage()];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
-	{
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		RegistryUtils.registerSubItems(this, NAMES.length, tab, items);
 	}
 }

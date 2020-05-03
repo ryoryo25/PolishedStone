@@ -1,8 +1,7 @@
 package ryoryo.polishedstone.util;
 
-public class LibEntityId
-{
-	//item
+public class LibEntityId {
+	// item
 	public static final int ENTITY_ID_ITEM = 1;
 	public static final int ENTITY_ID_XP_ORB = 2;
 	public static final int ENTITY_ID_LEASH_KNOT = 8;
@@ -21,7 +20,7 @@ public class LibEntityId
 	public static final int ENTITY_ID_FALLING_SAND = 21;
 	public static final int ENTITY_ID_FIREWORKS_ROCKET_ENTITY = 22;
 	public static final int ENTITY_ID_BOAT = 41;
-	//minecart
+	// minecart
 	public static final int ENTITY_ID_MINECART_RIDEABLE = 42;
 	public static final int ENTITY_ID_MINECART_CHEST = 43;
 	public static final int ENTITY_ID_MINECART_FURNACE = 44;
@@ -31,7 +30,7 @@ public class LibEntityId
 	public static final int ENTITY_ID_MINECART_COMMAND_BLOCK = 40;
 	public static final int ENTITY_ID_MOB = 48;
 	public static final int ENTITY_ID_MONSTER = 49;
-	//monster
+	// monster
 	public static final int ENTITY_ID_CREEPER = 50;
 	public static final int ENTITY_ID_SKELETON = 51;
 	public static final int ENTITY_ID_SPIDER = 52;
@@ -47,7 +46,7 @@ public class LibEntityId
 	public static final int ENTITY_ID_LAVA_SLIME = 62;
 	public static final int ENTITY_ID_ENDER_DRAGON = 63;
 	public static final int ENTITY_ID_WITHER_BOSS = 64;
-	//animal
+	// animal
 	public static final int ENTITY_ID_BAT = 65;
 	public static final int ENTITY_ID_WITCH = 66;
 	public static final int ENTITY_ID_PIG = 90;
@@ -62,7 +61,7 @@ public class LibEntityId
 	public static final int ENTITY_ID_VILLAGER_GOLEM = 99;
 	public static final int ENTITY_ID_ENTITY_HORSE = 100;
 	public static final int ENTITY_ID_VILLAGER = 120;
-	//other
+	// other
 	public static final int ENTITY_ID_ENDER_CRYSTAL = 200;
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

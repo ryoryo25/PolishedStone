@@ -19,10 +19,8 @@ import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.block.BlockStreetGutter;
 import ryoryo.polishedstone.block.BlockStreetGutter.EnumType;
 
-public class ItemBlockStreetGutter extends ItemBlockMeta
-{
-	public static final String[] NAMES = new String[]
-	{
+public class ItemBlockStreetGutter extends ItemBlockMeta {
+	public static final String[] NAMES = new String[] {
 			EnumType.NORMAL_NS.toString(),
 			EnumType.POLISHED_NS.toString(),
 			EnumType.MESH_NS.toString(),
@@ -30,40 +28,32 @@ public class ItemBlockStreetGutter extends ItemBlockMeta
 			EnumType.CENTRAL_POLISHED.toString(),
 	};
 
-	public ItemBlockStreetGutter()
-	{
+	public ItemBlockStreetGutter() {
 		super(Register.BLOCK_STREET_GUTTER, NAMES);
 	}
 
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = player.getHeldItem(hand);
 		RayTraceResult raytraceresult = this.rayTrace(world, player, true);
 
-		if(raytraceresult == null)
-		{
+		if(raytraceresult == null) {
 			return EnumActionResult.PASS;
 		}
-		else
-		{
-			if(raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK)
-			{
+		else {
+			if(raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK) {
 				BlockPos posr = raytraceresult.getBlockPos();
 
-				if(!world.isBlockModifiable(player, posr) || !player.canPlayerEdit(posr.offset(raytraceresult.sideHit), raytraceresult.sideHit, stack))
-				{
+				if(!world.isBlockModifiable(player, posr) || !player.canPlayerEdit(posr.offset(raytraceresult.sideHit), raytraceresult.sideHit, stack)) {
 					return EnumActionResult.FAIL;
 				}
 
 				BlockPos posu = posr.up();
 
-				if(world.isAirBlock(posu))
-				{
+				if(world.isAirBlock(posu)) {
 					int meta = stack.getMetadata();
 					world.setBlockState(posu, getState(player.getHorizontalFacing(), meta), 11);
-					if(!Utils.isCreative(player))
-					{
+					if(!Utils.isCreative(player)) {
 						stack.shrink(1);
 					}
 
@@ -78,45 +68,43 @@ public class ItemBlockStreetGutter extends ItemBlockMeta
 		}
 	}
 
-	private static IBlockState getState(EnumFacing facing, int meta)
-	{
+	private static IBlockState getState(EnumFacing facing, int meta) {
 		IBlockState state = Register.BLOCK_STREET_GUTTER.getDefaultState();
 		EnumSimpleFacing facings = EnumSimpleFacing.convertToNormalFacing(facing);
 
-		switch(facings)
-		{
-		case NORTH:
-		default:
-			switch(meta)
-			{
-			case 0:
+		switch(facings) {
+			case NORTH:
 			default:
-				return state.withProperty(BlockStreetGutter.TYPE, EnumType.NORMAL_NS);
-			case 1:
-				return state.withProperty(BlockStreetGutter.TYPE, EnumType.POLISHED_NS);
-			case 2:
-				return state.withProperty(BlockStreetGutter.TYPE, EnumType.MESH_NS);
-			case 3:
-				return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_NORMAL);
-			case 4:
-				return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_POLISHED);
-			}
-		case WEST:
-			switch(meta)
-			{
-			case 0:
-			default:
-				return state.withProperty(BlockStreetGutter.TYPE, EnumType.NORMAL_WE);
-			case 1:
-				return state.withProperty(BlockStreetGutter.TYPE, EnumType.POLISHED_WE);
-			case 2:
-				return state.withProperty(BlockStreetGutter.TYPE, EnumType.MESH_WE);
-			case 3:
-				return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_NORMAL);
-			case 4:
-				return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_POLISHED);
-			}
+				switch(meta) {
+					case 0:
+					default:
+						return state.withProperty(BlockStreetGutter.TYPE, EnumType.NORMAL_NS);
+					case 1:
+						return state.withProperty(BlockStreetGutter.TYPE, EnumType.POLISHED_NS);
+					case 2:
+						return state.withProperty(BlockStreetGutter.TYPE, EnumType.MESH_NS);
+					case 3:
+						return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_NORMAL);
+					case 4:
+						return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_POLISHED);
+				}
+			case WEST:
+				switch(meta) {
+					case 0:
+					default:
+						return state.withProperty(BlockStreetGutter.TYPE, EnumType.NORMAL_WE);
+					case 1:
+						return state.withProperty(BlockStreetGutter.TYPE, EnumType.POLISHED_WE);
+					case 2:
+						return state.withProperty(BlockStreetGutter.TYPE, EnumType.MESH_WE);
+					case 3:
+						return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_NORMAL);
+					case 4:
+						return state.withProperty(BlockStreetGutter.TYPE, EnumType.CENTRAL_POLISHED);
+				}
 		}
-//				.withProperty(BlockLateralGroove.TYPE, meta == 0 ? EnumType.NORMAL : (meta == 1 ? EnumType.WHITE : (meta == 2 ? EnumType.MESH : EnumType.NORMAL)))
+		// .withProperty(BlockLateralGroove.TYPE, meta == 0 ? EnumType.NORMAL :
+		// (meta == 1 ? EnumType.WHITE : (meta == 2 ? EnumType.MESH :
+		// EnumType.NORMAL)))
 	}
 }

@@ -22,10 +22,8 @@ import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.util.LibUnlocalizedString;
 
-public class ItemDamageFood extends ItemBaseFood
-{
-	public ItemDamageFood(String name, int size)
-	{
+public class ItemDamageFood extends ItemBaseFood {
+	public ItemDamageFood(String name, int size) {
 		super(1, 1.5F, false, name, PSV2Core.TAB_MOD, 8);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(size);
@@ -33,15 +31,12 @@ public class ItemDamageFood extends ItemBaseFood
 
 	@Override
 	@Nullable
-	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving)
-	{
-		if(stack.getItemDamage() < 16)
-		{
+	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
+		if(stack.getItemDamage() < 16) {
 			if(entityLiving instanceof EntityPlayer && !Utils.isCreative((EntityPlayer) entityLiving))
 				stack.setItemDamage(stack.getItemDamage() + 1);
 
-			if(entityLiving instanceof EntityPlayer)
-			{
+			if(entityLiving instanceof EntityPlayer) {
 				EntityPlayer entityplayer = (EntityPlayer) entityLiving;
 				entityplayer.getFoodStats().addStats(this, stack);
 				world.playSound((EntityPlayer) null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
@@ -54,12 +49,10 @@ public class ItemDamageFood extends ItemBaseFood
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
-	{
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.getHeldItem(hand);
 
-		if(stack.getItemDamage() >= 16)
-		{
+		if(stack.getItemDamage() >= 16) {
 			Utils.sendChat(player, LibUnlocalizedString.CHAT_DAMAGE_FOOD);
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
 		}
@@ -69,8 +62,7 @@ public class ItemDamageFood extends ItemBaseFood
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
-	{
+	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 		tooltip.add(Utils.translatableString(LibUnlocalizedString.TOOLTIP_DAMAGE_FOOD, stack.getMaxDamage() - stack.getItemDamage()));
 	}
 }

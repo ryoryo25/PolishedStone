@@ -6,25 +6,20 @@ import net.minecraft.creativetab.CreativeTabs;
 import ryoryo.polishedlib.block.BlockBase;
 import ryoryo.polishedstone.PSV2Core;
 
-public class BlockModBase extends BlockBase
-{
-	public BlockModBase(Material material, String name)
-	{
+public class BlockModBase extends BlockBase {
+	public BlockModBase(Material material, String name) {
 		super(material, name, PSV2Core.TAB_MOD);
 	}
 
-	public BlockModBase(Material material, String name, SoundType soundType)
-	{
+	public BlockModBase(Material material, String name, SoundType soundType) {
 		super(material, name, PSV2Core.TAB_MOD, soundType);
 	}
 
-	public BlockModBase(Material material, String name, CreativeTabs tab)
-	{
+	public BlockModBase(Material material, String name, CreativeTabs tab) {
 		super(material, name, tab);
 	}
 
-	public BlockModBase(Material material, String name, CreativeTabs tab, SoundType soundType)
-	{
+	public BlockModBase(Material material, String name, CreativeTabs tab, SoundType soundType) {
 		super(material, name, tab, soundType);
 	}
 }

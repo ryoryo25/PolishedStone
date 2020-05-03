@@ -27,60 +27,50 @@ import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 
-public class BlockIronChain extends BlockModBase
-{
+public class BlockIronChain extends BlockModBase {
 	protected static final AxisAlignedBB CHAIN_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
 	public static final PropertyBool TOP = Props.TOP;
 	public static final PropertyBool BOTTOM = Props.BOTTOM;
 
-	public BlockIronChain()
-	{
+	public BlockIronChain() {
 		super(Material.IRON, "iron_chain", SoundType.METAL);
 		this.setHardness(0.5F);
 		this.setResistance(2.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TOP, Boolean.valueOf(false)).withProperty(BOTTOM, Boolean.valueOf(false)));
 	}
 
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return CHAIN_AABB;
 	}
 
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = player.inventory.getCurrentItem();
 
 		int l = 0;
 		l = this.thisChainLength(world, pos);
 
-		if(stack.isEmpty())
-		{
+		if(stack.isEmpty()) {
 			if(l < 1)
 				return false;
-			else if(l < 65)
-			{
+			else if(l < 65) {
 				Utils.giveItemToPlayer(player, new ItemStack(Register.BLOCK_IRON_CHAIN, l));
 				world.playSound(player, pos, Register.SOUND_IRON_CHAIN, SoundCategory.BLOCKS, 1.0F, 0.7F);
-				for(int i = 1; i < (l + 1); i++)
-				{
-					BlockPos posa = pos.down(l -/*+*/ i);
+				for(int i = 1; i < (l + 1); i++) {
+					BlockPos posa = pos.down(l - /* + */ i);
 					world.setBlockToAir(posa);
 				}
 				return true;
@@ -88,8 +78,7 @@ public class BlockIronChain extends BlockModBase
 			else
 				return false;
 		}
-		else if(this.canPlace(stack))
-		{
+		else if(this.canPlace(stack)) {
 			Item place = stack.getItem();
 			Block placeID;
 			int placeMeta = stack.getItemDamage();
@@ -101,12 +90,10 @@ public class BlockIronChain extends BlockModBase
 
 			if(l < 0)
 				return false;
-			else if(l < 65 && world.isAirBlock(pos.down(l)))
-			{
+			else if(l < 65 && world.isAirBlock(pos.down(l))) {
 				world.setBlockState(pos.down(l), placeID.getStateFromMeta(placeMeta));
 				world.playSound(player, pos, Register.SOUND_IRON_CHAIN, SoundCategory.BLOCKS, 1.0F, 0.7F);
-				if(!Utils.isCreative(player))
-				{
+				if(!Utils.isCreative(player)) {
 					stack.shrink(1);
 					if(stack.getCount() <= 0)
 						player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
@@ -116,8 +103,7 @@ public class BlockIronChain extends BlockModBase
 			}
 			return true;
 		}
-		else
-		{
+		else {
 			Item place = stack.getItem();
 			Block block;
 
@@ -128,18 +114,14 @@ public class BlockIronChain extends BlockModBase
 
 			if(l < 0)
 				return false;
-			else if(l < 65 && world.isAirBlock(pos.down(l)))
-			{
-				if(block != null)
-				{
-					if(block.canPlaceBlockAt(world, pos.down(l)))
-					{
+			else if(l < 65 && world.isAirBlock(pos.down(l))) {
+				if(block != null) {
+					if(block.canPlaceBlockAt(world, pos.down(l))) {
 						BlockFalling.fallInstantly = true;
 						world.setBlockState(pos.down(l), block.getStateFromMeta(stack.getItemDamage()));
 						BlockFalling.fallInstantly = false;
 						world.playSound(player, pos, Register.SOUND_IRON_CHAIN, SoundCategory.BLOCKS, 1.0F, 0.7F);
-						if(!Utils.isCreative(player))
-						{
+						if(!Utils.isCreative(player)) {
 							stack.shrink(1);
 							if(stack.getCount() <= 0)
 								player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
@@ -155,21 +137,18 @@ public class BlockIronChain extends BlockModBase
 		}
 	}
 
-	public boolean canPlace(ItemStack itemstack)
-	{
+	public boolean canPlace(ItemStack itemstack) {
 		if(itemstack.getItem() == Item.getItemFromBlock(this))
 			return true;
 		else
 			return false;
 	}
 
-	private int thisChainLength(World world, BlockPos pos)
-	{
+	private int thisChainLength(World world, BlockPos pos) {
 		int l = 0;
 		boolean end = false;
 
-		for(int h = 0; h < 65; h++)
-		{
+		for(int h = 0; h < 65; h++) {
 			BlockPos posc = pos.down(h);
 			if(world.getBlockState(posc).getBlock() == Register.BLOCK_IRON_CHAIN && posc.getY() > 0 && !end)
 				++l;
@@ -181,19 +160,16 @@ public class BlockIronChain extends BlockModBase
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
-	{
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 		BlockPos posu = pos.up();
-		if(world.getBlockState(posu).getBlock() != Register.BLOCK_IRON_CHAIN && world.getBlockState(posu).getBlock() != Register.BLOCK_ANCHOR_BOLT && !world.isSideSolid(posu, EnumFacing.DOWN))
-		{
+		if(world.getBlockState(posu).getBlock() != Register.BLOCK_IRON_CHAIN && world.getBlockState(posu).getBlock() != Register.BLOCK_ANCHOR_BOLT && !world.isSideSolid(posu, EnumFacing.DOWN)) {
 			this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
 			world.setBlockToAir(pos);
 		}
 	}
 
 	@Override
-	public boolean canPlaceBlockAt(World world, BlockPos pos)
-	{
+	public boolean canPlaceBlockAt(World world, BlockPos pos) {
 		BlockPos posu = pos.up();
 		if(world.isAirBlock(posu) || world.getBlockState(posu) == null)
 			return false;
@@ -201,31 +177,26 @@ public class BlockIronChain extends BlockModBase
 	}
 
 	@Override
-	public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity)
-	{
+	public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity) {
 		return true;
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState();
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return 0;
 	}
 
 	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-	{
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return state.withProperty(TOP, Boolean.valueOf(getTopIsIronChain(world, pos))).withProperty(BOTTOM, Boolean.valueOf(getBottomIsIronChain(world, pos)));
 	}
 
-	private static boolean getTopIsIronChain(IBlockAccess world, BlockPos pos)
-	{
+	private static boolean getTopIsIronChain(IBlockAccess world, BlockPos pos) {
 		BlockPos posu = pos.up();
 		if(world.getBlockState(posu).getBlock() != Register.BLOCK_IRON_CHAIN)
 			return true;
@@ -233,8 +204,7 @@ public class BlockIronChain extends BlockModBase
 			return false;
 	}
 
-	private static boolean getBottomIsIronChain(IBlockAccess world, BlockPos pos)
-	{
+	private static boolean getBottomIsIronChain(IBlockAccess world, BlockPos pos) {
 		BlockPos posd = pos.down();
 		if(world.getBlockState(posd).getBlock() != Register.BLOCK_IRON_CHAIN)
 			return true;
@@ -243,9 +213,7 @@ public class BlockIronChain extends BlockModBase
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TOP, BOTTOM });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TOP, BOTTOM });
 	}
 }

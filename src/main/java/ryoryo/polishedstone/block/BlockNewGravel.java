@@ -17,12 +17,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedstone.PSV2Core;
 
-public class BlockNewGravel extends BlockGravel
-{
+public class BlockNewGravel extends BlockGravel {
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.<EnumType> create("type", EnumType.class);
 
-	public BlockNewGravel()
-	{
+	public BlockNewGravel() {
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("new_gravel");
 		this.setHardness(0.6F);
@@ -31,40 +29,33 @@ public class BlockNewGravel extends BlockGravel
 	}
 
 	@Override
-	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, net.minecraft.entity.EntityLiving.SpawnPlacementType type)
-	{
+	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, net.minecraft.entity.EntityLiving.SpawnPlacementType type) {
 		return state.getValue(TYPE) == EnumType.PAVING ? false : super.canCreatureSpawn(state, world, pos, type);
 	}
 
 	@Override
-	public int damageDropped(IBlockState state)
-	{
+	public int damageDropped(IBlockState state) {
 		return state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(TYPE, EnumType.byMeta(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TYPE, });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TYPE, });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, EnumType.getLength(), tab, list);
 	}
 
@@ -78,42 +69,34 @@ public class BlockNewGravel extends BlockGravel
 		private final int meta;
 		private final String name;
 
-		private EnumType(int meta, String name)
-		{
+		private EnumType(int meta, String name) {
 			this.meta = meta;
 			this.name = name;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return this.name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return EnumType.values().length;
 		}
 
-		public static EnumType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static EnumType byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(EnumType enumtype : values())
-			{
+		static {
+			for(EnumType enumtype : values()) {
 				META_LOOKUP[enumtype.getMeta()] = enumtype;
 				NAMES[enumtype.getMeta()] = enumtype.getName();
 			}

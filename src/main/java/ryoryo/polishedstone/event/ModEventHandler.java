@@ -64,21 +64,17 @@ import ryoryo.polishedstone.config.ModConfig;
 import ryoryo.polishedstone.util.LibNBTTag;
 import ryoryo.polishedstone.util.References;
 
-public class ModEventHandler
-{
-	//岩盤の硬さを高さで調整。
+public class ModEventHandler {
+	// 岩盤の硬さを高さで調整。
 	@SubscribeEvent
-	public void digSpeed(PlayerEvent.BreakSpeed event)
-	{
+	public void digSpeed(PlayerEvent.BreakSpeed event) {
 		EntityPlayer player = event.getEntityPlayer();
 		Block block = event.getState().getBlock();
 		int y = event.getPos().getY();
 		float original = event.getOriginalSpeed();
 
-		if(block != null)
-		{
-			if(block == Blocks.BEDROCK)
-			{
+		if(block != null) {
+			if(block == Blocks.BEDROCK) {
 				if(y < 40 && y > 0)
 					event.setNewSpeed(original * y);
 
@@ -86,35 +82,29 @@ public class ModEventHandler
 					event.setNewSpeed(original * 40.0F);
 			}
 
-			//松明持ってたら砂とか早く壊せる
-			if(block instanceof BlockFalling)
-			{
+			// 松明持ってたら砂とか早く壊せる
+			if(block instanceof BlockFalling) {
 				Utils.getHeldItemStacks(player).stream()
-				.filter(stack -> stack.isItemEqual(new ItemStack(Blocks.TORCH)))
-				.forEach(stack -> event.setNewSpeed(original * 20.0F));
+						.filter(stack -> stack.isItemEqual(new ItemStack(Blocks.TORCH)))
+						.forEach(stack -> event.setNewSpeed(original * 20.0F));
 			}
 		}
 	}
 
 	@SubscribeEvent
-	public void onBlockDrops(HarvestDropsEvent event)
-	{
+	public void onBlockDrops(HarvestDropsEvent event) {
 		Block block = event.getState().getBlock();
 		boolean isSilk = event.isSilkTouching();
 		List<ItemStack> drops = event.getDrops();
 		Iterator<ItemStack> iter = drops.iterator();
 
-		if(block != null && !isSilk)
-		{
-			//グロウストーンを確実に4つドロップ。
-			if(block instanceof BlockGlowstone)
-			{
+		if(block != null && !isSilk) {
+			// グロウストーンを確実に4つドロップ。
+			if(block instanceof BlockGlowstone) {
 				boolean removed = false;
-				while(iter.hasNext())
-				{
+				while(iter.hasNext()) {
 					Item item = iter.next().getItem();
-					if(item == Items.GLOWSTONE_DUST)
-					{
+					if(item == Items.GLOWSTONE_DUST) {
 						iter.remove();
 						removed = true;
 					}
@@ -123,12 +113,10 @@ public class ModEventHandler
 				if(removed)
 					drops.add(new ItemStack(Items.GLOWSTONE_DUST, 4));
 			}
-			//砂利から火打石を落とさないように
-			if(block == Blocks.GRAVEL)
-			{
+			// 砂利から火打石を落とさないように
+			if(block == Blocks.GRAVEL) {
 				boolean hasGravel = false;
-				while(iter.hasNext())
-				{
+				while(iter.hasNext()) {
 					Item item = iter.next().getItem();
 					if(item == Items.FLINT)
 						iter.remove();
@@ -143,22 +131,20 @@ public class ModEventHandler
 	}
 
 	@SubscribeEvent
-	public void onPlayerLogIn(PlayerLoggedInEvent event)
-	{
+	public void onPlayerLogIn(PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
 
 		Utils.sendChat(player, TextFormatting.BLUE + "" + TextFormatting.BOLD + "[PolishedStone V2]:" + TextFormatting.RESET + " " + player.getName() + ", Hello World!");
 		Utils.sendChat(player, TextFormatting.BLUE + "" + TextFormatting.BOLD + "[PolishedStone V2]:" + TextFormatting.RESET + " " + "VERSION: " + References.getVersion());
 
-		//TODO metaとかnbtとか
+		// TODO metaとかnbtとか
 		NBTTagCompound entity_data = player.getEntityData();
 		NBTTagCompound persisted_data = Utils.getTagCompound(entity_data, EntityPlayer.PERSISTED_NBT_TAG);
 
-		if(!persisted_data.hasKey(LibNBTTag.STARTING_INVENTORY) && !ModConfig.startingInventory.isEmpty())
-		{
+		if(!persisted_data.hasKey(LibNBTTag.STARTING_INVENTORY) && !ModConfig.startingInventory.isEmpty()) {
 			ModConfig.startingInventory.stream()
-			.map(location -> Item.REGISTRY.getObject(new ResourceLocation(location)))
-			.forEach(item -> Utils.giveItemToPlayer(player, new ItemStack(item, 1)));
+					.map(location -> Item.REGISTRY.getObject(new ResourceLocation(location)))
+					.forEach(item -> Utils.giveItemToPlayer(player, new ItemStack(item, 1)));
 
 			persisted_data.setBoolean(LibNBTTag.STARTING_INVENTORY, true);
 			entity_data.setTag(EntityPlayer.PERSISTED_NBT_TAG, persisted_data);
@@ -166,41 +152,35 @@ public class ModEventHandler
 	}
 
 	@SubscribeEvent
-	public void onPlayerUpdate(LivingUpdateEvent event)
-	{
+	public void onPlayerUpdate(LivingUpdateEvent event) {
 		EntityLivingBase target = event.getEntityLiving();
 
-		if(target instanceof EntityPlayer)
-		{
+		if(target instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) target;
 			World world = player.world;
 
-			//プレイヤーのリーチを調整。
-			if(ModConfig.extendReach)
-			{
+			// プレイヤーのリーチを調整。
+			if(ModConfig.extendReach) {
 				double reachDistance = player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).getAttributeValue();
 
-				//5.0(default value) + extra reach
-				if(Utils.isCreative(player) && reachDistance != 10.0D)
-				{
-					//default -> 10.0
-					//10ブロック先(間に9ブロック)まで届くように
+				// 5.0(default value) + extra reach
+				if(Utils.isCreative(player) && reachDistance != 10.0D) {
+					// default -> 10.0
+					// 10ブロック先(間に9ブロック)まで届くように
 					player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).removeModifier(References.EXTRA_REACH);
 					player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).applyModifier(new AttributeModifier(References.EXTRA_REACH, "Reach distance modifier", 5.0D, 0));
 				}
 
-				if(Utils.isSurvival(player) && reachDistance != 5.5D)
-				{
-					//default -> 5.5
-					//5ブロック先(間に4ブロック)まで届くように
+				if(Utils.isSurvival(player) && reachDistance != 5.5D) {
+					// default -> 5.5
+					// 5ブロック先(間に4ブロック)まで届くように
 					player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).removeModifier(References.EXTRA_REACH);
 					player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).applyModifier(new AttributeModifier(References.EXTRA_REACH, "Reach distance modifier", 0.5D, 0));
 				}
 			}
 
-			//PickUpWidely
-			if(!world.isRemote && EventHelper.pickUpWidelyToggle)
-			{
+			// PickUpWidely
+			if(!world.isRemote && EventHelper.pickUpWidelyToggle) {
 				float hor = ModConfig.horizontalRangePUW;
 				float ver = ModConfig.verticalRangePUW;
 				AxisAlignedBB aabb = new AxisAlignedBB(player.posX, player.posY, player.posZ, player.posX, player.posY, player.posZ).grow(hor, ver, hor);
@@ -208,33 +188,29 @@ public class ModEventHandler
 				List<EntityXPOrb> xpOrbs = world.getEntitiesWithinAABB(EntityXPOrb.class, aabb);
 				List<EntityArrow> arrows = world.getEntitiesWithinAABB(EntityArrow.class, aabb);
 
-				if(!items.isEmpty())
-				{
+				if(!items.isEmpty()) {
 					items.stream()
-					.filter(item -> (!item.isDead && !item.cannotPickup()))
-					.forEach(item -> item.onCollideWithPlayer(player));
+							.filter(item -> (!item.isDead && !item.cannotPickup()))
+							.forEach(item -> item.onCollideWithPlayer(player));
 				}
 
-				if(ModConfig.pickUpXpOrbPUW && !xpOrbs.isEmpty())
-				{
+				if(ModConfig.pickUpXpOrbPUW && !xpOrbs.isEmpty()) {
 					xpOrbs.stream()
-					.filter(xpOrb -> !xpOrb.isDead)
-					.forEach(xpOrb -> xpOrb.onCollideWithPlayer(player));
+							.filter(xpOrb -> !xpOrb.isDead)
+							.forEach(xpOrb -> xpOrb.onCollideWithPlayer(player));
 				}
 
-				if(ModConfig.pickUpArrowPUW && !arrows.isEmpty())
-				{
+				if(ModConfig.pickUpArrowPUW && !arrows.isEmpty()) {
 					arrows.stream()
-					.filter(arrow -> !arrow.isDead)
-					.forEach(arrow -> arrow.onCollideWithPlayer(player));
+							.filter(arrow -> !arrow.isDead)
+							.forEach(arrow -> arrow.onCollideWithPlayer(player));
 				}
 			}
 		}
 	}
 
 	@SubscribeEvent
-	public void onItemDied(ItemExpireEvent event)
-	{
+	public void onItemDied(ItemExpireEvent event) {
 		EntityItem entity = event.getEntityItem();
 		ItemStack stack = entity.getItem();
 		Item item = stack.getItem();
@@ -242,65 +218,53 @@ public class ModEventHandler
 		World world = entity.world;
 		Random random = new Random();
 
-		//アイテムの苗木が消えたとき植えられたら勝手に植わるように。
-		//また、何個かスタックされてるときはスタックサイズが1、減って5秒経つと消えるアイテムをスポーンさせる。植えられた苗木にそのスポーンさせた苗木が重なったら消える。
-		if(entity != null && !stack.isEmpty() && item != null)
-		{
-			if(ModConfig.plantSaplingWhenDespawn && !world.isRemote && block != null && block instanceof BlockSapling)
-			{
+		// アイテムの苗木が消えたとき植えられたら勝手に植わるように。
+		// また、何個かスタックされてるときはスタックサイズが1、減って5秒経つと消えるアイテムをスポーンさせる。植えられた苗木にそのスポーンさせた苗木が重なったら消える。
+		if(entity != null && !stack.isEmpty() && item != null) {
+			if(ModConfig.plantSaplingWhenDespawn && !world.isRemote && block != null && block instanceof BlockSapling) {
 				BlockSapling sapling = (BlockSapling) block;
-				if(sapling.canPlaceBlockAt(world, entity.getPosition()))
-				{
+				if(sapling.canPlaceBlockAt(world, entity.getPosition())) {
 					world.setBlockState(entity.getPosition(), sapling.getStateFromMeta(item.getMetadata(stack)));
-					if(stack.getCount() > 1)
-					{
+					if(stack.getCount() > 1) {
 						PSV2Core.LOGGER.info("cloning_tree");
 						EntityItem extraItem = entity.dropItem(item, stack.getCount() - 1);
 						extraItem.lifespan = (int) ArithmeticUtils.secondToTick(5.0F);
-						//						extraItem.motionX = 10;
+						// extraItem.motionX = 10;
 						world.spawnEntity(extraItem);
 						PSV2Core.LOGGER.info("cloned_tree");
 					}
 				}
-				//				event.setCanceled(true);
+				// event.setCanceled(true);
 			}
 
-			//卵が消えるときに生まれるように。
-			if(item instanceof ItemEgg)
-			{
-				if(!world.isRemote)
-				{
-					if(random.nextInt(64) == 0)
-					{
+			// 卵が消えるときに生まれるように。
+			if(item instanceof ItemEgg) {
+				if(!world.isRemote) {
+					if(random.nextInt(64) == 0) {
 						int i = 1;
 
 						if(random.nextInt(32) == 0)
 							i = 4;
 
-						for(int j = 0; j < i; ++j)
-						{
+						for(int j = 0; j < i; ++j) {
 							EntityChicken chicken = new EntityChicken(world);
 							chicken.setGrowingAge(-24000);
 							chicken.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, 0.0F);
 							world.spawnEntity(chicken);
 						}
 					}
-					if(stack.getCount() > 1)
-					{
+					if(stack.getCount() > 1) {
 						PSV2Core.LOGGER.info("cloning_chicken");
 						EntityItem extraItem = entity.dropItem(item, stack.getCount() - 1);
 						extraItem.lifespan = (int) ArithmeticUtils.secondToTick(5.0F);
-						//						extraItem.motionX = 10;
+						// extraItem.motionX = 10;
 						world.spawnEntity(extraItem);
 						PSV2Core.LOGGER.info("cloned_chicken");
 					}
 				}
-				else
-				{
-					for(int k = 0; k < 8; ++k)
-					{
-						world.spawnParticle(EnumParticleTypes.ITEM_CRACK, entity.posX, entity.posY, entity.posZ, ((double) random.nextFloat() - 0.5D) * 0.08D, ((double) random.nextFloat() - 0.5D) * 0.08D, ((double) random.nextFloat() - 0.5D) * 0.08D, new int[]
-						{ Item.getIdFromItem(Items.EGG) });
+				else {
+					for(int k = 0; k < 8; ++k) {
+						world.spawnParticle(EnumParticleTypes.ITEM_CRACK, entity.posX, entity.posY, entity.posZ, ((double) random.nextFloat() - 0.5D) * 0.08D, ((double) random.nextFloat() - 0.5D) * 0.08D, ((double) random.nextFloat() - 0.5D) * 0.08D, new int[] { Item.getIdFromItem(Items.EGG) });
 					}
 				}
 			}
@@ -308,69 +272,65 @@ public class ModEventHandler
 	}
 
 	@SubscribeEvent
-	public void itemToss(ItemTossEvent event)
-	{
+	public void itemToss(ItemTossEvent event) {
 		EntityItem entity = event.getEntityItem();
 		ItemStack stack = entity.getItem();
 		Item item = stack.getItem();
 		EntityPlayer player = event.getPlayer();
 		World world = player.world;
 
-		if(entity != null && player != null)
-		{
-			//			if(stack != null && item != null)
-			//			{
-			//				if(ModConfig.plantSaplingWhenDespawn && Block.getBlockFromItem(item) instanceof BlockSapling)
-			//				{
-			//					entity.lifespan = (int) Utils.secondToTick(5.0F);
-			//					event.setResult(Result.ALLOW);
-			//				}
-			//				if(item instanceof ItemEgg)
-			//				{
-			//					entity.lifespan = (int) Utils.secondToTick(5.0F);
-			//				}
-			//			}
+		if(entity != null && player != null) {
+			// if(stack != null && item != null)
+			// {
+			// if(ModConfig.plantSaplingWhenDespawn &&
+			// Block.getBlockFromItem(item) instanceof BlockSapling)
+			// {
+			// entity.lifespan = (int) Utils.secondToTick(5.0F);
+			// event.setResult(Result.ALLOW);
+			// }
+			// if(item instanceof ItemEgg)
+			// {
+			// entity.lifespan = (int) Utils.secondToTick(5.0F);
+			// }
+			// }
 			entity.addTag("dropped_by_player");
 
-			//TODO アイテム捨てたときにポコッて音出したい
+			// TODO アイテム捨てたときにポコッて音出したい
 			world.playSound(player, player.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.3F, 10.0F);
 			player.swingArm(EnumHand.MAIN_HAND);
 		}
 	}
 
 	@SubscribeEvent
-	public void onEntityJoinWorld(EntityJoinWorldEvent event)
-	{
+	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
 		Entity entity = event.getEntity();
 		World world = event.getWorld();
 
-		if(entity != null && !world.isRemote)
-		{
-			//鉱石辞書統一機能
-			if(entity instanceof EntityItem)
-			{
+		if(entity != null && !world.isRemote) {
+			// 鉱石辞書統一機能
+			if(entity instanceof EntityItem) {
 				EntityItem entityItem = (EntityItem) entity;
 				ItemStack stack = entityItem.getItem();
 				List<ItemStack> oredict = Utils.findOreDict(stack);
-				if(oredict != null && oredict.size() > 0 /*&& !Comparator.UNIFY.compareDisallow(stack.getItem())*/)
-				{
+				if(oredict != null && oredict.size() > 0 /*
+															 * && !Comparator.UNIFY
+															 * .compareDisallow(
+															 * stack.getItem())
+															 */) {
 					// ドロップアイテムの書き換え
-					for(ItemStack i : oredict)
-					{
+					for(ItemStack i : oredict) {
 						ItemStack newItem = new ItemStack(i.getItem(), stack.getCount(), i.getMetadata(), i.getTagCompound());
 						entityItem.setItem(newItem);
 						break;
 					}
 				}
 
-				if(ModConfig.instantItemPickUp && !entityItem.getTags().contains("dropped_by_player"))
-				{
+				if(ModConfig.instantItemPickUp && !entityItem.getTags().contains("dropped_by_player")) {
 					entityItem.setPickupDelay(0);
 				}
 			}
 
-			if(entity instanceof EntityPig)
-			{
+			if(entity instanceof EntityPig) {
 				EntityPig pig = (EntityPig) entity;
 				pig.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
 			}
@@ -378,22 +338,18 @@ public class ModEventHandler
 	}
 
 	@SubscribeEvent
-	public void onCreateFluidSource(BlockEvent.CreateFluidSourceEvent event)
-	{
-		if(ModConfig.infinityLava && event.getState().getBlock() == Blocks.FLOWING_LAVA)
-		{
+	public void onCreateFluidSource(BlockEvent.CreateFluidSourceEvent event) {
+		if(ModConfig.infinityLava && event.getState().getBlock() == Blocks.FLOWING_LAVA) {
 			event.setResult(Result.ALLOW);
 		}
 	}
 
 	@SubscribeEvent
-	public void onLoadWorld(WorldEvent.Load event)
-	{
+	public void onLoadWorld(WorldEvent.Load event) {
 		World world = event.getWorld();
 		WorldInfo worldinfo = world.getWorldInfo();
 
-		if(world.getWorldType() == WorldType.FLAT)
-		{
+		if(world.getWorldType() == WorldType.FLAT) {
 			worldinfo.setCleanWeatherTime(NumericalConstant.INT_MAX);
 			worldinfo.setRainTime(0);
 			worldinfo.setThunderTime(0);
@@ -402,32 +358,31 @@ public class ModEventHandler
 		}
 	}
 
-	//TODO
+	// TODO
 	@SubscribeEvent
-	public void onDimensionLoad(WorldEvent.Load event)
-	{
+	public void onDimensionLoad(WorldEvent.Load event) {
 		WorldProvider provider = event.getWorld().provider;
-		if(ModConfig.waterDontEvaporate && provider instanceof WorldProviderHell)
-		{
+		if(ModConfig.waterDontEvaporate && provider instanceof WorldProviderHell) {
 			ObfuscationReflectionHelper.setPrivateValue(WorldProvider.class, provider, false, "field_76575_d", "isHellWorld");
 		}
 	}
 
 	@SubscribeEvent
-	public void addAnvilRecipe(AnvilUpdateEvent event)
-	{
+	public void addAnvilRecipe(AnvilUpdateEvent event) {
 		ItemStack left = event.getLeft();
 		ItemStack right = event.getRight();
 		Utils.sendChat("Hey!1");
-		if(left.getItem() == Items.IRON_INGOT && right.getItem() == Items.DYE && right.getItemDamage() == EnumColor.YELLOW.getDyeNumber())
-		{
+		if(left.getItem() == Items.IRON_INGOT && right.getItem() == Items.DYE && right.getItemDamage() == EnumColor.YELLOW.getDyeNumber()) {
 			Utils.sendChat("Hey!2");
-			//			event.setCost(5);//経験値
-			//			event.setMaterialCost(5);//右スロットのアイテム数
-			//			event.setOutput(new ItemStack(Items.GOLD_INGOT, 1));
+			// event.setCost(5);//経験値
+			// event.setMaterialCost(5);//右スロットのアイテム数
+			// event.setOutput(new ItemStack(Items.GOLD_INGOT, 1));
 		}
-		if(left.getItem() == Items.SPAWN_EGG /*&& (!left.hasTagCompound() || !left.getTagCompound().hasKey("EntityTag"))*/ && right == new ItemStack(Blocks.SKULL) && right.getItemDamage() == 2)
-		{
+		if(left.getItem() == Items.SPAWN_EGG /*
+												 * && (!left.hasTagCompound() ||
+												 * !left.getTagCompound().hasKey
+												 * ("EntityTag"))
+												 */ && right == new ItemStack(Blocks.SKULL) && right.getItemDamage() == 2) {
 			Utils.sendChat("Hey!3");
 			event.setCost(5);
 
@@ -436,128 +391,142 @@ public class ModEventHandler
 	}
 
 	@SubscribeEvent
-	public void infinityWithoutArrow(ArrowNockEvent event)
-	{
+	public void infinityWithoutArrow(ArrowNockEvent event) {
 		ItemStack bow = event.getBow();
 		boolean infinity = EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, bow) > 0;
 
-		if(infinity)
-		{
+		if(infinity) {
 			event.getEntityPlayer().setActiveHand(event.getHand());
 			event.setAction(new ActionResult<ItemStack>(EnumActionResult.SUCCESS, bow));
 		}
 	}
 
-//	@SubscribeEvent
-//	public void test(PlayerInteractEvent.RightClickBlock event)
-//	{
-//		EntityPlayer player = event.getEntityPlayer();
-//		ItemStack held = event.getItemStack();
-//		BlockPos targetPos = event.getPos().up();
-//		World world = event.getWorld();
-//
-//		if(!held.isEmpty() && held.getItem() == Items.STICK)
-//		{
-//			world.setBlockState(targetPos, Blocks.DIAMOND_BLOCK.getDefaultState());
-//			world.setBlockState(Utils.getRightPos(targetPos, player.getHorizontalFacing()), Blocks.DIAMOND_BLOCK.getDefaultState());
-//			world.setBlockState(Utils.getLeftPos(targetPos, player.getHorizontalFacing()), Blocks.DIAMOND_BLOCK.getDefaultState());
-//		}
-//	}
-
-	//	@SubscribeEvent
-	//	public void onEntityDied(LivingDeathEvent event)
-	//	{
-	//		Entity entity = event.getEntity();
-	//		World world = entity.worldObj;
-	//		DamageSource source = event.getSource();
+	// @SubscribeEvent
+	// public void test(PlayerInteractEvent.RightClickBlock event)
+	// {
+	// EntityPlayer player = event.getEntityPlayer();
+	// ItemStack held = event.getItemStack();
+	// BlockPos targetPos = event.getPos().up();
+	// World world = event.getWorld();
 	//
-	//		if(entity instanceof EntityItem)
-	//		{
-	//			EntityItem entityItem = (EntityItem) entity;
-	//			ItemStack stack = entityItem.getEntityItem();
-	//			if(source == DamageSource.lava && stack != null && stack.getItem() != null && stack.getItem() == Items.ENDER_PEARL && !world.isRemote)
-	//			{
-	//				EntityItem newItem = new EntityItem(world, entityItem.posX, entityItem.posY + 2, entityItem.posZ, new ItemStack(Items.ENDER_EYE));
-	//				newItem.motionX = entityItem.motionX;
-	//				newItem.motionY = entityItem.motionY;
-	//				newItem.motionZ = entityItem.motionZ;
-	//				world.spawnEntityInWorld(newItem);
-	//			}
-	//		}
-	//	}
+	// if(!held.isEmpty() && held.getItem() == Items.STICK)
+	// {
+	// world.setBlockState(targetPos, Blocks.DIAMOND_BLOCK.getDefaultState());
+	// world.setBlockState(Utils.getRightPos(targetPos,
+	// player.getHorizontalFacing()), Blocks.DIAMOND_BLOCK.getDefaultState());
+	// world.setBlockState(Utils.getLeftPos(targetPos,
+	// player.getHorizontalFacing()), Blocks.DIAMOND_BLOCK.getDefaultState());
+	// }
+	// }
 
-	//	@SubscribeEvent
-	//	public void onItemDied(ItemExpireEvent event)
-	//	{
+	// @SubscribeEvent
+	// public void onEntityDied(LivingDeathEvent event)
+	// {
+	// Entity entity = event.getEntity();
+	// World world = entity.worldObj;
+	// DamageSource source = event.getSource();
 	//
-	//		EntityItem entityItem = event.getEntityItem();
-	//		ItemStack itemStack = entityItem.getEntityItem();
-	//		World world = entityItem.worldObj;
-	//		if(entityItem.isInLava() && itemStack != null && itemStack.getItem() != null && itemStack.getItem() == Items.ENDER_PEARL && !world.isRemote)
-	//		{
-	//			EntityItem newItem = new EntityItem(world, entityItem.posX, entityItem.posY + 1, entityItem.posZ, new ItemStack(Items.ENDER_EYE));
-	////			newItem.motionX = entityItem.motionX;
-	////			newItem.motionY = entityItem.motionY;
-	////			newItem.motionZ = entityItem.motionZ;
-	//			world.spawnEntityInWorld(newItem);
-	//			//				Block.spawnAsEntity(entity.worldObj, entity.getPosition(), new ItemStack(Items.ENDER_EYE, 1));
-	//		}
-	//	}
+	// if(entity instanceof EntityItem)
+	// {
+	// EntityItem entityItem = (EntityItem) entity;
+	// ItemStack stack = entityItem.getEntityItem();
+	// if(source == DamageSource.lava && stack != null && stack.getItem() !=
+	// null && stack.getItem() == Items.ENDER_PEARL && !world.isRemote)
+	// {
+	// EntityItem newItem = new EntityItem(world, entityItem.posX,
+	// entityItem.posY + 2, entityItem.posZ, new ItemStack(Items.ENDER_EYE));
+	// newItem.motionX = entityItem.motionX;
+	// newItem.motionY = entityItem.motionY;
+	// newItem.motionZ = entityItem.motionZ;
+	// world.spawnEntityInWorld(newItem);
+	// }
+	// }
+	// }
 
-	//	@SubscribeEvent
-	//	public void onEntityAdded(ItemTossEvent event)
-	//	{
+	// @SubscribeEvent
+	// public void onItemDied(ItemExpireEvent event)
+	// {
 	//
-	//	}
+	// EntityItem entityItem = event.getEntityItem();
+	// ItemStack itemStack = entityItem.getEntityItem();
+	// World world = entityItem.worldObj;
+	// if(entityItem.isInLava() && itemStack != null && itemStack.getItem() !=
+	// null && itemStack.getItem() == Items.ENDER_PEARL && !world.isRemote)
+	// {
+	// EntityItem newItem = new EntityItem(world, entityItem.posX,
+	// entityItem.posY + 1, entityItem.posZ, new ItemStack(Items.ENDER_EYE));
+	//// newItem.motionX = entityItem.motionX;
+	//// newItem.motionY = entityItem.motionY;
+	//// newItem.motionZ = entityItem.motionZ;
+	// world.spawnEntityInWorld(newItem);
+	// // Block.spawnAsEntity(entity.worldObj, entity.getPosition(), new
+	// ItemStack(Items.ENDER_EYE, 1));
+	// }
+	// }
 
-	//	@SubscribeEvent
-	//	public void onEntityAdded(EntityJoinWorldEvent event)
-	//	{
-	//		Entity entity = event.getEntity();
-	//		World world = event.getWorld();
-	//		if(entity != null && entity instanceof EntityItem)
-	//		{
-	//			EntityItem entityItem = (EntityItem) entity;
-	//			ItemStack itemStack = entityItem.getEntityItem();
-	//			if(/*entityItem.isInLava() && */itemStack != null && itemStack.getItem() != null && itemStack.getItem() == Items.ENDER_PEARL && !world.isRemote)
-	//			{
-	//				EntityItem newItem = new EntityItem(world, entityItem.posX, entityItem.posY, entityItem.posZ, new ItemStack(Items.ENDER_EYE, 1));
-	//				newItem.motionX = entityItem.motionX;
-	//				newItem.motionY = entityItem.motionY;
-	//				newItem.motionZ = entityItem.motionZ;
-	//				newItem.setDefaultPickupDelay();
-	//				entityItem.setDead();
-	//				world.spawnEntityInWorld(newItem);
-	//			}
-	//		}
-	//	}
+	// @SubscribeEvent
+	// public void onEntityAdded(ItemTossEvent event)
+	// {
+	//
+	// }
 
-	//TODO ウィザーのスポーンエッグを使ったときに実績を解除するように
-	//	@SubscribeEvent
-	//	public void onRightClick(/*PlayerUseItemEvent*/PlayerInteractEvent event)
-	//	{
-	//		//			Block block;
-	//		//			if((event.action == Action.RIGHT_CLICK_BLOCK) && (event.entityPlayer.getHeldItem() == new ItemStack(Register.itemTest)))
-	//		//			{
-	//		//				block = event.world.getBlock(event.x, event.y, event.z);
-	//		//
-	//		//				block.setResistance(10000F);
-	//		//			}
+	// @SubscribeEvent
+	// public void onEntityAdded(EntityJoinWorldEvent event)
+	// {
+	// Entity entity = event.getEntity();
+	// World world = event.getWorld();
+	// if(entity != null && entity instanceof EntityItem)
+	// {
+	// EntityItem entityItem = (EntityItem) entity;
+	// ItemStack itemStack = entityItem.getEntityItem();
+	// if(/*entityItem.isInLava() && */itemStack != null && itemStack.getItem()
+	// != null && itemStack.getItem() == Items.ENDER_PEARL && !world.isRemote)
+	// {
+	// EntityItem newItem = new EntityItem(world, entityItem.posX,
+	// entityItem.posY, entityItem.posZ, new ItemStack(Items.ENDER_EYE, 1));
+	// newItem.motionX = entityItem.motionX;
+	// newItem.motionY = entityItem.motionY;
+	// newItem.motionZ = entityItem.motionZ;
+	// newItem.setDefaultPickupDelay();
+	// entityItem.setDead();
+	// world.spawnEntityInWorld(newItem);
+	// }
+	// }
+	// }
+
+	// TODO ウィザーのスポーンエッグを使ったときに実績を解除するように
+	// @SubscribeEvent
+	// public void onRightClick(/*PlayerUseItemEvent*/PlayerInteractEvent event)
+	// {
+	// // Block block;
+	// // if((event.action == Action.RIGHT_CLICK_BLOCK) &&
+	// (event.entityPlayer.getHeldItem() == new ItemStack(Register.itemTest)))
+	// // {
+	// // block = event.world.getBlock(event.x, event.y, event.z);
+	// //
+	// // block.setResistance(10000F);
+	// // }
 	//
-	//		EntityPlayer entityPlayer = event.entityPlayer;
-	//		World world = event.world;
+	// EntityPlayer entityPlayer = event.entityPlayer;
+	// World world = event.world;
 	//
-	//		if(world.isRemote || event.action != Action.RIGHT_CLICK_BLOCK)
-	//		{
-	//			return;
-	//		}
-	//		if(entityPlayer.getHeldItem() != null || entityPlayer.getHeldItem().getItem() != Items.spawn_egg || entityPlayer.getHeldItem().getItemDamage() != 64 || entityPlayer.getHeldItem() == null)
-	//		{
-	//			return;
-	//		}
-	//		if(entityPlayer.getHeldItem() != null && entityPlayer.getHeldItem().getItem() == Items.spawn_egg && entityPlayer.getHeldItem().getItemDamage() == 64)
-	//		{
-	//			Utils.triggerAchievement(event.entityPlayer, AchievementList.field_150963_I);
-	//		}
-	//	}
+	// if(world.isRemote || event.action != Action.RIGHT_CLICK_BLOCK)
+	// {
+	// return;
+	// }
+	// if(entityPlayer.getHeldItem() != null ||
+	// entityPlayer.getHeldItem().getItem() != Items.spawn_egg ||
+	// entityPlayer.getHeldItem().getItemDamage() != 64 ||
+	// entityPlayer.getHeldItem() == null)
+	// {
+	// return;
+	// }
+	// if(entityPlayer.getHeldItem() != null &&
+	// entityPlayer.getHeldItem().getItem() == Items.spawn_egg &&
+	// entityPlayer.getHeldItem().getItemDamage() == 64)
+	// {
+	// Utils.triggerAchievement(event.entityPlayer,
+	// AchievementList.field_150963_I);
+	// }
+	// }
 }

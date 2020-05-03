@@ -6,10 +6,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 
-public class ItemBedrockCore extends ItemModBase
-{
-	public ItemBedrockCore()
-	{
+public class ItemBedrockCore extends ItemModBase {
+	public ItemBedrockCore() {
 		super("bedrock_core");
 		this.setMaxStackSize(1);
 		this.setMaxDamage(1024);
@@ -19,22 +17,18 @@ public class ItemBedrockCore extends ItemModBase
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public boolean hasEffect(ItemStack stack)
-	{
+	public boolean hasEffect(ItemStack stack) {
 		return true;
 	}
 
 	@Override
-	public boolean hasContainerItem()
-	{
+	public boolean hasContainerItem() {
 		return true;
 	}
 
 	@Override
-	public ItemStack getContainerItem(ItemStack itemStack)
-	{
-		if(!itemStack.isEmpty() && itemStack.getItem() == this)
-		{
+	public ItemStack getContainerItem(ItemStack itemStack) {
+		if(!itemStack.isEmpty() && itemStack.getItem() == this) {
 			if(itemStack.getItemDamage() == itemStack.getMaxDamage())
 				return null;
 

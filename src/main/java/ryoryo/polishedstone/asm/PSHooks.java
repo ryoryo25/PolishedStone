@@ -1,5 +1,4 @@
 package ryoryo.polishedstone.asm;
 
-public class PSHooks
-{
+public class PSHooks {
 }

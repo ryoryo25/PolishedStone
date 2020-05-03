@@ -16,27 +16,22 @@ import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.block.BlockVendingMachine;
 import ryoryo.polishedstone.block.BlockVendingMachine.EnumHalf;
 
-public class ItemBlockVendingMachine extends ItemBlock
-{
-	public ItemBlockVendingMachine(Block block)
-	{
+public class ItemBlockVendingMachine extends ItemBlock {
+	public ItemBlockVendingMachine(Block block) {
 		super(block);
 	}
 
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = player.getHeldItem(hand);
 		IBlockState iblockstate = world.getBlockState(pos);
 		Block block = iblockstate.getBlock();
 
-		if(!block.isReplaceable(world, pos))
-		{
+		if(!block.isReplaceable(world, pos)) {
 			pos = pos.offset(facing);
 		}
 
-		if(player.canPlayerEdit(pos, facing, stack) && this.block.canPlaceBlockAt(world, pos))
-		{
+		if(player.canPlayerEdit(pos, facing, stack) && this.block.canPlaceBlockAt(world, pos)) {
 			EnumFacing enumfacing = EnumFacing.fromAngle((double) player.rotationYaw);
 			placeMachine(world, pos, enumfacing, this.block, stack.getItemDamage());
 			SoundType soundtype = world.getBlockState(pos).getBlock().getSoundType(world.getBlockState(pos), world, pos, player);
@@ -45,15 +40,13 @@ public class ItemBlockVendingMachine extends ItemBlock
 				stack.shrink(1);
 			return EnumActionResult.SUCCESS;
 		}
-		else
-		{
+		else {
 			return EnumActionResult.FAIL;
 		}
 
 	}
 
-	private static void placeMachine(World world, BlockPos pos, EnumFacing facing, Block machine, int meta)
-	{
+	private static void placeMachine(World world, BlockPos pos, EnumFacing facing, Block machine, int meta) {
 		BlockPos blockpos2 = pos.up();
 		IBlockState iblockstate = machine.getDefaultState().withProperty(BlockVendingMachine.FACING, facing);
 		world.setBlockState(pos, iblockstate.withProperty(BlockVendingMachine.HALF, EnumHalf.LOWER), 2);

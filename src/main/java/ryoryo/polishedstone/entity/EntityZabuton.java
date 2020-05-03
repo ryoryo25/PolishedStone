@@ -37,8 +37,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 
-public class EntityZabuton extends Entity implements IProjectile, IEntityAdditionalSpawnData
-{
+public class EntityZabuton extends Entity implements IProjectile, IEntityAdditionalSpawnData {
 	protected double zabutonX;
 	protected double zabutonY;
 	protected double zabutonZ;
@@ -51,12 +50,11 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 	public boolean isDispensed;
 	public byte color;
 	protected int boatPosRotationIncrements;
-	private static final DataParameter<Byte> DISPENSED = EntityDataManager.<Byte>createKey(EntityZabuton.class, DataSerializers.BYTE);
-	private static final DataParameter<Integer> RIDING_ENTITY_ID = EntityDataManager.<Integer>createKey(EntityZabuton.class, DataSerializers.VARINT);
-	private static final DataParameter<Byte> COLOR = EntityDataManager.<Byte>createKey(EntityZabuton.class, DataSerializers.BYTE);
+	private static final DataParameter<Byte> DISPENSED = EntityDataManager.<Byte> createKey(EntityZabuton.class, DataSerializers.BYTE);
+	private static final DataParameter<Integer> RIDING_ENTITY_ID = EntityDataManager.<Integer> createKey(EntityZabuton.class, DataSerializers.VARINT);
+	private static final DataParameter<Byte> COLOR = EntityDataManager.<Byte> createKey(EntityZabuton.class, DataSerializers.BYTE);
 
-	public EntityZabuton(World world)
-	{
+	public EntityZabuton(World world) {
 		super(world);
 		this.preventEntitySpawning = true;
 		this.setSize(0.81F, 0.2F);
@@ -65,19 +63,16 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 		this.color = (byte) 0xFF;
 	}
 
-	public EntityZabuton(World world, byte color)
-	{
+	public EntityZabuton(World world, byte color) {
 		this(world);
 		this.color = color;
 	}
 
-	public EntityZabuton(World world, ItemStack stack)
-	{
+	public EntityZabuton(World world, ItemStack stack) {
 		this(world, (byte) (stack.getItemDamage() & 0x0f));
 	}
 
-	public EntityZabuton(World world, double x, double y, double z, byte color)
-	{
+	public EntityZabuton(World world, double x, double y, double z, byte color) {
 		this(world, color);
 		this.setPositionAndRotation(x, y + (double) this.getYOffset(), z, 0F, 0F);
 		motionX = 0.0D;
@@ -86,14 +81,12 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 	}
 
 	@Override
-	public double getYOffset()
-	{
+	public double getYOffset() {
 		return 0.0D;
 	}
 
 	@Override
-	public void shoot(double x, double y, double z, float velocity, float inaccuracy)
-	{
+	public void shoot(double x, double y, double z, float velocity, float inaccuracy) {
 		// ディスペンサー用
 		float f2 = MathHelper.sqrt(x * x + y * y + z * z);
 		x /= f2;
@@ -115,62 +108,53 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 	}
 
 	@Override
-	protected boolean canTriggerWalking()
-	{
+	protected boolean canTriggerWalking() {
 		return false;
 	}
 
 	@Override
-	protected void entityInit()
-	{
+	protected void entityInit() {
 		this.dataManager.register(DISPENSED, new Byte((byte) (isDispensed ? 0x01 : 0x00)));
 		this.dataManager.register(RIDING_ENTITY_ID, Integer.valueOf(0));
 		this.dataManager.register(COLOR, new Byte((byte) 0xFF));
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBox(Entity entity)
-	{
+	public AxisAlignedBB getCollisionBox(Entity entity) {
 		return entity.getEntityBoundingBox();
 	}
 
 	@Override
-	public boolean canBePushed()
-	{
+	public boolean canBePushed() {
 		return true;
 	}
 
 	@Override
-	protected void readEntityFromNBT(NBTTagCompound compound)
-	{
+	protected void readEntityFromNBT(NBTTagCompound compound) {
 		color = compound.getByte("Color");
 		health = compound.getShort("Health");
 	}
 
 	@Override
-	protected void writeEntityToNBT(NBTTagCompound compound)
-	{
+	protected void writeEntityToNBT(NBTTagCompound compound) {
 		compound.setByte("Color", (byte) (color & 0x0f));
 		compound.setShort("Health", (byte) health);
 	}
 
 	@Override
-	public void writeSpawnData(ByteBuf buffer)
-	{
+	public void writeSpawnData(ByteBuf buffer) {
 		buffer.writeByte(color);
 		buffer.writeFloat(rotationYaw);
 	}
 
 	@Override
-	public void readSpawnData(ByteBuf additionalData)
-	{
+	public void readSpawnData(ByteBuf additionalData) {
 		color = additionalData.readByte();
 		setRotation(additionalData.readFloat(), 0.0F);
 	}
 
 	@Override
-	public double getMountedYOffset()
-	{
+	public double getMountedYOffset() {
 		if(this.getRidingEntity() instanceof EntitySpider)
 			return (double) height * 0.0D - 0.1D;
 
@@ -181,8 +165,7 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 	}
 
 	@Override
-	public boolean handleWaterMovement()
-	{
+	public boolean handleWaterMovement() {
 		// 独自の水没判定
 		int minX = MathHelper.floor(this.getEntityBoundingBox().minX);
 		int maxX = MathHelper.floor(this.getEntityBoundingBox().maxX + 1.0D);
@@ -193,26 +176,20 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 
 		boolean flag = false;
 
-		for(int x = minX; x < maxX; ++x)
-		{
-			for(int y = minY; y < maxY; ++y)
-			{
-				for(int z = minZ; z < maxZ; ++z)
-				{
+		for(int x = minX; x < maxX; ++x) {
+			for(int y = minY; y < maxY; ++y) {
+				for(int z = minZ; z < maxZ; ++z) {
 					IBlockState state = world.getBlockState(new BlockPos(x, y, z));
 
-					if(state != null && state.getMaterial() == Material.WATER)
-					{
+					if(state != null && state.getMaterial() == Material.WATER) {
 						inWater = true;
 						double level = (double) ((float) (y + 1) - BlockLiquid.getLiquidHeightPercent(state.getBlock().getMetaFromState(state)));
 
-						if((double) maxY >= level)
-						{
+						if((double) maxY >= level) {
 							flag = true;
 						}
 					}
-					else
-					{
+					else {
 						this.inWater = false;
 					}
 				}
@@ -222,32 +199,25 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 	}
 
 	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount)
-	{
+	public boolean attackEntityFrom(DamageSource source, float amount) {
 		Entity entity = source.getTrueSource();
-		if(this.world.isRemote || this.isDead)
-		{
+		if(this.world.isRemote || this.isDead) {
 			return true;
 		}
 		this.markVelocityChanged();
-		if(entity instanceof EntityPlayer)
-		{
-			if(this.color >= 0 && this.color < 16 && !Utils.isCreative((EntityPlayer) entity))
-			{
+		if(entity instanceof EntityPlayer) {
+			if(this.color >= 0 && this.color < 16 && !Utils.isCreative((EntityPlayer) entity)) {
 				this.entityDropItem(new ItemStack(Register.ITEM_ZABUTON, 1, this.color), 0.0F);
 			}
 			this.setDead();
 		}
-		else
-		{
+		else {
 			this.health -= amount;
-			if(this.health <= 0)
-			{
+			if(this.health <= 0) {
 				this.setDead();
 			}
 		}
-		if(this.isDead && this.getRidingEntity() != null)
-		{
+		if(this.isDead && this.getRidingEntity() != null) {
 			this.getRidingEntity().dismountRidingEntity();
 			this.setRiddenByEntityID(this.getRidingEntity());
 		}
@@ -255,32 +225,27 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 	}
 
 	@Override
-	public boolean canBeCollidedWith()
-	{
+	public boolean canBeCollidedWith() {
 		return !this.isDead;
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void setVelocity(double x, double y, double z)
-	{
+	public void setVelocity(double x, double y, double z) {
 		this.velocityX = this.motionX = x;
 		this.velocityY = this.motionY = y;
 		this.velocityZ = this.motionZ = z;
 	}
 
 	@Override
-	public void onUpdate()
-	{
+	public void onUpdate() {
 		super.onUpdate();
 
 		// クライアントへはパケットで送ってたと思われる。dataWatcherに切り替え。
-		if(!this.world.isRemote)
-		{
+		if(!this.world.isRemote) {
 			this.dataManager.set(COLOR, this.color);
 		}
-		else
-		{
+		else {
 			this.color = this.dataManager.get(COLOR);
 		}
 
@@ -297,11 +262,9 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 		double var26;
 		double var24 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
-		if(this.world.isRemote)
-		{
+		if(this.world.isRemote) {
 			// Client
-			if(this.boatPosRotationIncrements > 0)
-			{
+			if(this.boatPosRotationIncrements > 0) {
 				var6 = this.posX + (this.zabutonX - this.posX) / (double) this.boatPosRotationIncrements;
 				var8 = this.posY + (this.zabutonY - this.posY) / (double) this.boatPosRotationIncrements;
 				var26 = this.posZ + (this.zabutonZ - this.posZ) / (double) this.boatPosRotationIncrements;
@@ -312,11 +275,9 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 				this.setPosition(var6, var8, var26);
 				this.setRotation(this.rotationYaw, this.rotationPitch);
 			}
-			else
-			{
+			else {
 				motionY -= 0.08D;
-				if(this.onGround)
-				{
+				if(this.onGround) {
 					this.motionX *= 0.5D;
 					this.motionY *= 0.5D;
 					this.motionZ *= 0.5D;
@@ -329,15 +290,13 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 				this.motionZ *= 0.9900000095367432D;
 			}
 		}
-		else
-		{
+		else {
 			// Server
 			// 落下
 			motionY -= 0.08D;
 
 			// 搭乗者によるベクトル操作
-			if(this.getRidingEntity() != null && this.getRidingEntity() instanceof EntityPlayer)
-			{
+			if(this.getRidingEntity() != null && this.getRidingEntity() instanceof EntityPlayer) {
 				this.motionX += this.getRidingEntity().motionX * 0.2D;
 				this.motionZ += this.getRidingEntity().motionZ * 0.2D;
 			}
@@ -345,21 +304,19 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 			// 最高速度判定
 			Double lmaxspeed = isDispensed() ? 10.0D : 0.35D;
 			var6 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			if(var6 > lmaxspeed)
-			{
+			if(var6 > lmaxspeed) {
 				var8 = lmaxspeed / var6;
 				this.motionX *= var8;
 				this.motionZ *= var8;
 				var6 = lmaxspeed;
 			}
-			if(this.onGround)
-			{
+			if(this.onGround) {
 				this.motionX *= 0.5D;
 				this.motionY *= 0.5D;
 				this.motionZ *= 0.5D;
 				setDispensed(false);
 				// setVelocityの呼ばれる回数が少なくて変な動きをするので対策
-				//                this.velocityChanged = true;
+				// this.velocityChanged = true;
 			}
 			this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 
@@ -373,18 +330,15 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 			var26 = this.prevPosX - this.posX;
 			var12 = this.prevPosZ - this.posZ;
 
-			if(var26 * var26 + var12 * var12 > 0.001D)
-			{
+			if(var26 * var26 + var12 * var12 > 0.001D) {
 				var8 = (double) ((float) (Math.atan2(var12, var26) * 180.0D / Math.PI));
 			}
 
 			double var14 = MathHelper.wrapDegrees(var8 - (double) this.rotationYaw);
-			if(var14 > 20.0D)
-			{
+			if(var14 > 20.0D) {
 				var14 = 20.0D;
 			}
-			if(var14 < -20.0D)
-			{
+			if(var14 < -20.0D) {
 				var14 = -20.0D;
 			}
 
@@ -393,36 +347,29 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 
 			// 当たり判定
 			List<Entity> var16 = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(0.17D, 0.0D, 0.17D));
-			if(var16 != null && !var16.isEmpty())
-			{
+			if(var16 != null && !var16.isEmpty()) {
 				Iterator<Entity> var28 = var16.iterator();
 
-				while(var28.hasNext())
-				{
+				while(var28.hasNext()) {
 					Entity var18 = (Entity) var28.next();
 
-					if(var18 != this.getRidingEntity() && var18.canBePushed() && var18 instanceof EntityZabuton)
-					{
+					if(var18 != this.getRidingEntity() && var18.canBePushed() && var18 instanceof EntityZabuton) {
 						var18.applyEntityCollision(this);
 					}
 				}
 			}
 		}
-		if(this.getRidingEntity() != null)
-		{
-			if(this.getRidingEntity() instanceof EntityMob)
-			{
+		if(this.getRidingEntity() != null) {
+			if(this.getRidingEntity() instanceof EntityMob) {
 				// 座ってる間は消滅させない
 				this.setEntityLivingAge((EntityLivingBase) getRidingEntity(), 0);
 			}
-			if(this.getRidingEntity().isDead)
-			{
+			if(this.getRidingEntity().isDead) {
 				// 着座対象が死んだら無人化
 				this.dismountRidingEntity();
 				this.setRiddenByEntityID(this.getRidingEntity());
 			}
-			else if(this.inWater)
-			{
+			else if(this.inWater) {
 				// ぬれた座布団はひゃぁってなる
 				this.dismountRidingEntity();
 				this.setRiddenByEntityID(this.getRidingEntity());
@@ -430,24 +377,19 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 		}
 	}
 
-	public void setEntityLivingAge(EntityLivingBase entity, int a)
-	{
+	public void setEntityLivingAge(EntityLivingBase entity, int a) {
 		ObfuscationReflectionHelper.setPrivateValue(EntityLivingBase.class, entity, a, "field_70708_bq", "entityAge");
 	}
 
 	@Override
-	public void applyEntityCollision(Entity entity)
-	{
+	public void applyEntityCollision(Entity entity) {
 		// 吸着判定
-		if(!this.world.isRemote)
-		{
-			if(entity == this.getRidingEntity())
-			{
+		if(!this.world.isRemote) {
+			if(entity == this.getRidingEntity()) {
 				super.applyEntityCollision(entity);
 				return;
 			}
-			if(entity instanceof EntityLiving && !(entity instanceof EntityPlayer) && !this.isBeingRidden() && !entity.isRiding())
-			{
+			if(entity instanceof EntityLiving && !(entity instanceof EntityPlayer) && !this.isBeingRidden() && !entity.isRiding()) {
 				entity.startRiding(this);
 				this.setRiddenByEntityID(this.getRidingEntity());
 			}
@@ -456,25 +398,20 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 	}
 
 	@Override
-	public boolean processInitialInteract(EntityPlayer player, EnumHand hand)
-	{
+	public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
 		// ラーイド・オン！
-		if(this.getRidingEntity() != null && this.getRidingEntity() instanceof EntityPlayer && this.getRidingEntity() != player)
-		{
+		if(this.getRidingEntity() != null && this.getRidingEntity() instanceof EntityPlayer && this.getRidingEntity() != player) {
 			return true;
 		}
-		if(!world.isRemote && !player.isSneaking())
-		{
+		if(!world.isRemote && !player.isSneaking()) {
 			player.startRiding(this);
 		}
 		return true;
 	}
 
 	@Override
-	public ItemStack getPickedResult(RayTraceResult target)
-	{
-		if(this instanceof EntityZabuton)
-		{
+	public ItemStack getPickedResult(RayTraceResult target) {
+		if(this instanceof EntityZabuton) {
 			return new ItemStack(Register.ITEM_ZABUTON, 1, this.color);
 		}
 
@@ -482,29 +419,24 @@ public class EntityZabuton extends Entity implements IProjectile, IEntityAdditio
 	}
 
 	// 射出判定
-	public boolean isDispensed()
-	{
+	public boolean isDispensed() {
 		return this.dataManager.get(DISPENSED) > 0x00;
 	}
 
-	public void setDispensed(boolean isDispensed)
-	{
+	public void setDispensed(boolean isDispensed) {
 		this.dataManager.set(DISPENSED, (byte) (isDispensed ? 0x01 : 0x00));
 	}
 
 	// クライアント側補正用
-	public int getRiddenByEntityID()
-	{
+	public int getRiddenByEntityID() {
 		return this.dataManager.get(RIDING_ENTITY_ID);
 	}
 
-	public Entity getRiddenByEntity()
-	{
+	public Entity getRiddenByEntity() {
 		return ((WorldClient) this.world).getEntityByID(this.getRiddenByEntityID());
 	}
 
-	public void setRiddenByEntityID(Entity pentity)
-	{
+	public void setRiddenByEntityID(Entity pentity) {
 		this.dataManager.set(RIDING_ENTITY_ID, Integer.valueOf(pentity == null ? 0 : pentity.getEntityId()));
 	}
 }

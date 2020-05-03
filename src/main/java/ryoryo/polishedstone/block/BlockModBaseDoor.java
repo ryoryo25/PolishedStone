@@ -6,20 +6,16 @@ import net.minecraft.creativetab.CreativeTabs;
 import ryoryo.polishedlib.block.BlockBaseDoor;
 import ryoryo.polishedstone.PSV2Core;
 
-public class BlockModBaseDoor extends BlockBaseDoor
-{
-	public BlockModBaseDoor(String name, CreativeTabs tab)
-	{
+public class BlockModBaseDoor extends BlockBaseDoor {
+	public BlockModBaseDoor(String name, CreativeTabs tab) {
 		super(name, tab);
 	}
 
-	public BlockModBaseDoor(String name)
-	{
+	public BlockModBaseDoor(String name) {
 		super(name, PSV2Core.TAB_MOD);
 	}
 
-	public BlockModBaseDoor(Material material, String name, SoundType sound)
-	{
+	public BlockModBaseDoor(Material material, String name, SoundType sound) {
 		super(material, name, PSV2Core.TAB_MOD, sound);
 	}
 }

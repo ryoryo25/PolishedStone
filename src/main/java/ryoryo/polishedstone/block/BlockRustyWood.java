@@ -22,89 +22,74 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.enums.EnumSimpleFacing;
 
-public class BlockRustyWood extends BlockModBase
-{
+public class BlockRustyWood extends BlockModBase {
 	protected static final AxisAlignedBB WOOD_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
 	public static final PropertyEnum<EnumSimpleFacing> FACING = Props.SIMPLE_FACING;
 
-	public BlockRustyWood()
-	{
+	public BlockRustyWood() {
 		super(Material.WOOD, "rustry_wood", SoundType.WOOD);
 		this.setHardness(0.7F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumSimpleFacing.NORTH));
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return WOOD_AABB;
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos)
-	{
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos) {
 		return NULL_AABB;
 	}
 
 	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
-	{
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
 		return worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP);
 	}
 
 	@Override
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
-	{
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
 		return this.getDefaultState().withProperty(FACING, EnumSimpleFacing.convertToNormalFacing(placer.getHorizontalFacing()));
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer()
-	{
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override
-	public int quantityDropped(Random random)
-	{
+	public int quantityDropped(Random random) {
 		return 0;
 	}
 
 	@Override
-	public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
-	{
+	public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
 		return true;
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(FACING, meta == 0 ? EnumSimpleFacing.NORTH : EnumSimpleFacing.WEST);
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return ((EnumSimpleFacing) state.getValue(FACING)).getIndex();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ FACING });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { FACING });
 	}
 }

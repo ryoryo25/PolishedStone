@@ -23,118 +23,97 @@ import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 import ryoryo.polishedstone.config.ModConfig;
 
-public class BlockRunningWater extends BlockBase
-{
+public class BlockRunningWater extends BlockBase {
 	public static final PropertyBool TOP = Props.TOP;
 
-	public BlockRunningWater()
-	{
+	public BlockRunningWater() {
 		super(Material.VINE, "running_water");
 		this.setTickRandomly(true);
 	}
 
 	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
 	@Override
-	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
-	{
-		if((!world.isRemote) && (world.getBlockState(pos.down()).getBlock() == Blocks.CAULDRON))
-		{
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+		if((!world.isRemote) && (world.getBlockState(pos.down()).getBlock() == Blocks.CAULDRON)) {
 			neighborChanged(state, world, pos, Blocks.CAULDRON, pos);
 		}
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return Utils.ZERO_AABB;
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
-	{
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 		IBlockState topId = world.getBlockState(pos.up());
 		IBlockState downId = world.getBlockState(pos.down());
 
-		if(topId != Register.BLOCK_RUNNING_WATER && (topId != Register.BLOCK_FAUCET || !topId.getValue(BlockFaucet.RUNNING).booleanValue()))
-		{
+		if(topId != Register.BLOCK_RUNNING_WATER && (topId != Register.BLOCK_FAUCET || !topId.getValue(BlockFaucet.RUNNING).booleanValue())) {
 			world.setBlockToAir(pos);
-			if(downId == Blocks.WATER && ModConfig.waterOriginDelete)
-			{
+			if(downId == Blocks.WATER && ModConfig.waterOriginDelete) {
 				world.setBlockToAir(pos.down());
 			}
 			return;
 		}
-		if(downId == Blocks.CAULDRON)
-		{
+		if(downId == Blocks.CAULDRON) {
 			world.setBlockState(pos.down(), Blocks.CAULDRON.getDefaultState().withProperty(BlockCauldron.LEVEL, 3));
-			//			world.func_147464_a(i, j, k, mod_Faucet.blockWater, 50);
-			world.notifyNeighborsOfStateChange(pos, Register.BLOCK_FAUCET/*, 50*/, false);
+			// world.func_147464_a(i, j, k, mod_Faucet.blockWater, 50);
+			world.notifyNeighborsOfStateChange(pos, Register.BLOCK_FAUCET/* , 50 */, false);
 			return;
 		}
-		if(downId == Blocks.AIR)
-		{
+		if(downId == Blocks.AIR) {
 			world.setBlockState(pos.down(), Register.BLOCK_RUNNING_WATER.getDefaultState());
 			neighborChanged(state, world, pos.down(), Register.BLOCK_RUNNING_WATER, fromPos);
 			return;
 		}
-		if(downId != Register.BLOCK_RUNNING_WATER && downId != Blocks.WATER && downId != Blocks.FLOWING_WATER)
-		{
+		if(downId != Register.BLOCK_RUNNING_WATER && downId != Blocks.WATER && downId != Blocks.FLOWING_WATER) {
 			world.setBlockState(pos, Blocks.FLOWING_WATER.getDefaultState());
 
 			return;
 		}
-		if(downId == Blocks.WATER || downId == Blocks.FLOWING_WATER)
-		{
+		if(downId == Blocks.WATER || downId == Blocks.FLOWING_WATER) {
 			world.setBlockState(pos.down(), Blocks.FLOWING_WATER.getDefaultState());
 		}
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState();
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return 0;
 	}
 
 	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-	{
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return state.withProperty(TOP, Boolean.valueOf(isTop(world, pos)));
 	}
 
-	private static boolean isTop(IBlockAccess world, BlockPos pos)
-	{
+	private static boolean isTop(IBlockAccess world, BlockPos pos) {
 		BlockPos posu = pos.up();
 
 		return world.getBlockState(posu).getBlock() == Register.BLOCK_FAUCET ? true : false;
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TOP, });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TOP, });
 	}
 }

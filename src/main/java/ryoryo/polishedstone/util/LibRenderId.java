@@ -1,7 +1,6 @@
 package ryoryo.polishedstone.util;
 
-public class LibRenderId
-{
+public class LibRenderId {
 	public static final int RENDER_STANDARD_BLOCK = 0;
 	public static final int RENDER_BLOCK_LIQUID = 4;
 	public static final int RENDER_BLOCK_LOG = 31;

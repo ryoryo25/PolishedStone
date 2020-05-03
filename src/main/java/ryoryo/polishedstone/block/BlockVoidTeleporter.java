@@ -14,102 +14,104 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.RegistryUtils;
 
-public class BlockVoidTeleporter extends BlockModBase
-{
+public class BlockVoidTeleporter extends BlockModBase {
 	public static final PropertyEnum<VoidType> TYPE = PropertyEnum.<VoidType> create("type", VoidType.class);
 
-	public BlockVoidTeleporter()
-	{
+	public BlockVoidTeleporter() {
 		super(Material.IRON, "void_teleporter", SoundType.METAL);
 		this.setHardness(5.0F);
 		this.setResistance(10.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, VoidType.DAY));
 	}
 
-//	@Override
-//	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-//	{
-//		MinecraftServer server = world.getMinecraftServer();
-//
-//		if(!world.isRemote && !player.isSneaking())
-//		{
-//			if(server != null)
-//			{
-//				PlayerList list = server.getPlayerList();
-//				int currentDim = player.dimension;
-//				int overworld = DimensionType.OVERWORLD.getId();
-//
-//				int id = overworld;
-//				Teleporter teleporter;
-//				BlockVoidTeleporter.VoidType type = state.getValue(TYPE);
-//				switch(type)
-//				{
-//				case DAY:
-//				default:
-//					id = currentDim != DimensionRegistry.DAY_VOID.getId() ? DimensionRegistry.DAY_VOID.getId() : overworld;
-//					teleporter = new TeleporterVoid(server.getWorld(id), DimensionRegistry.DAY_VOID);
-//					break;
-//				case NIGHT:
-//					id = currentDim != DimensionRegistry.NIGHT_VOID.getId() ? DimensionRegistry.NIGHT_VOID.getId() : overworld;
-//					teleporter = new TeleporterVoid(server.getWorld(id), DimensionRegistry.NIGHT_VOID);
-//					break;
-//				case PERFECT:
-//					id = currentDim != DimensionRegistry.PERFECT_VOID.getId() ? DimensionRegistry.PERFECT_VOID.getId() : overworld;
-//					teleporter = new TeleporterVoid(server.getWorld(id), DimensionRegistry.PERFECT_VOID);
-//					break;
-//				}
-//
-//				if(player instanceof EntityPlayerMP)
-//				{
-//					list.transferPlayerToDimension((EntityPlayerMP) player, id, teleporter);
-//				}
-//				else
-//				{
-//					int origin = player.dimension;
-//					player.dimension = id;
-//					world.removeEntityDangerously(player);
-//
-//					player.isDead = false;
-//
-//					list.transferEntityToWorld(player, origin, server.getWorld(origin), server.getWorld(id), teleporter);
-//				}
-//
-//				return false;
-//			}
-//		}
-//
-//		return super.onBlockActivated(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
-//	}
+	// @Override
+	// public boolean onBlockActivated(World world, BlockPos pos, IBlockState
+	// state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX,
+	// float hitY, float hitZ)
+	// {
+	// MinecraftServer server = world.getMinecraftServer();
+	//
+	// if(!world.isRemote && !player.isSneaking())
+	// {
+	// if(server != null)
+	// {
+	// PlayerList list = server.getPlayerList();
+	// int currentDim = player.dimension;
+	// int overworld = DimensionType.OVERWORLD.getId();
+	//
+	// int id = overworld;
+	// Teleporter teleporter;
+	// BlockVoidTeleporter.VoidType type = state.getValue(TYPE);
+	// switch(type)
+	// {
+	// case DAY:
+	// default:
+	// id = currentDim != DimensionRegistry.DAY_VOID.getId() ?
+	// DimensionRegistry.DAY_VOID.getId() : overworld;
+	// teleporter = new TeleporterVoid(server.getWorld(id),
+	// DimensionRegistry.DAY_VOID);
+	// break;
+	// case NIGHT:
+	// id = currentDim != DimensionRegistry.NIGHT_VOID.getId() ?
+	// DimensionRegistry.NIGHT_VOID.getId() : overworld;
+	// teleporter = new TeleporterVoid(server.getWorld(id),
+	// DimensionRegistry.NIGHT_VOID);
+	// break;
+	// case PERFECT:
+	// id = currentDim != DimensionRegistry.PERFECT_VOID.getId() ?
+	// DimensionRegistry.PERFECT_VOID.getId() : overworld;
+	// teleporter = new TeleporterVoid(server.getWorld(id),
+	// DimensionRegistry.PERFECT_VOID);
+	// break;
+	// }
+	//
+	// if(player instanceof EntityPlayerMP)
+	// {
+	// list.transferPlayerToDimension((EntityPlayerMP) player, id, teleporter);
+	// }
+	// else
+	// {
+	// int origin = player.dimension;
+	// player.dimension = id;
+	// world.removeEntityDangerously(player);
+	//
+	// player.isDead = false;
+	//
+	// list.transferEntityToWorld(player, origin, server.getWorld(origin),
+	// server.getWorld(id), teleporter);
+	// }
+	//
+	// return false;
+	// }
+	// }
+	//
+	// return super.onBlockActivated(world, pos, state, player, hand, facing,
+	// hitX, hitY, hitZ);
+	// }
 
 	@Override
-	public int damageDropped(IBlockState state)
-	{
+	public int damageDropped(IBlockState state) {
 		return state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(TYPE, VoidType.byMeta(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return (Integer) state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TYPE });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TYPE });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, VoidType.getLength(), tab, list);
 	}
 
@@ -124,42 +126,34 @@ public class BlockVoidTeleporter extends BlockModBase
 		private final int meta;
 		private final String name;
 
-		private VoidType(int meta, String name)
-		{
+		private VoidType(int meta, String name) {
 			this.meta = meta;
 			this.name = name;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return this.name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return VoidType.values().length;
 		}
 
-		public static VoidType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static VoidType byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(VoidType blocktype : values())
-			{
+		static {
+			for(VoidType blocktype : values()) {
 				META_LOOKUP[blocktype.getMeta()] = blocktype;
 				NAMES[blocktype.getMeta()] = blocktype.getName();
 			}

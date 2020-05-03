@@ -13,51 +13,43 @@ import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.client.particle.ParticleRegistry;
 import ryoryo.polishedstone.util.References;
 
-//@Config(modid = LibMisc.MOD_ID)
-public class ModConfig
-{
+// @Config(modid = LibMisc.MOD_ID)
+public class ModConfig {
 	private static Configuration config;
 
-	public ModConfig(File configFile)
-	{
+	public ModConfig(File configFile) {
 		config = new Configuration(configFile);
 		loadConfigs();
 	}
 
 	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
-	{
+	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
 		if(event.getModID().equals(References.MOD_ID))
 			loadConfigs();
 	}
 
-	private void loadConfigs()
-	{
-		try
-		{
+	private void loadConfigs() {
+		try {
 			generalConfigs(EnumConfigCategory.GENERAL.getName());
 			worldGenConfigs(EnumConfigCategory.WORLD_GEN.getName());
 			mobDropConfigs(EnumConfigCategory.MOB_DROP.getName());
 			clientConfigs(EnumConfigCategory.CLIENT.getName());
 			puwConfigs(EnumConfigCategory.PUW.getName());
 		}
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			PSV2Core.LOGGER.error("Error loading config.");
 		}
-		finally
-		{
+		finally {
 			if(config.hasChanged())
 				config.save();
 		}
 	}
 
-	public Configuration getConfig()
-	{
+	public Configuration getConfig() {
 		return config;
 	}
 
-	//General--------------------------------------------------------------------------------------
+	// General--------------------------------------------------------------------------------------
 	public static int glowstoneGen;
 
 	public static float creativeFlySpeedMultiply;
@@ -110,8 +102,7 @@ public class ModConfig
 
 	public static int invincibleSwordAOERudius;
 
-	public void generalConfigs(String general)
-	{
+	public void generalConfigs(String general) {
 		glowstoneGen = config.getInt("GlowstoneGen", general, 3, 0, NumericalConstant.INT_MAX, "Number of Glowstones to generate at a time.");
 
 		creativeFlySpeedMultiply = config.getFloat("CreativeFlySpeedMultiply", general, 3.0F, 1.0F, NumericalConstant.FLOAT_MAX, "How much multiply for default value.");
@@ -140,17 +131,16 @@ public class ModConfig
 
 		unifyOres = config.getBoolean("UnifyOres", general, true, "Unify ores depends on Forge's OreDictionary when they drop");
 
-		increasingResistance = Utils.getStringList(config, "IncreasingResistance", general, new String[]
-		{}, "Increases block resistance to 10000.(cf. obsidian's default resistance:2000) Please add it following this format.(e.g. minecraft:stone)");
+		increasingResistance = Utils.getStringList(config, "IncreasingResistance", general, new String[] {}, "Increases block resistance to 10000.(cf. obsidian's default resistance:2000) Please add it following this format.(e.g. minecraft:stone)");
 
 		connectToSelf = config.getBoolean("ConnectToSelf", general, true, "Make lattice block connect vertically to other lattice blocks");
 		connectToSolidBlocks = config.getBoolean("ConnectToSolidBlocks", general, false, "Make lattice block connect vertically to any solid block");
 
-		connectableBlock = Utils.getStringList(config, "ConnectTo", general, new String[]
-		{ Blocks.ACTIVATOR_RAIL.getRegistryName().toString(), Blocks.DETECTOR_RAIL.getRegistryName().toString(), Blocks.GOLDEN_RAIL.getRegistryName().toString(), Blocks.RAIL.getRegistryName().toString(), Blocks.OAK_FENCE.getRegistryName().toString(), Blocks.DARK_OAK_FENCE.getRegistryName().toString(), Blocks.JUNGLE_FENCE.getRegistryName().toString(),
-				Blocks.ACACIA_FENCE.getRegistryName().toString(), Blocks.BIRCH_FENCE.getRegistryName().toString(), Blocks.SPRUCE_FENCE.getRegistryName().toString(), Blocks.NETHER_BRICK_FENCE.getRegistryName().toString(), Blocks.TORCH.getRegistryName().toString(), Blocks.REDSTONE_TORCH.getRegistryName().toString(), Blocks.STANDING_SIGN.getRegistryName().toString(),
-				Blocks.LEVER.getRegistryName().toString(), Blocks.WOODEN_PRESSURE_PLATE.getRegistryName().toString(), Blocks.STONE_PRESSURE_PLATE.getRegistryName().toString(), Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE.getRegistryName().toString(), Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE.getRegistryName().toString(), Blocks.CARPET.getRegistryName().toString(),
-				Blocks.FLOWER_POT.getRegistryName().toString(), Blocks.DAYLIGHT_DETECTOR.getRegistryName().toString(), Blocks.DAYLIGHT_DETECTOR_INVERTED.getRegistryName().toString(), Blocks.SKULL.getRegistryName().toString() },
+		connectableBlock = Utils.getStringList(config, "ConnectTo", general,
+				new String[] { Blocks.ACTIVATOR_RAIL.getRegistryName().toString(), Blocks.DETECTOR_RAIL.getRegistryName().toString(), Blocks.GOLDEN_RAIL.getRegistryName().toString(), Blocks.RAIL.getRegistryName().toString(), Blocks.OAK_FENCE.getRegistryName().toString(), Blocks.DARK_OAK_FENCE.getRegistryName().toString(), Blocks.JUNGLE_FENCE.getRegistryName().toString(),
+						Blocks.ACACIA_FENCE.getRegistryName().toString(), Blocks.BIRCH_FENCE.getRegistryName().toString(), Blocks.SPRUCE_FENCE.getRegistryName().toString(), Blocks.NETHER_BRICK_FENCE.getRegistryName().toString(), Blocks.TORCH.getRegistryName().toString(), Blocks.REDSTONE_TORCH.getRegistryName().toString(), Blocks.STANDING_SIGN.getRegistryName().toString(),
+						Blocks.LEVER.getRegistryName().toString(), Blocks.WOODEN_PRESSURE_PLATE.getRegistryName().toString(), Blocks.STONE_PRESSURE_PLATE.getRegistryName().toString(), Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE.getRegistryName().toString(), Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE.getRegistryName().toString(), Blocks.CARPET.getRegistryName().toString(),
+						Blocks.FLOWER_POT.getRegistryName().toString(), Blocks.DAYLIGHT_DETECTOR.getRegistryName().toString(), Blocks.DAYLIGHT_DETECTOR_INVERTED.getRegistryName().toString(), Blocks.SKULL.getRegistryName().toString() },
 				"List of blocks that lattice will attach to vertically.");
 
 		eggToChicken = config.getBoolean("EggToChicken", general, true, "Chickens hatch when Egg being disappeared");
@@ -162,18 +152,17 @@ public class ModConfig
 		sunBurnsCreepers = config.getBoolean("SunBurnsCreepers", general, true, "Sun burns creepers");
 		deathExplosionDestroyTerrain = config.getBoolean("DeathExplosionDestroyTerrain", general, false, "Creeper's death explosion destroys terrain");
 
-		startingInventory = Utils.getStringList(config, "StartingInventory", general, new String[]
-		{}, "Gives items to players when they first entered the world.");
+		startingInventory = Utils.getStringList(config, "StartingInventory", general, new String[] {}, "Gives items to players when they first entered the world.");
 
 		instantItemPickUp = config.getBoolean("InstantItemPickUp", general, true, "Picks up items instantly when items dropped.");
 
-		fenceBlock = Utils.getStringList(config, "FenceBlock", general, new String[]
-		{}, "Blocks regarded as a fence.");
+		fenceBlock = Utils.getStringList(config, "FenceBlock", general, new String[] {}, "Blocks regarded as a fence.");
 
 		invincibleSwordAOERudius = config.getInt("InvincibleSwordAOERudius", general, 4, 0, NumericalConstant.INT_MAX, "Rudius of Invincible Sword's range attack.");
 	}
 
-	//World Gen------------------------------------------------------------------------------------
+	// World
+	// Gen------------------------------------------------------------------------------------
 	public static boolean emeraldGen;
 	public static int emeraldGenCluster;
 	public static int emeraldGenChance;
@@ -210,8 +199,7 @@ public class ModConfig
 	public static float wildBeetrootChance;
 	public static int wildBeetrootPatch;
 
-	public void worldGenConfigs(String worldGen)
-	{
+	public void worldGenConfigs(String worldGen) {
 		emeraldGen = config.getBoolean("EmeraldGen", worldGen, true, "Wheather generate Emerald anywhere.");
 		emeraldGenCluster = config.getInt("EmeraldGenCluster", worldGen, 5, 0, NumericalConstant.INT_MAX, "How big is the cluster.");
 		emeraldGenChance = config.getInt("EmeraldGenChance", worldGen, 2, 0, NumericalConstant.INT_MAX, "Chance of generate");
@@ -249,7 +237,8 @@ public class ModConfig
 		wildBeetrootPatch = config.getInt("wildBeetrootPatch", worldGen, 3, 0, NumericalConstant.INT_MAX, "How many try to generate");
 	}
 
-	//Mob Drop-------------------------------------------------------------------------------------
+	// Mob
+	// Drop-------------------------------------------------------------------------------------
 	public static int cowMeatMax;
 	public static int cowMeatMin;
 
@@ -334,8 +323,7 @@ public class ModConfig
 	public static int silverfishSilverMax;
 	public static int silverfishSilverMin;
 
-	public void mobDropConfigs(String mobDrop)
-	{
+	public void mobDropConfigs(String mobDrop) {
 		cowMeatMax = config.getInt("CowMeatMax", mobDrop, 16, 0, NumericalConstant.INT_MAX, "Max value of meats dropped by a cow.");
 		cowMeatMin = config.getInt("CowMeatMin", mobDrop, 10, 0, NumericalConstant.INT_MAX, "Min value of meats dropped by a cow.");
 
@@ -421,23 +409,22 @@ public class ModConfig
 		silverfishSilverMax = config.getInt("SilverfishSilverMin", mobDrop, 0, 0, NumericalConstant.INT_MAX, "Min value of silver nuggets dropped by a silverfish.");
 	}
 
-	//Client---------------------------------------------------------------------------------------
+	// Client---------------------------------------------------------------------------------------
 	public static int particleIdDummyBarrier;
 
-	public void clientConfigs(String client)
-	{
+	public void clientConfigs(String client) {
 		particleIdDummyBarrier = config.getInt("ParticleIdDummyBarrier", client, ParticleRegistry.PARTICLE_ID_DUMMY_BARRIER_DEFAULT, 0, NumericalConstant.INT_MAX, "Particle ID of Dummy Barrier");
 	}
 
-	//Pick Up Widely-------------------------------------------------------------------------------
+	// Pick Up
+	// Widely-------------------------------------------------------------------------------
 	public static boolean startModePUW;
 	public static float horizontalRangePUW;
 	public static float verticalRangePUW;
 	public static boolean pickUpXpOrbPUW;
 	public static boolean pickUpArrowPUW;
 
-	public void puwConfigs(String puw)
-	{
+	public void puwConfigs(String puw) {
 		startModePUW = config.getBoolean("PickUpWidelyStartMode", puw, true, "Start mode of pick up widely");
 		horizontalRangePUW = config.getFloat("PickUpWidelyRangeHorizontal", puw, 5.0F, 0F, NumericalConstant.FLOAT_MAX, "Horizontal range of pick up widely");
 		verticalRangePUW = config.getFloat("PickUpWidelyRangeVertical", puw, 5.0F, 0.F, NumericalConstant.FLOAT_MAX, "Vertical range of pick up widely");
@@ -445,8 +432,8 @@ public class ModConfig
 		pickUpArrowPUW = config.getBoolean("PickUpWidelyPickUpArrow", puw, true, "Whether pick up arrows.");
 	}
 
-	//	@Config.Comment("I say fuck you")
-	//	public static boolean test = true;
+	// @Config.Comment("I say fuck you")
+	// public static boolean test = true;
 
 	public static enum EnumConfigCategory
 	{
@@ -460,30 +447,25 @@ public class ModConfig
 		private final String displayName;
 		private final String comment;
 
-		EnumConfigCategory(String name, String displayName, String comment)
-		{
+		EnumConfigCategory(String name, String displayName, String comment) {
 			this.name = name;
 			this.displayName = displayName;
 			this.comment = comment;
 		}
 
-		public String getName()
-		{
+		public String getName() {
 			return this.name;
 		}
 
-		public String getDisplayName()
-		{
+		public String getDisplayName() {
 			return this.displayName;
 		}
 
-		public String getComment()
-		{
+		public String getComment() {
 			return this.comment;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return EnumConfigCategory.values().length;
 		}
 	}

@@ -21,10 +21,8 @@ import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
-public class BlockHardenedShadeGlassDoor extends BlockBaseDoor
-{
-	public BlockHardenedShadeGlassDoor()
-	{
+public class BlockHardenedShadeGlassDoor extends BlockBaseDoor {
+	public BlockHardenedShadeGlassDoor() {
 		super(Material.GLASS, "hardened_shade_glass", PSV2Core.TAB_MOD, SoundType.GLASS, false, true);
 		this.setBlockUnbreakable();
 		this.setResistance(6000000.0F);
@@ -34,26 +32,22 @@ public class BlockHardenedShadeGlassDoor extends BlockBaseDoor
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer()
-	{
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
 	@Override
-	public boolean canSpawnInBlock()
-	{
+	public boolean canSpawnInBlock() {
 		return false;
 	}
 
 	@Override
-	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, net.minecraft.entity.EntityLiving.SpawnPlacementType type)
-	{
+	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, net.minecraft.entity.EntityLiving.SpawnPlacementType type) {
 		return false;
 	}
 
 	@Override
-	public boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity)
-	{
+	public boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity) {
 		if(entity instanceof EntityPlayer)
 			return true;
 		else
@@ -61,14 +55,11 @@ public class BlockHardenedShadeGlassDoor extends BlockBaseDoor
 	}
 
 	@Override
-	public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos)
-	{
+	public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
 		List<ItemStack> items = Utils.getHeldItemStacks(player);
 
-		for(ItemStack stack : items)
-		{
-			if(!stack.isEmpty() && (Block.getBlockFromItem(stack.getItem()) == Register.BLOCK_HARDENED_SHADE_GLASS || Block.getBlockFromItem(stack.getItem()) == this))
-			{
+		for(ItemStack stack : items) {
+			if(!stack.isEmpty() && (Block.getBlockFromItem(stack.getItem()) == Register.BLOCK_HARDENED_SHADE_GLASS || Block.getBlockFromItem(stack.getItem()) == this)) {
 				return 0.083333336F;
 			}
 		}

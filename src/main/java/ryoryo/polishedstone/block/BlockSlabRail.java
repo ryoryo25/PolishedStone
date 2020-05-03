@@ -14,10 +14,8 @@ import net.minecraft.world.World;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
-public class BlockSlabRail extends BlockRail
-{
-	public BlockSlabRail()
-	{
+public class BlockSlabRail extends BlockRail {
+	public BlockSlabRail() {
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("slab_rail");
 		this.setResistance(0.7F);
@@ -27,40 +25,33 @@ public class BlockSlabRail extends BlockRail
 	}
 
 	@Override
-	public Material getMaterial(IBlockState state)
-    {
-        return Material.IRON;
-    }
+	public Material getMaterial(IBlockState state) {
+		return Material.IRON;
+	}
 
 	@Override
-	public boolean canPlaceBlockAt(World world, BlockPos pos)
-	{
+	public boolean canPlaceBlockAt(World world, BlockPos pos) {
 		Block blockd = world.getBlockState(pos.down()).getBlock();
 		return blockd == Register.BLOCK_PAVING_STONE ? true : false;
 	}
 
 	@Override
-	public float getRailMaxSpeed(World world, EntityMinecart cart, BlockPos pos)
-	{
+	public float getRailMaxSpeed(World world, EntityMinecart cart, BlockPos pos) {
 		return super.getRailMaxSpeed(world, cart, pos) * 1.5F;
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.byMetadata(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return ((BlockRailBase.EnumRailDirection) state.getValue(SHAPE)).getMetadata();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ SHAPE });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { SHAPE });
 	}
 }

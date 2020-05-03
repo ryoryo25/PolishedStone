@@ -9,16 +9,13 @@ import net.minecraft.world.World;
 import ryoryo.polishedstone.network.PacketHandler;
 import ryoryo.polishedstone.network.PacketTest;
 
-public class ItemTest extends ItemModBase
-{
-	public ItemTest()
-	{
+public class ItemTest extends ItemModBase {
+	public ItemTest() {
 		super("test");
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
-	{
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if(world.isRemote)
 			PacketHandler.INSTANCE.sendToServer(new PacketTest("Hello world"));
 

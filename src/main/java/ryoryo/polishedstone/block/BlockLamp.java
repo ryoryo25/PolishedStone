@@ -25,32 +25,27 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.NumericalConstant;
 import ryoryo.polishedlib.util.RegistryUtils;
 
-public class BlockLamp extends BlockModBase
-{
+public class BlockLamp extends BlockModBase {
 	public static final PropertyEnum<MaterialType> TYPE = PropertyEnum.<MaterialType> create("type", MaterialType.class);
 
-	public BlockLamp()
-	{
+	public BlockLamp() {
 		super(Material.GLASS, "lamp");
 		this.setLightLevel(1.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, MaterialType.STONE));
 	}
 
 	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		double min = state.getValue(TYPE).getAABBMin();
 		double max = 1 - min;
 
@@ -59,22 +54,19 @@ public class BlockLamp extends BlockModBase
 
 	@Nullable
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos)
-	{
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos) {
 		return NULL_AABB;
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer()
-	{
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
-	{
+	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 		double d0 = (double) pos.getX() + 0.5D;
 		double d1 = (double) pos.getY() + state.getValue(TYPE).getParticlePos();
 		double d2 = (double) pos.getZ() + 0.5D;
@@ -83,40 +75,34 @@ public class BlockLamp extends BlockModBase
 	}
 
 	@Override
-	public ItemStack getItem(World world, BlockPos pos, IBlockState state)
-	{
-		return new ItemStack(Item.getItemFromBlock(this), 1, ((MaterialType)state.getValue(TYPE)).getMeta());
+	public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
+		return new ItemStack(Item.getItemFromBlock(this), 1, ((MaterialType) state.getValue(TYPE)).getMeta());
 	}
 
-//	@Override
-//	public int damageDropped(IBlockState state)
-//	{
-//		return state.getValue(TYPE).getMeta();
-//	}
+	// @Override
+	// public int damageDropped(IBlockState state)
+	// {
+	// return state.getValue(TYPE).getMeta();
+	// }
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(TYPE, MaterialType.byMeta(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return (Integer) state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TYPE });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TYPE });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, MaterialType.getLength(), tab, list);
 	}
 
@@ -134,8 +120,7 @@ public class BlockLamp extends BlockModBase
 		private final double aabbMin;
 		private final double particlePos;
 
-		private MaterialType(int meta, String name, double aabbMin, double particlePos)
-		{
+		private MaterialType(int meta, String name, double aabbMin, double particlePos) {
 			this.meta = meta;
 			this.name = name;
 			this.aabbMin = aabbMin;
@@ -143,45 +128,36 @@ public class BlockLamp extends BlockModBase
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public double getAABBMin()
-		{
+		public double getAABBMin() {
 			return this.aabbMin;
 		}
 
-		public double getParticlePos()
-		{
+		public double getParticlePos() {
 			return this.particlePos;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return MaterialType.values().length;
 		}
 
-		public static MaterialType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static MaterialType byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(MaterialType materialtype : values())
-			{
+		static {
+			for(MaterialType materialtype : values()) {
 				META_LOOKUP[materialtype.getMeta()] = materialtype;
 				NAMES[materialtype.getMeta()] = materialtype.getName();
 			}

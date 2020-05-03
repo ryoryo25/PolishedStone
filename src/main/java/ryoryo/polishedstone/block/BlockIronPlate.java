@@ -19,66 +19,55 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.RegistryUtils;
 
-public class BlockIronPlate extends BlockModBase
-{
+public class BlockIronPlate extends BlockModBase {
 	protected static final AxisAlignedBB PLATE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 	public static final PropertyEnum<PlateType> TYPE = PropertyEnum.<PlateType> create("type", PlateType.class);
 
-	public BlockIronPlate()
-	{
+	public BlockIronPlate() {
 		super(Material.CLAY, "iron_plate", SoundType.METAL);
 		this.setHardness(0.2F);
 		this.setResistance(15.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, PlateType.NORMAL));
 	}
 
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return PLATE_AABB;
 	}
 
 	@Override
-	public ItemStack getItem(World world, BlockPos pos, IBlockState state)
-	{
-		return new ItemStack(Item.getItemFromBlock(this), 1, ((PlateType)state.getValue(TYPE)).getMeta());
+	public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
+		return new ItemStack(Item.getItemFromBlock(this), 1, ((PlateType) state.getValue(TYPE)).getMeta());
 	}
 
-	//ItemStackのmetadataからIBlockStateを生成。設置時に呼ばれる。
+	// ItemStackのmetadataからIBlockStateを生成。設置時に呼ばれる。
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(TYPE, PlateType.byMeta(meta));
 	}
 
-	//IBlockStateからItemStackのmetadataを生成。ドロップ時とテクスチャ・モデル参照時に呼ばれる。
+	// IBlockStateからItemStackのmetadataを生成。ドロップ時とテクスチャ・モデル参照時に呼ばれる。
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return (Integer) state.getValue(TYPE).getMeta();
 	}
 
-	//初期BlockStateの生成。
+	// 初期BlockStateの生成。
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TYPE });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TYPE });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, PlateType.getLength(), tab, list);
 	}
 
@@ -92,42 +81,34 @@ public class BlockIronPlate extends BlockModBase
 		private final int meta;
 		private final String name;
 
-		private PlateType(int meta, String name)
-		{
+		private PlateType(int meta, String name) {
 			this.meta = meta;
 			this.name = name;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return PlateType.values().length;
 		}
 
-		public static PlateType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static PlateType byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(PlateType platetype : values())
-			{
+		static {
+			for(PlateType platetype : values()) {
 				META_LOOKUP[platetype.getMeta()] = platetype;
 				NAMES[platetype.getMeta()] = platetype.getName();
 			}

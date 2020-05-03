@@ -3,14 +3,12 @@ package ryoryo.polishedstone.world.dimension;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 
-public class DimensionRegistry
-{
+public class DimensionRegistry {
 	public static DimensionType DAY_VOID;
 	public static DimensionType NIGHT_VOID;
 	public static DimensionType PERFECT_VOID;
 
-	public static void register()
-	{
+	public static void register() {
 		DAY_VOID = DimensionType.register("Day Void", "_day_void", DimensionManager.getNextFreeDimId(), WorldProviderDayVoid.class, false);
 		DimensionManager.registerDimension(DAY_VOID.getId(), DAY_VOID);
 

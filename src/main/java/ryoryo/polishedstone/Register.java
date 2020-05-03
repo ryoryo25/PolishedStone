@@ -153,11 +153,30 @@ import ryoryo.polishedstone.world.gen.BiomeDecorationHandler;
 import ryoryo.polishedstone.world.gen.LavaLakeGenHandler;
 import ryoryo.polishedstone.world.gen.WorldGenBlock;
 
-public class Register
-{
-	//Blocks
+public class Register {
+	// Blocks
 	public static final Block BLOCK_BRICK_WALL = new BlockModBaseWall(Blocks.BRICK_BLOCK);
-	public static final Block BLOCK_GRANITE_WALL = new BlockModBaseWall(Blocks.STONE/*.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE).getBlock()*/, "granite");
+	public static final Block BLOCK_GRANITE_WALL = new BlockModBaseWall(Blocks.STONE/*
+																					 * .getDefaultState
+																					 * (
+																					 * )
+																					 * .
+																					 * withProperty
+																					 * (
+																					 * BlockStone
+																					 * .
+																					 * VARIANT,
+																					 * BlockStone
+																					 * .
+																					 * EnumType
+																					 * .
+																					 * GRANITE
+																					 * )
+																					 * .
+																					 * getBlock
+																					 * (
+																					 * )
+																					 */, "granite");
 	public static final Block BLOCK_SMOOTH_GRANITE_WALL = new BlockModBaseWall(Blocks.STONE, "smooth_granite");
 	public static final Block BLOCK_DIORITE_WALL = new BlockModBaseWall(Blocks.STONE, "diorite");
 	public static final Block BLOCK_SMOOTH_DIORITE_WALL = new BlockModBaseWall(Blocks.STONE, "smooth_diorite");
@@ -171,7 +190,9 @@ public class Register
 	public static final Block BLOCK_GLOWSTONE_GENERATOR = new BlockGlowstoneGenerator();
 	public static final Block BLOCK_DUMMY_BARRIER = new BlockDummyBarrier();
 	public static final Block BLOCK_BLACK_QUARTZ = new BlockBlackQuartz();
-//	public static final Block BLOCK_SS_BLACK_QUARTZ_BLOCK = new BlockSmallStairs(BLOCK_BLACK_QUARTZ.getDefaultState(), "black_quartz_block");
+	// public static final Block BLOCK_SS_BLACK_QUARTZ_BLOCK = new
+	// BlockSmallStairs(BLOCK_BLACK_QUARTZ.getDefaultState(),
+	// "black_quartz_block");
 	public static final Block BLOCK_VM_NORMAL = new BlockVendingMachine(TexType.NORMAL.getName());
 	public static final Block BLOCK_VM_COCA_COLA = new BlockVendingMachine(TexType.COCA_COLA.getName());
 	public static final Block BLOCK_VM_SUNTORY = new BlockVendingMachine(TexType.SUNTORY.getName());
@@ -197,8 +218,9 @@ public class Register
 	public static final Block BLOCK_SAFETY_FENCE = new BlockSafetyFence();
 	public static final Block BLOCK_IRON_LADDER = new BlockIronLadder();
 	public static final Block BLOCK_STEPLADDER = new BlockStepladder();
-//	public static final Block blockFloodLight = new BlockFloodLight();
-//	public static final Block blockFloodLightPart = new BlockFloodLightPart();
+	// public static final Block blockFloodLight = new BlockFloodLight();
+	// public static final Block blockFloodLightPart = new
+	// BlockFloodLightPart();
 	public static final Block BLOCK_FAUCET = new BlockFaucet();
 	public static final Block BLOCK_RUNNING_WATER = new BlockRunningWater();
 	public static final Block BLOCK_LATTICE_OAK = new BlockLattice(Blocks.PLANKS, "oak");
@@ -250,7 +272,7 @@ public class Register
 	public static final Block BLOCK_CROP_EGGPLANT = new BlockModCrops(EnumCropType.EGGPLANT);
 	public static final Block BLOCK_VOID_TELEPORTER = new BlockVoidTeleporter();
 
-	//Items
+	// Items
 	public static final Item ITEM_TWEAKED_DYE = new ItemTweakedDye();
 	public static final Item ITEM_MATERIAL = new ItemMaterial();
 	public static final Item ITEM_INSTANT_FOOD = new ItemModBaseFood(2, 2.0F, false, "instant_food", PSV2Core.TAB_MOD, 4);
@@ -300,10 +322,9 @@ public class Register
 	public static final SoundEvent SOUND_IRON_CHAIN = new SoundEvent(new ResourceLocation(References.MOD_ID, "chain"));
 	public static final SoundEvent SOUND_GUN_FIRE = new SoundEvent(new ResourceLocation(References.MOD_ID, "gun_fire"));
 
-	public static void preInit()
-	{
+	public static void preInit() {
 		String vm = "vending_machine_";
-		//Blocks Registry
+		// Blocks Registry
 		PSV2Core.REGISTER.registerBlock(BLOCK_BRICK_WALL, "brick_wall");
 		PSV2Core.REGISTER.registerBlock(BLOCK_GRANITE_WALL, "granite_wall");
 		PSV2Core.REGISTER.registerBlock(BLOCK_SMOOTH_GRANITE_WALL, "smooth_granite_wall");
@@ -318,7 +339,8 @@ public class Register
 		PSV2Core.REGISTER.registerBlock(BLOCK_GLOWSTONE_GENERATOR, new ItemBlock(BLOCK_GLOWSTONE_GENERATOR), "glowstone_generator", 8);
 		PSV2Core.REGISTER.registerBlock(BLOCK_DUMMY_BARRIER, "dummy_barrier");
 		PSV2Core.REGISTER.registerBlock(BLOCK_BLACK_QUARTZ, new ItemBlockBlackQuartz(), "black_quartz", ItemBlockBlackQuartz.NAMES);
-//		PSV2Core.REGISTER.registerSmallStairs(BLOCK_SS_BLACK_QUARTZ_BLOCK, "black_quartz_block");
+		// PSV2Core.REGISTER.registerSmallStairs(BLOCK_SS_BLACK_QUARTZ_BLOCK,
+		// "black_quartz_block");
 		PSV2Core.REGISTER.registerBlock(BLOCK_VM_NORMAL, new ItemBlockVendingMachine(BLOCK_VM_NORMAL), vm + TexType.NORMAL.getName());
 		PSV2Core.REGISTER.registerBlock(BLOCK_VM_COCA_COLA, new ItemBlockVendingMachine(BLOCK_VM_COCA_COLA), vm + TexType.COCA_COLA.getName());
 		PSV2Core.REGISTER.registerBlock(BLOCK_VM_SUNTORY, new ItemBlockVendingMachine(BLOCK_VM_SUNTORY), vm + TexType.SUNTORY.getName());
@@ -344,7 +366,7 @@ public class Register
 		PSV2Core.REGISTER.registerBlock(BLOCK_SAFETY_FENCE, "safety_fence");
 		PSV2Core.REGISTER.registerBlock(BLOCK_IRON_LADDER, "iron_ladder");
 		PSV2Core.REGISTER.registerBlock(BLOCK_STEPLADDER, "stepladder");
-//		PSV2Core.REGISTER.registerBlock(blockFloodLight, "flood_light");
+		// PSV2Core.REGISTER.registerBlock(blockFloodLight, "flood_light");
 		PSV2Core.REGISTER.registerBlock(BLOCK_FAUCET, new ItemBlockFaucet(), "faucet", 2);
 		PSV2Core.REGISTER.registerBlock(BLOCK_RUNNING_WATER, "running_water");
 		PSV2Core.REGISTER.registerBlock(BLOCK_LATTICE_OAK, "lattice_oak");
@@ -397,13 +419,12 @@ public class Register
 		PSV2Core.REGISTER.registerBlock(BLOCK_CROP_EGGPLANT, "crop_eggplant");
 		PSV2Core.REGISTER.registerBlock(BLOCK_VOID_TELEPORTER, new ItemBlockMeta(BLOCK_VOID_TELEPORTER, BlockVoidTeleporter.VoidType.NAMES), "void_teleporter", BlockVoidTeleporter.VoidType.NAMES);
 
-//		PSV2Core.REGISTER.registerBlock(BLOCK_TEST, "test_block");
-
+		// PSV2Core.REGISTER.registerBlock(BLOCK_TEST, "test_block");
 
 		String dh = "decorative_hazmat_";
 		String sc = "safety_clothes_";
 		String ia = "invincible_armor_";
-		//Items Registry
+		// Items Registry
 		PSV2Core.REGISTER.registerItem(ITEM_TWEAKED_DYE, "tweaked_dye", ItemTweakedDye.NAMES);
 		PSV2Core.REGISTER.registerItem(ITEM_MATERIAL, "material", ItemMaterial.NAMES);
 		PSV2Core.REGISTER.registerItem(ITEM_INSTANT_FOOD, "instant_food");
@@ -425,7 +446,8 @@ public class Register
 		PSV2Core.REGISTER.registerItem(ITEM_INVINCIBLE_BOW, "invincible_bow");
 		PSV2Core.REGISTER.registerItem(ITEM_BEDROCK_CORE, "bedrock_core");
 		PSV2Core.REGISTER.registerItem(ITEM_RANDOM_BOX, "random_box");
-//		PSV2Core.REGISTER.registerItem(itemNewDye, "new_dye", EnumColor.getLength());
+		// PSV2Core.REGISTER.registerItem(itemNewDye, "new_dye",
+		// EnumColor.getLength());
 		PSV2Core.REGISTER.registerItem(ITEM_ZABUTON, "zabuton", 16);
 		PSV2Core.REGISTER.registerItem(ITEM_ARMOR_INVINCIBLE_HELMET, ia + EnumArmorType.HELMET.getName());
 		PSV2Core.REGISTER.registerItem(ITEM_ARMOR_INVINCIBLE_CHEST, ia + EnumArmorType.CHESTPLATE.getName());
@@ -447,18 +469,18 @@ public class Register
 		PSV2Core.REGISTER.registerItem(ITEM_TOMATO, "tomato");
 		PSV2Core.REGISTER.registerItem(ITEM_EGGPLANT, "eggplant");
 
-//		PSV2Core.REGISTER.registerItem(ITEM_TEST, "test_item");
+		// PSV2Core.REGISTER.registerItem(ITEM_TEST, "test_item");
 
-		//Entity Registry
+		// Entity Registry
 		PSV2Core.REGISTER.registerModEntity(EntityZabuton.class, "zabuton", LibEntityId.ENTITY_ID_ZABUTON, PSV2Core.INSTANCE, 80, 3, true);
 
-		//Tile Entity Registry
+		// Tile Entity Registry
 		GameRegistry.registerTileEntity(TileEntitySlimeRemovalTorch.class, LibTEId.ID_SLIME_REMOVAL_TORCH);
 
-		//Dispenser Registry
+		// Dispenser Registry
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(ITEM_ZABUTON, new DispenseZabutonHandler());
 
-		//Dimension Registry
+		// Dimension Registry
 		DimensionRegistry.register();
 
 		BlockLattice.connectables.add(BLOCK_LATTICE_OAK);
@@ -476,7 +498,7 @@ public class Register
 		BlockLattice.connectables.add(BLOCK_FENCE_SLAB_DARK_OAK);
 		BlockLattice.connectables.add(BLOCK_FENCE_SLAB_NETHER_BRICK);
 
-		//硬度とか変更
+		// 硬度とか変更
 		Blocks.BEDROCK.setHardness(50.0F).setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_DIAMOND);
 		Blocks.END_PORTAL_FRAME.setHardness(50.0F).setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_DIAMOND);
 		Blocks.LEAVES.setHarvestLevel(LibTool.TOOL_CLASS_AXE, LibTool.LEVEL_WOOD);
@@ -490,7 +512,7 @@ public class Register
 		Blocks.STONE_SLAB.setHardness(1.5F);
 		Blocks.STONE_SLAB2.setHardness(1.5F);
 
-		//クリエイティブタブに登録
+		// クリエイティブタブに登録
 		Blocks.COMMAND_BLOCK.setCreativeTab(CreativeTabs.REDSTONE);
 		Blocks.CHAIN_COMMAND_BLOCK.setCreativeTab(CreativeTabs.REDSTONE);
 		Blocks.REPEATING_COMMAND_BLOCK.setCreativeTab(CreativeTabs.REDSTONE);
@@ -506,7 +528,7 @@ public class Register
 		Blocks.STRUCTURE_VOID.setCreativeTab(CreativeTabs.REDSTONE);
 		Blocks.BARRIER.setCreativeTab(CreativeTabs.REDSTONE);
 		Blocks.FARMLAND.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-		//適正ツール変更
+		// 適正ツール変更
 		Blocks.GLASS.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
 		Blocks.GLASS_PANE.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
 		Blocks.STAINED_GLASS.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
@@ -514,7 +536,7 @@ public class Register
 		Blocks.PISTON.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
 		Blocks.STICKY_PISTON.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
 
-		//スタックサイズ変更
+		// スタックサイズ変更
 		Items.EGG.setMaxStackSize(64);
 		Items.BUCKET.setMaxStackSize(64);
 		Items.SIGN.setMaxStackSize(64);
@@ -535,13 +557,15 @@ public class Register
 		Items.EXPERIENCE_BOTTLE.setMaxStackSize(64);
 		Items.SNOWBALL.setMaxStackSize(64);
 
-		//スポーンエッグにmobを新しく追加
-		//TODO ウィザスケのスポーンエッグ
-		Utils.addSpawnEgg(EntityGiantZombie.class, 0x00AFAF, 0x799C65);//Giant
-		Utils.addSpawnEgg(EntityDragon.class, 0x161616, 0x00003A);//Ender Dragon
-		Utils.addSpawnEgg(EntityWither.class, 0x141414, 0xC1C1C1);//Wither
-		Utils.addSpawnEgg(EntitySnowman.class, 0xEEFFFF, 0xE3901D);//Snow Golem
-		Utils.addSpawnEgg(EntityIronGolem.class, 0xE0E0E0, 0xCACACA);//Iron Golem
+		// スポーンエッグにmobを新しく追加
+		// TODO ウィザスケのスポーンエッグ
+		Utils.addSpawnEgg(EntityGiantZombie.class, 0x00AFAF, 0x799C65);// Giant
+		Utils.addSpawnEgg(EntityDragon.class, 0x161616, 0x00003A);// Ender
+																	// Dragon
+		Utils.addSpawnEgg(EntityWither.class, 0x141414, 0xC1C1C1);// Wither
+		Utils.addSpawnEgg(EntitySnowman.class, 0xEEFFFF, 0xE3901D);// Snow Golem
+		Utils.addSpawnEgg(EntityIronGolem.class, 0xE0E0E0, 0xCACACA);// Iron
+																		// Golem
 
 		OreDictionary.registerOre("blockPumpkin", Blocks.PUMPKIN);
 		OreDictionary.registerOre("blockPumpkin", Blocks.LIT_PUMPKIN);
@@ -557,23 +581,22 @@ public class Register
 		OreDictionary.registerOre("mushroomRed", Blocks.RED_MUSHROOM);
 		OreDictionary.registerOre("cropMushroom", Blocks.RED_MUSHROOM);
 		OreDictionary.registerOre("cropMushroomRed", Blocks.RED_MUSHROOM);
-		for(int i = 0; i < 16; i++)
-		{
+		for(int i = 0; i < 16; i++) {
 			OreDictionary.registerOre(EnumColor.byMeta(i).getWoolOreName(), new ItemStack(Blocks.WOOL, 1, i));
 		}
-		OreDictionary.registerOre("blockTallgrass", new ItemStack(Blocks.TALLGRASS, 1, WILDCARD_VALUE));//普通の草
-		OreDictionary.registerOre("blockTallgrass", new ItemStack(Blocks.DOUBLE_PLANT, 1, 2));//背の高い草
-		OreDictionary.registerOre("blockTallgrass", new ItemStack(Blocks.DOUBLE_PLANT, 1, 3));//背の高いシダ
+		OreDictionary.registerOre("blockTallgrass", new ItemStack(Blocks.TALLGRASS, 1, WILDCARD_VALUE));// 普通の草
+		OreDictionary.registerOre("blockTallgrass", new ItemStack(Blocks.DOUBLE_PLANT, 1, 2));// 背の高い草
+		OreDictionary.registerOre("blockTallgrass", new ItemStack(Blocks.DOUBLE_PLANT, 1, 3));// 背の高いシダ
 		OreDictionary.registerOre("coal", new ItemStack(Items.COAL, 1, 0));
 		OreDictionary.registerOre("itemCoal", new ItemStack(Items.COAL, 1, 0));
 		OreDictionary.registerOre("charcoal", new ItemStack(Items.COAL, 1, 1));
 		OreDictionary.registerOre("itemCharcoal", new ItemStack(Items.COAL, 1, 1));
 
-		//Mod Blocks
+		// Mod Blocks
 		OreDictionary.registerOre("stone", BLOCK_POLISHED_STONE);
 		OreDictionary.registerOre("stonePolished", BLOCK_POLISHED_STONE);
 
-		//Mod Items
+		// Mod Items
 		OreDictionary.registerOre("dye", new ItemStack(ITEM_TWEAKED_DYE, 1, WILDCARD_VALUE));
 		OreDictionary.registerOre("dyeBlack", new ItemStack(ITEM_TWEAKED_DYE, 1, 0));
 		OreDictionary.registerOre("dyeBrown", new ItemStack(ITEM_TWEAKED_DYE, 1, 1));
@@ -590,31 +613,24 @@ public class Register
 		OreDictionary.registerOre("gemQuartzBlack", new ItemStack(ITEM_MATERIAL, 1, 18));
 		OreDictionary.registerOre("gemQuartzPurple", new ItemStack(ITEM_MATERIAL, 1, 19));
 
-		if(!ModConfig.fenceBlock.isEmpty())
-		{
-			for(String loc : ModConfig.fenceBlock)
-			{
+		if(!ModConfig.fenceBlock.isEmpty()) {
+			for(String loc : ModConfig.fenceBlock) {
 				Block block = Block.REGISTRY.getObject(new ResourceLocation(loc));
 				EventHelper.fences.add(block);
 			}
 		}
 	}
 
-	public static void init()
-	{
+	public static void init() {
 		/**
-		 * レシピ記述方統一のための留意点
-		 * 		基本アイテムの頭文字を使う 使う文字はアイテムなら小文字、ブロックなら大文字
-		 * 命名法
-		 * 		題名みたいな感じにわかりやすく
-		 * 		基本toでinputとoutputをつなぐ
-		 * 		input(output)が複数ある場合は_でつなぐ
+		 * レシピ記述方統一のための留意点 基本アイテムの頭文字を使う 使う文字はアイテムなら小文字、ブロックなら大文字 命名法
+		 * 題名みたいな感じにわかりやすく 基本toでinputとoutputをつなぐ input(output)が複数ある場合は_でつなぐ
 		 */
-		//レシピ
-		//バニラサポート
+		// レシピ
+		// バニラサポート
 		RecipeUtils.addRecipe("core_to_bedrock", new ItemStack(Blocks.BEDROCK, 8), "PPP", "PbP", "PPP", 'P', new ItemStack(BLOCK_POLISHED_STONE, 1, 0), 'b', new ItemStack(ITEM_BEDROCK_CORE, 1, WILDCARD_VALUE));
 		RecipeUtils.addShapelessRecipe("glowstone_to_dusts", new ItemStack(Items.GLOWSTONE_DUST, 4), Blocks.GLOWSTONE);
-		RecipeUtils.addShapelessRecipe("quartz_block_to_items",new ItemStack(Items.QUARTZ, 4), Blocks.QUARTZ_BLOCK);
+		RecipeUtils.addShapelessRecipe("quartz_block_to_items", new ItemStack(Items.QUARTZ, 4), Blocks.QUARTZ_BLOCK);
 		RecipeUtils.addShapelessRecipe("all_glasses_to_normal_glass", new ItemStack(Blocks.GLASS, 1), "blockGlass");
 		RecipeUtils.addShapelessRecipe("all_glass_panes_to_normal_glass_pane", new ItemStack(Blocks.GLASS_PANE, 1), "paneGlass");
 		RecipeUtils.addShapelessRecipe("all_wools_to_white_wool", new ItemStack(Blocks.WOOL, 1, 0), "blockWool");
@@ -646,69 +662,78 @@ public class Register
 		RecipeUtils.addRecipe("end_things_to_end_portal_frame", new ItemStack(Blocks.END_PORTAL_FRAME, 1), " e ", "ppp", "EEE", 'e', Items.ENDER_EYE, 'p', Items.ENDER_PEARL, 'E', Blocks.END_STONE);
 		RecipeUtils.addRecipe("tallgrass_to_waterlily", new ItemStack(Blocks.WATERLILY, 2), "T T", "TTT", " T ", 'T', "blockTallgrass");
 		RecipeUtils.addShapelessRecipe("disassembly_melon", new ItemStack(Items.MELON, 9), Blocks.MELON_BLOCK);
-		//苗木
+		// 苗木
 		RecipeUtils.addShapelessRecipe("brown_to_spruce_sapling", new ItemStack(Blocks.SAPLING, 1, 1), new ItemStack(Blocks.SAPLING, 1, 0), new ItemStack(Items.DYE, 1, EnumColor.BROWN.getDyeNumber()));
 		RecipeUtils.addShapelessRecipe("white_to_birch_sapling", new ItemStack(Blocks.SAPLING, 1, 2), new ItemStack(Blocks.SAPLING, 1, 0), new ItemStack(Items.DYE, 1, EnumColor.WHITE.getDyeNumber()));
 		RecipeUtils.addShapelessRecipe("pink_to_jungle_sapling", new ItemStack(Blocks.SAPLING, 1, 3), new ItemStack(Blocks.SAPLING, 1, 0), new ItemStack(Items.DYE, 1, EnumColor.PINK.getDyeNumber()));
 		RecipeUtils.addShapelessRecipe("red_to_acacia_sapling", new ItemStack(Blocks.SAPLING, 1, 4), new ItemStack(Blocks.SAPLING, 1, 0), new ItemStack(Items.DYE, 1, EnumColor.RED.getDyeNumber()));
 		RecipeUtils.addShapelessRecipe("black_to_dark_oak_sapling", new ItemStack(Blocks.SAPLING, 1, 5), new ItemStack(Blocks.SAPLING, 1, 0), new ItemStack(Items.DYE, 1, EnumColor.BLACK.getDyeNumber()));
-		//赤砂
+		// 赤砂
 		RecipeUtils.addShapelessRecipe("red_dye_to_red_sand", new ItemStack(Blocks.SAND, 1, 1), new ItemStack(Blocks.SAND, 1, 0), new ItemStack(Items.DYE, 1, EnumColor.RED.getDyeNumber()));
-		//花
+		// 花
 		RecipeUtils.addShapelessRecipe("poppy_yellow_to_sun_flower", new ItemStack(Blocks.DOUBLE_PLANT, 1, 0), new ItemStack(Blocks.RED_FLOWER, 1, 0), EnumColor.YELLOW.getDyeOreName());
 		RecipeUtils.addShapelessRecipe("poppy_magenta_to_syringa", new ItemStack(Blocks.DOUBLE_PLANT, 1, 1), new ItemStack(Blocks.RED_FLOWER, 1, 0), EnumColor.MAGENTA.getDyeOreName());
 		RecipeUtils.addShapelessRecipe("poppy_red_to_rose", new ItemStack(Blocks.DOUBLE_PLANT, 1, 4), new ItemStack(Blocks.RED_FLOWER, 1, 0), EnumColor.RED.getDyeOreName());
 		RecipeUtils.addShapelessRecipe("poppy_pink_to_paeonia", new ItemStack(Blocks.DOUBLE_PLANT, 1, 5), new ItemStack(Blocks.RED_FLOWER, 1, 0), EnumColor.PINK.getDyeOreName());
-		//金床壊れかけ
+		// 金床壊れかけ
 		RecipeUtils.addRecipe("fewer_iron_to_chipped_anvil", new ItemStack(Blocks.ANVIL, 1, 1), " II", " i ", "iii", 'I', Blocks.IRON_BLOCK, 'i', Items.IRON_INGOT);
 		RecipeUtils.addRecipe("fewest_iron_to_damaged_anvil", new ItemStack(Blocks.ANVIL, 1, 2), "  I", " i ", "iii", 'I', Blocks.IRON_BLOCK, 'i', Items.IRON_INGOT);
-		//ショートカットレシピ
-		//各種原木x3 → 各種半ブロックx24
-		for(int i = 0; i < 6; i++)
-		{
+		// ショートカットレシピ
+		// 各種原木x3 → 各種半ブロックx24
+		for(int i = 0; i < 6; i++) {
 			RecipeUtils.addRecipe("log_" + EnumPlanks.byMeta(i).getName() + "_to_slab_" + EnumPlanks.byMeta(i).getName(), new ItemStack(Blocks.WOODEN_SLAB, 24, i), "LLL", 'L', EnumPlanks.getLogStackByPlanksMeta(1, i));
 		}
-		//原木x8 → チェストx4
+		// 原木x8 → チェストx4
 		RecipeUtils.addRecipe("logs_to_chests", new ItemStack(Blocks.CHEST, 4), "LLL", "L L", "LLL", 'L', "logWood");
-		//木材x7 → はしごx6
+		// 木材x7 → はしごx6
 		RecipeUtils.addRecipe("planks_to_ladders", new ItemStack(Blocks.LADDER, 6), "L L", "LLL", "L L", 'L', "plankWood");
-		//原木x7 → はしごx24
+		// 原木x7 → はしごx24
 		RecipeUtils.addRecipe("logs_ladders", new ItemStack(Blocks.LADDER, 24), "L L", "LLL", "L L", 'L', "logWood");
-		//原木x6 → トラップドアx8
+		// 原木x6 → トラップドアx8
 		RecipeUtils.addRecipe("logs_to_trapdoors", new ItemStack(Blocks.TRAPDOOR, 8), "   ", "LLL", "LLL", 'L', "logWood");
-		//原木x2 → 棒x16
+		// 原木x2 → 棒x16
 		RecipeUtils.addRecipe("logs_to_sticks", new ItemStack(Items.STICK, 16), "L", "L", 'L', "logWood");
-		//原木x3 → ボウルx16
+		// 原木x3 → ボウルx16
 		RecipeUtils.addRecipe("logs_to_bowls", new ItemStack(Items.BOWL, 16), "L L", " L ", 'L', "logWood");
-		//サトウキビx3, 革 → 本
+		// サトウキビx3, 革 → 本
 		RecipeUtils.addShapelessRecipe("reeds_to_book", new ItemStack(Items.BOOK), Items.REEDS, Items.REEDS, Items.REEDS, Items.LEATHER);
-		//赤石x2, 光石x2 → レッドストーンランプ
+		// 赤石x2, 光石x2 → レッドストーンランプ
 		RecipeUtils.addShapelessRecipe("red_glow_dusts_to_redstone_lump", new ItemStack(Blocks.REDSTONE_LAMP), "dustRedstone", "dustRedstone", "dustRedstone", "dustRedstone", "dustGlowstone", "dustGlowstone", "dustGlowstone", "dustGlowstone");
-		//階段
-//		Block[] stairs = new Block[]
-//		{ Blocks.OAK_STAIRS, Blocks.SPRUCE_STAIRS, Blocks.BIRCH_STAIRS, Blocks.JUNGLE_STAIRS, Blocks.ACACIA_STAIRS, Blocks.DARK_OAK_STAIRS };
-//		for(int i = 0; i < 6; i++)
-//		{
-//			Utils.addMiniRecipeStairs(stairs[i], new ItemStack(Blocks.PLANKS, 1, i));
-//		}
-//		Utils.addMiniRecipeStairs(Blocks.STONE_STAIRS, new ItemStack(Blocks.COBBLESTONE));
-//		Utils.addMiniRecipeStairs(Blocks.BRICK_STAIRS, new ItemStack(Blocks.BRICK_BLOCK));
-//		Utils.addMiniRecipeStairs(Blocks.STONE_BRICK_STAIRS, new ItemStack(Blocks.STONEBRICK, 1, W_V));
-//		Utils.addMiniRecipeStairs(Blocks.NETHER_BRICK_STAIRS, new ItemStack(Blocks.NETHER_BRICK));
-//		Utils.addMiniRecipeStairs(Blocks.SANDSTONE_STAIRS, new ItemStack(Blocks.SANDSTONE));
-//		Utils.addMiniRecipeStairs(Blocks.RED_SANDSTONE_STAIRS, new ItemStack(Blocks.RED_SANDSTONE));
-//		Utils.addMiniRecipeStairs(Blocks.QUARTZ_STAIRS, new ItemStack(Blocks.QUARTZ_BLOCK));
-		//砂利から火打石落とさないようにしてるから砂利一つクラフトで火打石一つ
+		// 階段
+		// Block[] stairs = new Block[]
+		// { Blocks.OAK_STAIRS, Blocks.SPRUCE_STAIRS, Blocks.BIRCH_STAIRS,
+		// Blocks.JUNGLE_STAIRS, Blocks.ACACIA_STAIRS, Blocks.DARK_OAK_STAIRS };
+		// for(int i = 0; i < 6; i++)
+		// {
+		// Utils.addMiniRecipeStairs(stairs[i], new ItemStack(Blocks.PLANKS, 1,
+		// i));
+		// }
+		// Utils.addMiniRecipeStairs(Blocks.STONE_STAIRS, new
+		// ItemStack(Blocks.COBBLESTONE));
+		// Utils.addMiniRecipeStairs(Blocks.BRICK_STAIRS, new
+		// ItemStack(Blocks.BRICK_BLOCK));
+		// Utils.addMiniRecipeStairs(Blocks.STONE_BRICK_STAIRS, new
+		// ItemStack(Blocks.STONEBRICK, 1, W_V));
+		// Utils.addMiniRecipeStairs(Blocks.NETHER_BRICK_STAIRS, new
+		// ItemStack(Blocks.NETHER_BRICK));
+		// Utils.addMiniRecipeStairs(Blocks.SANDSTONE_STAIRS, new
+		// ItemStack(Blocks.SANDSTONE));
+		// Utils.addMiniRecipeStairs(Blocks.RED_SANDSTONE_STAIRS, new
+		// ItemStack(Blocks.RED_SANDSTONE));
+		// Utils.addMiniRecipeStairs(Blocks.QUARTZ_STAIRS, new
+		// ItemStack(Blocks.QUARTZ_BLOCK));
+		// 砂利から火打石落とさないようにしてるから砂利一つクラフトで火打石一つ
 		RecipeUtils.addShapelessRecipe("gravel_to_flint", new ItemStack(Items.FLINT), Blocks.GRAVEL);
 
-		//Mod Blocks
+		// Mod Blocks
 		RecipeUtils.addRecipe("stones_to_polished_stone", new ItemStack(BLOCK_POLISHED_STONE, 2, 0), "S ", " S", 'S', Blocks.STONE);
 		RecipeUtils.addShapelessRecipe("lit_off_polished_stone", new ItemStack(BLOCK_POLISHED_STONE, 1, 1), new ItemStack(BLOCK_POLISHED_STONE, 1, 0));
-		for(int i = 0; i < 16; i++)
-		{
+		for(int i = 0; i < 16; i++) {
 			RecipeUtils.addRecipe("light_" + EnumColor.byMeta(i).getName(), new ItemStack(BLOCK_COLORED_LIGHT, 8, i), "GdG", "GgG", "GiG", 'G', "blockGlass", 'd', EnumColor.byMeta(i).getDyeOreName(), 'g', Blocks.GLOWSTONE, 'i', Items.IRON_INGOT);
 		}
-//		RecipeUtils.addRecipeSmallStairs("black_quartz", BLOCK_SS_BLACK_QUARTZ_BLOCK, new ItemStack(BLOCK_BLACK_QUARTZ, 1, BlockQuartz.EnumType.DEFAULT.getMetadata()));
+		// RecipeUtils.addRecipeSmallStairs("black_quartz",
+		// BLOCK_SS_BLACK_QUARTZ_BLOCK, new ItemStack(BLOCK_BLACK_QUARTZ, 1,
+		// BlockQuartz.EnumType.DEFAULT.getMetadata()));
 		RecipeUtils.addRecipe("glowstone_generator", new ItemStack(BLOCK_GLOWSTONE_GENERATOR, 1), "dld", "SSS", "dSd", 'd', Items.DIAMOND, 'l', new ItemStack(Items.DYE, 1, EnumColor.BLUE.getDyeNumber()), 'S', Blocks.STONE);
 		RecipeUtils.addRecipeVendingMachine("normal", BLOCK_VM_NORMAL, EnumColor.WHITE);
 		RecipeUtils.addRecipeVendingMachine("coca_cola", BLOCK_VM_COCA_COLA, EnumColor.RED);
@@ -767,8 +792,7 @@ public class Register
 		RecipeUtils.addRecipeGlassDoorPlanks(BLOCK_GLASS_ACACIA_DOOR, EnumPlanks.ACACIA);
 		RecipeUtils.addRecipeGlassDoorPlanks(BLOCK_GLASS_DARK_OAK_DOOR, EnumPlanks.DARK_OAK);
 		RecipeUtils.addRecipe("glass_iron_door", new ItemStack(BLOCK_GLASS_IRON_DOOR, 3), "ii", "BB", "ii", 'i', "ingotIron", 'B', Blocks.IRON_BARS);
-		for(int i = 0; i < EnumColor.getLength(); i++)
-		{
+		for(int i = 0; i < EnumColor.getLength(); i++) {
 			RecipeUtils.addShapelessRecipe("colored_polished_stone_" + EnumColor.byMeta(i).getName(), new ItemStack(BLOCK_POLISHED_STONE_COLORED, 1, i), EnumColor.byMeta(i).getDyeOreName(), new ItemStack(BLOCK_POLISHED_STONE, 1, 0));
 			RecipeUtils.addRecipe("chroma_key_back_" + EnumColor.byMeta(i).getName(), new ItemStack(BLOCK_CHROMA_KEY_BACK, 9, i), "CCC", "CCC", "CCC", 'C', new ItemStack(Blocks.CONCRETE, 1, i));
 		}
@@ -789,7 +813,7 @@ public class Register
 		RecipeUtils.addShapelessRecipe("disassembly_black_quartz", new ItemStack(ITEM_MATERIAL, 4, 18), new ItemStack(BLOCK_BLACK_QUARTZ, 1, 0));
 		RecipeUtils.addRecipe("black_quartz_lines", new ItemStack(BLOCK_BLACK_QUARTZ, 2, 2), "B", "B", 'B', new ItemStack(BLOCK_BLACK_QUARTZ, 1, 0));
 
-		//Mod Items
+		// Mod Items
 		RecipeUtils.addShapelessRecipe("tweaked_dye_blue", new ItemStack(ITEM_TWEAKED_DYE, 1, 2), new ItemStack(BLOCK_NEW_FLOWER, 1, 0));
 		RecipeUtils.addShapelessRecipe("tweaked_dye_black", new ItemStack(ITEM_TWEAKED_DYE, 1, 0), new ItemStack(BLOCK_NEW_FLOWER, 1, 1));
 		RecipeUtils.addShapelessRecipe("ink_to_tweaked_dye_black", new ItemStack(ITEM_TWEAKED_DYE, 4, 0), new ItemStack(Items.DYE, 1, EnumColor.BLACK.getDyeNumber()));
@@ -798,8 +822,7 @@ public class Register
 		RecipeUtils.addShapelessRecipe("bone_meals_to_tweaked_dye_white", new ItemStack(ITEM_TWEAKED_DYE, 4, 3), new ItemStack(Items.DYE, 1, EnumColor.WHITE.getDyeNumber()));
 		RecipeUtils.addShapelessRecipe("red_green_to_brown", new ItemStack(ITEM_TWEAKED_DYE, 2, 1), EnumColor.RED.getDyeOreName(), EnumColor.GREEN.getDyeOreName());
 		RecipeUtils.addShapelessRecipe("red_yellow_blue_to_brown", new ItemStack(ITEM_TWEAKED_DYE, 4, 1), EnumColor.RED.getDyeOreName(), EnumColor.RED.getDyeOreName(), EnumColor.BLUE.getDyeOreName(), EnumColor.YELLOW.getDyeOreName());
-		for(int i = 0; i < EnumColor.getLength(); i++)
-		{
+		for(int i = 0; i < EnumColor.getLength(); i++) {
 			RecipeUtils.addRecipe("zabuton_" + EnumColor.byDyeDamage(i).getName(), new ItemStack(ITEM_ZABUTON, 1, i), "s ", "WW", 's', Items.STRING, 'W', new ItemStack(Blocks.WOOL, 1, EnumColor.byDyeDamage(i).getWoolNumber()));
 		}
 		RecipeUtils.addShapelessRecipe("empty_spawn_egg", new ItemStack(Items.SPAWN_EGG, 8), Items.IRON_INGOT, Items.IRON_INGOT, Items.REDSTONE);
@@ -820,7 +843,7 @@ public class Register
 		RecipeUtils.addRecipe("safety_boots", new ItemStack(ITEM_ARMOR_SAFETY_BOOTS, 1), "lbl", "i i", 'l', Items.LEATHER, 'b', EnumColor.BLACK.getDyeOreName(), 'i', "ingotIron");
 		RecipeUtils.addRecipe("life_jacket", new ItemStack(ITEM_ARMOR_LIFE_JACKET, 1), "P P", "lll", "PPP", 'P', "plankWood", 'l', Items.LEATHER);
 
-		//精錬レシピ
+		// 精錬レシピ
 		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(Items.LEATHER, 1), 0.05F);
 		GameRegistry.addSmelting(Items.DIAMOND, new ItemStack(Items.COAL, 1), 0.05F);
 		GameRegistry.addSmelting(Blocks.DIAMOND_BLOCK, new ItemStack(Blocks.COAL_BLOCK, 1), 0.05F);
@@ -832,20 +855,26 @@ public class Register
 
 		GameRegistry.addSmelting(new ItemStack(ITEM_MATERIAL, 1, 16), new ItemStack(Items.IRON_INGOT, 1), 0F);
 
-		//醸造レシピ
-//		BrewingRecipeRegistry.addRecipe(new ItemStack(Items.WATER_BUCKET, 1), new ItemStack(Items.DYE, 1, EnumColor.RED.getDyeNumber()), new ItemStack(Items.LAVA_BUCKET, 1));
+		// 醸造レシピ
+		// BrewingRecipeRegistry.addRecipe(new ItemStack(Items.WATER_BUCKET, 1),
+		// new ItemStack(Items.DYE, 1, EnumColor.RED.getDyeNumber()), new
+		// ItemStack(Items.LAVA_BUCKET, 1));
 
-		//TODO
-		//			GameRegistry.addSmelting(new ItemStack(Blocks.NETHERRACK, 4), new ItemStack(Blocks.NETHER_BRICK, 1), 0F);
-		//TODO GameRegistry.addSmelting(new ItemStack(Items.iron_axe, 1, WILDCARD_VALUE), new ItemStack(Items.iron_ingot, 1), 0.005F);
+		// TODO
+		// GameRegistry.addSmelting(new ItemStack(Blocks.NETHERRACK, 4), new
+		// ItemStack(Blocks.NETHER_BRICK, 1), 0F);
+		// TODO GameRegistry.addSmelting(new ItemStack(Items.iron_axe, 1,
+		// WILDCARD_VALUE), new ItemStack(Items.iron_ingot, 1), 0.005F);
 
-		//BotaniaAPI.registerRuneAltarRecipe(output, mana, inputs);
-		//CraftingHandlers.pulverizer.addRecipe(energy, input, primaryOutput, secondaryOutput, secondaryChance, overwrite);
-		//ThaumcraftApi.addInfusionCraftingRecipe(research, result, instability, aspects, input, recipe);
-		//ActuallyAdditionsAPI.addCrusherRecipe(input, outputOne);
+		// BotaniaAPI.registerRuneAltarRecipe(output, mana, inputs);
+		// CraftingHandlers.pulverizer.addRecipe(energy, input, primaryOutput,
+		// secondaryOutput, secondaryChance, overwrite);
+		// ThaumcraftApi.addInfusionCraftingRecipe(research, result,
+		// instability, aspects, input, recipe);
+		// ActuallyAdditionsAPI.addCrusherRecipe(input, outputOne);
 
-		//燃料登録
-		//200tick = 1second
+		// 燃料登録
+		// 200tick = 1second
 		RegistryUtils.addFuel(16000, new ItemStack(BLOCK_METAL, 1, 7));
 		RegistryUtils.addFuel(2400, new ItemStack(Items.MAGMA_CREAM));
 		RegistryUtils.addFuel(1500, new ItemStack(Blocks.HAY_BLOCK));
@@ -855,78 +884,69 @@ public class Register
 		RegistryUtils.addFuel(100, new ItemStack(Blocks.LEAVES, 1, WILDCARD_VALUE), new ItemStack(Blocks.LEAVES2, 1, WILDCARD_VALUE), new ItemStack(Blocks.TALLGRASS), new ItemStack(Items.REEDS));
 		RegistryUtils.addFuel(50, new ItemStack(Items.WHEAT_SEEDS), new ItemStack(Items.MELON_SEEDS), new ItemStack(Items.PUMPKIN_SEEDS));
 
-		//mobスポーン追加
+		// mobスポーン追加
 		Utils.addSpawnEntity(EntityGiantZombie.class, 1, 0, 1, EnumCreatureType.MONSTER, Biomes.PLAINS);
 
-		//生成
+		// 生成
 		GameRegistry.registerWorldGenerator(new WorldGenBlock(), 1);
 
-		//パーティクル
+		// パーティクル
 		ParticleRegistry.register();
 
-		//Packet
+		// Packet
 		PacketHandler.init();
 	}
 
-	public static void postInit()
-	{
-		//			Utils.removeRecipe(new ItemStack(Blocks.stone_stairs));
-//		Utils.removeSmeltingRecipe(new ItemStack(Blocks.LOG, 1, 0), new ItemStack(Items.COAL, 1, 1));
-		if(!ModConfig.connectableBlock.isEmpty())
-		{
-			for(String loc : ModConfig.connectableBlock)
-			{
+	public static void postInit() {
+		// Utils.removeRecipe(new ItemStack(Blocks.stone_stairs));
+		// Utils.removeSmeltingRecipe(new ItemStack(Blocks.LOG, 1, 0), new
+		// ItemStack(Items.COAL, 1, 1));
+		if(!ModConfig.connectableBlock.isEmpty()) {
+			for(String loc : ModConfig.connectableBlock) {
 				Block block = Block.REGISTRY.getObject(new ResourceLocation(loc));
 				BlockLattice.connectables.add(block);
 			}
 		}
 
-		//configで追加された奴の爆破耐性を10000に
-		if(!ModConfig.increasingResistance.isEmpty())
-		{
-			for(String loc : ModConfig.increasingResistance)
-			{
+		// configで追加された奴の爆破耐性を10000に
+		if(!ModConfig.increasingResistance.isEmpty()) {
+			for(String loc : ModConfig.increasingResistance) {
 				Block block = Block.REGISTRY.getObject(new ResourceLocation(loc));
 				block.setResistance(10000.0F);
 				PSV2Core.LOGGER.info("Setted " + loc + "'s resistance to 10000!");
 			}
 		}
 
-		//耐久値変更
-		if(ModConfig.changeWoodToolsDurability)
-		{
+		// 耐久値変更
+		if(ModConfig.changeWoodToolsDurability) {
 			Items.WOODEN_AXE.setMaxDamage(8);
 			Items.WOODEN_HOE.setMaxDamage(8);
 			Items.WOODEN_PICKAXE.setMaxDamage(8);
 			Items.WOODEN_SHOVEL.setMaxDamage(8);
 			Items.WOODEN_SWORD.setMaxDamage(8);
 		}
-		if(ModConfig.changeStoneToolsDurability)
-		{
+		if(ModConfig.changeStoneToolsDurability) {
 			Items.STONE_AXE.setMaxDamage(32);
 			Items.STONE_HOE.setMaxDamage(32);
 			Items.STONE_PICKAXE.setMaxDamage(32);
 			Items.STONE_SHOVEL.setMaxDamage(32);
 			Items.STONE_SWORD.setMaxDamage(32);
 		}
-		if(ModConfig.changeIronToolsDurability)
-		{
+		if(ModConfig.changeIronToolsDurability) {
 			Items.IRON_AXE.setMaxDamage(1024);
 			Items.IRON_HOE.setMaxDamage(1024);
 			Items.IRON_PICKAXE.setMaxDamage(1024);
 			Items.IRON_SHOVEL.setMaxDamage(1024);
 			Items.IRON_SWORD.setMaxDamage(1024);
 		}
-		if(ModConfig.changeGoldToolsDurability)
-		{
+		if(ModConfig.changeGoldToolsDurability) {
 			Items.GOLDEN_AXE.setMaxDamage(32);
 			Items.GOLDEN_HOE.setMaxDamage(32);
 			Items.GOLDEN_PICKAXE.setMaxDamage(32);
 			Items.GOLDEN_SHOVEL.setMaxDamage(32);
 			Items.GOLDEN_SWORD.setMaxDamage(32);
 		}
-		if(ModConfig.changeDiamondToolsDurability)
-		{
+		if(ModConfig.changeDiamondToolsDurability) {
 			Items.DIAMOND_AXE.setMaxDamage(8192);
 			Items.DIAMOND_HOE.setMaxDamage(8192);
 			Items.DIAMOND_PICKAXE.setMaxDamage(8192);
@@ -934,50 +954,44 @@ public class Register
 			Items.DIAMOND_SWORD.setMaxDamage(8192);
 		}
 
-		if(!ModCompat.COMPAT_QUARK)
-		{
+		if(!ModCompat.COMPAT_QUARK) {
 			RegistryUtils.addFuel(400, new ItemStack(Blocks.TORCH));
 			Utils.addSpawnEntity(EntityBlaze.class, 15, 1, 4, EnumCreatureType.MONSTER, Biomes.HELL);
 		}
 		else
 			PSV2Core.LOGGER.info("Quark is installed, so skip register.");
 
-		if(Utils.isOreDictLoaded("ingotTin"))
-		{
+		if(Utils.isOreDictLoaded("ingotTin")) {
 			RecipeUtils.addRecipe("tin_to_bucket", new ItemStack(Items.BUCKET, 1), "t t", " t ", 't', "ingotTin");
 			RecipeUtils.addRecipe("tin_to_shears", new ItemStack(Items.SHEARS, 1), " t", "t ", 't', "ingotTin");
 			RecipeUtils.addRecipe("tin_to_piston", new ItemStack(Blocks.PISTON, 1), "PPP", "CtC", "CrC", 'P', "plankWood", 'C', "cobblestone", 't', "ingotTin", 'r', "dustRedstone");
 			RecipeUtils.addRecipe("tin_to_minecart", new ItemStack(Items.MINECART, 1), "t t", "ttt", 't', "ingotTin");
 		}
-		if(Utils.isOreDictLoaded("ingotCopper"))
-		{
+		if(Utils.isOreDictLoaded("ingotCopper")) {
 			RecipeUtils.addRecipe("copper_to_bucket", new ItemStack(Items.BUCKET, 1), "c c", " c ", 'c', "ingotCopper");
 			RecipeUtils.addRecipe("copper_to_shears", new ItemStack(Items.SHEARS, 1), " c", "c ", 'c', "ingotCopper");
 			RecipeUtils.addRecipe("copper_to_piston", new ItemStack(Blocks.PISTON, 1), "PPP", "CcC", "CrC", 'P', "plankWood", 'C', "cobblestone", 'c', "ingotCopper", 'r', "dustRedstone");
 			RecipeUtils.addRecipe("copper_to_minecart", new ItemStack(Items.MINECART, 1), "c c", "ccc", 'c', "ingotCopper");
 		}
-		if(Utils.isOreDictLoaded("ingotLead"))
-		{
+		if(Utils.isOreDictLoaded("ingotLead")) {
 			RecipeUtils.addRecipe("lead_to_bucket", new ItemStack(Items.BUCKET, 1), "l l", " l ", 'l', "ingotLead");
 			RecipeUtils.addRecipe("lead_to_shears", new ItemStack(Items.SHEARS, 1), " l", "l ", 'l', "ingotLead");
 			RecipeUtils.addRecipe("lead_to_piston", new ItemStack(Blocks.PISTON, 1), "PPP", "ClC", "CrC", 'P', "plankWood", 'C', "cobblestone", 'l', "ingotLead", 'r', "dustRedstone");
 			RecipeUtils.addRecipe("lead_to_minecart", new ItemStack(Items.MINECART, 1), "l l", "lll", 'l', "ingotLead");
 		}
-		if(Utils.isOreDictLoaded("ingotSilver"))
-		{
+		if(Utils.isOreDictLoaded("ingotSilver")) {
 			RecipeUtils.addRecipe("silver_to_bucket", new ItemStack(Items.BUCKET, 1), "s s", " s ", 's', "ingotSilver");
 			RecipeUtils.addRecipe("silver_to_shears", new ItemStack(Items.SHEARS, 1), " s", "s ", 's', "ingotSilver");
 			RecipeUtils.addRecipe("silver_to_piston", new ItemStack(Blocks.PISTON, 1), "PPP", "CsC", "CrC", 'P', "plankWood", 'C', "cobblestone", 's', "ingotSilver", 'r', "dustRedstone");
 			RecipeUtils.addRecipe("silver_to_minecart", new ItemStack(Items.MINECART, 1), "s s", "sss", 's', "ingotSilver");
 		}
-		if(Utils.isOreDictLoaded("ingotBronze"))
-		{
+		if(Utils.isOreDictLoaded("ingotBronze")) {
 			RecipeUtils.addRecipe("iron_chain_bronze", new ItemStack(BLOCK_IRON_CHAIN, 16), "i", "i", "i", 'i', "ingotBronze");
 			RecipeUtils.addRecipe("anchor_bolt_bronze", new ItemStack(BLOCK_ANCHOR_BOLT, 1), "iI", 'i', "ingotBronze", 'I', BLOCK_IRON_CHAIN);
 			RecipeUtils.addRecipe("stepladder_bronze", new ItemStack(BLOCK_STEPLADDER, 1), "iLi", "iLi", "iLi", 'i', "ingotBronze", 'L', Blocks.LADDER);
 		}
 
-		//イベント登録
+		// イベント登録
 		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
 		MinecraftForge.EVENT_BUS.register(new ModLivingDropsEvent());
 		MinecraftForge.EVENT_BUS.register(new ModPlayerInteractEvent());
@@ -990,16 +1004,14 @@ public class Register
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static void preInitClient()
-	{
+	public static void preInitClient() {
 		RegistryUtils.registerEntityRendering(EntityZabuton.class, new RenderZabuton.Factory());
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static void initClient()
-	{
+	public static void initClient() {
 		RegistryUtils.registerItemColor(new ItemZabuton(), ITEM_ZABUTON);
-//		Utils.registerItemColor(new ItemNewDye(), itemNewDye);
+		// Utils.registerItemColor(new ItemNewDye(), itemNewDye);
 
 		RegistryUtils.registerItemBlockColor(new ItemBlockDummyBarrier(), BLOCK_DUMMY_BARRIER);
 
@@ -1009,18 +1021,20 @@ public class Register
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static void postInitClient()
-	{
+	public static void postInitClient() {
 		MinecraftForge.EVENT_BUS.register(new ModClientEventHandler());
 		MinecraftForge.EVENT_BUS.register(new PlayerMoveSpeedHandler.Client());
 	}
 
-	public static void botaniaPlugin()
-	{
-		//			if(Loader.isModLoaded("Botania"))
-		//			{
-		//				BotaniaAPI.registerRuneAltarRecipe(new ItemStack(Items.diamond, 1)/*ItemStackじゃないとだめ。*/, 20000, new ItemStack(Items.coal)/*ItemStackじゃないとだめ*/, new ItemStack(Items.coal), new ItemStack(Items.coal));
-		//				BotaniaAPI.registerManaInfusionRecipe(new ItemStack(Items.diamond, 1), new ItemStack(Items.coal), 20000);
-		//			}
+	public static void botaniaPlugin() {
+		// if(Loader.isModLoaded("Botania"))
+		// {
+		// BotaniaAPI.registerRuneAltarRecipe(new ItemStack(Items.diamond,
+		// 1)/*ItemStackじゃないとだめ。*/, 20000, new
+		// ItemStack(Items.coal)/*ItemStackじゃないとだめ*/, new ItemStack(Items.coal),
+		// new ItemStack(Items.coal));
+		// BotaniaAPI.registerManaInfusionRecipe(new ItemStack(Items.diamond,
+		// 1), new ItemStack(Items.coal), 20000);
+		// }
 	}
 }

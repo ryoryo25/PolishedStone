@@ -40,8 +40,7 @@ import ryoryo.polishedlib.util.NumericalConstant;
 import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.RegistryUtils;
 
-public class BlockDummyCable extends BlockModBase
-{
+public class BlockDummyCable extends BlockModBase {
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.<EnumType> create("type", EnumType.class);
 	public static final PropertyBool NORTH = Props.NORTH;
 	public static final PropertyBool SOUTH = Props.SOUTH;
@@ -50,8 +49,7 @@ public class BlockDummyCable extends BlockModBase
 	public static final PropertyBool UP = Props.UP;
 	public static final PropertyBool DOWN = Props.DOWN;
 
-	public BlockDummyCable()
-	{
+	public BlockDummyCable() {
 		super(Material.IRON, "dummy_cable", SoundType.STONE);
 		this.setHardness(1.0F);
 		this.setResistance(10.0F);
@@ -59,27 +57,24 @@ public class BlockDummyCable extends BlockModBase
 	}
 
 	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	@SideOnly (Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {
 
 		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		double min = state.getValue(TYPE).getAABBMin();
 		double max = 1 - min;
 
@@ -87,14 +82,12 @@ public class BlockDummyCable extends BlockModBase
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
-	{
+	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
 		getCollisionBoxList(this.getActualState(state, world, pos))
-		.forEach(aabb -> addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb));
+				.forEach(aabb -> addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb));
 	}
 
-	private static List<AxisAlignedBB> getCollisionBoxList(IBlockState bstate)
-	{
+	private static List<AxisAlignedBB> getCollisionBoxList(IBlockState bstate) {
 		List<AxisAlignedBB> list = new ArrayList<AxisAlignedBB>();
 		boolean north = bstate.getValue(NORTH).booleanValue();
 		boolean south = bstate.getValue(SOUTH).booleanValue();
@@ -125,8 +118,7 @@ public class BlockDummyCable extends BlockModBase
 
 	@Override
 	@Nullable
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-	{
+	public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
 		return getCollisionBoxList(this.getActualState(blockState, world, pos)).stream()
 				.map(aabb -> this.rayTrace(pos, start, end, aabb))
 				.filter(Objects::nonNull)
@@ -135,38 +127,32 @@ public class BlockDummyCable extends BlockModBase
 	}
 
 	@Override
-	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
-	{
+	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
 		return true;
 	}
 
 	@Override
-	public ItemStack getItem(World world, BlockPos pos, IBlockState state)
-	{
+	public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
 		return new ItemStack(Item.getItemFromBlock(this), 1, state.getValue(TYPE).getMeta());
 	}
 
 	@Override
-	public int damageDropped(IBlockState state)
-	{
+	public int damageDropped(IBlockState state) {
 		return state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(TYPE, EnumType.byMeta(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-	{
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return state.withProperty(NORTH, Boolean.valueOf(this.canConnect(state, world, pos.north(), EnumFacing.NORTH)))
 				.withProperty(SOUTH, Boolean.valueOf(this.canConnect(state, world, pos.south(), EnumFacing.SOUTH)))
 				.withProperty(WEST, Boolean.valueOf(this.canConnect(state, world, pos.west(), EnumFacing.WEST)))
@@ -175,15 +161,14 @@ public class BlockDummyCable extends BlockModBase
 				.withProperty(DOWN, Boolean.valueOf(this.canConnect(state, world, pos.down(), EnumFacing.DOWN)));
 	}
 
-	private boolean canConnect(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
-	{
+	private boolean canConnect(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
 		EnumType type = state.getValue(TYPE);
 		IBlockState target = world.getBlockState(pos);
 		Block targetBlock = target.getBlock();
 		TileEntity targetTile = world.getTileEntity(pos);
 
 		return (targetBlock == this && type == target.getValue(TYPE))
-				|| targetBlock.canConnectRedstone(state, world, pos, side)//TODO
+				|| targetBlock.canConnectRedstone(state, world, pos, side)// TODO
 				|| targetBlock instanceof BlockRedstoneWire
 				|| targetTile instanceof IInventory
 				|| targetTile instanceof IFluidHandler
@@ -192,16 +177,13 @@ public class BlockDummyCable extends BlockModBase
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TYPE, NORTH, SOUTH, WEST, EAST, UP, DOWN, });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TYPE, NORTH, SOUTH, WEST, EAST, UP, DOWN, });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, EnumType.getLength(), tab, list);
 	}
 
@@ -218,48 +200,39 @@ public class BlockDummyCable extends BlockModBase
 		private final String name;
 		private final double aabbMin;
 
-		private EnumType(int meta, String name, double aabbMin)
-		{
+		private EnumType(int meta, String name, double aabbMin) {
 			this.meta = meta;
 			this.name = name;
 			this.aabbMin = aabbMin;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return this.name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public double getAABBMin()
-		{
+		public double getAABBMin() {
 			return this.aabbMin;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return EnumType.values().length;
 		}
 
-		public static EnumType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static EnumType byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(EnumType enumtype : values())
-			{
+		static {
+			for(EnumType enumtype : values()) {
 				META_LOOKUP[enumtype.getMeta()] = enumtype;
 				NAMES[enumtype.getMeta()] = enumtype.getName();
 			}

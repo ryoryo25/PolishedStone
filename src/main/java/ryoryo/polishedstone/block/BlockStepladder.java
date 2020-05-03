@@ -39,10 +39,9 @@ import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.enums.EnumSimpleFacing;
 import ryoryo.polishedstone.Register;
 
-public class BlockStepladder extends BlockModBase
-{
+public class BlockStepladder extends BlockModBase {
 	protected static final AxisAlignedBB FIRST_AABB = creatAABB(0, 0, 0, 16, 16, 16);
-//-----------------------------------------------------------------------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------------------------------
 	protected static final AxisAlignedBB FIRST_AABB_BOTTOM1_NORTH = creatAABB(0, 0, 0, 16, 7, 2);
 	protected static final AxisAlignedBB FIRST_AABB_BOTTOM2_NORTH = creatAABB(0, 0, 14, 16, 7, 16);
 	protected static final AxisAlignedBB FIRST_AABB_SCAFOLD1_NORTH = creatAABB(0, 7, 0, 16, 8, 3);
@@ -66,11 +65,11 @@ public class BlockStepladder extends BlockModBase
 	protected static final AxisAlignedBB FIRST_AABB_SCAFOLD_NORTH = creatAABB(0, 14, 1, 16, 16, 15);
 	protected static final AxisAlignedBB FIRST_AABB_SCAFOLD_WEST = creatAABB(1, 14, 0, 15, 16, 16);
 
-//*****************************************************************************************************************************************
+	// *****************************************************************************************************************************************
 
 	protected static final AxisAlignedBB SECOND_AABB_NORTH = creatAABB(0, 0, 2, 16, 16, 14);
 	protected static final AxisAlignedBB SECOND_AABB_WEST = creatAABB(2, 0, 0, 14, 16, 16);
-//-----------------------------------------------------------------------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------------------------------
 	protected static final AxisAlignedBB SECOND_AABB_BOTTOM1_NORTH = creatAABB(0, 0, 2, 16, 7, 4);
 	protected static final AxisAlignedBB SECOND_AABB_BOTTOM2_NORTH = creatAABB(0, 0, 12, 16, 7, 14);
 	protected static final AxisAlignedBB SECOND_AABB_SCAFOLD1_NORTH = creatAABB(0, 7, 2, 16, 8, 5);
@@ -94,11 +93,11 @@ public class BlockStepladder extends BlockModBase
 	protected static final AxisAlignedBB SECOND_AABB_SCAFOLD_NORTH = creatAABB(0, 14, 3, 16, 16, 13);
 	protected static final AxisAlignedBB SECOND_AABB_SCAFOLD_WEST = creatAABB(3, 14, 0, 13, 16, 16);
 
-//*****************************************************************************************************************************************
+	// *****************************************************************************************************************************************
 
 	protected static final AxisAlignedBB THIRD_AABB_NORTH = creatAABB(0, 0, 4, 16, 16, 12);
 	protected static final AxisAlignedBB THIRD_AABB_WEST = creatAABB(4, 0, 0, 12, 16, 16);
-//-----------------------------------------------------------------------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------------------------------
 	protected static final AxisAlignedBB THIRD_AABB_BOTTOM1_NORTH = creatAABB(0, 0, 4, 16, 7, 6);
 	protected static final AxisAlignedBB THIRD_AABB_BOTTOM2_NORTH = creatAABB(0, 0, 10, 16, 7, 12);
 	protected static final AxisAlignedBB THIRD_AABB_SCAFOLD1_NORTH = creatAABB(0, 7, 4, 16, 8, 7);
@@ -122,8 +121,7 @@ public class BlockStepladder extends BlockModBase
 	public static final PropertyEnum<EnumStage> STAGE = PropertyEnum.<EnumStage> create("stage", EnumStage.class);
 	public static final PropertyBool TOP = Props.TOP;
 
-	public BlockStepladder()
-	{
+	public BlockStepladder() {
 		super(Material.GROUND, "stepladder", SoundType.METAL);
 		this.setHardness(0.5F);
 		this.setResistance(2.0F);
@@ -131,136 +129,126 @@ public class BlockStepladder extends BlockModBase
 	}
 
 	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		EnumSimpleFacing facing = state.getValue(FACING);
 		EnumStage stage = state.getValue(STAGE);
 		boolean flag1 = stage == EnumStage.SECOND;
 
 		if(stage == EnumStage.FIRST)
 			return FIRST_AABB;
-		else
-		{
-			switch(facing)
-			{
-			case NORTH:
-			default:
-				return flag1 ? SECOND_AABB_NORTH : THIRD_AABB_NORTH;
-			case WEST:
-				return flag1 ? SECOND_AABB_WEST : THIRD_AABB_WEST;
+		else {
+			switch(facing) {
+				case NORTH:
+				default:
+					return flag1 ? SECOND_AABB_NORTH : THIRD_AABB_NORTH;
+				case WEST:
+					return flag1 ? SECOND_AABB_WEST : THIRD_AABB_WEST;
 			}
 		}
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState)
-	{
+	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState) {
 		getCollisionBoxList(this.getActualState(state, world, pos))
-		.forEach(aabb -> addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb));
+				.forEach(aabb -> addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb));
 	}
 
-	//TODO
-	private static List<AxisAlignedBB> getCollisionBoxList(IBlockState bstate)
-	{
+	// TODO
+	private static List<AxisAlignedBB> getCollisionBoxList(IBlockState bstate) {
 		List<AxisAlignedBB> list = new ArrayList<AxisAlignedBB>();
 		EnumStage stage = bstate.getValue(STAGE);
 		EnumSimpleFacing facing = bstate.getValue(FACING);
 		boolean isTop = bstate.getValue(TOP).booleanValue();
-		switch(facing)
-		{
-		case NORTH:
-		default:
-			switch(stage)
-			{
-			case FIRST:
+		switch(facing) {
+			case NORTH:
 			default:
-				list.add(FIRST_AABB_TOP1_NORTH);
-				list.add(FIRST_AABB_TOP2_NORTH);
-				list.add(FIRST_AABB_BOTTOM1_NORTH);
-				list.add(FIRST_AABB_BOTTOM2_NORTH);
-				list.add(FIRST_AABB_SCAFOLD1_NORTH);
-				list.add(FIRST_AABB_SCAFOLD2_NORTH);
-				list.add(FIRST_AABB_SCAFOLD3_NORTH);
-				list.add(FIRST_AABB_SCAFOLD4_NORTH);
-				if(isTop)
-					list.add(FIRST_AABB_SCAFOLD_NORTH);
+				switch(stage) {
+					case FIRST:
+					default:
+						list.add(FIRST_AABB_TOP1_NORTH);
+						list.add(FIRST_AABB_TOP2_NORTH);
+						list.add(FIRST_AABB_BOTTOM1_NORTH);
+						list.add(FIRST_AABB_BOTTOM2_NORTH);
+						list.add(FIRST_AABB_SCAFOLD1_NORTH);
+						list.add(FIRST_AABB_SCAFOLD2_NORTH);
+						list.add(FIRST_AABB_SCAFOLD3_NORTH);
+						list.add(FIRST_AABB_SCAFOLD4_NORTH);
+						if(isTop)
+							list.add(FIRST_AABB_SCAFOLD_NORTH);
+						break;
+					case SECOND:
+						list.add(SECOND_AABB_TOP1_NORTH);
+						list.add(SECOND_AABB_TOP2_NORTH);
+						list.add(SECOND_AABB_BOTTOM1_NORTH);
+						list.add(SECOND_AABB_BOTTOM2_NORTH);
+						list.add(SECOND_AABB_SCAFOLD1_NORTH);
+						list.add(SECOND_AABB_SCAFOLD2_NORTH);
+						list.add(SECOND_AABB_SCAFOLD3_NORTH);
+						list.add(SECOND_AABB_SCAFOLD4_NORTH);
+						if(isTop)
+							list.add(SECOND_AABB_SCAFOLD_NORTH);
+						break;
+					case THIRD:
+						list.add(THIRD_AABB_TOP1_NORTH);
+						list.add(THIRD_AABB_TOP2_NORTH);
+						list.add(THIRD_AABB_BOTTOM1_NORTH);
+						list.add(THIRD_AABB_BOTTOM2_NORTH);
+						list.add(THIRD_AABB_SCAFOLD1_NORTH);
+						list.add(THIRD_AABB_SCAFOLD2_NORTH);
+						if(isTop)
+							list.add(THIRD_AABB_SCAFOLD_NORTH);
+						break;
+				}
 				break;
-			case SECOND:
-				list.add(SECOND_AABB_TOP1_NORTH);
-				list.add(SECOND_AABB_TOP2_NORTH);
-				list.add(SECOND_AABB_BOTTOM1_NORTH);
-				list.add(SECOND_AABB_BOTTOM2_NORTH);
-				list.add(SECOND_AABB_SCAFOLD1_NORTH);
-				list.add(SECOND_AABB_SCAFOLD2_NORTH);
-				list.add(SECOND_AABB_SCAFOLD3_NORTH);
-				list.add(SECOND_AABB_SCAFOLD4_NORTH);
-				if(isTop)
-					list.add(SECOND_AABB_SCAFOLD_NORTH);
+			case WEST:
+				switch(stage) {
+					case FIRST:
+					default:
+						list.add(FIRST_AABB_TOP1_WEST);
+						list.add(FIRST_AABB_TOP2_WEST);
+						list.add(FIRST_AABB_BOTTOM1_WEST);
+						list.add(FIRST_AABB_BOTTOM2_WEST);
+						list.add(FIRST_AABB_SCAFOLD1_WEST);
+						list.add(FIRST_AABB_SCAFOLD2_WEST);
+						list.add(FIRST_AABB_SCAFOLD3_WEST);
+						list.add(FIRST_AABB_SCAFOLD4_WEST);
+						if(isTop)
+							list.add(FIRST_AABB_SCAFOLD_WEST);
+						break;
+					case SECOND:
+						list.add(SECOND_AABB_TOP1_WEST);
+						list.add(SECOND_AABB_TOP2_WEST);
+						list.add(SECOND_AABB_BOTTOM1_WEST);
+						list.add(SECOND_AABB_BOTTOM2_WEST);
+						list.add(SECOND_AABB_SCAFOLD1_WEST);
+						list.add(SECOND_AABB_SCAFOLD2_WEST);
+						list.add(SECOND_AABB_SCAFOLD3_WEST);
+						list.add(SECOND_AABB_SCAFOLD4_WEST);
+						if(isTop)
+							list.add(SECOND_AABB_SCAFOLD_WEST);
+						break;
+					case THIRD:
+						list.add(THIRD_AABB_TOP1_WEST);
+						list.add(THIRD_AABB_TOP2_WEST);
+						list.add(THIRD_AABB_BOTTOM1_WEST);
+						list.add(THIRD_AABB_BOTTOM2_WEST);
+						list.add(THIRD_AABB_SCAFOLD1_WEST);
+						list.add(THIRD_AABB_SCAFOLD2_WEST);
+						if(isTop)
+							list.add(THIRD_AABB_SCAFOLD_WEST);
+						break;
+				}
 				break;
-			case THIRD:
-				list.add(THIRD_AABB_TOP1_NORTH);
-				list.add(THIRD_AABB_TOP2_NORTH);
-				list.add(THIRD_AABB_BOTTOM1_NORTH);
-				list.add(THIRD_AABB_BOTTOM2_NORTH);
-				list.add(THIRD_AABB_SCAFOLD1_NORTH);
-				list.add(THIRD_AABB_SCAFOLD2_NORTH);
-				if(isTop)
-					list.add(THIRD_AABB_SCAFOLD_NORTH);
-				break;
-			}
-			break;
-		case WEST:
-			switch(stage)
-			{
-			case FIRST:
-			default:
-				list.add(FIRST_AABB_TOP1_WEST);
-				list.add(FIRST_AABB_TOP2_WEST);
-				list.add(FIRST_AABB_BOTTOM1_WEST);
-				list.add(FIRST_AABB_BOTTOM2_WEST);
-				list.add(FIRST_AABB_SCAFOLD1_WEST);
-				list.add(FIRST_AABB_SCAFOLD2_WEST);
-				list.add(FIRST_AABB_SCAFOLD3_WEST);
-				list.add(FIRST_AABB_SCAFOLD4_WEST);
-				if(isTop)
-					list.add(FIRST_AABB_SCAFOLD_WEST);
-				break;
-			case SECOND:
-				list.add(SECOND_AABB_TOP1_WEST);
-				list.add(SECOND_AABB_TOP2_WEST);
-				list.add(SECOND_AABB_BOTTOM1_WEST);
-				list.add(SECOND_AABB_BOTTOM2_WEST);
-				list.add(SECOND_AABB_SCAFOLD1_WEST);
-				list.add(SECOND_AABB_SCAFOLD2_WEST);
-				list.add(SECOND_AABB_SCAFOLD3_WEST);
-				list.add(SECOND_AABB_SCAFOLD4_WEST);
-				if(isTop)
-					list.add(SECOND_AABB_SCAFOLD_WEST);
-				break;
-			case THIRD:
-				list.add(THIRD_AABB_TOP1_WEST);
-				list.add(THIRD_AABB_TOP2_WEST);
-				list.add(THIRD_AABB_BOTTOM1_WEST);
-				list.add(THIRD_AABB_BOTTOM2_WEST);
-				list.add(THIRD_AABB_SCAFOLD1_WEST);
-				list.add(THIRD_AABB_SCAFOLD2_WEST);
-				if(isTop)
-					list.add(THIRD_AABB_SCAFOLD_WEST);
-				break;
-			}
-			break;
 		}
 
 		return list;
@@ -268,8 +256,7 @@ public class BlockStepladder extends BlockModBase
 
 	@Override
 	@Nullable
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-	{
+	public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
 		return getCollisionBoxList(this.getActualState(blockState, world, pos)).stream()
 				.map(aabb -> this.rayTrace(pos, start, end, aabb))
 				.filter(Objects::nonNull)
@@ -278,159 +265,133 @@ public class BlockStepladder extends BlockModBase
 	}
 
 	@Override
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
-	{
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
 		world.setBlockState(pos.up(), this.getDefaultState().withProperty(STAGE, EnumStage.SECOND).withProperty(FACING, EnumSimpleFacing.convertToNormalFacing(placer.getHorizontalFacing())), 2);
 		world.setBlockState(pos.up().up(), this.getDefaultState().withProperty(STAGE, EnumStage.THIRD).withProperty(FACING, EnumSimpleFacing.convertToNormalFacing(placer.getHorizontalFacing())), 2);
 		return this.getDefaultState().withProperty(FACING, EnumSimpleFacing.convertToNormalFacing(placer.getHorizontalFacing()));
 	}
 
 	@Override
-	public int quantityDropped(IBlockState state, int fortune, Random random)
-	{
+	public int quantityDropped(IBlockState state, int fortune, Random random) {
 		EnumStage stage = state.getValue(STAGE);
 		return (stage == EnumStage.SECOND || stage == EnumStage.THIRD) ? 0 : 1;
 	}
 
-	//TODO
+	// TODO
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
-		if(meta < 2)
-		{
-			switch(meta)
-			{
-			case 0:
-			default:
-				return this.getDefaultState().withProperty(STAGE, EnumStage.FIRST).withProperty(FACING, EnumSimpleFacing.NORTH);
-			case 1:
-				return this.getDefaultState().withProperty(STAGE, EnumStage.FIRST).withProperty(FACING, EnumSimpleFacing.WEST);
+	public IBlockState getStateFromMeta(int meta) {
+		if(meta < 2) {
+			switch(meta) {
+				case 0:
+				default:
+					return this.getDefaultState().withProperty(STAGE, EnumStage.FIRST).withProperty(FACING, EnumSimpleFacing.NORTH);
+				case 1:
+					return this.getDefaultState().withProperty(STAGE, EnumStage.FIRST).withProperty(FACING, EnumSimpleFacing.WEST);
 			}
 		}
-		else if(meta > 1 && meta < 4)
-		{
-			switch(meta)
-			{
-			case 2:
-			default:
-				return this.getDefaultState().withProperty(STAGE, EnumStage.SECOND).withProperty(FACING, EnumSimpleFacing.NORTH);
-			case 3:
-				return this.getDefaultState().withProperty(STAGE, EnumStage.SECOND).withProperty(FACING, EnumSimpleFacing.WEST);
+		else if(meta > 1 && meta < 4) {
+			switch(meta) {
+				case 2:
+				default:
+					return this.getDefaultState().withProperty(STAGE, EnumStage.SECOND).withProperty(FACING, EnumSimpleFacing.NORTH);
+				case 3:
+					return this.getDefaultState().withProperty(STAGE, EnumStage.SECOND).withProperty(FACING, EnumSimpleFacing.WEST);
 			}
 		}
-		else if(meta > 3 && meta < 6)
-		{
-			switch(meta)
-			{
-			case 4:
-			default:
-				return this.getDefaultState().withProperty(STAGE, EnumStage.THIRD).withProperty(FACING, EnumSimpleFacing.NORTH);
-			case 5:
-				return this.getDefaultState().withProperty(STAGE, EnumStage.THIRD).withProperty(FACING, EnumSimpleFacing.WEST);
+		else if(meta > 3 && meta < 6) {
+			switch(meta) {
+				case 4:
+				default:
+					return this.getDefaultState().withProperty(STAGE, EnumStage.THIRD).withProperty(FACING, EnumSimpleFacing.NORTH);
+				case 5:
+					return this.getDefaultState().withProperty(STAGE, EnumStage.THIRD).withProperty(FACING, EnumSimpleFacing.WEST);
 			}
 		}
 		else
 			return this.getDefaultState();
 	}
 
-	//TODO
+	// TODO
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		EnumStage stage = state.getValue(STAGE);
 		EnumSimpleFacing facing = state.getValue(FACING);
 
-		switch(stage)
-		{
-		case FIRST:
-		default:
-			switch(facing)
-			{
-			case NORTH:
+		switch(stage) {
+			case FIRST:
 			default:
-				return 0;
-			case WEST:
-				return 1;
-			}
-		case SECOND:
-			switch(facing)
-			{
-			case NORTH:
-			default:
-				return 2;
-			case WEST:
-				return 3;
-			}
-		case THIRD:
-			switch(facing)
-			{
-			case NORTH:
-			default:
-				return 4;
-			case WEST:
-				return 5;
-			}
+				switch(facing) {
+					case NORTH:
+					default:
+						return 0;
+					case WEST:
+						return 1;
+				}
+			case SECOND:
+				switch(facing) {
+					case NORTH:
+					default:
+						return 2;
+					case WEST:
+						return 3;
+				}
+			case THIRD:
+				switch(facing) {
+					case NORTH:
+					default:
+						return 4;
+					case WEST:
+						return 5;
+				}
 		}
 	}
 
 	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-	{
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return state.withProperty(TOP, Boolean.valueOf(isTop(world, pos)));
 	}
 
-	private static boolean isTop(IBlockAccess world, BlockPos pos)
-	{
+	private static boolean isTop(IBlockAccess world, BlockPos pos) {
 		return (world.getBlockState(pos.up()).getBlock() != Register.BLOCK_STEPLADDER) ? true : false;
 	}
 
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack itemstack = player.inventory.getCurrentItem();
 		BlockPos posu = pos.up();
 		BlockPos posuu = pos.up().up();
 		Block blocku = world.getBlockState(posu).getBlock();
 		Block blockuu = world.getBlockState(posuu).getBlock();
 
-		if(itemstack.isEmpty() && world.getBlockState(pos).getValue(STAGE) == EnumStage.FIRST)
-		{
-			if(blocku == this && blockuu == this)
-			{
-				if(world.getBlockState(pos).getValue(FACING) == EnumSimpleFacing.NORTH)
-				{
+		if(itemstack.isEmpty() && world.getBlockState(pos).getValue(STAGE) == EnumStage.FIRST) {
+			if(blocku == this && blockuu == this) {
+				if(world.getBlockState(pos).getValue(FACING) == EnumSimpleFacing.NORTH) {
 					world.setBlockState(pos, this.getDefaultState().withProperty(FACING, EnumSimpleFacing.WEST), 2);
 					world.setBlockState(pos.up(), this.getDefaultState().withProperty(STAGE, EnumStage.SECOND).withProperty(FACING, EnumSimpleFacing.WEST), 2);
 					world.setBlockState(pos.up().up(), this.getDefaultState().withProperty(STAGE, EnumStage.THIRD).withProperty(FACING, EnumSimpleFacing.WEST), 2);
 				}
-				else if(world.getBlockState(pos).getValue(FACING) == EnumSimpleFacing.WEST)
-				{
+				else if(world.getBlockState(pos).getValue(FACING) == EnumSimpleFacing.WEST) {
 					world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, EnumSimpleFacing.NORTH), 2);
 					world.setBlockState(pos.up(), world.getBlockState(pos.up()).withProperty(STAGE, EnumStage.SECOND).withProperty(FACING, EnumSimpleFacing.NORTH), 2);
 					world.setBlockState(pos.up().up(), world.getBlockState(pos.up().up()).withProperty(STAGE, EnumStage.THIRD).withProperty(FACING, EnumSimpleFacing.NORTH), 2);
 				}
 			}
-			else if(blocku == this && blockuu != this)
-			{
-				if(world.getBlockState(pos).getValue(FACING) == EnumSimpleFacing.NORTH)
-				{
+			else if(blocku == this && blockuu != this) {
+				if(world.getBlockState(pos).getValue(FACING) == EnumSimpleFacing.NORTH) {
 					world.setBlockState(pos, this.getDefaultState().withProperty(FACING, EnumSimpleFacing.WEST), 2);
 					world.setBlockState(pos.up(), this.getDefaultState().withProperty(STAGE, EnumStage.SECOND).withProperty(FACING, EnumSimpleFacing.WEST), 2);
 				}
-				else if(world.getBlockState(pos).getValue(FACING) == EnumSimpleFacing.WEST)
-				{
+				else if(world.getBlockState(pos).getValue(FACING) == EnumSimpleFacing.WEST) {
 					world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, EnumSimpleFacing.NORTH), 2);
 					world.setBlockState(pos.up(), world.getBlockState(pos.up()).withProperty(STAGE, EnumStage.SECOND).withProperty(FACING, EnumSimpleFacing.NORTH), 2);
 				}
 			}
-			else if(blocku != this && blockuu != this)
-			{
+			else if(blocku != this && blockuu != this) {
 				if(world.getBlockState(pos).getValue(FACING) == EnumSimpleFacing.NORTH)
 					world.setBlockState(pos, this.getDefaultState().withProperty(FACING, EnumSimpleFacing.WEST), 2);
 				else if(world.getBlockState(pos).getValue(FACING) == EnumSimpleFacing.WEST)
@@ -444,16 +405,13 @@ public class BlockStepladder extends BlockModBase
 	}
 
 	@Override
-	public boolean canPlaceBlockAt(World world, BlockPos pos)
-	{
+	public boolean canPlaceBlockAt(World world, BlockPos pos) {
 		return pos.getY() >= 254 ? false : world.isSideSolid(pos.down(), EnumFacing.UP) && world.isAirBlock(pos.up()) && world.isAirBlock(pos.up().up());
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
-	{
-		if(!world.isSideSolid(pos.down(), EnumFacing.UP) && world.getBlockState(pos.down()).getBlock() != this)
-		{
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
+		if(!world.isSideSolid(pos.down(), EnumFacing.UP) && world.getBlockState(pos.down()).getBlock() != this) {
 			if(world.getBlockState(pos).getValue(STAGE) == EnumStage.FIRST)
 				this.dropBlockAsItem(world, pos, this.getDefaultState(), 0);
 			world.setBlockToAir(pos);
@@ -461,16 +419,15 @@ public class BlockStepladder extends BlockModBase
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ FACING, STAGE, TOP, });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { FACING, STAGE, TOP, });
 	}
 
-//	public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity)
-//	{
-//		return true;
-//	}
+	// public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos
+	// pos, EntityLivingBase entity)
+	// {
+	// return true;
+	// }
 
 	public static enum EnumStage implements IStringSerializable
 	{
@@ -480,14 +437,12 @@ public class BlockStepladder extends BlockModBase
 
 		private final String name;
 
-		private EnumStage(String name)
-		{
+		private EnumStage(String name) {
 			this.name = name;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name;
 		}
 	}

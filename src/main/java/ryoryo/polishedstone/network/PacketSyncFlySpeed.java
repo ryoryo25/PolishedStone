@@ -13,42 +13,34 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.util.LibNBTTag;
 
-public class PacketSyncFlySpeed implements IMessage
-{
+public class PacketSyncFlySpeed implements IMessage {
 	private int tier;
 	private boolean isUpdated;
 
-	public PacketSyncFlySpeed()
-	{
+	public PacketSyncFlySpeed() {
 	}
 
-	public PacketSyncFlySpeed(int tier, boolean isUpdated)
-	{
+	public PacketSyncFlySpeed(int tier, boolean isUpdated) {
 		this.tier = tier;
 		this.isUpdated = isUpdated;
 	}
 
 	@Override
-	public void fromBytes(ByteBuf buf)
-	{
+	public void fromBytes(ByteBuf buf) {
 		this.tier = buf.readInt();
 		this.isUpdated = buf.readBoolean();
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf)
-	{
+	public void toBytes(ByteBuf buf) {
 		buf.writeInt(this.tier);
 		buf.writeBoolean(this.isUpdated);
 	}
 
-	public static class ServerHandler implements IMessageHandler<PacketSyncFlySpeed, IMessage>
-	{
+	public static class ServerHandler implements IMessageHandler<PacketSyncFlySpeed, IMessage> {
 		@Override
-		public IMessage onMessage(PacketSyncFlySpeed message, MessageContext ctx)
-		{
-			FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->
-			{
+		public IMessage onMessage(PacketSyncFlySpeed message, MessageContext ctx) {
+			FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() -> {
 				EntityPlayerMP player = ctx.getServerHandler().player;
 				NBTTagCompound entity_data = player.getEntityData();
 				NBTTagCompound persisted_data = Utils.getTagCompound(entity_data, EntityPlayer.PERSISTED_NBT_TAG);
@@ -62,13 +54,10 @@ public class PacketSyncFlySpeed implements IMessage
 		}
 	}
 
-	public static class ClientHandler implements IMessageHandler<PacketSyncFlySpeed, IMessage>
-	{
+	public static class ClientHandler implements IMessageHandler<PacketSyncFlySpeed, IMessage> {
 		@Override
-		public IMessage onMessage(PacketSyncFlySpeed message, MessageContext ctx)
-		{
-			FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->
-			{
+		public IMessage onMessage(PacketSyncFlySpeed message, MessageContext ctx) {
+			FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() -> {
 				EntityPlayerSP player = Minecraft.getMinecraft().player;
 				NBTTagCompound entity_data = player.getEntityData();
 				NBTTagCompound persisted_data = Utils.getTagCompound(entity_data, EntityPlayer.PERSISTED_NBT_TAG);

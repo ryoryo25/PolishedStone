@@ -25,12 +25,10 @@ import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
-public class BlockNewOre extends BlockOre
-{
+public class BlockNewOre extends BlockOre {
 	public static final PropertyEnum<MaterialType> TYPE = PropertyEnum.<MaterialType> create("type", MaterialType.class);
 
-	public BlockNewOre()
-	{
+	public BlockNewOre() {
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("new_ore");
 		this.setHardness(3.0F);
@@ -41,31 +39,27 @@ public class BlockNewOre extends BlockOre
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		MaterialType type = state.getValue(TYPE);
 
-//		return ((MaterialType) type).getDrop();
-		switch(type)
-		{
-		case COOKIE:
-		default:
-			return Items.COOKIE;
-		case QUARTZ_BLACK:
-			return Register.ITEM_MATERIAL;
+		// return ((MaterialType) type).getDrop();
+		switch(type) {
+			case COOKIE:
+			default:
+				return Items.COOKIE;
+			case QUARTZ_BLACK:
+				return Register.ITEM_MATERIAL;
 		}
 	}
 
 	@Override
-	public int quantityDropped(Random random)
-	{
-		//TODO
+	public int quantityDropped(Random random) {
+		// TODO
 		return 4 + random.nextInt(5);
 	}
 
 	@Override
-	public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
-	{
+	public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
 		Random rand = world instanceof World ? ((World) world).rand : new Random();
 		MaterialType type = state.getValue(TYPE);
 
@@ -73,26 +67,25 @@ public class BlockNewOre extends BlockOre
 	}
 
 	@Override
-	public ItemStack getItem(World world, BlockPos pos, IBlockState state)
-	{
+	public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
 		return new ItemStack(Item.getItemFromBlock(this), 1, state.getValue(TYPE).getMeta());
 	}
 
-//	@Override
-//	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-//	{
-//		Random rand = world instanceof World ? ((World) world).rand : RANDOM;
-//
-//		int count = this.quantityDropped(state, fortune, rand);
-//		for(int i = 0; i < count; i++)
-//		{
-//			drops.add(state.getValue(TYPE).getDrop());
-//		}
-//	}
+	// @Override
+	// public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world,
+	// BlockPos pos, IBlockState state, int fortune)
+	// {
+	// Random rand = world instanceof World ? ((World) world).rand : RANDOM;
+	//
+	// int count = this.quantityDropped(state, fortune, rand);
+	// for(int i = 0; i < count; i++)
+	// {
+	// drops.add(state.getValue(TYPE).getDrop());
+	// }
+	// }
 
 	@Override
-	public int damageDropped(IBlockState state)
-	{
+	public int damageDropped(IBlockState state) {
 		MaterialType type = state.getValue(TYPE);
 
 		if(type != null)
@@ -102,43 +95,38 @@ public class BlockNewOre extends BlockOre
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(TYPE, MaterialType.byMeta(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TYPE });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TYPE });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, MaterialType.getLength(), tab, list);
 	}
 
 	public static enum MaterialType implements IStringSerializable
 	{
-//		if (this == Blocks.COAL_ORE)
-//            i = MathHelper.getInt(rand, 0, 2);
-//        else if (this == Blocks.DIAMOND_ORE)
-//            i = MathHelper.getInt(rand, 3, 7);
-//        else if (this == Blocks.EMERALD_ORE)
-//            i = MathHelper.getInt(rand, 3, 7);
-//        else if (this == Blocks.LAPIS_ORE)
-//            i = MathHelper.getInt(rand, 2, 5);
-//        else if (this == Blocks.QUARTZ_ORE)
-//            i = MathHelper.getInt(rand, 2, 5);
+		// if (this == Blocks.COAL_ORE)
+		// i = MathHelper.getInt(rand, 0, 2);
+		// else if (this == Blocks.DIAMOND_ORE)
+		// i = MathHelper.getInt(rand, 3, 7);
+		// else if (this == Blocks.EMERALD_ORE)
+		// i = MathHelper.getInt(rand, 3, 7);
+		// else if (this == Blocks.LAPIS_ORE)
+		// i = MathHelper.getInt(rand, 2, 5);
+		// else if (this == Blocks.QUARTZ_ORE)
+		// i = MathHelper.getInt(rand, 2, 5);
 		COOKIE(0, "cookie", Items.COOKIE, 0, 0, 2),
 		QUARTZ_BLACK(1, "quartz_black", Register.ITEM_MATERIAL, 18, 2, 5);
 
@@ -151,8 +139,7 @@ public class BlockNewOre extends BlockOre
 		private final int expMin;
 		private final int expMax;
 
-		private MaterialType(int meta, String name, Item drop, int dropMeta, int expMin, int expMax)
-		{
+		private MaterialType(int meta, String name, Item drop, int dropMeta, int expMin, int expMax) {
 			this.meta = meta;
 			this.name = name;
 			this.drop = drop;
@@ -162,55 +149,44 @@ public class BlockNewOre extends BlockOre
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public Item getDrop()
-		{
+		public Item getDrop() {
 			return this.drop;
 		}
 
-		public int getDropMeta()
-		{
+		public int getDropMeta() {
 			return this.dropMeta;
 		}
 
-		public int getExpMin()
-		{
+		public int getExpMin() {
 			return this.expMin;
 		}
 
-		public int getExpMax()
-		{
+		public int getExpMax() {
 			return this.expMax;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return MaterialType.values().length;
 		}
 
-		public static MaterialType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static MaterialType byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(MaterialType materialtype : values())
-			{
+		static {
+			for(MaterialType materialtype : values()) {
 				META_LOOKUP[materialtype.getMeta()] = materialtype;
 				NAMES[materialtype.getMeta()] = materialtype.getName();
 			}

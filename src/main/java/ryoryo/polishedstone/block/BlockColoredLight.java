@@ -16,12 +16,10 @@ import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.enums.EnumColor;
 
-public class BlockColoredLight extends BlockModBase
-{
+public class BlockColoredLight extends BlockModBase {
 	public static final PropertyEnum<EnumColor> COLOR = Props.COLOR;
 
-	public BlockColoredLight()
-	{
+	public BlockColoredLight() {
 		super(Material.GLASS, "colored_light", SoundType.GLASS);
 		this.setResistance(10000F);
 		this.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
@@ -30,34 +28,28 @@ public class BlockColoredLight extends BlockModBase
 	}
 
 	@Override
-	public int damageDropped(IBlockState state)
-	{
+	public int damageDropped(IBlockState state) {
 		return state.getValue(COLOR).getWoolNumber();
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(COLOR, EnumColor.byMeta(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(COLOR).getWoolNumber();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ COLOR });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { COLOR });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, EnumColor.getLength(), tab, list);
 	}
 }

@@ -20,14 +20,12 @@ import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedstone.Register;
 
-public class BlockShadeGlass extends BlockModBase
-{
+public class BlockShadeGlass extends BlockModBase {
 	private boolean unbreakable;
-	public BlockShadeGlass(String name, boolean unbreakable)
-	{
+
+	public BlockShadeGlass(String name, boolean unbreakable) {
 		super(Material.GLASS, name, SoundType.GLASS);
-		if(unbreakable)
-		{
+		if(unbreakable) {
 			this.setBlockUnbreakable();
 			this.setResistance(6000000.0F);
 		}
@@ -39,40 +37,33 @@ public class BlockShadeGlass extends BlockModBase
 	}
 
 	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer()
-	{
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-	{
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 		Block block = iblockstate.getBlock();
 
-		if(this == Register.BLOCK_SHADE_GLASS || this == Register.BLOCK_HARDENED_SHADE_GLASS)
-		{
-			if(blockState != iblockstate)
-			{
+		if(this == Register.BLOCK_SHADE_GLASS || this == Register.BLOCK_HARDENED_SHADE_GLASS) {
+			if(blockState != iblockstate) {
 				return true;
 			}
 
-			if(block == this)
-			{
+			if(block == this) {
 				return false;
 			}
 		}
@@ -81,10 +72,8 @@ public class BlockShadeGlass extends BlockModBase
 	}
 
 	@Override
-	public boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity)
-	{
-		if(this.unbreakable)
-		{
+	public boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity) {
+		if(this.unbreakable) {
 			if(entity instanceof EntityPlayer)
 				return true;
 			else
@@ -95,14 +84,11 @@ public class BlockShadeGlass extends BlockModBase
 	}
 
 	@Override
-	public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos)
-	{
+	public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
 		List<ItemStack> items = Utils.getHeldItemStacks(player);
 
-		for(ItemStack stack : items)
-		{
-			if(!stack.isEmpty() && (Block.getBlockFromItem(stack.getItem()) == Register.BLOCK_HARDENED_SHADE_GLASS || Block.getBlockFromItem(stack.getItem()) == Register.BLOCK_HARDENED_SHADE_GLASS_DOOR))
-			{
+		for(ItemStack stack : items) {
+			if(!stack.isEmpty() && (Block.getBlockFromItem(stack.getItem()) == Register.BLOCK_HARDENED_SHADE_GLASS || Block.getBlockFromItem(stack.getItem()) == Register.BLOCK_HARDENED_SHADE_GLASS_DOOR)) {
 				return 0.083333336F;
 			}
 		}

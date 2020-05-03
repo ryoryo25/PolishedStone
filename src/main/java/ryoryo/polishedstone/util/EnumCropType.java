@@ -24,8 +24,7 @@ public enum EnumCropType
 	private final Block soil;
 	private final AxisAlignedBB[] aabbs;
 
-	private EnumCropType(String name, Item seed, Item crop, Block cropBlock, Block soil, AxisAlignedBB[] aabbs)
-	{
+	private EnumCropType(String name, Item seed, Item crop, Block cropBlock, Block soil, AxisAlignedBB[] aabbs) {
 		this.name = name;
 		this.seed = seed;
 		this.crop = crop;
@@ -34,41 +33,35 @@ public enum EnumCropType
 		this.aabbs = aabbs;
 	}
 
-	public String getName()
-	{
+	public String getName() {
 		return this.name;
 	}
 
-	public Item getSeed()
-	{
+	public Item getSeed() {
 		return this.seed;
 	}
 
-	public Item getCrop()
-	{
+	public Item getCrop() {
 		return this.crop;
 	}
 
-	public Block getCropBlock()
-	{
+	public Block getCropBlock() {
 		return this.cropBlock;
 	}
 
-	public Block getSoil()
-	{
+	public Block getSoil() {
 		return this.soil;
 	}
 
-	public AxisAlignedBB[] getAABBs()
-	{
+	public AxisAlignedBB[] getAABBs() {
 		return this.aabbs;
 	}
 
-	public static class Lib
-	{
+	public static class Lib {
 		private static final AxisAlignedBB[] DEFAULT_CROP_AABB = new AxisAlignedBB[] { creatAABB(0, 0, 0, 16, 2, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 6, 16), creatAABB(0, 0, 0, 16, 8, 16), creatAABB(0, 0, 0, 16, 10, 16), creatAABB(0, 0, 0, 16, 12, 16), creatAABB(0, 0, 0, 16, 14, 16), creatAABB(0, 0, 0, 16, 16, 16) };
-		private static final AxisAlignedBB[] CROP_ONION_AABB = new AxisAlignedBB[] { creatAABB(2.5, 0, 2.5, 13.5, 4, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 4, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 4, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 4, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 4, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 16, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 16, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 16, 13.5) };
-		private static final AxisAlignedBB[] CROP_CABBAGE_AABB = new AxisAlignedBB[]{ creatAABB(0, 0, 0, 16, 1, 16), creatAABB(0, 0, 0, 16, 1, 16), creatAABB(0, 0, 0, 16, 1.5, 16), creatAABB(0, 0, 0, 16, 3, 16), creatAABB(0, 0, 0, 16, 4.5, 16), creatAABB(0, 0, 0, 16, 6, 16), creatAABB(0, 0, 0, 16, 7.5, 16), creatAABB(0, 0, 0, 16, 7.5, 16) };
-		private static final AxisAlignedBB[] CROP_STICKY_RICE_AABB = new AxisAlignedBB[]{ creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16) };
+		private static final AxisAlignedBB[] CROP_ONION_AABB = new AxisAlignedBB[] { creatAABB(2.5, 0, 2.5, 13.5, 4, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 4, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 4, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 4, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 4, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 16, 13.5), creatAABB(2.5, 0, 2.5, 13.5, 16, 13.5),
+				creatAABB(2.5, 0, 2.5, 13.5, 16, 13.5) };
+		private static final AxisAlignedBB[] CROP_CABBAGE_AABB = new AxisAlignedBB[] { creatAABB(0, 0, 0, 16, 1, 16), creatAABB(0, 0, 0, 16, 1, 16), creatAABB(0, 0, 0, 16, 1.5, 16), creatAABB(0, 0, 0, 16, 3, 16), creatAABB(0, 0, 0, 16, 4.5, 16), creatAABB(0, 0, 0, 16, 6, 16), creatAABB(0, 0, 0, 16, 7.5, 16), creatAABB(0, 0, 0, 16, 7.5, 16) };
+		private static final AxisAlignedBB[] CROP_STICKY_RICE_AABB = new AxisAlignedBB[] { creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16), creatAABB(0, 0, 0, 16, 4, 16) };
 	}
 }

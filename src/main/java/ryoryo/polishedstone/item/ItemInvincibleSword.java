@@ -23,10 +23,8 @@ import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.config.ModConfig;
 import ryoryo.polishedstone.util.ArmorMaterials;
 
-public class ItemInvincibleSword extends ItemSword
-{
-	public ItemInvincibleSword()
-	{
+public class ItemInvincibleSword extends ItemSword {
+	public ItemInvincibleSword() {
 		super(ArmorMaterials.INVINCIBLE_SWORD);
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("invincible_sword");
@@ -35,26 +33,21 @@ public class ItemInvincibleSword extends ItemSword
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public boolean hasEffect(ItemStack stack)
-	{
+	public boolean hasEffect(ItemStack stack) {
 		return true;
 	}
 
 	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
-	{
-		if(!attacker.world.isRemote && attacker != null && attacker instanceof EntityPlayer && target != null)
-		{
+	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
+		if(!attacker.world.isRemote && attacker != null && attacker instanceof EntityPlayer && target != null) {
 			World world = attacker.world;
 			EntityPlayer player = (EntityPlayer) attacker;
 
-			if(player.isSneaking())
-			{
+			if(player.isSneaking()) {
 				List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(target, new AxisAlignedBB(
-					target.posX - ModConfig.invincibleSwordAOERudius, target.posY - ModConfig.invincibleSwordAOERudius, target.posZ - ModConfig.invincibleSwordAOERudius,
-					target.posX + ModConfig.invincibleSwordAOERudius, target.posY + ModConfig.invincibleSwordAOERudius, target.posZ + ModConfig.invincibleSwordAOERudius));
-				for(Entity entity : entities)
-				{
+						target.posX - ModConfig.invincibleSwordAOERudius, target.posY - ModConfig.invincibleSwordAOERudius, target.posZ - ModConfig.invincibleSwordAOERudius,
+						target.posX + ModConfig.invincibleSwordAOERudius, target.posY + ModConfig.invincibleSwordAOERudius, target.posZ + ModConfig.invincibleSwordAOERudius));
+				for(Entity entity : entities) {
 					if(entity instanceof EntityLivingBase)
 						entity.attackEntityFrom(DamageSource.causePlayerDamage(player).setDamageBypassesArmor(), NumericalConstant.FLOAT_MAX);
 				}
@@ -71,31 +64,34 @@ public class ItemInvincibleSword extends ItemSword
 	}
 
 	@Override
-	public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack)
-	{
+	public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
 		final Multimap<String, AttributeModifier> modifiers = super.getAttributeModifiers(slot, stack);
 
-		if(slot == EntityEquipmentSlot.MAINHAND)
-		{
+		if(slot == EntityEquipmentSlot.MAINHAND) {
 			Utils.replaceModifier(modifiers, SharedMonsterAttributes.ATTACK_DAMAGE, ATTACK_DAMAGE_MODIFIER, 1.0D);
 			Utils.replaceModifier(modifiers, SharedMonsterAttributes.ATTACK_SPEED, ATTACK_SPEED_MODIFIER, -10D);
-//			modifiers.put(EntityPlayer.REACH_DISTANCE.getName(), new AttributeModifier(LibMisc.INVINCIBLE_REACH, "Weapon modifier", 8.0D, 0));
+			// modifiers.put(EntityPlayer.REACH_DISTANCE.getName(), new
+			// AttributeModifier(LibMisc.INVINCIBLE_REACH, "Weapon modifier",
+			// 8.0D, 0));
 		}
 
 		return modifiers;
 	}
 
-//	@Override
-//	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
-//	{
-//		if(!player.worldObj.isRemote && entity != null && entity instanceof EntityLivingBase)
-//		{
-//			EntityLivingBase living = (EntityLivingBase) entity;
-//			living.attackEntityFrom(DamageSource.causePlayerDamage(player), Utils.FLOAT_MAX);
-//
-//			return super.onLeftClickEntity(stack, player, entity);
-//		}
-//
-//		return super.onLeftClickEntity(stack, player, entity);
-//	}
+	// @Override
+	// public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player,
+	// Entity entity)
+	// {
+	// if(!player.worldObj.isRemote && entity != null && entity instanceof
+	// EntityLivingBase)
+	// {
+	// EntityLivingBase living = (EntityLivingBase) entity;
+	// living.attackEntityFrom(DamageSource.causePlayerDamage(player),
+	// Utils.FLOAT_MAX);
+	//
+	// return super.onLeftClickEntity(stack, player, entity);
+	// }
+	//
+	// return super.onLeftClickEntity(stack, player, entity);
+	// }
 }

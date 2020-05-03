@@ -5,8 +5,7 @@ import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-public interface IProxy
-{
+public interface IProxy {
 	void preInit(FMLPreInitializationEvent event);
 
 	void init(FMLInitializationEvent event);

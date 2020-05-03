@@ -1,10 +1,9 @@
 package ryoryo.polishedstone.util;
 
-public class LibNBTTag
-{
-	//Vanilla tags
+public class LibNBTTag {
+	// Vanilla tags
 
-	//Mod tags
+	// Mod tags
 	public static final String SAFETY_X = "safetyX";
 	public static final String SAFETY_Y = "safetyY";
 	public static final String SAFETY_Z = "safetyZ";

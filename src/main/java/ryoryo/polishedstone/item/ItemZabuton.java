@@ -21,17 +21,14 @@ import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedlib.util.enums.EnumColor;
 import ryoryo.polishedstone.entity.EntityZabuton;
 
-public class ItemZabuton extends ItemModBase implements IItemColor
-{
-	public ItemZabuton()
-	{
+public class ItemZabuton extends ItemModBase implements IItemColor {
+	public ItemZabuton() {
 		super("zabuton");
 		this.setHasSubtypes(true);
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
-	{
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.getHeldItem(hand);
 		float one = 1.0F;
 		float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * one;
@@ -50,25 +47,20 @@ public class ItemZabuton extends ItemModBase implements IItemColor
 		double d3 = 5D;
 		Vec3d vec3d1 = vec3d.addVector((double) f7 * d3, (double) f8 * d3, (double) f9 * d3);
 		RayTraceResult result = world.rayTraceBlocks(vec3d, vec3d1, true);
-		if(result == null)
-		{
+		if(result == null) {
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
 		}
-		if(result.typeOfHit == RayTraceResult.Type.BLOCK)
-		{
+		if(result.typeOfHit == RayTraceResult.Type.BLOCK) {
 			BlockPos pos = result.getBlockPos();
-			if(world.getBlockState(pos.up()).getMaterial() == Material.AIR)
-			{
-				if(!world.isRemote)
-				{
+			if(world.getBlockState(pos.up()).getMaterial() == Material.AIR) {
+				if(!world.isRemote) {
 					EntityZabuton zabuton = new EntityZabuton(world, (float) pos.getX() + 0.5F, (float) pos.getY() + 1.0F, (float) pos.getZ() + 0.5F, (byte) (stack.getItemDamage() & 0x0f));
 					// 方向ぎめはここに入れる
 					zabuton.rotationYaw = (MathHelper.floor((double) ((player.rotationYaw * 4F) / 360F) + 2.50D) & 3) * 90;
 					world.spawnEntity(zabuton);
 				}
 
-				if(!Utils.isCreative(player))
-				{
+				if(!Utils.isCreative(player)) {
 					stack.shrink(1);
 				}
 			}
@@ -77,21 +69,18 @@ public class ItemZabuton extends ItemModBase implements IItemColor
 	}
 
 	@Override
-	public int colorMultiplier(ItemStack stack, int tintIndex)
-	{
+	public int colorMultiplier(ItemStack stack, int tintIndex) {
 		return EnumColor.byDyeDamage(stack.getItemDamage()).getColorValue();
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack stack)
-	{
+	public String getUnlocalizedName(ItemStack stack) {
 		return this.getUnlocalizedName() + "_" + EnumColor.byDyeDamage(stack.getItemDamage()).getName();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
-	{
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		RegistryUtils.registerSubItems(this, EnumColor.getLength(), tab, items);
 	}
 }

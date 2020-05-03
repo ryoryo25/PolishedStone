@@ -17,12 +17,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.RegistryUtils;
 
-public class BlockPavingStone extends BlockModBase
-{
+public class BlockPavingStone extends BlockModBase {
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.<EnumType> create("type", EnumType.class);
 
-	public BlockPavingStone()
-	{
+	public BlockPavingStone() {
 		super(Material.ROCK, "paving_stone", SoundType.STONE);
 		this.setHardness(1.5F);
 		this.setResistance(10.0F);
@@ -30,52 +28,43 @@ public class BlockPavingStone extends BlockModBase
 	}
 
 	@Override
-	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, net.minecraft.entity.EntityLiving.SpawnPlacementType type)
-	{
+	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, net.minecraft.entity.EntityLiving.SpawnPlacementType type) {
 		return false;
 	}
 
 	@Override
-	public boolean canProvidePower(IBlockState state)
-	{
+	public boolean canProvidePower(IBlockState state) {
 		return state.getValue(TYPE) == EnumType.POWERED ? true : false;
 	}
 
 	@Override
-	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-	{
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		return side == EnumFacing.DOWN ? 1 : 0;
 	}
 
 	@Override
-	public int damageDropped(IBlockState state)
-	{
+	public int damageDropped(IBlockState state) {
 		return state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(TYPE, EnumType.byMeta(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TYPE, });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TYPE, });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, EnumType.getLength(), tab, list);
 	}
 
@@ -91,42 +80,34 @@ public class BlockPavingStone extends BlockModBase
 		private final int meta;
 		private final String name;
 
-		private EnumType(int meta, String name)
-		{
+		private EnumType(int meta, String name) {
 			this.meta = meta;
 			this.name = name;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return this.name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return EnumType.values().length;
 		}
 
-		public static EnumType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static EnumType byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(EnumType enumtype : values())
-			{
+		static {
+			for(EnumType enumtype : values()) {
 				META_LOOKUP[enumtype.getMeta()] = enumtype;
 				NAMES[enumtype.getMeta()] = enumtype.getName();
 			}

@@ -17,8 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Props;
 
-public class BlockVendingMachine extends BlockModBase
-{
+public class BlockVendingMachine extends BlockModBase {
 	protected static final AxisAlignedBB SOUTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.5D, 1.0D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB NORTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.5D);
 	protected static final AxisAlignedBB WEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.5D, 1.0D, 1.0D);
@@ -27,8 +26,7 @@ public class BlockVendingMachine extends BlockModBase
 	public static final PropertyDirection FACING = Props.HORIZONTAL_FACING;
 	public static final PropertyEnum<EnumHalf> HALF = PropertyEnum.<EnumHalf> create("half", EnumHalf.class);
 
-	public BlockVendingMachine(String name)
-	{
+	public BlockVendingMachine(String name) {
 		super(Material.IRON, "vending_machine_" + name, SoundType.METAL);
 		this.setHardness(1.5F);
 		this.setResistance(10.0F);
@@ -36,104 +34,95 @@ public class BlockVendingMachine extends BlockModBase
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HALF, EnumHalf.LOWER));
 	}
 
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		state = state.getActualState(source, pos);
 		EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
 
-		switch(enumfacing)
-		{
-		case EAST:
-		default:
-			return EAST_AABB;
-		case SOUTH:
-			return SOUTH_AABB;
-		case WEST:
-			return WEST_AABB;
-		case NORTH:
-			return NORTH_AABB;
+		switch(enumfacing) {
+			case EAST:
+			default:
+				return EAST_AABB;
+			case SOUTH:
+				return SOUTH_AABB;
+			case WEST:
+				return WEST_AABB;
+			case NORTH:
+				return NORTH_AABB;
 		}
 	}
 
-//	@Override
-//	public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-//	{
-//		EnumFacing enumfacing = EnumFacing.fromAngle((double) placer.rotationYaw);
-//		BlockPos blockpos2 = pos.up();
-//		IBlockState iblockstate = this.getDefaultState().withProperty(BlockVendingMachine.FACING, enumfacing);
-//		world.setBlockState(pos, iblockstate.withProperty(HALF, EnumHalf.LOWER), 2);
-//		world.setBlockState(blockpos2, iblockstate.withProperty(HALF, EnumHalf.UPPER), 2);
-//		return this.getDefaultState();
-//	}
+	// @Override
+	// public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing
+	// facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase
+	// placer)
+	// {
+	// EnumFacing enumfacing = EnumFacing.fromAngle((double)
+	// placer.rotationYaw);
+	// BlockPos blockpos2 = pos.up();
+	// IBlockState iblockstate =
+	// this.getDefaultState().withProperty(BlockVendingMachine.FACING,
+	// enumfacing);
+	// world.setBlockState(pos, iblockstate.withProperty(HALF, EnumHalf.LOWER),
+	// 2);
+	// world.setBlockState(blockpos2, iblockstate.withProperty(HALF,
+	// EnumHalf.UPPER), 2);
+	// return this.getDefaultState();
+	// }
 
 	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
-	{
-		if(state.getValue(HALF) == EnumHalf.UPPER)
-		{
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
+		if(state.getValue(HALF) == EnumHalf.UPPER) {
 			BlockPos posd = pos.down();
 			IBlockState stated = world.getBlockState(posd);
 
-			if(stated.getBlock() != this)
-			{
+			if(stated.getBlock() != this) {
 				world.setBlockToAir(pos);
 			}
-			else if(block != this)
-			{
+			else if(block != this) {
 				stated.neighborChanged(world, posd, block, fromPos);
 			}
 		}
-		else
-		{
+		else {
 			boolean flag = false;
 			BlockPos posu = pos.up();
 			IBlockState stateu = world.getBlockState(posu);
 
-			if(stateu.getBlock() != this)
-			{
-//				flag = true;
+			if(stateu.getBlock() != this) {
+				// flag = true;
 				world.setBlockToAir(pos);
 			}
 
-			if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP))
-			{
+			if(!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP)) {
 				flag = true;
 				world.setBlockToAir(pos);
 
-				if(stateu.getBlock() == this)
-				{
+				if(stateu.getBlock() == this) {
 					world.setBlockToAir(posu);
 				}
 			}
 
-			if(flag)
-			{
-				if(!world.isRemote)
-				{
+			if(flag) {
+				if(!world.isRemote) {
 					this.dropBlockAsItem(world, pos, state, 0);
 				}
 			}
 		}
 	}
 
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
-	{
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
 		return pos.getY() >= worldIn.getHeight() - 1 ? false : worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP) && super.canPlaceBlockAt(worldIn, pos) && super.canPlaceBlockAt(worldIn, pos.up());
 	}
 
-	public static int combineMetadata(IBlockAccess worldIn, BlockPos pos)
-	{
+	public static int combineMetadata(IBlockAccess worldIn, BlockPos pos) {
 		IBlockState iblockstate = worldIn.getBlockState(pos);
 		int i = iblockstate.getBlock().getMetaFromState(iblockstate);
 		boolean flag = isUpper(i);
@@ -148,52 +137,46 @@ public class BlockVendingMachine extends BlockModBase
 		return removeHalfBit(k) | (flag ? 8 : 0) | (flag1 ? 16 : 0) | (flag2 ? 32 : 0);
 	}
 
-	public IBlockState withRotation(IBlockState state, Rotation rot)
-	{
+	public IBlockState withRotation(IBlockState state, Rotation rot) {
 		return state.getValue(HALF) != EnumHalf.LOWER ? state : state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
 	}
 
-	//ItemStackのmetadataからIBlockStateを生成。設置時に呼ばれる。
+	// ItemStackのmetadataからIBlockStateを生成。設置時に呼ばれる。
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
-	//		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta/* & 3*/)/*.rotateYCCW()*/).withProperty(TYPE, TexType.byMetadata(meta)).withProperty(HALF, EnumHalf.LOWER);
+	public IBlockState getStateFromMeta(int meta) {
+		// return this.getDefaultState().withProperty(FACING,
+		// EnumFacing.getHorizontal(meta/* &
+		// 3*/)/*.rotateYCCW()*/).withProperty(TYPE,
+		// TexType.byMetadata(meta)).withProperty(HALF, EnumHalf.LOWER);
 		return (meta & 8) > 0 ? this.getDefaultState().withProperty(HALF, EnumHalf.UPPER).withProperty(FACING, EnumFacing.getHorizontal((meta & 3) + 8)) : this.getDefaultState().withProperty(HALF, EnumHalf.LOWER).withProperty(FACING, EnumFacing.getHorizontal(meta & 3).rotateYCCW());
 	}
 
-	//IBlockStateからItemStackのmetadataを生成。ドロップ時とテクスチャ・モデル参照時に呼ばれる。
+	// IBlockStateからItemStackのmetadataを生成。ドロップ時とテクスチャ・モデル参照時に呼ばれる。
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		int i = 0;
 
-		if(state.getValue(HALF) == EnumHalf.UPPER)
-		{
+		if(state.getValue(HALF) == EnumHalf.UPPER) {
 			i = i | 8 + ((EnumFacing) state.getValue(FACING)).rotateY().getHorizontalIndex();
 		}
-		else
-		{
+		else {
 			i |= ((EnumFacing) state.getValue(FACING)).rotateY().getHorizontalIndex();
 		}
 
 		return i;
 	}
 
-	//初期BlockStateの生成。
+	// 初期BlockStateの生成。
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ FACING, HALF });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { FACING, HALF });
 	}
 
-	protected static int removeHalfBit(int meta)
-	{
+	protected static int removeHalfBit(int meta) {
 		return meta & 7;
 	}
 
-	protected static boolean isUpper(int meta)
-	{
+	protected static boolean isUpper(int meta) {
 		return (meta & 8) != 0;
 	}
 
@@ -213,42 +196,34 @@ public class BlockVendingMachine extends BlockModBase
 		private final int meta;
 		private final String name;
 
-		private TexType(int meta, String name)
-		{
+		private TexType(int meta, String name) {
 			this.meta = meta;
 			this.name = name;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return TexType.values().length;
 		}
 
-		public static TexType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static TexType byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(TexType textype : values())
-			{
+		static {
+			for(TexType textype : values()) {
 				META_LOOKUP[textype.getMeta()] = textype;
 				NAMES[textype.getMeta()] = textype.getName();
 			}
@@ -260,13 +235,11 @@ public class BlockVendingMachine extends BlockModBase
 		UPPER,
 		LOWER;
 
-		public String toString()
-		{
+		public String toString() {
 			return this.getName();
 		}
 
-		public String getName()
-		{
+		public String getName() {
 			return this == UPPER ? "upper" : "lower";
 		}
 	}

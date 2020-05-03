@@ -23,160 +23,135 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.RegistryUtils;
 
-public class BlockDecoration extends BlockModBase
-{
+public class BlockDecoration extends BlockModBase {
 	public static final PropertyEnum<BlockType> TYPE = PropertyEnum.<BlockType> create("type", BlockType.class);
 
-	public BlockDecoration()
-	{
+	public BlockDecoration() {
 		super(Material.ROCK, "decoration_block");
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, BlockType.COLORED_BRICK));
 	}
 
 	@Override
-	public float getBlockHardness(IBlockState state, World world, BlockPos pos)
-	{
+	public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
 		BlockType type = state.getValue(TYPE);
 
-		switch(type)
-		{
-		default:
-			return 2.0F;
-		case ANDESITE_BRICK:
-		case ANDESITE_BRICK_CARVED:
-		case DIORITE_BRICK:
-		case DIORITE_BRICK_CARVED:
-		case GRANITE_BRICK:
-		case GRANITE_BRICK_CARVED:
-			return 1.5F;
+		switch(type) {
+			default:
+				return 2.0F;
+			case ANDESITE_BRICK:
+			case ANDESITE_BRICK_CARVED:
+			case DIORITE_BRICK:
+			case DIORITE_BRICK_CARVED:
+			case GRANITE_BRICK:
+			case GRANITE_BRICK_CARVED:
+				return 1.5F;
 		}
 	}
 
 	@Override
-	public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion)
-	{
+	public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
 		IBlockState state = world.getBlockState(pos);
 		BlockType type = state.getValue(TYPE);
 
-		switch(type)
-		{
-		default:
-			return 10.0F;
+		switch(type) {
+			default:
+				return 10.0F;
 		}
 
 	}
 
 	@Override
-	public String getHarvestTool(IBlockState state)
-	{
+	public String getHarvestTool(IBlockState state) {
 		BlockType type = state.getValue(TYPE);
 
-		switch(type)
-		{
-		default:
-			return LibTool.TOOL_CLASS_PICKAXE;
+		switch(type) {
+			default:
+				return LibTool.TOOL_CLASS_PICKAXE;
 		}
 	}
 
 	@Override
-	public int getHarvestLevel(IBlockState state)
-	{
+	public int getHarvestLevel(IBlockState state) {
 		BlockType type = state.getValue(TYPE);
 
-		switch(type)
-		{
-		default:
-			return LibTool.LEVEL_WOOD;
+		switch(type) {
+			default:
+				return LibTool.LEVEL_WOOD;
 		}
 	}
 
 	@Override
-	public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity)
-	{
+	public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
 		BlockType type = state.getValue(TYPE);
 
-		switch(type)
-		{
-		default:
-			return SoundType.STONE;
+		switch(type) {
+			default:
+				return SoundType.STONE;
 		}
 	}
 
 	@Override
-	public int getLightValue(IBlockState state)
-	{
+	public int getLightValue(IBlockState state) {
 		BlockType type = state.getValue(TYPE);
 		float base = 15.0F;
 
-		switch(type)
-		{
-		default:
-			return (int) (base * 0.0F);
+		switch(type) {
+			default:
+				return (int) (base * 0.0F);
 		}
 	}
 
 	@Override
-	public Material getMaterial(IBlockState state)
-	{
+	public Material getMaterial(IBlockState state) {
 		BlockType type = state.getValue(TYPE);
 
-		switch(type)
-		{
-		default:
-			return Material.ROCK;
+		switch(type) {
+			default:
+				return Material.ROCK;
 		}
 	}
 
 	@Override
-	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type)
-	{
+	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
 		BlockType block = state.getValue(TYPE);
 
-		switch(block)
-		{
-		default:
-			return super.canCreatureSpawn(state, world, pos, type);
+		switch(block) {
+			default:
+				return super.canCreatureSpawn(state, world, pos, type);
 		}
 	}
 
 	@Override
-	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-	{
+	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
 		return new ItemStack(this, 1, ((BlockType) state.getValue(TYPE)).getMeta());
 	}
 
 	@Override
-	public int damageDropped(IBlockState state)
-	{
+	public int damageDropped(IBlockState state) {
 		return ((BlockType) state.getValue(TYPE)).getMeta();
 	}
 
-	//ItemStackのmetadataからIBlockStateを生成。設置時に呼ばれる。
+	// ItemStackのmetadataからIBlockStateを生成。設置時に呼ばれる。
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(TYPE, BlockType.byMeta(meta));
 	}
 
-	//IBlockStateからItemStackのmetadataを生成。ドロップ時とテクスチャ・モデル参照時に呼ばれる。
+	// IBlockStateからItemStackのmetadataを生成。ドロップ時とテクスチャ・モデル参照時に呼ばれる。
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return (Integer) state.getValue(TYPE).getMeta();
 	}
 
-	//初期BlockStateの生成。
+	// 初期BlockStateの生成。
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TYPE });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TYPE });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, BlockType.getLength(), tab, list);
 	}
 
@@ -199,42 +174,34 @@ public class BlockDecoration extends BlockModBase
 		private final int meta;
 		private final String name;
 
-		private BlockType(int meta, String name)
-		{
+		private BlockType(int meta, String name) {
 			this.meta = meta;
 			this.name = name;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return this.name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return BlockType.values().length;
 		}
 
-		public static BlockType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static BlockType byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(BlockType blocktype : values())
-			{
+		static {
+			for(BlockType blocktype : values()) {
 				META_LOOKUP[blocktype.getMeta()] = blocktype;
 				NAMES[blocktype.getMeta()] = blocktype.getName();
 			}

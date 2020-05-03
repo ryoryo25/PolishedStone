@@ -29,8 +29,7 @@ import net.minecraft.world.World;
 import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.Utils;
 
-public class BlockEarthenPipe extends BlockModBase
-{
+public class BlockEarthenPipe extends BlockModBase {
 	protected static final AxisAlignedBB BASE_X_AABB1 = Utils.creatAABB(2, 3, 1, 14, 13, 15);
 	protected static final AxisAlignedBB BASE_X_AABB2 = Utils.creatAABB(2, 2, 2, 14, 14, 14);
 	protected static final AxisAlignedBB BASE_X_AABB3 = Utils.creatAABB(2, 1, 3, 14, 15, 13);
@@ -53,7 +52,7 @@ public class BlockEarthenPipe extends BlockModBase
 	protected static final AxisAlignedBB RING_EAST_X_AABB3 = Utils.creatAABB(14, 1, 2, 16, 15, 14);
 	protected static final AxisAlignedBB RING_EAST_X_AABB4 = Utils.creatAABB(14, 0, 3, 16, 16, 13);
 
-//-----------------------------------------------------------------------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------------------------------
 
 	protected static final AxisAlignedBB BASE_Y_AABB1 = Utils.creatAABB(3, 2, 1, 13, 14, 15);
 	protected static final AxisAlignedBB BASE_Y_AABB2 = Utils.creatAABB(2, 2, 2, 14, 14, 14);
@@ -77,7 +76,7 @@ public class BlockEarthenPipe extends BlockModBase
 	protected static final AxisAlignedBB RING_UP_Y_AABB3 = Utils.creatAABB(1, 14, 2, 15, 16, 14);
 	protected static final AxisAlignedBB RING_UP_Y_AABB4 = Utils.creatAABB(0, 14, 3, 16, 16, 13);
 
-//-----------------------------------------------------------------------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------------------------------
 
 	protected static final AxisAlignedBB BASE_Z_AABB1 = Utils.creatAABB(1, 3, 2, 15, 13, 14);
 	protected static final AxisAlignedBB BASE_Z_AABB2 = Utils.creatAABB(2, 2, 2, 14, 14, 14);
@@ -109,8 +108,7 @@ public class BlockEarthenPipe extends BlockModBase
 	public static final PropertyBool UP = Props.UP;
 	public static final PropertyBool DOWN = Props.DOWN;
 
-	public BlockEarthenPipe()
-	{
+	public BlockEarthenPipe() {
 		super(Material.ROCK, "earthen_pipe", SoundType.STONE);
 		this.setHardness(1.5F);
 		this.setResistance(10.0F);
@@ -118,49 +116,42 @@ public class BlockEarthenPipe extends BlockModBase
 	}
 
 	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
-	{
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
 		IBlockState state = this.getDefaultState();
 
-		switch(facing.getAxis())
-		{
-		case X:
-		default:
-			return state.withProperty(SHAPE, EnumShape.AXIS_X);
-		case Y:
-			return state.withProperty(SHAPE, EnumShape.AXIS_Y);
-		case Z:
-			return state.withProperty(SHAPE, EnumShape.AXIS_Z);
+		switch(facing.getAxis()) {
+			case X:
+			default:
+				return state.withProperty(SHAPE, EnumShape.AXIS_X);
+			case Y:
+				return state.withProperty(SHAPE, EnumShape.AXIS_Y);
+			case Z:
+				return state.withProperty(SHAPE, EnumShape.AXIS_Z);
 		}
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return FULL_BLOCK_AABB;
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
-	{
+	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
 		getCollisionBoxList(this.getActualState(state, world, pos))
-		.forEach(aabb -> addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb));
+				.forEach(aabb -> addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb));
 	}
 
-	private static List<AxisAlignedBB> getCollisionBoxList(IBlockState bstate)
-	{
+	private static List<AxisAlignedBB> getCollisionBoxList(IBlockState bstate) {
 		List<AxisAlignedBB> list = new ArrayList<AxisAlignedBB>();
 		boolean north = bstate.getValue(NORTH).booleanValue();
 		boolean south = bstate.getValue(SOUTH).booleanValue();
@@ -169,105 +160,92 @@ public class BlockEarthenPipe extends BlockModBase
 		boolean up = bstate.getValue(UP).booleanValue();
 		boolean down = bstate.getValue(DOWN).booleanValue();
 
-		switch(bstate.getValue(SHAPE))
-		{
-		case AXIS_X:
-		default:
-			if(west)
-			{
-				list.add(CONNECTION_WEST_X_AABB1);
-				list.add(CONNECTION_WEST_X_AABB2);
-				list.add(CONNECTION_WEST_X_AABB3);
-			}
-			else
-			{
-				list.add(RING_WEST_X_AABB1);
-				list.add(RING_WEST_X_AABB2);
-				list.add(RING_WEST_X_AABB3);
-				list.add(RING_WEST_X_AABB4);
-			}
+		switch(bstate.getValue(SHAPE)) {
+			case AXIS_X:
+			default:
+				if(west) {
+					list.add(CONNECTION_WEST_X_AABB1);
+					list.add(CONNECTION_WEST_X_AABB2);
+					list.add(CONNECTION_WEST_X_AABB3);
+				}
+				else {
+					list.add(RING_WEST_X_AABB1);
+					list.add(RING_WEST_X_AABB2);
+					list.add(RING_WEST_X_AABB3);
+					list.add(RING_WEST_X_AABB4);
+				}
 
-			if(east)
-			{
-				list.add(CONNECTION_EAST_X_AABB1);
-				list.add(CONNECTION_EAST_X_AABB2);
-				list.add(CONNECTION_EAST_X_AABB3);
-			}
-			else
-			{
-				list.add(RING_EAST_X_AABB1);
-				list.add(RING_EAST_X_AABB2);
-				list.add(RING_EAST_X_AABB3);
-				list.add(RING_EAST_X_AABB4);
-			}
-			list.add(BASE_X_AABB1);
-			list.add(BASE_X_AABB2);
-			list.add(BASE_X_AABB3);
-			break;
-		case AXIS_Y:
-			if(down)
-			{
-				list.add(CONNECTION_DOWN_Y_AABB1);
-				list.add(CONNECTION_DOWN_Y_AABB2);
-				list.add(CONNECTION_DOWN_Y_AABB3);
-			}
-			else
-			{
-				list.add(RING_DOWN_Y_AABB1);
-				list.add(RING_DOWN_Y_AABB2);
-				list.add(RING_DOWN_Y_AABB3);
-				list.add(RING_DOWN_Y_AABB4);
-			}
+				if(east) {
+					list.add(CONNECTION_EAST_X_AABB1);
+					list.add(CONNECTION_EAST_X_AABB2);
+					list.add(CONNECTION_EAST_X_AABB3);
+				}
+				else {
+					list.add(RING_EAST_X_AABB1);
+					list.add(RING_EAST_X_AABB2);
+					list.add(RING_EAST_X_AABB3);
+					list.add(RING_EAST_X_AABB4);
+				}
+				list.add(BASE_X_AABB1);
+				list.add(BASE_X_AABB2);
+				list.add(BASE_X_AABB3);
+				break;
+			case AXIS_Y:
+				if(down) {
+					list.add(CONNECTION_DOWN_Y_AABB1);
+					list.add(CONNECTION_DOWN_Y_AABB2);
+					list.add(CONNECTION_DOWN_Y_AABB3);
+				}
+				else {
+					list.add(RING_DOWN_Y_AABB1);
+					list.add(RING_DOWN_Y_AABB2);
+					list.add(RING_DOWN_Y_AABB3);
+					list.add(RING_DOWN_Y_AABB4);
+				}
 
-			if(up)
-			{
-				list.add(CONNECTION_UP_Y_AABB1);
-				list.add(CONNECTION_UP_Y_AABB2);
-				list.add(CONNECTION_UP_Y_AABB3);
-			}
-			else
-			{
-				list.add(RING_UP_Y_AABB1);
-				list.add(RING_UP_Y_AABB2);
-				list.add(RING_UP_Y_AABB3);
-				list.add(RING_UP_Y_AABB4);
-			}
-			list.add(BASE_Y_AABB1);
-			list.add(BASE_Y_AABB2);
-			list.add(BASE_Y_AABB3);
-			break;
-		case AXIS_Z:
-			if(north)
-			{
-				list.add(CONNECTION_NORTH_Z_AABB1);
-				list.add(CONNECTION_NORTH_Z_AABB2);
-				list.add(CONNECTION_NORTH_Z_AABB3);
-			}
-			else
-			{
-				list.add(RING_NORTH_Z_AABB1);
-				list.add(RING_NORTH_Z_AABB2);
-				list.add(RING_NORTH_Z_AABB3);
-				list.add(RING_NORTH_Z_AABB4);
-			}
+				if(up) {
+					list.add(CONNECTION_UP_Y_AABB1);
+					list.add(CONNECTION_UP_Y_AABB2);
+					list.add(CONNECTION_UP_Y_AABB3);
+				}
+				else {
+					list.add(RING_UP_Y_AABB1);
+					list.add(RING_UP_Y_AABB2);
+					list.add(RING_UP_Y_AABB3);
+					list.add(RING_UP_Y_AABB4);
+				}
+				list.add(BASE_Y_AABB1);
+				list.add(BASE_Y_AABB2);
+				list.add(BASE_Y_AABB3);
+				break;
+			case AXIS_Z:
+				if(north) {
+					list.add(CONNECTION_NORTH_Z_AABB1);
+					list.add(CONNECTION_NORTH_Z_AABB2);
+					list.add(CONNECTION_NORTH_Z_AABB3);
+				}
+				else {
+					list.add(RING_NORTH_Z_AABB1);
+					list.add(RING_NORTH_Z_AABB2);
+					list.add(RING_NORTH_Z_AABB3);
+					list.add(RING_NORTH_Z_AABB4);
+				}
 
-			if(south)
-			{
-				list.add(CONNECTION_SOUTH_Z_AABB1);
-				list.add(CONNECTION_SOUTH_Z_AABB2);
-				list.add(CONNECTION_SOUTH_Z_AABB3);
-			}
-			else
-			{
-				list.add(RING_SOUTH_Z_AABB1);
-				list.add(RING_SOUTH_Z_AABB2);
-				list.add(RING_SOUTH_Z_AABB3);
-				list.add(RING_SOUTH_Z_AABB4);
-			}
-			list.add(BASE_Z_AABB1);
-			list.add(BASE_Z_AABB2);
-			list.add(BASE_Z_AABB3);
-			break;
+				if(south) {
+					list.add(CONNECTION_SOUTH_Z_AABB1);
+					list.add(CONNECTION_SOUTH_Z_AABB2);
+					list.add(CONNECTION_SOUTH_Z_AABB3);
+				}
+				else {
+					list.add(RING_SOUTH_Z_AABB1);
+					list.add(RING_SOUTH_Z_AABB2);
+					list.add(RING_SOUTH_Z_AABB3);
+					list.add(RING_SOUTH_Z_AABB4);
+				}
+				list.add(BASE_Z_AABB1);
+				list.add(BASE_Z_AABB2);
+				list.add(BASE_Z_AABB3);
+				break;
 		}
 
 		return list;
@@ -275,8 +253,7 @@ public class BlockEarthenPipe extends BlockModBase
 
 	@Override
 	@Nullable
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-	{
+	public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
 		return getCollisionBoxList(this.getActualState(blockState, world, pos)).stream()
 				.map(aabb -> this.rayTrace(pos, start, end, aabb))
 				.filter(Objects::nonNull)
@@ -285,26 +262,22 @@ public class BlockEarthenPipe extends BlockModBase
 	}
 
 	@Override
-	public ItemStack getItem(World world, BlockPos pos, IBlockState state)
-	{
+	public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
 		return new ItemStack(Item.getItemFromBlock(this), 1);
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(SHAPE, EnumShape.byMeta(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(SHAPE).getMeta();
 	}
 
 	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-	{
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return state.withProperty(NORTH, Boolean.valueOf(this.getAxis(state, world, pos.north(), EnumShape.AXIS_Z)))
 				.withProperty(SOUTH, Boolean.valueOf(this.getAxis(state, world, pos.south(), EnumShape.AXIS_Z)))
 				.withProperty(WEST, Boolean.valueOf(this.getAxis(state, world, pos.west(), EnumShape.AXIS_X)))
@@ -313,12 +286,10 @@ public class BlockEarthenPipe extends BlockModBase
 				.withProperty(DOWN, Boolean.valueOf(this.getAxis(state, world, pos.down(), EnumShape.AXIS_Y)));
 	}
 
-	private boolean getAxis(IBlockState state, IBlockAccess world, BlockPos pos, EnumShape shape)
-	{
+	private boolean getAxis(IBlockState state, IBlockAccess world, BlockPos pos, EnumShape shape) {
 		EnumShape shape1 = state.getValue(SHAPE);
 
-		if(shape1 == shape)
-		{
+		if(shape1 == shape) {
 			IBlockState staten = world.getBlockState(pos);
 			IBlockState target = this.getDefaultState();
 			return staten == target.withProperty(SHAPE, shape);
@@ -328,10 +299,8 @@ public class BlockEarthenPipe extends BlockModBase
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ SHAPE, NORTH, SOUTH, WEST, EAST, UP, DOWN, });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { SHAPE, NORTH, SOUTH, WEST, EAST, UP, DOWN, });
 	}
 
 	public static enum EnumShape implements IStringSerializable
@@ -344,42 +313,34 @@ public class BlockEarthenPipe extends BlockModBase
 		private final int meta;
 		private final String name;
 
-		private EnumShape(int meta, String name)
-		{
+		private EnumShape(int meta, String name) {
 			this.meta = meta;
 			this.name = name;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return this.name;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return EnumShape.values().length;
 		}
 
-		public static EnumShape byMeta(int meta)
-		{
-			if(meta < 0 || meta >= META_LOOKUP.length)
-			{
+		public static EnumShape byMeta(int meta) {
+			if(meta < 0 || meta >= META_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return META_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(EnumShape shape : values())
-			{
+		static {
+			for(EnumShape shape : values()) {
 				META_LOOKUP[shape.getMeta()] = shape;
 			}
 		}

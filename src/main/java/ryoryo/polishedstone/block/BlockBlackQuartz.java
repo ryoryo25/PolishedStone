@@ -12,10 +12,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedstone.PSV2Core;
 
-public class BlockBlackQuartz extends BlockQuartz
-{
-	public BlockBlackQuartz()
-	{
+public class BlockBlackQuartz extends BlockQuartz {
+	public BlockBlackQuartz() {
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("black_quartz");
 		this.setHardness(0.8F);
@@ -24,30 +22,24 @@ public class BlockBlackQuartz extends BlockQuartz
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(VARIANT, EnumType.byMetadata(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return ((EnumType) state.getValue(VARIANT)).getMetadata();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ VARIANT });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { VARIANT });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
-		if(tab == this.getCreativeTabToDisplayOn())
-		{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
+		if(tab == this.getCreativeTabToDisplayOn()) {
 			list.add(new ItemStack(this, 1, BlockQuartz.EnumType.DEFAULT.getMetadata()));
 			list.add(new ItemStack(this, 1, BlockQuartz.EnumType.CHISELED.getMetadata()));
 			list.add(new ItemStack(this, 1, BlockQuartz.EnumType.LINES_Y.getMetadata()));

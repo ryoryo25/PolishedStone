@@ -21,12 +21,11 @@ import ryoryo.polishedstone.util.ModCreativeTab;
 import ryoryo.polishedstone.util.References;
 
 @Mod(modid = References.MOD_ID, name = References.MOD_NAME, version = References.MOD_VERSION, dependencies = References.MOD_DEPENDENCIES, acceptedMinecraftVersions = References.MOD_ACCEPTED_MC_VERSIONS, useMetadata = true, guiFactory = References.MOD_GUI_FACTORY)
-public class PSV2Core
-{
+public class PSV2Core {
 	@Instance(References.MOD_ID)
 	public static PSV2Core INSTANCE;
 
-	@SidedProxy(clientSide=References.PROXY_CLIENT, serverSide=References.PROXY_COMMON)
+	@SidedProxy(clientSide = References.PROXY_CLIENT, serverSide = References.PROXY_COMMON)
 	public static IProxy proxy;
 
 	public static final CreativeTabs TAB_MOD = new ModCreativeTab(References.MOD_ID);
@@ -36,37 +35,33 @@ public class PSV2Core
 	public static final boolean isDebug = false;
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		INSTANCE = this;
 		LOGGER.info("Hello Minecraft!");
 		LOGGER.info("Start loading preInit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		config = new ModConfig(event.getSuggestedConfigurationFile());
 		MinecraftForge.EVENT_BUS.register(config);
-		//Registering Armor Materials
+		// Registering Armor Materials
 		ArmorMaterials.registerArmorMaterial();
 		Register.preInit();
 		Register.preInitClient();
 	}
 
 	@EventHandler
-	public void init(FMLInitializationEvent event)
-	{
+	public void init(FMLInitializationEvent event) {
 		LOGGER.info("Start loading init!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		Register.init();
 		Register.initClient();
 	}
 
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent event)
-	{
+	public void postInit(FMLPostInitializationEvent event) {
 		LOGGER.info("Start loading postInit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		Register.postInit();
 		Register.postInitClient();
 	}
 
 	@EventHandler
-	public void loadComplete(FMLLoadCompleteEvent event)
-	{
+	public void loadComplete(FMLLoadCompleteEvent event) {
 	}
 }

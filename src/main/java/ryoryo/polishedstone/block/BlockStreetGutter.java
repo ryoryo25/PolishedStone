@@ -30,8 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.Utils;
 
-public class BlockStreetGutter extends BlockModBase
-{
+public class BlockStreetGutter extends BlockModBase {
 	protected static final AxisAlignedBB BASE_AABB = Utils.creatAABB(0, 0, 0, 16, 1, 16);
 
 	protected static final AxisAlignedBB GROOVE_AABB_NORTH1 = Utils.creatAABB(0, 0, 0, 6, 1, 16);
@@ -55,102 +54,92 @@ public class BlockStreetGutter extends BlockModBase
 
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.<EnumType> create("type", EnumType.class);
 
-	public BlockStreetGutter()
-	{
+	public BlockStreetGutter() {
 		super(Material.ROCK, "street_gutter");
 		this.setHardness(0.8F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.NORMAL_NS));
 	}
 
 	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state)
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override
-	public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity)
-	{
+	public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
 		EnumType type = state.getValue(TYPE);
 
-		switch(type)
-		{
-		case NORMAL_NS:
-		case NORMAL_WE:
-		case POLISHED_NS:
-		case POLISHED_WE:
-		case CENTRAL_NORMAL:
-		case CENTRAL_POLISHED:
-		default:
-			return SoundType.STONE;
-		case MESH_NS:
-		case MESH_WE:
-			return SoundType.METAL;
+		switch(type) {
+			case NORMAL_NS:
+			case NORMAL_WE:
+			case POLISHED_NS:
+			case POLISHED_WE:
+			case CENTRAL_NORMAL:
+			case CENTRAL_POLISHED:
+			default:
+				return SoundType.STONE;
+			case MESH_NS:
+			case MESH_WE:
+				return SoundType.METAL;
 		}
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return BASE_AABB;
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState)
-	{
+	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState) {
 		getCollisionBoxList(this.getActualState(state, world, pos))
-		.forEach(aabb -> addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb));
+				.forEach(aabb -> addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb));
 	}
 
-	private static List<AxisAlignedBB> getCollisionBoxList(IBlockState bstate)
-	{
+	private static List<AxisAlignedBB> getCollisionBoxList(IBlockState bstate) {
 		List<AxisAlignedBB> list = new ArrayList<AxisAlignedBB>();
 		EnumType type = bstate.getValue(TYPE);
 
-		switch(type)
-		{
-		case NORMAL_NS:
-		case POLISHED_NS:
-		default:
-			list.add(GROOVE_AABB_NORTH1);
-			list.add(GROOVE_AABB_NORTH2);
-			list.add(GROOVE_AABB_NORTH3);
-			break;
-		case NORMAL_WE:
-		case POLISHED_WE:
-			list.add(GROOVE_AABB_WEST1);
-			list.add(GROOVE_AABB_WEST2);
-			list.add(GROOVE_AABB_WEST3);
-			break;
-		case MESH_NS:
-			list.add(GROOVE_MESH_AABB_NORTH1);
-			list.add(GROOVE_MESH_AABB_NORTH2);
-			list.add(GROOVE_MESH_AABB_NORTH3);
-			break;
-		case MESH_WE:
-			list.add(GROOVE_MESH_AABB_WEST1);
-			list.add(GROOVE_MESH_AABB_WEST2);
-			list.add(GROOVE_MESH_AABB_WEST3);
-			break;
-		case CENTRAL_NORMAL:
-		case CENTRAL_POLISHED:
-			list.add(GROOVE_CENTRAL_NORTH1);
-			list.add(GROOVE_CENTRAL_NORTH2);
-			list.add(GROOVE_CENTRAL_NORTH3);
-			list.add(GROOVE_CENTRAL_NORTH4);
-			break;
+		switch(type) {
+			case NORMAL_NS:
+			case POLISHED_NS:
+			default:
+				list.add(GROOVE_AABB_NORTH1);
+				list.add(GROOVE_AABB_NORTH2);
+				list.add(GROOVE_AABB_NORTH3);
+				break;
+			case NORMAL_WE:
+			case POLISHED_WE:
+				list.add(GROOVE_AABB_WEST1);
+				list.add(GROOVE_AABB_WEST2);
+				list.add(GROOVE_AABB_WEST3);
+				break;
+			case MESH_NS:
+				list.add(GROOVE_MESH_AABB_NORTH1);
+				list.add(GROOVE_MESH_AABB_NORTH2);
+				list.add(GROOVE_MESH_AABB_NORTH3);
+				break;
+			case MESH_WE:
+				list.add(GROOVE_MESH_AABB_WEST1);
+				list.add(GROOVE_MESH_AABB_WEST2);
+				list.add(GROOVE_MESH_AABB_WEST3);
+				break;
+			case CENTRAL_NORMAL:
+			case CENTRAL_POLISHED:
+				list.add(GROOVE_CENTRAL_NORTH1);
+				list.add(GROOVE_CENTRAL_NORTH2);
+				list.add(GROOVE_CENTRAL_NORTH3);
+				list.add(GROOVE_CENTRAL_NORTH4);
+				break;
 		}
 
 		return list;
@@ -158,8 +147,7 @@ public class BlockStreetGutter extends BlockModBase
 
 	@Override
 	@Nullable
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-	{
+	public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
 		return getCollisionBoxList(this.getActualState(blockState, world, pos)).stream()
 				.map(aabb -> this.rayTrace(pos, start, end, aabb))
 				.filter(Objects::nonNull)
@@ -168,34 +156,28 @@ public class BlockStreetGutter extends BlockModBase
 	}
 
 	@Override
-	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-	{
+	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
 		return new ItemStack(Item.getItemFromBlock(this), 1, state.getValue(TYPE).getItemMeta());
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(TYPE, EnumType.byMeta(meta));
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(TYPE).getMeta();
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[]
-		{ TYPE, });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TYPE, });
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-	{
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		RegistryUtils.registerSubBlocks(this, 5, tab, list);
 	}
 
@@ -216,8 +198,7 @@ public class BlockStreetGutter extends BlockModBase
 		private final String name;
 		private final String unlocalizeName;
 
-		private EnumType(int meta, int itemMeta, String name, String unlocalizeName)
-		{
+		private EnumType(int meta, int itemMeta, String name, String unlocalizeName) {
 			this.meta = meta;
 			this.itemMeta = itemMeta;
 			this.name = name;
@@ -225,45 +206,36 @@ public class BlockStreetGutter extends BlockModBase
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name;
 		}
 
-		public String toString()
-		{
+		public String toString() {
 			return this.unlocalizeName;
 		}
 
-		public int getMeta()
-		{
+		public int getMeta() {
 			return this.meta;
 		}
 
-		public int getItemMeta()
-		{
+		public int getItemMeta() {
 			return this.itemMeta;
 		}
 
-		public static int getLength()
-		{
+		public static int getLength() {
 			return EnumType.values().length;
 		}
 
-		public static EnumType byMeta(int meta)
-		{
-			if(meta < 0 || meta >= METADATA_LOOKUP.length)
-			{
+		public static EnumType byMeta(int meta) {
+			if(meta < 0 || meta >= METADATA_LOOKUP.length) {
 				meta = 0;
 			}
 
 			return METADATA_LOOKUP[meta];
 		}
 
-		static
-		{
-			for(EnumType enumtype : values())
-			{
+		static {
+			for(EnumType enumtype : values()) {
 				METADATA_LOOKUP[enumtype.getMeta()] = enumtype;
 			}
 		}
