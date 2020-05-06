@@ -26,6 +26,11 @@ public class BlockTest extends BlockModBase {
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
+//	@Override
+//	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
+//		return PSHooks.canSustainPlant(this, state, world, pos, direction, plantable);
+//	}
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
