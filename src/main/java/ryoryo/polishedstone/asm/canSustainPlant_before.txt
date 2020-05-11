@@ -1,0 +1,290 @@
+  public canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z
+   L0
+    LINENUMBER 1931 L0
+    ALOAD 5
+    ALOAD 2
+    ALOAD 3
+    ALOAD 4
+    INVOKEVIRTUAL net/minecraft/util/math/BlockPos.offset (Lnet/minecraft/util/EnumFacing;)Lnet/minecraft/util/math/BlockPos;
+    INVOKEINTERFACE net/minecraftforge/common/IPlantable.getPlant (Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/state/IBlockState;
+    ASTORE 6
+   L1
+    LINENUMBER 1932 L1
+    ALOAD 5
+    ALOAD 2
+    ALOAD 3
+    ALOAD 4
+    INVOKEVIRTUAL net/minecraft/util/math/BlockPos.offset (Lnet/minecraft/util/EnumFacing;)Lnet/minecraft/util/math/BlockPos;
+    INVOKEINTERFACE net/minecraftforge/common/IPlantable.getPlantType (Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraftforge/common/EnumPlantType;
+    ASTORE 7
+   L2
+    LINENUMBER 1934 L2
+    ALOAD 6
+    INVOKEINTERFACE net/minecraft/block/state/IBlockState.getBlock ()Lnet/minecraft/block/Block;
+    GETSTATIC net/minecraft/init/Blocks.CACTUS : Lnet/minecraft/block/BlockCactus;
+    IF_ACMPNE L3
+   L4
+    LINENUMBER 1936 L4
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.CACTUS : Lnet/minecraft/block/BlockCactus;
+    IF_ACMPEQ L5
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.SAND : Lnet/minecraft/block/BlockSand;
+    IF_ACMPNE L6
+   L5
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_1
+    GOTO L7
+   L6
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_0
+   L7
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] [I]
+    IRETURN
+   L3
+    LINENUMBER 1939 L3
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ALOAD 6
+    INVOKEINTERFACE net/minecraft/block/state/IBlockState.getBlock ()Lnet/minecraft/block/Block;
+    GETSTATIC net/minecraft/init/Blocks.REEDS : Lnet/minecraft/block/BlockReed;
+    IF_ACMPNE L8
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.REEDS : Lnet/minecraft/block/BlockReed;
+    IF_ACMPNE L8
+   L9
+    LINENUMBER 1941 L9
+    ICONST_1
+    IRETURN
+   L8
+    LINENUMBER 1944 L8
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ALOAD 5
+    INSTANCEOF net/minecraft/block/BlockBush
+    IFEQ L10
+    ALOAD 5
+    CHECKCAST net/minecraft/block/BlockBush
+    ALOAD 1
+    INVOKEVIRTUAL net/minecraft/block/BlockBush.canSustainBush (Lnet/minecraft/block/state/IBlockState;)Z
+    IFEQ L10
+   L11
+    LINENUMBER 1946 L11
+    ICONST_1
+    IRETURN
+   L10
+    LINENUMBER 1949 L10
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    GETSTATIC net/minecraft/block/Block$1.$SwitchMap$net$minecraftforge$common$EnumPlantType : [I
+    ALOAD 7
+    INVOKEVIRTUAL net/minecraftforge/common/EnumPlantType.ordinal ()I
+    IALOAD
+    TABLESWITCH
+      1: L12
+      2: L13
+      3: L14
+      4: L15
+      5: L16
+      6: L17
+      7: L18
+      default: L19
+   L12
+    LINENUMBER 1951 L12
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.SAND : Lnet/minecraft/block/BlockSand;
+    IF_ACMPEQ L20
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.HARDENED_CLAY : Lnet/minecraft/block/Block;
+    IF_ACMPEQ L20
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.STAINED_HARDENED_CLAY : Lnet/minecraft/block/Block;
+    IF_ACMPNE L21
+   L20
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_1
+    GOTO L22
+   L21
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_0
+   L22
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] [I]
+    IRETURN
+   L13
+    LINENUMBER 1952 L13
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.SOUL_SAND : Lnet/minecraft/block/Block;
+    IF_ACMPNE L23
+    ICONST_1
+    GOTO L24
+   L23
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_0
+   L24
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] [I]
+    IRETURN
+   L14
+    LINENUMBER 1953 L14
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.FARMLAND : Lnet/minecraft/block/Block;
+    IF_ACMPNE L25
+    ICONST_1
+    GOTO L26
+   L25
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_0
+   L26
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] [I]
+    IRETURN
+   L15
+    LINENUMBER 1954 L15
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ALOAD 1
+    ALOAD 2
+    ALOAD 3
+    GETSTATIC net/minecraft/util/EnumFacing.UP : Lnet/minecraft/util/EnumFacing;
+    INVOKEINTERFACE net/minecraft/block/state/IBlockState.isSideSolid (Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;)Z
+    IRETURN
+   L16
+    LINENUMBER 1955 L16
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.GRASS : Lnet/minecraft/block/BlockGrass;
+    IF_ACMPEQ L27
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.DIRT : Lnet/minecraft/block/Block;
+    IF_ACMPEQ L27
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.FARMLAND : Lnet/minecraft/block/Block;
+    IF_ACMPNE L28
+   L27
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_1
+    GOTO L29
+   L28
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_0
+   L29
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] [I]
+    IRETURN
+   L17
+    LINENUMBER 1956 L17
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ALOAD 1
+    INVOKEINTERFACE net/minecraft/block/state/IBlockState.getMaterial ()Lnet/minecraft/block/material/Material;
+    GETSTATIC net/minecraft/block/material/Material.WATER : Lnet/minecraft/block/material/Material;
+    IF_ACMPNE L30
+    ALOAD 1
+    GETSTATIC net/minecraft/block/BlockLiquid.LEVEL : Lnet/minecraft/block/properties/PropertyInteger;
+    INVOKEINTERFACE net/minecraft/block/state/IBlockState.getValue (Lnet/minecraft/block/properties/IProperty;)Ljava/lang/Comparable;
+    CHECKCAST java/lang/Integer
+    INVOKEVIRTUAL java/lang/Integer.intValue ()I
+    IFNE L30
+    ICONST_1
+    GOTO L31
+   L30
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_0
+   L31
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] [I]
+    IRETURN
+   L18
+    LINENUMBER 1958 L18
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.GRASS : Lnet/minecraft/block/BlockGrass;
+    IF_ACMPEQ L32
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.DIRT : Lnet/minecraft/block/Block;
+    IF_ACMPEQ L32
+    ALOAD 0
+    GETSTATIC net/minecraft/init/Blocks.SAND : Lnet/minecraft/block/BlockSand;
+    IF_ACMPNE L33
+   L32
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_1
+    GOTO L34
+   L33
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_0
+   L34
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] [I]
+    ISTORE 8
+   L35
+    LINENUMBER 1959 L35
+    ALOAD 2
+    ALOAD 3
+    INVOKEVIRTUAL net/minecraft/util/math/BlockPos.east ()Lnet/minecraft/util/math/BlockPos;
+    INVOKEINTERFACE net/minecraft/world/IBlockAccess.getBlockState (Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/state/IBlockState;
+    INVOKEINTERFACE net/minecraft/block/state/IBlockState.getMaterial ()Lnet/minecraft/block/material/Material;
+    GETSTATIC net/minecraft/block/material/Material.WATER : Lnet/minecraft/block/material/Material;
+    IF_ACMPEQ L36
+    ALOAD 2
+    ALOAD 3
+   L37
+    LINENUMBER 1960 L37
+    INVOKEVIRTUAL net/minecraft/util/math/BlockPos.west ()Lnet/minecraft/util/math/BlockPos;
+    INVOKEINTERFACE net/minecraft/world/IBlockAccess.getBlockState (Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/state/IBlockState;
+    INVOKEINTERFACE net/minecraft/block/state/IBlockState.getMaterial ()Lnet/minecraft/block/material/Material;
+    GETSTATIC net/minecraft/block/material/Material.WATER : Lnet/minecraft/block/material/Material;
+    IF_ACMPEQ L36
+    ALOAD 2
+    ALOAD 3
+   L38
+    LINENUMBER 1961 L38
+    INVOKEVIRTUAL net/minecraft/util/math/BlockPos.north ()Lnet/minecraft/util/math/BlockPos;
+    INVOKEINTERFACE net/minecraft/world/IBlockAccess.getBlockState (Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/state/IBlockState;
+    INVOKEINTERFACE net/minecraft/block/state/IBlockState.getMaterial ()Lnet/minecraft/block/material/Material;
+    GETSTATIC net/minecraft/block/material/Material.WATER : Lnet/minecraft/block/material/Material;
+    IF_ACMPEQ L36
+    ALOAD 2
+    ALOAD 3
+   L39
+    LINENUMBER 1962 L39
+    INVOKEVIRTUAL net/minecraft/util/math/BlockPos.south ()Lnet/minecraft/util/math/BlockPos;
+    INVOKEINTERFACE net/minecraft/world/IBlockAccess.getBlockState (Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/state/IBlockState;
+    INVOKEINTERFACE net/minecraft/block/state/IBlockState.getMaterial ()Lnet/minecraft/block/material/Material;
+    GETSTATIC net/minecraft/block/material/Material.WATER : Lnet/minecraft/block/material/Material;
+    IF_ACMPNE L40
+   L36
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType I] []
+    ICONST_1
+    GOTO L41
+   L40
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType I] []
+    ICONST_0
+   L41
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType I] [I]
+    ISTORE 9
+   L42
+    LINENUMBER 1963 L42
+    ILOAD 8
+    IFEQ L43
+    ILOAD 9
+    IFEQ L43
+    ICONST_1
+    GOTO L44
+   L43
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType I I] []
+    ICONST_0
+   L44
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType I I] [I]
+    IRETURN
+   L19
+    LINENUMBER 1966 L19
+   FRAME FULL [net/minecraft/block/Block net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ICONST_0
+    IRETURN
+   L45
+    LOCALVARIABLE isBeach Z L35 L19 8
+    LOCALVARIABLE hasWater Z L42 L19 9
+    LOCALVARIABLE this Lnet/minecraft/block/Block; L0 L45 0
+    LOCALVARIABLE state Lnet/minecraft/block/state/IBlockState; L0 L45 1
+    LOCALVARIABLE world Lnet/minecraft/world/IBlockAccess; L0 L45 2
+    LOCALVARIABLE pos Lnet/minecraft/util/math/BlockPos; L0 L45 3
+    LOCALVARIABLE direction Lnet/minecraft/util/EnumFacing; L0 L45 4
+    LOCALVARIABLE plantable Lnet/minecraftforge/common/IPlantable; L0 L45 5
+    LOCALVARIABLE plant Lnet/minecraft/block/state/IBlockState; L1 L45 6
+    LOCALVARIABLE plantType Lnet/minecraftforge/common/EnumPlantType; L2 L45 7
+    MAXSTACK = 4
+    MAXLOCALS = 10

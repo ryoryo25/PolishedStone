@@ -1,0 +1,83 @@
+  public canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z
+   L0
+    LINENUMBER 33 L0
+    ALOAD 0
+    ALOAD 1
+    ALOAD 2
+    ALOAD 3
+    ALOAD 4
+    ALOAD 5
+    INVOKESTATIC ryoryo/polishedstone/asm/PSHooks.canSustainPlant (Lnet/minecraft/block/Block;Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z
+    IRETURN
+   L1
+    LOCALVARIABLE this Lryoryo/polishedstone/block/BlockTest; L0 L1 0
+    LOCALVARIABLE state Lnet/minecraft/block/state/IBlockState; L0 L1 1
+    LOCALVARIABLE world Lnet/minecraft/world/IBlockAccess; L0 L1 2
+    LOCALVARIABLE pos Lnet/minecraft/util/math/BlockPos; L0 L1 3
+    LOCALVARIABLE direction Lnet/minecraft/util/EnumFacing; L0 L1 4
+    LOCALVARIABLE plantable Lnet/minecraftforge/common/IPlantable; L0 L1 5
+    MAXSTACK = 6
+    MAXLOCALS = 6
+
+
+
+
+
+
+
+
+
+
+
+  public canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z
+   L0
+    LINENUMBER 34 L0
+    ALOAD 5
+    ALOAD 2
+    ALOAD 3
+    ALOAD 4
+    INVOKEVIRTUAL net/minecraft/util/math/BlockPos.offset (Lnet/minecraft/util/EnumFacing;)Lnet/minecraft/util/math/BlockPos;
+    INVOKEINTERFACE net/minecraftforge/common/IPlantable.getPlant (Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/state/IBlockState;
+    ASTORE 6
+   L1
+    LINENUMBER 35 L1
+    ALOAD 5
+    ALOAD 2
+    ALOAD 3
+    ALOAD 4
+    INVOKEVIRTUAL net/minecraft/util/math/BlockPos.offset (Lnet/minecraft/util/EnumFacing;)Lnet/minecraft/util/math/BlockPos;
+    INVOKEINTERFACE net/minecraftforge/common/IPlantable.getPlantType (Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraftforge/common/EnumPlantType;
+    ASTORE 7
+   L2
+    LINENUMBER 37 L2
+    ALOAD 6
+    INVOKESTATIC ryoryo/polishedstone/asm/PSHooks.isCactus (Lnet/minecraft/block/state/IBlockState;)Z
+    IFEQ L3
+   L4
+    LINENUMBER 38 L4
+    ALOAD 0
+    ALOAD 1
+    INVOKESTATIC ryoryo/polishedstone/asm/PSHooks.canSustainPlant (Lnet/minecraft/block/Block;Lnet/minecraft/block/state/IBlockState;)Z
+    IRETURN
+   L3
+    LINENUMBER 40 L3
+   FRAME FULL [ryoryo/polishedstone/block/BlockTest net/minecraft/block/state/IBlockState net/minecraft/world/IBlockAccess net/minecraft/util/math/BlockPos net/minecraft/util/EnumFacing net/minecraftforge/common/IPlantable net/minecraft/block/state/IBlockState net/minecraftforge/common/EnumPlantType] []
+    ALOAD 0
+    ALOAD 1
+    ALOAD 2
+    ALOAD 3
+    ALOAD 4
+    ALOAD 5
+    INVOKESPECIAL ryoryo/polishedstone/block/BlockModBase.canSustainPlant (Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z
+    IRETURN
+   L5
+    LOCALVARIABLE this Lryoryo/polishedstone/block/BlockTest; L0 L5 0
+    LOCALVARIABLE state Lnet/minecraft/block/state/IBlockState; L0 L5 1
+    LOCALVARIABLE world Lnet/minecraft/world/IBlockAccess; L0 L5 2
+    LOCALVARIABLE pos Lnet/minecraft/util/math/BlockPos; L0 L5 3
+    LOCALVARIABLE direction Lnet/minecraft/util/EnumFacing; L0 L5 4
+    LOCALVARIABLE plantable Lnet/minecraftforge/common/IPlantable; L0 L5 5
+    LOCALVARIABLE plant Lnet/minecraft/block/state/IBlockState; L1 L5 6
+    LOCALVARIABLE plantType Lnet/minecraftforge/common/EnumPlantType; L2 L5 7
+    MAXSTACK = 6
+    MAXLOCALS = 8
