@@ -26,21 +26,13 @@ public class BlockCompressedBookshelf extends BlockModBase {
 	@Override
 	public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
 		int multi = state.getValue(MULTIPLE);
-		float base = 1.5F;
-
-		switch(multi) {
-			case 1:
-			default:
-				return base * 8.0F;
-			case 2:
-				return base * 16.0F;
-		}
+		return 1.5F * 8.0F * multi;
 	}
 
 	@Override
 	public float getEnchantPowerBonus(World world, BlockPos pos) {
 		int multi = world.getBlockState(pos).getValue(MULTIPLE);
-		return multi == 1 ? 8F : 16F;
+		return 8.0F * multi;
 	}
 
 	@Override
