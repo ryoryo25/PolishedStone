@@ -3,18 +3,27 @@ package ryoryo.polishedstone.event;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped.ArmPose;
 import net.minecraft.client.model.ModelPlayer;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
+import ryoryo.polishedstone.client.model.baked.BakedModelFullbright;
 import ryoryo.polishedstone.client.render.ThirdPersonCameraController;
 import ryoryo.polishedstone.util.LibKey;
+import ryoryo.polishedstone.util.References;
 
 public class ModClientEventHandler {
 	@SubscribeEvent
@@ -74,6 +83,40 @@ public class ModClientEventHandler {
 			model.rightArmPose = ArmPose.BOW_AND_ARROW;
 			model.leftArmPose = ArmPose.BOW_AND_ARROW;
 			Utils.sendChat(player, "wow");
+		}
+	}
+
+	@SubscribeEvent
+	public void onPickBlockMiddleClick(InputEvent.KeyInputEvent event) {
+		if(Minecraft.getMinecraft().gameSettings.keyBindPickBlock.isPressed()) {
+			EntityPlayer player = Minecraft.getMinecraft().player;
+			Vec3d look = player.getLookVec();
+
+		}
+	}
+
+	public static class PreInit {
+		@SubscribeEvent
+		public void onBakeModel(ModelBakeEvent event) {
+			PSV2Core.LOGGER.info("Baking model");
+			for(ModelResourceLocation resource : event.getModelRegistry().getKeys()) {
+				ResourceLocation key = new ResourceLocation(resource.getResourceDomain(), resource.getResourcePath());
+
+				if(Register.BLOCK_CHROMA_KEY_BACK.getRegistryName().toString().equals(key.toString())) {
+					String path = References.MOD_ID + ":blocks/chroma_key_back_" + resource.getVariant().substring(6);
+					event.getModelRegistry().putObject(resource, new BakedModelFullbright(event.getModelRegistry().getObject(resource), path));
+				}
+			}
+		}
+
+		@SubscribeEvent
+		public void loadTexture(TextureStitchEvent.Pre event) {
+			TextureMap map = event.getMap();
+
+			if(!map.getBasePath().equals("textures"))
+				return;
+
+			for(int i = 0; i < 8; i++) {}
 		}
 	}
 }

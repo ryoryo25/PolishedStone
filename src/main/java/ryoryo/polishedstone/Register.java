@@ -156,27 +156,7 @@ import ryoryo.polishedstone.world.gen.WorldGenBlock;
 public class Register {
 	// Blocks
 	public static final Block BLOCK_BRICK_WALL = new BlockModBaseWall(Blocks.BRICK_BLOCK);
-	public static final Block BLOCK_GRANITE_WALL = new BlockModBaseWall(Blocks.STONE/*
-																					 * .getDefaultState
-																					 * (
-																					 * )
-																					 * .
-																					 * withProperty
-																					 * (
-																					 * BlockStone
-																					 * .
-																					 * VARIANT,
-																					 * BlockStone
-																					 * .
-																					 * EnumType
-																					 * .
-																					 * GRANITE
-																					 * )
-																					 * .
-																					 * getBlock
-																					 * (
-																					 * )
-																					 */, "granite");
+	public static final Block BLOCK_GRANITE_WALL = new BlockModBaseWall(Blocks.STONE, "granite");
 	public static final Block BLOCK_SMOOTH_GRANITE_WALL = new BlockModBaseWall(Blocks.STONE, "smooth_granite");
 	public static final Block BLOCK_DIORITE_WALL = new BlockModBaseWall(Blocks.STONE, "diorite");
 	public static final Block BLOCK_SMOOTH_DIORITE_WALL = new BlockModBaseWall(Blocks.STONE, "smooth_diorite");
@@ -333,7 +313,7 @@ public class Register {
 		PSV2Core.REGISTER.registerBlock(BLOCK_ANDESITE_WALL, "andesite_wall");
 		PSV2Core.REGISTER.registerBlock(BLOCK_SMOOTH_ANDESITE_WALL, "smooth_andesite_wall");
 		PSV2Core.REGISTER.registerBlock(BLOCK_POLISHED_STONE, new ItemBlockPolishedStone(), "polished_stone", ItemBlockPolishedStone.NAMES);
-		PSV2Core.REGISTER.registerBlock(BLOCK_COLORED_LIGHT, new ItemBlockMeta(BLOCK_COLORED_LIGHT, EnumColor.COLOR_WOOL), "colored_light", EnumColor.COLOR_WOOL);
+		PSV2Core.REGISTER.registerBlock(BLOCK_COLORED_LIGHT, new ItemBlockMeta(BLOCK_COLORED_LIGHT, EnumColor.NAMES_WOOL), "colored_light", EnumColor.NAMES_WOOL);
 		PSV2Core.REGISTER.registerBlock(BLOCK_NEW_PATH, new ItemBlockMeta(BLOCK_NEW_PATH, BlockNewPath.PathType.NAMES), "new_path", BlockNewPath.PathType.NAMES);
 		PSV2Core.REGISTER.registerBlock(BLOCK_NEW_FLOWER, new ItemBlockMeta(BLOCK_NEW_FLOWER, BlockNewFlower.NewFlowerType.NAMES), "new_flower", BlockNewFlower.NewFlowerType.NAMES);
 		PSV2Core.REGISTER.registerBlock(BLOCK_GLOWSTONE_GENERATOR, new ItemBlock(BLOCK_GLOWSTONE_GENERATOR), "glowstone_generator", 8);
@@ -399,7 +379,7 @@ public class Register {
 		PSV2Core.REGISTER.registerBlock(BLOCK_HARDENED_SHADE_GLASS_DOOR, new ItemBlockDoor(BLOCK_HARDENED_SHADE_GLASS_DOOR), "hardened_shade_glass_door");
 		PSV2Core.REGISTER.registerBlock(BLOCK_LOCKABLE_DOOR, new ItemBlockDoor(BLOCK_LOCKABLE_DOOR), "lockable_door");
 		PSV2Core.REGISTER.registerBlock(BLOCK_DUMMY_CABLE, new ItemBlockMeta(BLOCK_DUMMY_CABLE, BlockDummyCable.EnumType.NAMES), "dummy_cable", BlockDummyCable.EnumType.NAMES);
-		PSV2Core.REGISTER.registerBlock(BLOCK_POLISHED_STONE_COLORED, new ItemBlockMeta(BLOCK_POLISHED_STONE_COLORED, EnumColor.COLOR_WOOL), "polished_stone_colored", EnumColor.COLOR_WOOL);
+		PSV2Core.REGISTER.registerBlock(BLOCK_POLISHED_STONE_COLORED, new ItemBlockMeta(BLOCK_POLISHED_STONE_COLORED, EnumColor.NAMES_WOOL), "polished_stone_colored", EnumColor.NAMES_WOOL);
 		PSV2Core.REGISTER.registerBlock(BLOCK_LAMP, new ItemBlockMeta(BLOCK_LAMP, BlockLamp.MaterialType.NAMES), "lamp", BlockLamp.MaterialType.NAMES);
 		PSV2Core.REGISTER.registerBlock(BLOCK_GLASS_OAK_DOOR, new ItemBlockDoor(BLOCK_GLASS_OAK_DOOR), "glass_oak_door");
 		PSV2Core.REGISTER.registerBlock(BLOCK_GLASS_SPRUCE_DOOR, new ItemBlockDoor(BLOCK_GLASS_SPRUCE_DOOR), "glass_spruce_door");
@@ -408,7 +388,7 @@ public class Register {
 		PSV2Core.REGISTER.registerBlock(BLOCK_GLASS_ACACIA_DOOR, new ItemBlockDoor(BLOCK_GLASS_ACACIA_DOOR), "glass_acacia_door");
 		PSV2Core.REGISTER.registerBlock(BLOCK_GLASS_DARK_OAK_DOOR, new ItemBlockDoor(BLOCK_GLASS_DARK_OAK_DOOR), "glass_dark_oak_door");
 		PSV2Core.REGISTER.registerBlock(BLOCK_GLASS_IRON_DOOR, new ItemBlockDoor(BLOCK_GLASS_IRON_DOOR), "glass_iron_door");
-		PSV2Core.REGISTER.registerBlock(BLOCK_CHROMA_KEY_BACK, new ItemBlockMeta(BLOCK_CHROMA_KEY_BACK, EnumColor.COLOR_WOOL), "chroma_key_back", EnumColor.COLOR_WOOL);
+		PSV2Core.REGISTER.registerBlock(BLOCK_CHROMA_KEY_BACK, new ItemBlockMeta(BLOCK_CHROMA_KEY_BACK, EnumColor.NAMES_WOOL), "chroma_key_back", EnumColor.NAMES_WOOL);
 		PSV2Core.REGISTER.registerBlock(BLOCK_STONE_SLAB, (ItemBlock) new ItemSlab(BLOCK_STONE_SLAB, BLOCK_STONE_SLAB, BLOCK_DOUBLE_STONE_SLAB).setUnlocalizedName("stone_slab"), "stone_slab", BlockModStoneSlab.Type.NAMES);
 		PSV2Core.REGISTER.registerBlock(BLOCK_DOUBLE_STONE_SLAB, (ItemBlock) new ItemBlockMeta(BLOCK_DOUBLE_STONE_SLAB, BlockModStoneSlab.Type.NAMES), "double_stone_slab", BlockModStoneSlab.Type.NAMES);
 		PSV2Core.REGISTER.registerBlock(BLOCK_CROP_ONION, "crop_onion");
@@ -1006,6 +986,7 @@ public class Register {
 	@SideOnly(Side.CLIENT)
 	public static void preInitClient() {
 		RegistryUtils.registerEntityRendering(EntityZabuton.class, new RenderZabuton.Factory());
+		MinecraftForge.EVENT_BUS.register(new ModClientEventHandler.PreInit());
 	}
 
 	@SideOnly(Side.CLIENT)

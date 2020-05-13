@@ -16,26 +16,24 @@ import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.enums.EnumColor;
 
 public class BlockChromaKeyBack extends BlockModBase {
-	// TODO Custom Render
+
 	public static final PropertyEnum<EnumColor> COLOR = Props.COLOR;
 
 	public BlockChromaKeyBack() {
 		super(Material.IRON, "chroma_key_back", SoundType.METAL);
 		this.setHardness(5.0F);
 		this.setResistance(10.0F);
-		// this.setLightLevel(1.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOR, EnumColor.WHITE));
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
 	public float getAmbientOcclusionLightValue(IBlockState state) {
-		return 1.5F;
+		return 1.0F;
 	}
 
 	@Override
 	public int damageDropped(IBlockState state) {
-		return state.getValue(COLOR).getWoolNumber();
+		return getMetaFromState(state);
 	}
 
 	@Override
