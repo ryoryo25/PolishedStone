@@ -11,6 +11,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
@@ -20,8 +21,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.RegistryUtils;
+import ryoryo.polishedlib.util.enums.ToolType;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
@@ -34,7 +35,7 @@ public class BlockNewOre extends BlockOre {
 		this.setHardness(3.0F);
 		this.setResistance(5.0F);
 		this.setSoundType(SoundType.STONE);
-		this.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
+		this.setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, MaterialType.COOKIE));
 	}
 
@@ -115,8 +116,7 @@ public class BlockNewOre extends BlockOre {
 		RegistryUtils.registerSubBlocks(this, MaterialType.getLength(), tab, list);
 	}
 
-	public static enum MaterialType implements IStringSerializable
-	{
+	public static enum MaterialType implements IStringSerializable {
 		// if (this == Blocks.COAL_ORE)
 		// i = MathHelper.getInt(rand, 0, 2);
 		// else if (this == Blocks.DIAMOND_ORE)

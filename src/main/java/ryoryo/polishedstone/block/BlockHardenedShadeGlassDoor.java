@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
@@ -16,8 +17,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ryoryo.polishedlib.block.BlockBaseDoor;
-import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.enums.ToolType;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
@@ -26,7 +27,7 @@ public class BlockHardenedShadeGlassDoor extends BlockBaseDoor {
 		super(Material.GLASS, "hardened_shade_glass", PSV2Core.TAB_MOD, SoundType.GLASS, false, true);
 		this.setBlockUnbreakable();
 		this.setResistance(6000000.0F);
-		this.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
+		this.setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
 		this.setLightOpacity(255);
 	}
 

@@ -7,14 +7,15 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.Props;
 import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.enums.EnumColor;
+import ryoryo.polishedlib.util.enums.ToolType;
 
 public class BlockPolishedStoneColored extends BlockModBase {
 	public static final PropertyEnum<EnumColor> COLOR = Props.COLOR;
@@ -23,7 +24,7 @@ public class BlockPolishedStoneColored extends BlockModBase {
 		super(Material.ROCK, "colored_polished_stone", SoundType.STONE);
 		this.setHardness(0.5F);
 		this.setResistance(10000.0F);
-		this.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
+		this.setHarvestLevel(ToolType.PICKAXE.toString(), ToolMaterial.WOOD.getHarvestLevel());
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOR, EnumColor.WHITE));
 	}
 

@@ -15,6 +15,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
@@ -24,9 +25,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.enums.ToolType;
 import ryoryo.polishedstone.PSV2Core;
 import ryoryo.polishedstone.Register;
 
@@ -38,7 +39,7 @@ public class BlockNewPath extends BlockGrassPath {
 		this.setCreativeTab(PSV2Core.TAB_MOD);
 		this.setUnlocalizedName("new_path");
 		this.setHardness(0.65F);
-		this.setHarvestLevel(LibTool.TOOL_CLASS_SHOVEL, LibTool.LEVEL_WOOD);
+		this.setHarvestLevel(ToolType.SHOVEL.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
 		this.setSoundType(SoundType.GROUND);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, PathType.DIRT));
 	}
@@ -188,8 +189,7 @@ public class BlockNewPath extends BlockGrassPath {
 		RegistryUtils.registerSubBlocks(this, PathType.getLength(), tab, list);
 	}
 
-	public static enum PathType implements IStringSerializable
-	{
+	public static enum PathType implements IStringSerializable {
 		DIRT(0, "dirt", Blocks.DIRT.getDefaultState()),
 		COARSE_DIRT(1, "coarse_dirt", Blocks.DIRT.getStateFromMeta(1)),
 		PODZOL(2, "podzol", Blocks.DIRT.getStateFromMeta(2)),

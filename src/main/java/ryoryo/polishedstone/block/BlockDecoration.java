@@ -11,6 +11,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
@@ -20,8 +21,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.RegistryUtils;
+import ryoryo.polishedlib.util.enums.ToolType;
 
 public class BlockDecoration extends BlockModBase {
 	public static final PropertyEnum<BlockType> TYPE = PropertyEnum.<BlockType> create("type", BlockType.class);
@@ -66,7 +67,7 @@ public class BlockDecoration extends BlockModBase {
 
 		switch(type) {
 			default:
-				return LibTool.TOOL_CLASS_PICKAXE;
+				return ToolType.PICKAXE.getToolClass();
 		}
 	}
 
@@ -76,7 +77,7 @@ public class BlockDecoration extends BlockModBase {
 
 		switch(type) {
 			default:
-				return LibTool.LEVEL_WOOD;
+				return ToolMaterial.WOOD.getHarvestLevel();
 		}
 	}
 
@@ -155,8 +156,7 @@ public class BlockDecoration extends BlockModBase {
 		RegistryUtils.registerSubBlocks(this, BlockType.getLength(), tab, list);
 	}
 
-	public static enum BlockType implements IStringSerializable
-	{
+	public static enum BlockType implements IStringSerializable {
 		COLORED_BRICK(0, "colored_brick"),
 		GRANITE_BRICK(1, "granite_brick"),
 		GRANITE_BRICK_CARVED(2, "granite_brick_carved"),

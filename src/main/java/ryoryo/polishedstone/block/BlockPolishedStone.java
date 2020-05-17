@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -21,8 +22,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.RegistryUtils;
+import ryoryo.polishedlib.util.enums.ToolType;
 
 public class BlockPolishedStone extends BlockModBase {
 	public static final PropertyEnum<EnumType> TYPE = PropertyEnum.<EnumType> create("type", EnumType.class);
@@ -31,7 +32,7 @@ public class BlockPolishedStone extends BlockModBase {
 		super(Material.GROUND, "polished_stone", SoundType.STONE);
 		this.setHardness(0.5F);
 		this.setResistance(10000.0F);
-		this.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
+		this.setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.NORMAL));
 	}
 
@@ -68,8 +69,7 @@ public class BlockPolishedStone extends BlockModBase {
 				case Y:
 					return state.withProperty(TYPE, EnumType.PILLAR_Y);
 			}
-		}
-		else {
+		} else {
 			switch(meta) {
 				case 0:
 				default:
@@ -125,8 +125,7 @@ public class BlockPolishedStone extends BlockModBase {
 		RegistryUtils.registerSubBlocks(this, EnumType.getLength() - 2, tab, list);
 	}
 
-	public static enum EnumType implements IStringSerializable
-	{
+	public static enum EnumType implements IStringSerializable {
 		NORMAL(0, "normal"),
 		INVERTED(1, "inverted"),
 		VERTICAL(2, "vertical"),

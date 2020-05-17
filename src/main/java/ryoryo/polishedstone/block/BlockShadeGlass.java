@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -16,8 +17,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.Utils;
+import ryoryo.polishedlib.util.enums.ToolType;
 import ryoryo.polishedstone.Register;
 
 public class BlockShadeGlass extends BlockModBase {
@@ -28,10 +29,9 @@ public class BlockShadeGlass extends BlockModBase {
 		if(unbreakable) {
 			this.setBlockUnbreakable();
 			this.setResistance(6000000.0F);
-		}
-		else
+		} else
 			this.setHardness(0.3F);
-		this.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
+		this.setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
 		this.setLightOpacity(255);
 		this.unbreakable = unbreakable;
 	}
@@ -78,8 +78,7 @@ public class BlockShadeGlass extends BlockModBase {
 				return true;
 			else
 				return false;
-		}
-		else
+		} else
 			return true;
 	}
 

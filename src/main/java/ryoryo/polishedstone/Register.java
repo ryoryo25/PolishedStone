@@ -21,6 +21,7 @@ import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
@@ -39,12 +40,12 @@ import ryoryo.polishedlib.itemblock.ItemBlockDoor;
 import ryoryo.polishedlib.itemblock.ItemBlockMeta;
 import ryoryo.polishedlib.util.ArithmeticUtils;
 import ryoryo.polishedlib.util.LibPotionId;
-import ryoryo.polishedlib.util.LibTool;
 import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.polishedlib.util.enums.EnumArmorType;
 import ryoryo.polishedlib.util.enums.EnumColor;
 import ryoryo.polishedlib.util.enums.EnumPlanks;
+import ryoryo.polishedlib.util.enums.ToolType;
 import ryoryo.polishedstone.block.BlockAnchorBolt;
 import ryoryo.polishedstone.block.BlockBlackQuartz;
 import ryoryo.polishedstone.block.BlockChromaKeyBack;
@@ -479,10 +480,10 @@ public class Register {
 		BlockLattice.connectables.add(BLOCK_FENCE_SLAB_NETHER_BRICK);
 
 		// 硬度とか変更
-		Blocks.BEDROCK.setHardness(50.0F).setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_DIAMOND);
-		Blocks.END_PORTAL_FRAME.setHardness(50.0F).setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_DIAMOND);
-		Blocks.LEAVES.setHarvestLevel(LibTool.TOOL_CLASS_AXE, LibTool.LEVEL_WOOD);
-		Blocks.LEAVES2.setHarvestLevel(LibTool.TOOL_CLASS_AXE, LibTool.LEVEL_WOOD);
+		Blocks.BEDROCK.setHardness(50.0F).setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.DIAMOND.getHarvestLevel());
+		Blocks.END_PORTAL_FRAME.setHardness(50.0F).setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.DIAMOND.getHarvestLevel());
+		Blocks.LEAVES.setHarvestLevel(ToolType.AXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
+		Blocks.LEAVES2.setHarvestLevel(ToolType.AXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
 		Blocks.WATERLILY.setHardness(0.2F);
 		Blocks.COBBLESTONE.setHardness(1.5F);
 		Blocks.MOSSY_COBBLESTONE.setHardness(1.5F);
@@ -509,12 +510,12 @@ public class Register {
 		Blocks.BARRIER.setCreativeTab(CreativeTabs.REDSTONE);
 		Blocks.FARMLAND.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		// 適正ツール変更
-		Blocks.GLASS.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
-		Blocks.GLASS_PANE.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
-		Blocks.STAINED_GLASS.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
-		Blocks.STAINED_GLASS_PANE.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
-		Blocks.PISTON.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
-		Blocks.STICKY_PISTON.setHarvestLevel(LibTool.TOOL_CLASS_PICKAXE, LibTool.LEVEL_WOOD);
+		Blocks.GLASS.setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
+		Blocks.GLASS_PANE.setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
+		Blocks.STAINED_GLASS.setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
+		Blocks.STAINED_GLASS_PANE.setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
+		Blocks.PISTON.setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
+		Blocks.STICKY_PISTON.setHarvestLevel(ToolType.PICKAXE.getToolClass(), ToolMaterial.WOOD.getHarvestLevel());
 
 		// スタックサイズ変更
 		Items.EGG.setMaxStackSize(64);
@@ -937,8 +938,7 @@ public class Register {
 		if(!ModCompat.COMPAT_QUARK) {
 			RegistryUtils.addFuel(400, new ItemStack(Blocks.TORCH));
 			Utils.addSpawnEntity(EntityBlaze.class, 15, 1, 4, EnumCreatureType.MONSTER, Biomes.HELL);
-		}
-		else
+		} else
 			PSV2Core.LOGGER.info("Quark is installed, so skip register.");
 
 		if(Utils.isOreDictLoaded("ingotTin")) {
