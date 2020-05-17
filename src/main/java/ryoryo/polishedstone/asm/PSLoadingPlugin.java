@@ -13,7 +13,9 @@ public class PSLoadingPlugin implements IFMLLoadingPlugin {
 
 	@Override
 	public String[] getASMTransformerClass() {
-		return new String[] { PSClassTransformer.class.getName() };
+		return new String[] { BlockClassTransformer.class.getName(),
+				ItemToolClassTransformer.class.getName(),
+				TraceClassTransformer.class.getName() };
 	}
 
 	@Override
