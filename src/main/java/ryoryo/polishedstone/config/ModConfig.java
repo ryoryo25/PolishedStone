@@ -158,7 +158,7 @@ public class ModConfig {
 
 		fenceBlock = Utils.getStringList(config, "FenceBlock", general, new String[] {}, "Blocks regarded as a fence.");
 
-		invincibleSwordAOERudius = config.getInt("InvincibleSwordAOERudius", general, 4, 0, NumericalConstant.INT_MAX, "Rudius of Invincible Sword's range attack.");
+		invincibleSwordAOERudius = config.getInt("InvincibleSwordAOERudius", general, 8, 0, NumericalConstant.INT_MAX, "Rudius of Invincible Sword's range attack.");
 	}
 
 	// World
@@ -435,8 +435,7 @@ public class ModConfig {
 	// @Config.Comment("I say fuck you")
 	// public static boolean test = true;
 
-	public static enum EnumConfigCategory
-	{
+	public static enum EnumConfigCategory {
 		GENERAL("general", "General Settings", "General Settings"),
 		WORLD_GEN("world_gen", "World Generation Settings", "World Generation Settings"),
 		MOB_DROP("mob_drop", "Mob Drop Settings", "Mob Drop Settings"),

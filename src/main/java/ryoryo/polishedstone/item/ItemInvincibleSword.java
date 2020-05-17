@@ -44,17 +44,15 @@ public class ItemInvincibleSword extends ItemSword {
 			EntityPlayer player = (EntityPlayer) attacker;
 
 			if(player.isSneaking()) {
-				List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(target, new AxisAlignedBB(
-						target.posX - ModConfig.invincibleSwordAOERudius, target.posY - ModConfig.invincibleSwordAOERudius, target.posZ - ModConfig.invincibleSwordAOERudius,
-						target.posX + ModConfig.invincibleSwordAOERudius, target.posY + ModConfig.invincibleSwordAOERudius, target.posZ + ModConfig.invincibleSwordAOERudius));
+				AxisAlignedBB aabb = new AxisAlignedBB(target.getPosition()).grow(ModConfig.invincibleSwordAOERudius);
+				List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(target, aabb);
 				for(Entity entity : entities) {
 					if(entity instanceof EntityLivingBase)
 						entity.attackEntityFrom(DamageSource.causePlayerDamage(player).setDamageBypassesArmor(), NumericalConstant.FLOAT_MAX);
 				}
 
 				return true;
-			}
-			else
+			} else
 				target.attackEntityFrom(DamageSource.causePlayerDamage(player).setDamageBypassesArmor(), NumericalConstant.FLOAT_MAX);
 
 			return true;
