@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -92,12 +93,29 @@ public class ModClientEventHandler {
 			Minecraft mc = Minecraft.getMinecraft();
 			EntityPlayer player = mc.player;
 			World world = mc.world;
-			//			RayTraceResult ray = mc.objectMouseOver;
-			RayTraceResult ray = player.rayTrace(64.0, mc.getTickLength());
+			RayTraceResult ray = rayTraceLiquid(64.0, world, player, false);
 
 			if(player != null && player.capabilities.isCreativeMode && ray != null && ray.typeOfHit == RayTraceResult.Type.BLOCK)
 				ForgeHooks.onPickBlock(ray, player, world);
 		}
+	}
+
+	private static RayTraceResult rayTraceLiquid(double reachDistance, World world, EntityPlayer player, boolean useLiquids) {
+		float f = player.rotationPitch;
+		float f1 = player.rotationYaw;
+		double d0 = player.posX;
+		double d1 = player.posY + (double) player.getEyeHeight();
+		double d2 = player.posZ;
+		Vec3d vec3d = new Vec3d(d0, d1, d2);
+		float f2 = MathHelper.cos(-f1 * 0.017453292F - (float) Math.PI);
+		float f3 = MathHelper.sin(-f1 * 0.017453292F - (float) Math.PI);
+		float f4 = -MathHelper.cos(-f * 0.017453292F);
+		float f5 = MathHelper.sin(-f * 0.017453292F);
+		float f6 = f3 * f4;
+		float f7 = f2 * f4;
+		double d3 = reachDistance;
+		Vec3d vec3d1 = vec3d.addVector((double) f6 * d3, (double) f5 * d3, (double) f7 * d3);
+		return world.rayTraceBlocks(vec3d, vec3d1, useLiquids, !useLiquids, false);
 	}
 
 	public static class PreInit {
