@@ -121,12 +121,12 @@ public class ModClientEventHandler {
 	public static class PreInit {
 		@SubscribeEvent
 		public void onBakeModel(ModelBakeEvent event) {
-			PSV2Core.LOGGER.info("Baking model");
+			PSV2Core.LOGGER.info("Baking model for " + References.MOD_NAME);
 			for(ModelResourceLocation resource : event.getModelRegistry().getKeys()) {
 				ResourceLocation key = new ResourceLocation(resource.getResourceDomain(), resource.getResourcePath());
 
 				if(Register.BLOCK_CHROMA_KEY_BACK.getRegistryName().toString().equals(key.toString())) {
-					String path = References.MOD_ID + ":blocks/chroma_key_back_" + resource.getVariant().substring(6);
+					String path = References.MOD_ID + ":blocks/chroma_key_back_" + resource.getVariant().substring("color=".length());
 					event.getModelRegistry().putObject(resource, new BakedModelFullbright(event.getModelRegistry().getObject(resource), path));
 				}
 			}
