@@ -19,31 +19,34 @@ public class TooltipHandler {
 		// isAdvancedになってるか、シフト押してる
 		boolean flag = event.getFlags().isAdvanced() || GuiScreen.isShiftKeyDown();
 
-		if(!held.isEmpty() && flag) {
+		if (!held.isEmpty() && flag) {
 			// 鉱石辞書の登録内容をF3+Hかシフトの状態なら見えるように
 			int[] oreIDs = OreDictionary.getOreIDs(held);
-			tooltip.add(TextFormatting.DARK_GRAY + "Ore Dictionary Entries" + ":");
-			if(oreIDs.length > 0) {
+			tooltip.add(TextFormatting.DARK_GRAY + "Ore Dictionary Entries:");
+			if (oreIDs.length > 0) {
 				// Stream.of(oreIDs)がなぜかint[]のstreamになっちゃう
 				// プリミティブ配列だとStream<int[]>になっちゃうみたい
 				// プリミティブ型の場合はIntStreamとか個別の物が使われてるから
 				// Ref:
 				// https://www.codeflow.site/ja/article/java8__java-how-to-convert-array-to-stream
 				Arrays.stream(oreIDs).forEach(oreID -> tooltip.add(TextFormatting.DARK_GRAY + " - " + OreDictionary.getOreName(oreID)));
+			} else {
+				tooltip.add(TextFormatting.DARK_GRAY + " - No Ore Dictionary Entry");
 			}
-			else
-				tooltip.add(TextFormatting.DARK_GRAY + " - There is No Ore Dictionary Entry.");
 
-			// NBTがあれば表示
-			if(held.hasTagCompound()) {
+			// NBTを表示
+			tooltip.add(TextFormatting.DARK_GRAY + "NBT Entries:");
+			if (held.hasTagCompound()) {
 				NBTTagCompound tag = held.getTagCompound();
-				tooltip.add(TextFormatting.DARK_GRAY + "NBT Entries:");
-				for(String key : tag.getKeySet()) {
-					String toAdd = "";
-					toAdd += TextFormatting.DARK_GRAY + " - " + key + ":";
-					toAdd += tag.getTag(key).toString();
-					tooltip.add(toAdd);
+
+				for (String key : tag.getKeySet()) {
+					StringBuilder builder = new StringBuilder();
+					builder.append(TextFormatting.DARK_GRAY).append(" - ").append(key).append(" : ");
+					builder.append(tag.getTag(key).toString());
+					tooltip.add(builder.toString());
 				}
+			} else {
+				tooltip.add(TextFormatting.DARK_GRAY + " - No NBT Entry");
 			}
 		}
 	}
